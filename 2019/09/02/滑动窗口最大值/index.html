@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>面试准备 | Hexo</title>
+  <title>滑动窗口最大值 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="数据结构 红黑树   http://www.360doc.com/content/18/0904/19/25944647_783893127.shtml https://www.jianshu.com/p/6f6642b982af https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03">
-<meta name="keywords" content="面试,数据结构,网络,操作系统,Linux">
+  <meta name="description" content="给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。  示例 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出: [3,3,5,5,6,7]  解释:     滑动窗口的位置 最大值    [1  3  -1] -3  5  3  6">
+<meta name="keywords" content="算法">
 <meta property="og:type" content="article">
-<meta property="og:title" content="面试准备">
-<meta property="og:url" content="http://yoursite.com/2019/09/02/面试准备/index.html">
+<meta property="og:title" content="滑动窗口最大值">
+<meta property="og:url" content="http://yoursite.com/2019/09/02/滑动窗口最大值/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="数据结构 红黑树   http://www.360doc.com/content/18/0904/19/25944647_783893127.shtml https://www.jianshu.com/p/6f6642b982af https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03">
+<meta property="og:description" content="给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。  示例 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出: [3,3,5,5,6,7]  解释:     滑动窗口的位置 最大值    [1  3  -1] -3  5  3  6">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2019-09-03T08:23:18.913Z">
+<meta property="og:updated_time" content="2019-09-03T10:13:01.390Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="面试准备">
-<meta name="twitter:description" content="数据结构 红黑树   http://www.360doc.com/content/18/0904/19/25944647_783893127.shtml https://www.jianshu.com/p/6f6642b982af https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03">
+<meta name="twitter:title" content="滑动窗口最大值">
+<meta name="twitter:description" content="给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。  示例 输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3 输出: [3,3,5,5,6,7]  解释:     滑动窗口的位置 最大值    [1  3  -1] -3  5  3  6">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -139,800 +139,72 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-面试准备" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-滑动窗口最大值" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      面试准备
+      滑动窗口最大值
     </h1>
   
 
         
-        <a href="/2019/09/02/面试准备/" class="archive-article-date">
-  	<time datetime="2019-09-02T08:20:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
+        <a href="/2019/09/02/滑动窗口最大值/" class="archive-article-date">
+  	<time datetime="2019-09-02T15:02:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="数据结构"><a href="#数据结构" class="headerlink" title="数据结构"></a>数据结构</h1><ol>
-<li>红黑树</li>
-</ol>
-<ul>
-<li><a href="http://www.360doc.com/content/18/0904/19/25944647_783893127.shtml" target="_blank" rel="noopener">http://www.360doc.com/content/18/0904/19/25944647_783893127.shtml</a></li>
-<li><a href="https://www.jianshu.com/p/6f6642b982af" target="_blank" rel="noopener">https://www.jianshu.com/p/6f6642b982af</a></li>
-<li><a href="https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md" target="_blank" rel="noopener">https://github.com/julycoding/The-Art-Of-Programming-By-July/blob/master/ebook/zh/03.01.md</a></li>
-</ul>
-<ol start="2">
-<li><p>hashmap底层实现</p>
-</li>
-<li><p>8之前是链表+entrySet，1.8之后使用链表+红黑树</p>
-</li>
-<li><p>hashmap的扩容机制</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/yanzige/p/8392142.html" target="_blank" rel="noopener">https://www.cnblogs.com/yanzige/p/8392142.html</a></li>
-</ul>
-<ol start="4">
-<li>一致性哈希</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/study-everyday/p/8629100.html" target="_blank" rel="noopener">https://www.cnblogs.com/study-everyday/p/8629100.html</a></li>
-<li><a href="https://www.jianshu.com/p/e968c081f563" target="_blank" rel="noopener">https://www.jianshu.com/p/e968c081f563</a></li>
-</ul>
-<ol start="5">
-<li>布隆过滤器</li>
-</ol>
-<ul>
-<li><a href="https://segmentfault.com/a/1190000015482091" target="_blank" rel="noopener">https://segmentfault.com/a/1190000015482091</a></li>
-<li><a href="https://my.oschina.net/LucasZhu/blog/1813110" target="_blank" rel="noopener">https://my.oschina.net/LucasZhu/blog/1813110</a></li>
-<li><a href="https://www.jianshu.com/p/2104d11ee0a2" target="_blank" rel="noopener">https://www.jianshu.com/p/2104d11ee0a2</a></li>
-</ul>
-<ol start="6">
-<li>跳表</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/dd01e8dc4d1f" target="_blank" rel="noopener">https://www.jianshu.com/p/dd01e8dc4d1f</a></li>
-<li><a href="https://blog.csdn.net/pcwl1206/article/details/83512600" target="_blank" rel="noopener">https://blog.csdn.net/pcwl1206/article/details/83512600</a></li>
-</ul>
-<ol start="7">
-<li>为什么求解String的哈希值要乘31</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zhanjia/article/details/84923530" target="_blank" rel="noopener">https://blog.csdn.net/zhanjia/article/details/84923530</a></li>
-</ul>
-<h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><ol>
-<li>各类协议头部</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/winbobob/article/details/41475959" target="_blank" rel="noopener">https://blog.csdn.net/winbobob/article/details/41475959</a> </li>
-</ul>
-<ol start="2">
-<li><p>漏桶算法</p>
-</li>
-<li><p>InetAddress IP协议/URL/URLConnection/HTTPURLConnection/Socket/ServerSocket</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/kuangzhisen/p/7053689.html" target="_blank" rel="noopener">https://www.cnblogs.com/kuangzhisen/p/7053689.html</a></li>
-</ul>
-<ol start="4">
-<li>UrlConnection连接和Socket连接的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/iteye_1429/article/details/82168974" target="_blank" rel="noopener">https://blog.csdn.net/iteye_1429/article/details/82168974</a></li>
-<li><a href="https://blog.csdn.net/bibi1314123/article/details/17090927" target="_blank" rel="noopener">https://blog.csdn.net/bibi1314123/article/details/17090927</a></li>
-</ul>
-<ol start="5">
-<li>五层模型及协议</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_22238021/article/details/80279001" target="_blank" rel="noopener">https://blog.csdn.net/qq_22238021/article/details/80279001</a></li>
-</ul>
-<ol start="6">
-<li>列举几个网络攻击<br>SYN攻击（DDOS攻击）</li>
-</ol>
-<ul>
-<li><a href="https://baijiahao.baidu.com/s?id=1622812984571131456&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1622812984571131456&amp;wfr=spider&amp;for=pc</a></li>
-</ul>
-<ol start="7">
-<li>HTTP，TCP，IP 报文头</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/CodingUniversal/p/7524088.html" target="_blank" rel="noopener">https://www.cnblogs.com/CodingUniversal/p/7524088.html</a></li>
-<li><a href="https://blog.csdn.net/ythunder/article/details/65664309" target="_blank" rel="noopener">https://blog.csdn.net/ythunder/article/details/65664309</a></li>
-</ul>
-<ol start="8">
-<li><p>网页访问全过程<br><a href="https://blog.csdn.net/u012862311/article/details/78753232" target="_blank" rel="noopener">https://blog.csdn.net/u012862311/article/details/78753232</a></p>
-</li>
-<li><p>优化网页访问方案</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/xg1010831107/p/optimization.html" target="_blank" rel="noopener">https://www.cnblogs.com/xg1010831107/p/optimization.html</a></li>
-<li><a href="https://www.cnblogs.com/propheterLiu/p/5935622.html" target="_blank" rel="noopener">https://www.cnblogs.com/propheterLiu/p/5935622.html</a></li>
-</ul>
-<ol start="10">
-<li>各协议的默认端口号</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qiucheng_198806/article/details/87375505" target="_blank" rel="noopener">https://blog.csdn.net/qiucheng_198806/article/details/87375505</a><h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3></li>
-</ul>
-<h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><ol>
-<li>ARP协议的原理过程</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/csguo/p/7542944.html" target="_blank" rel="noopener">https://www.cnblogs.com/csguo/p/7542944.html</a></li>
-</ul>
-<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><ol>
-<li>三次握手和四次挥手</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_38950316/article/details/81087809" target="_blank" rel="noopener">https://blog.csdn.net/qq_38950316/article/details/81087809</a><br>建立连接阶段及数据传输阶段ACK的值的意义</li>
-<li><a href="https://blog.csdn.net/ygm_linux/article/details/79546034" target="_blank" rel="noopener">https://blog.csdn.net/ygm_linux/article/details/79546034</a></li>
-<li>注意*其中减去的54为 以太网协议头（14B）+TCP协议头（20B）+IP协议头（20B）</li>
-</ul>
-<ol start="2">
-<li>TCP和UDP的区别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/williamjie/p/9390164.html" target="_blank" rel="noopener">https://www.cnblogs.com/williamjie/p/9390164.html</a></li>
-<li><a href="https://www.cnblogs.com/twoheads/p/9713936.html" target="_blank" rel="noopener">https://www.cnblogs.com/twoheads/p/9713936.html</a></li>
-</ul>
-<p>面向报文与面向字节</p>
-<ul>
-<li><a href="https://blog.csdn.net/ce123_zhouwei/article/details/8976006" target="_blank" rel="noopener">https://blog.csdn.net/ce123_zhouwei/article/details/8976006</a></li>
-</ul>
-<ol start="3">
-<li>TCP如何保证可靠传输</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/liuchenxia8/article/details/80428157" target="_blank" rel="noopener">https://blog.csdn.net/liuchenxia8/article/details/80428157</a></li>
-</ul>
-<ol start="4">
-<li>TCP如何进行流量控制</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/u011784495/article/details/72639876" target="_blank" rel="noopener">https://blog.csdn.net/u011784495/article/details/72639876</a></li>
-</ul>
-<ol start="5">
-<li>TCP如何进行拥塞控制</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/m0_37962600/article/details/79993310" target="_blank" rel="noopener">https://blog.csdn.net/m0_37962600/article/details/79993310</a></li>
-</ul>
-<ol start="6">
-<li>三次握手中ack的值是什么？SYN攻击与防护</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/huskiesir/p/10212053.html" target="_blank" rel="noopener">https://www.cnblogs.com/huskiesir/p/10212053.html</a></li>
-<li><a href="https://baijiahao.baidu.com/s?id=1627339324399698792&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1627339324399698792&amp;wfr=spider&amp;for=pc</a></li>
-</ul>
-<ol start="7">
-<li><p>tcp的time wait 和 close wait</p>
-</li>
-<li><p>长连接及心跳连接</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/16c8c9e09feb" target="_blank" rel="noopener">https://www.jianshu.com/p/16c8c9e09feb</a></li>
-</ul>
-<ol start="9">
-<li>粘包现象及如何处理粘包</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zhengzhaoyang122/article/details/81784306" target="_blank" rel="noopener">https://blog.csdn.net/zhengzhaoyang122/article/details/81784306</a></li>
-<li><a href="https://www.cnblogs.com/zhangsanfeng/p/8891149.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangsanfeng/p/8891149.html</a></li>
-</ul>
-<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><ol>
-<li>HTTP非持久连接与持久连接</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/shoren/p/http-connection.html" target="_blank" rel="noopener">https://www.cnblogs.com/shoren/p/http-connection.html</a></li>
-</ul>
-<ol start="2">
-<li>HTTP协议中常见的contentType类型</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/wushifeng/p/6707248.html" target="_blank" rel="noopener">https://www.cnblogs.com/wushifeng/p/6707248.html</a></li>
-</ul>
-<ol start="3">
-<li>HTTP1.0和HTTP1.1,HTTP2.0的区别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/smlp/p/9779206.html" target="_blank" rel="noopener">https://www.cnblogs.com/smlp/p/9779206.html</a></li>
-<li><a href="https://www.cnblogs.com/heluan/p/8620312.html" target="_blank" rel="noopener">https://www.cnblogs.com/heluan/p/8620312.html</a></li>
-</ul>
-<ol start="4">
-<li>HTTP和HTTPS的区别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/jesse131/p/9080925.html" target="_blank" rel="noopener">https://www.cnblogs.com/jesse131/p/9080925.html</a></li>
-<li><a href="https://www.cnblogs.com/shoshana-kong/p/10583760.html" target="_blank" rel="noopener">https://www.cnblogs.com/shoshana-kong/p/10583760.html</a></li>
-</ul>
-<ol start="5">
-<li>HTTP状态码</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/xflonga/p/9368993.html" target="_blank" rel="noopener">https://www.cnblogs.com/xflonga/p/9368993.html</a></li>
-</ul>
-<ol start="6">
-<li>HTTP POST和GET</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/liziweiblog/p/11066333.html" target="_blank" rel="noopener">https://www.cnblogs.com/liziweiblog/p/11066333.html</a></li>
-<li><a href="https://blog.csdn.net/bieleyang/article/details/76272699" target="_blank" rel="noopener">https://blog.csdn.net/bieleyang/article/details/76272699</a></li>
-<li><a href="https://baijiahao.baidu.com/s?id=1626599028653203490&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1626599028653203490&amp;wfr=spider&amp;for=pc</a></li>
-</ul>
-<h1 id="数据库-MySql"><a href="#数据库-MySql" class="headerlink" title="数据库/MySql"></a>数据库/MySql</h1><ol>
-<li>Mysql的事务隔离级别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/rxbook/p/8975924.html" target="_blank" rel="noopener">https://www.cnblogs.com/rxbook/p/8975924.html</a><br>设置mysql的事务隔离级别</li>
-<li><a href="https://www.cnblogs.com/huasky/p/11190086.html" target="_blank" rel="noopener">https://www.cnblogs.com/huasky/p/11190086.html</a></li>
-<li><a href="https://www.cnblogs.com/satng/p/7759899.html" target="_blank" rel="noopener">https://www.cnblogs.com/satng/p/7759899.html</a></li>
-</ul>
-<ol start="2">
-<li>数据库的连接池</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_39659876/article/details/80958450" target="_blank" rel="noopener">https://blog.csdn.net/qq_39659876/article/details/80958450</a></li>
-<li><a href="https://blog.csdn.net/qq_34468186/article/details/83892496" target="_blank" rel="noopener">https://blog.csdn.net/qq_34468186/article/details/83892496</a></li>
-<li><a href="https://baijiahao.baidu.com/s?id=1599699339020031595&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1599699339020031595&amp;wfr=spider&amp;for=pc</a></li>
-</ul>
-<ol start="3">
-<li>乐观锁悲观锁</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/suger43894/p/11024102.html" target="_blank" rel="noopener">https://www.cnblogs.com/suger43894/p/11024102.html</a></li>
-</ul>
-<ol start="4">
-<li>数据库分页优化</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/geningchao/p/6649907.html" target="_blank" rel="noopener">https://www.cnblogs.com/geningchao/p/6649907.html</a></li>
-<li><a href="https://www.cnblogs.com/RunForLove/p/5100009.html" target="_blank" rel="noopener">https://www.cnblogs.com/RunForLove/p/5100009.html</a></li>
-<li><a href="https://www.cnblogs.com/waterystone/p/9392421.html" target="_blank" rel="noopener">https://www.cnblogs.com/waterystone/p/9392421.html</a></li>
-</ul>
-<ol start="5">
-<li>mysql数据引擎知道几种？innodb和mylsam区别<br>6种，InnoDB,MyISAM,NDB,Memory,Archive,Federated,Maria</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/zhangchaoyang/articles/4214237.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangchaoyang/articles/4214237.html</a></li>
-</ul>
-<ol start="6">
-<li>索引失效</li>
-</ol>
-<ul>
-<li>复合索引不能跨列或者无序使用；尽量使用全索引匹配</li>
-<li>不要在索引上进行任何操作（计算，函数，类型转换）</li>
-<li>复合索引不能使用不等于或is null，否则自身及右侧全部失效</li>
-<li>复合索引中有&gt;,&lt;,in，之后的索引失效</li>
-<li>like尽量用常量开头，不以“%”开头；如果必须以“%”开头，可以用索引覆盖挽救一部分</li>
-<li>尽量不要用or，否则or左侧的索引也失效</li>
-</ul>
-<ol start="7">
-<li>覆盖索引</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_15037231/article/details/87891683" target="_blank" rel="noopener">https://blog.csdn.net/qq_15037231/article/details/87891683</a></li>
-<li><a href="https://www.cnblogs.com/happyflyingpig/p/7662881.html" target="_blank" rel="noopener">https://www.cnblogs.com/happyflyingpig/p/7662881.html</a></li>
-<li><a href="https://www.cnblogs.com/pyng/p/9599977.html" target="_blank" rel="noopener">https://www.cnblogs.com/pyng/p/9599977.html</a></li>
-</ul>
-<ol start="8">
-<li>倒排序索引</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/gered/p/9561710.html" target="_blank" rel="noopener">https://www.cnblogs.com/gered/p/9561710.html</a></li>
-<li><a href="https://www.cnblogs.com/luminous1/p/8383777.html" target="_blank" rel="noopener">https://www.cnblogs.com/luminous1/p/8383777.html</a></li>
-<li><a href="https://blog.csdn.net/zsd_31/article/details/79979818" target="_blank" rel="noopener">https://blog.csdn.net/zsd_31/article/details/79979818</a></li>
-</ul>
-<ol start="9">
-<li>MVCC</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/rocling/article/details/81193431" target="_blank" rel="noopener">https://blog.csdn.net/rocling/article/details/81193431</a></li>
-<li><a href="https://www.cnblogs.com/liulvzhong/articles/9242299.html" target="_blank" rel="noopener">https://www.cnblogs.com/liulvzhong/articles/9242299.html</a></li>
-</ul>
-<ol start="10">
-<li>索引失效</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/42cfeec20301" target="_blank" rel="noopener">https://www.jianshu.com/p/42cfeec20301</a></li>
-</ul>
-<h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><ol>
-<li>Redis数据结构及持久化机制</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/neooelric/p/9621736.html" target="_blank" rel="noopener">https://www.cnblogs.com/neooelric/p/9621736.html</a></li>
-</ul>
-<ol start="2">
-<li>Redis持久化机制</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/yyjie/p/7487937.html" target="_blank" rel="noopener">https://www.cnblogs.com/yyjie/p/7487937.html</a></li>
-</ul>
-<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><ol>
-<li>mybatis 如何获取自增ID </li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zonghao123/article/details/78374169" target="_blank" rel="noopener">https://blog.csdn.net/zonghao123/article/details/78374169</a></li>
-</ul>
-<ol start="2">
-<li>mybatis  一二级缓存</li>
-</ol>
-<h1 id="JavaSE"><a href="#JavaSE" class="headerlink" title="JavaSE"></a>JavaSE</h1><ol>
-<li>根据反射加载一个类的具体步骤</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/xiaobiqiang/p/6047146.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaobiqiang/p/6047146.html</a></li>
-<li><a href="https://www.cnblogs.com/FanJava/p/9512775.html" target="_blank" rel="noopener">https://www.cnblogs.com/FanJava/p/9512775.html</a></li>
-</ul>
-<ol start="2">
-<li>泛型</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/coprince/p/8603492.html" target="_blank" rel="noopener">https://www.cnblogs.com/coprince/p/8603492.html</a></li>
-</ul>
-<ol start="3">
-<li>面向对象</li>
-<li>HashMap为什么初始化为16</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/l18848956739/article/details/85998121" target="_blank" rel="noopener">https://blog.csdn.net/l18848956739/article/details/85998121</a></li>
-</ul>
-<ol start="5">
-<li>hashCode 怎么对应桶的位置</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/yue31313/article/details/77513353" target="_blank" rel="noopener">https://blog.csdn.net/yue31313/article/details/77513353</a></li>
-</ul>
-<ol start="6">
-<li>hashCode的计算</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/tanggao1314/article/details/51457585" target="_blank" rel="noopener">https://blog.csdn.net/tanggao1314/article/details/51457585</a></li>
-<li><a href="https://blog.csdn.net/zhucegemingzizheng/article/details/81289479" target="_blank" rel="noopener">https://blog.csdn.net/zhucegemingzizheng/article/details/81289479</a></li>
-</ul>
-<ol start="7">
-<li><p>字符串快速去重</p>
-</li>
-<li><p>Error和Exception的区别</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/lcl-dcr/p/7653274.html" target="_blank" rel="noopener">https://www.cnblogs.com/lcl-dcr/p/7653274.html</a></li>
-<li><a href="https://www.cnblogs.com/hustzzl/p/7840780.html" target="_blank" rel="noopener">https://www.cnblogs.com/hustzzl/p/7840780.html</a></li>
-</ul>
-<ol start="9">
-<li><p>聊一下java里的对象（java里的包）</p>
-</li>
-<li><p>HashMap底层转红黑树的时机</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/laipimei/p/11282055.html" target="_blank" rel="noopener">https://www.cnblogs.com/laipimei/p/11282055.html</a></li>
-<li><a href="https://www.cnblogs.com/laipimei/p/11275235.html" target="_blank" rel="noopener">https://www.cnblogs.com/laipimei/p/11275235.html</a></li>
-</ul>
-<ol start="11">
-<li>io类型；nio是其中哪一种</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/datadev_sh/article/details/79241186" target="_blank" rel="noopener">https://blog.csdn.net/datadev_sh/article/details/79241186</a></li>
-<li><a href="https://blog.csdn.net/Yufail/article/details/88825123" target="_blank" rel="noopener">https://blog.csdn.net/Yufail/article/details/88825123</a></li>
-</ul>
-<h1 id="JavaEE"><a href="#JavaEE" class="headerlink" title="JavaEE"></a>JavaEE</h1><ol>
-<li>Session，Cookie和Token</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/zlw-xf/p/8001383.html" target="_blank" rel="noopener">https://www.cnblogs.com/zlw-xf/p/8001383.html</a></li>
-<li><a href="https://www.cnblogs.com/roxy/p/7805858.html" target="_blank" rel="noopener">https://www.cnblogs.com/roxy/p/7805858.html</a></li>
-<li><a href="https://www.cnblogs.com/moyand/p/9047978.html" target="_blank" rel="noopener">https://www.cnblogs.com/moyand/p/9047978.html</a></li>
-</ul>
-<ol start="2">
-<li>Servlet的生命周期</li>
-<li>拦截器和过滤器的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zxd1435513775/article/details/80556034" target="_blank" rel="noopener">https://blog.csdn.net/zxd1435513775/article/details/80556034</a></li>
-<li><a href="https://www.cnblogs.com/panxuejun/p/7715917.html" target="_blank" rel="noopener">https://www.cnblogs.com/panxuejun/p/7715917.html</a><br>过滤器只在容器初始化时调用一次该怎么理解？</li>
-<li><a href="https://blog.csdn.net/dingchenxixi/article/details/81391831" target="_blank" rel="noopener">https://blog.csdn.net/dingchenxixi/article/details/81391831</a></li>
-</ul>
-<ol start="4">
-<li>防止XSS攻击</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/hero123/p/9091625.html" target="_blank" rel="noopener">https://www.cnblogs.com/hero123/p/9091625.html</a></li>
-<li><a href="https://www.jianshu.com/p/cd49578bdd48" target="_blank" rel="noopener">https://www.jianshu.com/p/cd49578bdd48</a></li>
-</ul>
-<h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><ol>
-<li>单例模式的好处，应用</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/restartyang/articles/7770856.html" target="_blank" rel="noopener">https://www.cnblogs.com/restartyang/articles/7770856.html</a></li>
-</ul>
-<ol start="2">
-<li>工厂模式</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/weixin_41843053/article/details/80853758" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41843053/article/details/80853758</a></li>
-<li><a href="https://www.jianshu.com/p/ae2e22aa6147" target="_blank" rel="noopener">https://www.jianshu.com/p/ae2e22aa6147</a></li>
-</ul>
-<ol start="3">
-<li>Java单例的饱汉与饿汉模式</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/sai739295732/article/details/62411016" target="_blank" rel="noopener">https://blog.csdn.net/sai739295732/article/details/62411016</a></li>
-<li><a href="https://blog.csdn.net/qq_37768482/article/details/77539850" target="_blank" rel="noopener">https://blog.csdn.net/qq_37768482/article/details/77539850</a></li>
-</ul>
-<h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><ol>
-<li>JVM中的gc，Full GC</li>
-</ol>
-<ul>
-<li><a href="https://baijiahao.baidu.com/s?id=1632743030610982339&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1632743030610982339&amp;wfr=spider&amp;for=pc</a></li>
-<li><a href="https://blog.csdn.net/hellozhxy/article/details/80649342" target="_blank" rel="noopener">https://blog.csdn.net/hellozhxy/article/details/80649342</a></li>
-<li><a href="https://blog.csdn.net/weixin_39788856/article/details/80388002" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39788856/article/details/80388002</a></li>
-<li><a href="https://www.cnblogs.com/jenkov/p/full_gc_old_gc_cms_gc.html" target="_blank" rel="noopener">https://www.cnblogs.com/jenkov/p/full_gc_old_gc_cms_gc.html</a></li>
-<li><a href="https://www.cnblogs.com/williamjie/p/9516264.html" target="_blank" rel="noopener">https://www.cnblogs.com/williamjie/p/9516264.html</a></li>
-</ul>
-<ol start="2">
-<li>垃圾回收及算法<br>垃圾回收算法：</li>
-</ol>
-<ul>
-<li>标记-清除</li>
-<li>标记-复制</li>
-<li>标记-整理</li>
-<li>分代回收</li>
-</ul>
-<p>垃圾收集器</p>
-<p>年轻代<br>Serial：单线程<br>ParNew：多线程<br>Parallel Scavenge：使用复制算法，强调精确控制吞吐量</p>
-<p>老年代<br>Serial Old：单线程，Serial 的老年代版本<br>Parallel Old：Parallel Scavenge 使用多线程和”标记-整理“算法 吞吐量优先<br>CMS：”标记-清除“算法，强调最短回收停顿时间<br>兼顾年轻代和老年代：<br>G1收集器：并行与并发，分代回收，”标记-整理”算法，可预测的停顿</p>
-<ul>
-<li><a href="https://www.jianshu.com/p/35805f809a21" target="_blank" rel="noopener">https://www.jianshu.com/p/35805f809a21</a></li>
-</ul>
-<ol start="3">
-<li><p>假设有一个加法类从编译到最终使用的整个过程</p>
-</li>
-<li><p>如何判断对象是否需要被回收？两个相互引用的对象如何被回收</p>
-</li>
-</ol>
-<ul>
-<li>引用计数</li>
-<li>可达性分析</li>
-</ul>
-<p>附：GCRoot的对象包括：</p>
-<ul>
-<li>虚拟机栈中引用的对象</li>
-<li>方法区中类静态属性引用的对象</li>
-<li>方法区中常量引用的对象</li>
-<li>本地方法栈中JNI引用的对象</li>
-</ul>
-<ol start="5">
-<li>虚拟机栈异常类型以及复现代码</li>
-<li>堆内存异常类型以及复现</li>
-<li>直接内存怎么使用以及jvm对其管理</li>
-</ol>
-<h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><ul>
-<li><a href="https://www.jianshu.com/p/125ccf0046f3" target="_blank" rel="noopener">https://www.jianshu.com/p/125ccf0046f3</a></li>
-</ul>
+        <blockquote>
+<p>给定一个数组 nums，有一个大小为 k 的滑动窗口从数组的最左侧移动到数组的最右侧。你只可以看到在滑动窗口内的 k 个数字。滑动窗口每次只向右移动一位。返回滑动窗口中的最大值。</p>
+</blockquote>
+<p>示例</p>
+<p>输入: nums = [1,3,-1,-3,5,3,6,7], 和 k = 3</p>
+<p>输出: [3,3,5,5,6,7] </p>
+<p>解释: </p>
+<table>
+<thead>
+<tr>
+<th>滑动窗口的位置</th>
+<th>最大值</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>[1  3  -1] -3  5  3  6  7</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1 [3  -1  -3] 5  3  6  7</td>
+<td>3</td>
+</tr>
+<tr>
+<td>1  3 [-1  -3  5] 3  6  7</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1  3  -1 [-3  5  3] 6  7</td>
+<td>5</td>
+</tr>
+<tr>
+<td>1  3  -1  -3 [5  3  6] 7</td>
+<td>6</td>
+</tr>
+<tr>
+<td>1  3  -1  -3  5 [3  6  7]</td>
+<td>7</td>
+</tr>
+</tbody></table>
+<p>分析：</p>
 <ol>
-<li><p>线程池的参数<br>public ThreadPoolExecutor(<br>int corePoolSize,<br>int maximumPoolSize,<br>long keepAliveTime,<br>TimeUnit unit,<br>ThreadFactory threadFactory,<br>RejectedExecutionHandler handler<br>);</p>
-</li>
-<li><p>为什么要使用线程池</p>
-</li>
+<li>很重要的一点，首先队首和队尾的下标差&lt;=k</li>
+<li>如果在满足1的情况下，进来一个大于前面k-1个数的数字，则前面k-1个数字失去作用，同时也就失去保存的必要性，因此可以使用双端队列，这样可以保证窗口最大值始终在队列的最前面，为了保证条件1，因此选择存index</li>
 </ol>
-<ul>
-<li><a href="https://blog.csdn.net/a497393102/article/details/8597819" target="_blank" rel="noopener">https://blog.csdn.net/a497393102/article/details/8597819</a></li>
-<li><a href="https://blog.csdn.net/Muz_victory/article/details/81216771" target="_blank" rel="noopener">https://blog.csdn.net/Muz_victory/article/details/81216771</a></li>
-</ul>
-<ol start="3">
-<li>如何合理的配置线程池<br>CPU密集型 Ncpu+1<br>IO密集型 2*Ncpu</li>
-</ol>
-<p>混合型任务 进行任务拆分</p>
-<ol start="4">
-<li>饱和策略/任务队列满了以后再来一个任务如何处理</li>
-</ol>
-<ul>
-<li>AbortPolicy</li>
-<li>CallerRunsPolicy</li>
-<li>DiscardOldestPolicy</li>
-<li>DiscardPolicy</li>
-<li><a href="https://www.cnblogs.com/skywang12345/p/3512947.html" target="_blank" rel="noopener">https://www.cnblogs.com/skywang12345/p/3512947.html</a></li>
-</ul>
-<ol start="5">
-<li>JUC包里的东西，有哪些常用锁</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/doit8791/p/9131148.html" target="_blank" rel="noopener">https://www.cnblogs.com/doit8791/p/9131148.html</a><br>Lock，AQS，ReentrantLock，ReadWriteLock，LockSupport，Condition</li>
-</ul>
-<ol start="6">
-<li>线程同步的几种方法？</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/baizhanshi/p/7025974.html" target="_blank" rel="noopener">https://www.cnblogs.com/baizhanshi/p/7025974.html</a></li>
-</ul>
-<ol start="7">
-<li>线程同步使用哪些锁？</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/lixiangyang521/p/6861768.html" target="_blank" rel="noopener">https://www.cnblogs.com/lixiangyang521/p/6861768.html</a></li>
-</ul>
-<ol start="8">
-<li>死锁和死循环都会导致程序hold住，怎么判断是死锁还是死循环</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/wanglha/article/details/51133819" target="_blank" rel="noopener">https://blog.csdn.net/wanglha/article/details/51133819</a></li>
-</ul>
-<ol start="9">
-<li>并发容器种类<br><a href="https://www.cnblogs.com/ygj0930/p/6543877.html" target="_blank" rel="noopener">https://www.cnblogs.com/ygj0930/p/6543877.html</a></li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/cdefggg/article/details/86426917" target="_blank" rel="noopener">https://blog.csdn.net/cdefggg/article/details/86426917</a></li>
-<li><a href="https://www.jianshu.com/p/7f50497b7f30" target="_blank" rel="noopener">https://www.jianshu.com/p/7f50497b7f30</a></li>
-</ul>
-<ol start="10">
-<li><p>concurrenthashmap数据结构</p>
-</li>
-<li><p>线程状态(blocked   waiting  timed_waiting)</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/cowboys/p/9315331.html" target="_blank" rel="noopener">https://www.cnblogs.com/cowboys/p/9315331.html</a></li>
-</ul>
-<ol start="12">
-<li>等待和阻塞的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/woshiyigeliangliang/article/details/81116872" target="_blank" rel="noopener">https://blog.csdn.net/woshiyigeliangliang/article/details/81116872</a></li>
-</ul>
-<ol start="13">
-<li>wait和sleep的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/kangkanglou/article/details/82221301" target="_blank" rel="noopener">https://blog.csdn.net/kangkanglou/article/details/82221301</a></li>
-</ul>
-<ol start="14">
-<li>volatile变量i++</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/zemliu/p/3298685.html" target="_blank" rel="noopener">https://www.cnblogs.com/zemliu/p/3298685.html</a></li>
-<li><a href="https://blog.csdn.net/dm_vincent/article/details/79604716" target="_blank" rel="noopener">https://blog.csdn.net/dm_vincent/article/details/79604716</a></li>
-</ul>
-<ol start="15">
-<li>sychronized 和 RetreenLock的区别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/java-spring/p/10792097.html" target="_blank" rel="noopener">https://www.cnblogs.com/java-spring/p/10792097.html</a></li>
-</ul>
-<ol start="16">
-<li>介绍一下线程池</li>
-</ol>
-<h1 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h1><ol>
-<li>spring的主要特点？介绍一下AOP和IOC；AOP的实现方式；IOC的实现方式<br>AOP和IOC；AOP是面向切面编程；IOC是控制反转；spring AOC的实现是 jdk动态代理和cglib代理；<br>AOP的实现</li>
-</ol>
-<ul>
-<li><p><a href="https://blog.csdn.net/wyl6019/article/details/80136000" target="_blank" rel="noopener">https://blog.csdn.net/wyl6019/article/details/80136000</a><br>IOC的实现</p>
-</li>
-<li><p><a href="https://www.cnblogs.com/neon/p/10929759.html" target="_blank" rel="noopener">https://www.cnblogs.com/neon/p/10929759.html</a></p>
-</li>
-<li><p><a href="https://www.cnblogs.com/study-everyday/p/8566532.html" target="_blank" rel="noopener">https://www.cnblogs.com/study-everyday/p/8566532.html</a></p>
-</li>
-<li><p><a href="https://www.jianshu.com/p/4b31dacf3a63" target="_blank" rel="noopener">https://www.jianshu.com/p/4b31dacf3a63</a></p>
-</li>
-</ul>
-<p>附：常见的四种代理方式</p>
-<ul>
-<li><a href="https://blog.csdn.net/luanlouis/article/details/24589193" target="_blank" rel="noopener">https://blog.csdn.net/luanlouis/article/details/24589193</a><br>cglib和jdk动态代理的比较</li>
-<li><a href="https://blog.csdn.net/liangwenmail/article/details/78457106" target="_blank" rel="noopener">https://blog.csdn.net/liangwenmail/article/details/78457106</a></li>
-</ul>
-<ol start="2">
-<li>spring中如何配置事务管理级别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/cxyj/p/3906402.html" target="_blank" rel="noopener">https://www.cnblogs.com/cxyj/p/3906402.html</a></li>
-</ul>
-<ol start="3">
-<li>springMVC的处理流程</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/5ishare/p/8683971.html" target="_blank" rel="noopener">https://www.cnblogs.com/5ishare/p/8683971.html</a></li>
-</ul>
-<ol start="4">
-<li><p>一个Controller中会涉及到哪些注解<br>@Controller<br>@Autowire<br>@RequestMapping<br>@RequestParam<br>@RequestBody<br>@ResponseBody<br>@ModelAttribute</p>
-</li>
-<li><p>Spring和Spring boot的区别</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/ffe5ebe17c3a" target="_blank" rel="noopener">https://www.jianshu.com/p/ffe5ebe17c3a</a></li>
-<li><a href="https://blog.csdn.net/wang_666_/article/details/80527113" target="_blank" rel="noopener">https://blog.csdn.net/wang_666_/article/details/80527113</a></li>
-<li><a href="https://www.codercto.com/a/27048.html" target="_blank" rel="noopener">https://www.codercto.com/a/27048.html</a></li>
-</ul>
-<ol start="6">
-<li>@transaction</li>
-</ol>
-<h1 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h1><ol>
-<li>分布式锁的实现</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_32924343/article/details/79814133" target="_blank" rel="noopener">https://blog.csdn.net/qq_32924343/article/details/79814133</a><br>附：<br>CAP原理</li>
-<li><a href="http://www.ruanyifeng.com/blog/2018/07/cap.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/07/cap.html</a></li>
-</ul>
-<ol start="2">
-<li><p>了解微服务吗？</p>
-</li>
-<li><p>RPC调用</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/linlinismine/p/9205676.html" target="_blank" rel="noopener">https://www.cnblogs.com/linlinismine/p/9205676.html</a></li>
-<li><a href="https://www.cnblogs.com/FG123/p/10261676.html" target="_blank" rel="noopener">https://www.cnblogs.com/FG123/p/10261676.html</a></li>
-</ul>
-<h1 id="操作系统-Linux"><a href="#操作系统-Linux" class="headerlink" title="操作系统 Linux"></a>操作系统 Linux</h1><ol>
-<li><p>Linux Cpu的轮询方式</p>
-</li>
-<li><p>Linux中查询当前系统有多少个进程的指令</p>
-</li>
-<li><p>Linux的五种io模式，javaNIO</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/datadev_sh/article/details/79241186" target="_blank" rel="noopener">https://blog.csdn.net/datadev_sh/article/details/79241186</a></li>
-<li><a href="https://blog.csdn.net/Yufail/article/details/88825123" target="_blank" rel="noopener">https://blog.csdn.net/Yufail/article/details/88825123</a></li>
-</ul>
-<ol start="4">
-<li>Linux 的swap分区</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/saneri/p/10319412.html" target="_blank" rel="noopener">https://www.cnblogs.com/saneri/p/10319412.html</a></li>
-</ul>
-<h3 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h3><ol>
-<li><p>内核态与用户态，特权指令<br>内核态：又称管态，是操作系统管理程序执行时机器所处的状态。它具有较高的特权，能够执行包括特权指令的一切指令，能够访问所有的寄存器和存储区<br>用户态：又称目态，是用户程序执行时机器所处的状态。它具有较低的特权，只能执行规定的指令，只能访问指定的寄存器和存储区<br>特权指令：只能由操作系统内核使用的，不允许用户程序使用的指令，如IO指令，设置中断屏蔽指令，清内存指令，存储保护指令和设置时钟指令</p>
-</li>
-<li><p>中断与异常</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/u014134180/article/details/78418428" target="_blank" rel="noopener">https://blog.csdn.net/u014134180/article/details/78418428</a><br>什么是中断</li>
-<li><a href="https://www.cnblogs.com/jacklong-yin/p/11263052.html" target="_blank" rel="noopener">https://www.cnblogs.com/jacklong-yin/p/11263052.html</a></li>
-</ul>
-<ol start="3">
-<li>系统调用<br>操作系统提供给用户程序请求内核完成某种功能的一种过程调用</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/xiaomimi1993/article/details/81710623" target="_blank" rel="noopener">https://blog.csdn.net/xiaomimi1993/article/details/81710623</a></li>
-</ul>
-<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><h4 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h4><ol>
-<li>进程的组成</li>
-</ol>
-<ul>
-<li>进程控制块（PCB）</li>
-<li>程序段</li>
-<li>数据段</li>
-</ul>
-<ol start="2">
-<li>进程的状态与转换</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qwe6112071/article/details/70473905" target="_blank" rel="noopener">https://blog.csdn.net/qwe6112071/article/details/70473905</a></li>
-</ul>
-<ol start="3">
-<li>内核级线程与用户级线程</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/feng9exe/p/7890934.html" target="_blank" rel="noopener">https://www.cnblogs.com/feng9exe/p/7890934.html</a></li>
-</ul>
-<ol start="4">
-<li>进程通信方式<br>a，管道；b，消息队列；c，共享内存<br>几种通信方式的联系与区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/u014800094/article/details/53993275" target="_blank" rel="noopener">https://blog.csdn.net/u014800094/article/details/53993275</a></li>
-</ul>
-<h4 id="处理器调度"><a href="#处理器调度" class="headerlink" title="处理器调度"></a>处理器调度</h4><ol>
-<li>常见的调度算法<br>a，先来先服务<br>b，短作业优先<br>c，优先级调度<br>d，时间片轮转<br>e，高相应比调度<br>f，多级队列调度<br>g，多级反馈队列调度</li>
-</ol>
-<h4 id="互斥与同步"><a href="#互斥与同步" class="headerlink" title="互斥与同步"></a>互斥与同步</h4><ol>
-<li>互斥的要求</li>
-</ol>
-<ul>
-<li>空闲让进</li>
-<li>忙则等待</li>
-<li>有限等待</li>
-<li>让权等待</li>
-</ul>
-<ol start="9">
-<li><p>互斥的实现<br>信号量机制；PV原子操作</p>
-</li>
-<li><p>经典同步问题<br>a，生产者消费问题<br>b，读者-写者问题<br>c，哲学家进餐问题<br>d，理发师问题</p>
-</li>
-<li><p>管程</p>
-</li>
-<li><p>死锁产生的原因和必要条件<br>原因：竞争资源；系统资源不足和进程推进顺序不当<br>必要条件：</p>
-</li>
-</ol>
-<ul>
-<li>互斥条件</li>
-<li>不剥夺条件</li>
-<li>请求与保持条件</li>
-<li>环路等待条件</li>
-</ul>
-<ol start="13">
-<li>死锁的预防</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/bopo/p/9228834.html" target="_blank" rel="noopener">https://www.cnblogs.com/bopo/p/9228834.html</a></li>
-</ul>
-<ol start="17">
-<li>死锁代码demo</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/wanglha/article/details/51133819" target="_blank" rel="noopener">https://blog.csdn.net/wanglha/article/details/51133819</a></li>
-</ul>
-<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><ol>
-<li><p>交换与覆盖</p>
-</li>
-<li><p>存储管理方式<br>连续管理方式<br>非连续管理方式</p>
-</li>
-<li><p>MMU和快表<br>MMU</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/alantu2018/p/9002309.html" target="_blank" rel="noopener">https://www.cnblogs.com/alantu2018/p/9002309.html</a><br>快表TLB</li>
-<li><a href="https://blog.csdn.net/weixin_36725931/article/details/85344814" target="_blank" rel="noopener">https://blog.csdn.net/weixin_36725931/article/details/85344814</a><br>TLB和MMU的区别</li>
-<li><a href="https://www.cnblogs.com/linhaostudy/p/7771437.html" target="_blank" rel="noopener">https://www.cnblogs.com/linhaostudy/p/7771437.html</a></li>
-</ul>
-<ol start="4">
-<li>虚拟内存</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/kexinxin/p/9939085.html" target="_blank" rel="noopener">https://www.cnblogs.com/kexinxin/p/9939085.html</a></li>
-</ul>
-<ol start="5">
-<li><p>缺页中断与普通中断的区别<br>a，在指令的执行期间产生和处理中断<br>b，一条指令可以产生多个缺页中断</p>
-</li>
-<li><p>页面置换算法<br>a，OPT最佳置换算法<br>b，FIFO先进先出<br>c，LRU最近最少使用<br>d，CLOCK时钟置换算法</p>
-</li>
-<li><p>改进时钟算法</p>
-</li>
-</ol>
-<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><ol>
-<li>软链接和硬链接</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/rswss/p/9466882.html" target="_blank" rel="noopener">https://www.cnblogs.com/rswss/p/9466882.html</a></li>
-<li><a href="https://www.cnblogs.com/sanjun/p/9971993.html" target="_blank" rel="noopener">https://www.cnblogs.com/sanjun/p/9971993.html</a></li>
-</ul>
-<ol start="2">
-<li>i节点</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/cc_946079647/article/details/19088205" target="_blank" rel="noopener">https://blog.csdn.net/cc_946079647/article/details/19088205</a></li>
-</ul>
-<h3 id="设备管理"><a href="#设备管理" class="headerlink" title="设备管理"></a>设备管理</h3><ol>
-<li>IO控制方式</li>
-</ol>
-<ul>
-<li>程序直接控制方式</li>
-<li>中断控制方式</li>
-<li>DMA控制方式</li>
-<li>通道控制方式</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ol>
-<li>线程通信方式<br>共享内存，管道，消息传递</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/pengzhisen123/article/details/79455742" target="_blank" rel="noopener">https://blog.csdn.net/pengzhisen123/article/details/79455742</a></li>
-<li><a href="https://www.cnblogs.com/shilinnpu/p/8873390.html" target="_blank" rel="noopener">https://www.cnblogs.com/shilinnpu/p/8873390.html</a></li>
-</ul>
-<p>实现中</p>
-<ul>
-<li><a href="https://www.cnblogs.com/linyufeng/p/9671844.html" target="_blank" rel="noopener">https://www.cnblogs.com/linyufeng/p/9671844.html</a></li>
-</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Main</span></span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span>[] maxSlidingWindow(<span class="keyword">int</span>[] nums, <span class="keyword">int</span> k) &#123;</span><br><span class="line">        LinkedList&lt;Integer&gt; deque = <span class="keyword">new</span> LinkedList&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span>[] res = <span class="keyword">new</span> <span class="keyword">int</span>[nums.length-k+<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;nums.length;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> t = nums[i];</span><br><span class="line">            <span class="keyword">if</span>(!deque.isEmpty())&#123;</span><br><span class="line">                <span class="keyword">int</span> first = deque.peekFirst();</span><br><span class="line">                <span class="keyword">while</span>(!deque.isEmpty()&amp;&amp;(i-first&gt;=k||nums[first]&lt;=t))&#123;</span><br><span class="line">                    first = deque.pollFirst();</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            deque.offerLast(i);</span><br><span class="line">            <span class="keyword">if</span>(i&gt;=k-<span class="number">1</span>)&#123;</span><br><span class="line">                res[i-k+<span class="number">1</span>]=nums[deque.peekFirst()];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] nums=&#123;<span class="number">1</span>,<span class="number">3</span>,-<span class="number">1</span>,-<span class="number">3</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">6</span>,<span class="number">7</span>&#125;;</span><br><span class="line">        <span class="keyword">int</span> k = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span>[] res =maxSlidingWindow(nums,k);</span><br><span class="line">        PrintHelper.printArray(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -946,23 +218,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -1018,7 +274,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/02/面试准备/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/02/滑动窗口最大值/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -1032,18 +288,9 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/02/滑动窗口最大值/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          滑动窗口最大值
-        
-      </div>
-    </a>
   
-  
-    <a href="/2019/09/02/test/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">test</div>
+    <a href="/2019/09/02/面试准备/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">面试准备</div>
       <i class="icon-circle-right"></i>
     </a>
   
