@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 操作系统 | Hexo</title>
+  <title>正则表达式LeetCode10 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/操作系统/index.html">
+  <meta name="description" content="题目：  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘‘ 的正则表达式匹配。‘.’ 匹配任意单个字符‘‘ 匹配零个或多个前面的那一个元素所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。    说明:  s 可能为空，且只包含从 a-z 的小写字母。p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。  方法一：回溯法分析：主要是分清楚碰到*和">
+<meta name="keywords" content="算法,LeetCode">
+<meta property="og:type" content="article">
+<meta property="og:title" content="正则表达式LeetCode10">
+<meta property="og:url" content="http://yoursite.com/2019/09/06/正则表达式LeetCode10/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="题目：  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘‘ 的正则表达式匹配。‘.’ 匹配任意单个字符‘‘ 匹配零个或多个前面的那一个元素所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。    说明:  s 可能为空，且只包含从 a-z 的小写字母。p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。  方法一：回溯法分析：主要是分清楚碰到*和">
 <meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-09-06T06:27:19.792Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="正则表达式LeetCode10">
+<meta name="twitter:description" content="题目：  给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘‘ 的正则表达式匹配。‘.’ 匹配任意单个字符‘‘ 匹配零个或多个前面的那一个元素所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。    说明:  s 可能为空，且只包含从 a-z 的小写字母。p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。  方法一：回溯法分析：主要是分清楚碰到*和">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -138,76 +143,178 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-正则表达式LeetCode10" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/02/面试准备/" class="archive-article-date">
-  	<time datetime="2019-09-02T08:20:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/02/面试准备/">面试准备</a>
+    <h1 class="article-title" itemprop="name">
+      正则表达式LeetCode10
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/06/正则表达式LeetCode10/" class="archive-article-date">
+  	<time datetime="2019-09-06T02:43:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>题目：</p>
+<blockquote>
+<p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘<em>‘ 的正则表达式匹配。<br>‘.’ 匹配任意单个字符<br>‘</em>‘ 匹配零个或多个前面的那一个元素<br>所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。  </p>
+</blockquote>
+<p>说明:</p>
+<blockquote>
+<p>s 可能为空，且只包含从 a-z 的小写字母。<br>p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。</p>
+</blockquote>
+<h3 id="方法一：回溯法"><a href="#方法一：回溯法" class="headerlink" title="方法一：回溯法"></a>方法一：回溯法</h3><p>分析：主要是分清楚碰到*和碰到.两种情况</p>
+<ul>
+<li><p>星号（显然碰到*时）：</p>
+<ul>
+<li>星号前面的字符如果出现零次是不需要firstMatch的，为什么，因为这种字符*可能出现在第一个</li>
+<li>在firstMatch满足的情况下，如果碰到星号组合，如果s[i]==p[j]，那么跳过s[i]继续检测是s[i+1]==p[j]</li>
+</ul>
+</li>
+<li><p>点号：</p>
+<ul>
+<li>碰到点号就相当于该位字符相等</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String s, String p)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(p.length()==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> s.length()==<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span> firstMatch = !s.isEmpty()&amp;&amp;(s.charAt(<span class="number">0</span>)==p.charAt(<span class="number">0</span>)||p.charAt(<span class="number">0</span>)==<span class="string">'.'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(p.length()&gt;=<span class="number">2</span>&amp;&amp;p.charAt(<span class="number">1</span>)==<span class="string">'*'</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> (isMatch(s,p.substring(<span class="number">2</span>)))||(firstMatch&amp;&amp;isMatch(s.substring(<span class="number">1</span>),p));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> firstMatch&amp;&amp;isMatch(s.substring(<span class="number">1</span>),p.substring(<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二-动态规划"><a href="#方法二-动态规划" class="headerlink" title="方法二:动态规划"></a>方法二:动态规划</h3><ul>
+<li>边界条件搞得比较复杂，需要调试不够简单易懂</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isMatchDp</span><span class="params">(String s,String p)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = s.length();</span><br><span class="line">        <span class="keyword">int</span> M = p.length();</span><br><span class="line">        <span class="keyword">if</span>(M==<span class="number">0</span>)<span class="keyword">return</span> N==<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[N+<span class="number">1</span>][M+<span class="number">1</span>];</span><br><span class="line">        dp[N][M]=<span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=N;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=M;j&gt;<span class="number">0</span>;j--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(j&gt;=<span class="number">2</span>&amp;&amp;p.charAt(j-<span class="number">1</span>)==<span class="string">'*'</span>)&#123;</span><br><span class="line">                    <span class="comment">//0个</span></span><br><span class="line">                    dp[i][j-<span class="number">2</span>]|=dp[i][j];</span><br><span class="line">                    <span class="comment">//1个或多个</span></span><br><span class="line">                    <span class="keyword">int</span> k = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">while</span>(i&gt;=k&amp;&amp;(p.charAt(j-<span class="number">2</span>)==s.charAt(i-k)||p.charAt(j-<span class="number">2</span>)==<span class="string">'.'</span>))&#123;</span><br><span class="line">                        dp[i-k][j-<span class="number">2</span>]|=dp[i][j];</span><br><span class="line">                        k++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i&gt;=<span class="number">1</span>&amp;&amp;(p.charAt(j-<span class="number">1</span>)==<span class="string">'.'</span>||p.charAt(j-<span class="number">1</span>)==s.charAt(i-<span class="number">1</span>)))&#123;</span><br><span class="line">                    dp[i-<span class="number">1</span>][j-<span class="number">1</span>]|=dp[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        PrintHelper.print2DArray(dp);</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">面试</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">网络</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">操作系统</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">Linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/06/正则表达式LeetCode10/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
   
   
-    </div></section>
+    <a href="/2019/09/06/排序复习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">排序复习</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -230,9 +337,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
