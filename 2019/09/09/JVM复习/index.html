@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 数据结构 | Hexo</title>
+  <title>JVM复习 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/数据结构/index.html">
+  <meta name="description" content="JVM JVM中的gc，Full GC   https://baijiahao.baidu.com/s?id=1632743030610982339&amp;amp;wfr=spider&amp;amp;for=pc https://blog.csdn.net/hellozhxy/article/details/80649342 https://blog.csdn.net/weixin_39788856/arti">
+<meta name="keywords" content="Java基础复习,面试准备">
+<meta property="og:type" content="article">
+<meta property="og:title" content="JVM复习">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/JVM复习/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="JVM JVM中的gc，Full GC   https://baijiahao.baidu.com/s?id=1632743030610982339&amp;amp;wfr=spider&amp;amp;for=pc https://blog.csdn.net/hellozhxy/article/details/80649342 https://blog.csdn.net/weixin_39788856/arti">
 <meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-09-08T16:18:29.328Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="JVM复习">
+<meta name="twitter:description" content="JVM JVM中的gc，Full GC   https://baijiahao.baidu.com/s?id=1632743030610982339&amp;amp;wfr=spider&amp;amp;for=pc https://blog.csdn.net/hellozhxy/article/details/80649342 https://blog.csdn.net/weixin_39788856/arti">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -138,64 +143,205 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-JVM复习" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/02/数据结构复习/" class="archive-article-date">
-  	<time datetime="2019-09-02T08:20:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/02/数据结构复习/">数据结构复习</a>
+    <h1 class="article-title" itemprop="name">
+      JVM复习
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/09/JVM复习/" class="archive-article-date">
+  	<time datetime="2019-09-08T16:10:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><ol>
+<li>JVM中的gc，Full GC</li>
+</ol>
+<ul>
+<li><a href="https://baijiahao.baidu.com/s?id=1632743030610982339&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1632743030610982339&amp;wfr=spider&amp;for=pc</a></li>
+<li><a href="https://blog.csdn.net/hellozhxy/article/details/80649342" target="_blank" rel="noopener">https://blog.csdn.net/hellozhxy/article/details/80649342</a></li>
+<li><a href="https://blog.csdn.net/weixin_39788856/article/details/80388002" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39788856/article/details/80388002</a></li>
+<li><a href="https://www.cnblogs.com/jenkov/p/full_gc_old_gc_cms_gc.html" target="_blank" rel="noopener">https://www.cnblogs.com/jenkov/p/full_gc_old_gc_cms_gc.html</a></li>
+<li><a href="https://www.cnblogs.com/williamjie/p/9516264.html" target="_blank" rel="noopener">https://www.cnblogs.com/williamjie/p/9516264.html</a></li>
+</ul>
+<ol start="2">
+<li>垃圾回收及算法<br>垃圾回收算法：</li>
+</ol>
+<ul>
+<li>标记-清除</li>
+<li>标记-复制</li>
+<li>标记-整理</li>
+<li>分代回收</li>
+</ul>
+<p>垃圾收集器</p>
+<p>年轻代<br>Serial：单线程<br>ParNew：多线程<br>Parallel Scavenge：使用复制算法，强调精确控制吞吐量</p>
+<p>老年代<br>Serial Old：单线程，Serial 的老年代版本<br>Parallel Old：Parallel Scavenge 使用多线程和”标记-整理“算法 吞吐量优先<br>CMS：”标记-清除“算法，强调最短回收停顿时间<br>兼顾年轻代和老年代：<br>G1收集器：并行与并发，分代回收，”标记-整理”算法，可预测的停顿</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/35805f809a21" target="_blank" rel="noopener">https://www.jianshu.com/p/35805f809a21</a></li>
+</ul>
+<ol start="3">
+<li><p>假设有一个加法类从编译到最终使用的整个过程</p>
+</li>
+<li><p>如何判断对象是否需要被回收？两个相互引用的对象如何被回收</p>
+</li>
+</ol>
+<ul>
+<li>引用计数</li>
+<li>可达性分析</li>
+</ul>
+<p>附：GCRoot的对象包括：</p>
+<ul>
+<li>虚拟机栈中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中JNI引用的对象</li>
+</ul>
+<ol start="5">
+<li>虚拟机栈异常类型以及复现代码</li>
+<li>堆内存异常类型以及复现</li>
+<li>直接内存怎么使用以及jvm对其管理</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java基础复习</a>
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/09/JVM复习/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/09/09/JavaSE复习/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          JavaSE复习
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/09/09/计算机网络复习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">计算机网络复习</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -218,9 +364,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,

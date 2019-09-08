@@ -6,15 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>Tag: 数据结构 | Hexo</title>
+  <title>多线程 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="website">
-<meta property="og:title" content="Hexo">
-<meta property="og:url" content="http://yoursite.com/tags/数据结构/index.html">
+  <meta name="description" content="多线程 https://www.jianshu.com/p/125ccf0046f3   线程池的参数public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,ThreadFactory threadFactory,RejectedExecutionHandler">
+<meta name="keywords" content="面试准备,计算机基础">
+<meta property="og:type" content="article">
+<meta property="og:title" content="多线程">
+<meta property="og:url" content="http://yoursite.com/2019/09/09/多线程/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="多线程 https://www.jianshu.com/p/125ccf0046f3   线程池的参数public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,ThreadFactory threadFactory,RejectedExecutionHandler">
 <meta property="og:locale" content="cn">
+<meta property="og:updated_time" content="2019-09-08T16:17:32.525Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Hexo">
+<meta name="twitter:title" content="多线程">
+<meta name="twitter:description" content="多线程 https://www.jianshu.com/p/125ccf0046f3   线程池的参数public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,ThreadFactory threadFactory,RejectedExecutionHandler">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -138,36 +143,135 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-  
+            <article id="post-多线程" class="article article-type-post " itemscope itemprop="blogPost">
+  <div class="article-inner">
     
-    
-      
-      
-      <section class="archives-wrap">
-        <div class="archive-year-wrap">
-          <a href="/archives/2019" class="archive-year">2019</a>
-        </div>
-        <div class="archives">
-    
-    <article class="archive-article archive-type-post">
-  <div class="archive-article-inner">
-    <header class="archive-article-header">
-      	<div class="article-meta">
-	      	<a href="/2019/09/02/数据结构复习/" class="archive-article-date">
-  	<time datetime="2019-09-02T08:20:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-02</time>
-</a>
-        </div>
-    	 
+      <header class="article-header">
+        
   
-    <h1 itemprop="name">
-      <a class="archive-article-title" href="/2019/09/02/数据结构复习/">数据结构复习</a>
+    <h1 class="article-title" itemprop="name">
+      多线程
     </h1>
   
 
-        <div class="article-info info-on-right">
-          
+        
+        <a href="/2019/09/09/多线程/" class="archive-article-date">
+  	<time datetime="2019-09-08T16:16:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><ul>
+<li><a href="https://www.jianshu.com/p/125ccf0046f3" target="_blank" rel="noopener">https://www.jianshu.com/p/125ccf0046f3</a></li>
+</ul>
+<ol>
+<li><p>线程池的参数<br>public ThreadPoolExecutor(<br>int corePoolSize,<br>int maximumPoolSize,<br>long keepAliveTime,<br>TimeUnit unit,<br>ThreadFactory threadFactory,<br>RejectedExecutionHandler handler<br>);</p>
+</li>
+<li><p>为什么要使用线程池</p>
+</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/a497393102/article/details/8597819" target="_blank" rel="noopener">https://blog.csdn.net/a497393102/article/details/8597819</a></li>
+<li><a href="https://blog.csdn.net/Muz_victory/article/details/81216771" target="_blank" rel="noopener">https://blog.csdn.net/Muz_victory/article/details/81216771</a></li>
+</ul>
+<ol start="3">
+<li>如何合理的配置线程池<br>CPU密集型 Ncpu+1<br>IO密集型 2*Ncpu</li>
+</ol>
+<p>混合型任务 进行任务拆分</p>
+<ol start="4">
+<li>饱和策略/任务队列满了以后再来一个任务如何处理</li>
+</ol>
+<ul>
+<li>AbortPolicy</li>
+<li>CallerRunsPolicy</li>
+<li>DiscardOldestPolicy</li>
+<li>DiscardPolicy</li>
+<li><a href="https://www.cnblogs.com/skywang12345/p/3512947.html" target="_blank" rel="noopener">https://www.cnblogs.com/skywang12345/p/3512947.html</a></li>
+</ul>
+<ol start="5">
+<li>JUC包里的东西，有哪些常用锁</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/doit8791/p/9131148.html" target="_blank" rel="noopener">https://www.cnblogs.com/doit8791/p/9131148.html</a><br>Lock，AQS，ReentrantLock，ReadWriteLock，LockSupport，Condition</li>
+</ul>
+<ol start="6">
+<li>线程同步的几种方法？</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/baizhanshi/p/7025974.html" target="_blank" rel="noopener">https://www.cnblogs.com/baizhanshi/p/7025974.html</a></li>
+</ul>
+<ol start="7">
+<li>线程同步使用哪些锁？</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/lixiangyang521/p/6861768.html" target="_blank" rel="noopener">https://www.cnblogs.com/lixiangyang521/p/6861768.html</a></li>
+</ul>
+<ol start="8">
+<li>死锁和死循环都会导致程序hold住，怎么判断是死锁还是死循环</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/wanglha/article/details/51133819" target="_blank" rel="noopener">https://blog.csdn.net/wanglha/article/details/51133819</a></li>
+</ul>
+<ol start="9">
+<li>并发容器种类<br><a href="https://www.cnblogs.com/ygj0930/p/6543877.html" target="_blank" rel="noopener">https://www.cnblogs.com/ygj0930/p/6543877.html</a></li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/cdefggg/article/details/86426917" target="_blank" rel="noopener">https://blog.csdn.net/cdefggg/article/details/86426917</a></li>
+<li><a href="https://www.jianshu.com/p/7f50497b7f30" target="_blank" rel="noopener">https://www.jianshu.com/p/7f50497b7f30</a></li>
+</ul>
+<ol start="10">
+<li><p>concurrenthashmap数据结构</p>
+</li>
+<li><p>线程状态(blocked   waiting  timed_waiting)</p>
+</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/cowboys/p/9315331.html" target="_blank" rel="noopener">https://www.cnblogs.com/cowboys/p/9315331.html</a></li>
+</ul>
+<ol start="12">
+<li>等待和阻塞的区别</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/woshiyigeliangliang/article/details/81116872" target="_blank" rel="noopener">https://blog.csdn.net/woshiyigeliangliang/article/details/81116872</a></li>
+</ul>
+<ol start="13">
+<li>wait和sleep的区别</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/kangkanglou/article/details/82221301" target="_blank" rel="noopener">https://blog.csdn.net/kangkanglou/article/details/82221301</a></li>
+</ul>
+<ol start="14">
+<li>volatile变量i++</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/zemliu/p/3298685.html" target="_blank" rel="noopener">https://www.cnblogs.com/zemliu/p/3298685.html</a></li>
+<li><a href="https://blog.csdn.net/dm_vincent/article/details/79604716" target="_blank" rel="noopener">https://blog.csdn.net/dm_vincent/article/details/79604716</a></li>
+</ul>
+<ol start="15">
+<li>sychronized 和 RetreenLock的区别</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/java-spring/p/10792097.html" target="_blank" rel="noopener">https://www.cnblogs.com/java-spring/p/10792097.html</a></li>
+</ul>
+<ol start="16">
+<li><p>介绍一下线程池</p>
+</li>
+<li><p>五种线程池及使用场景</p>
+</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/qq_43692920/article/details/90266704" target="_blank" rel="noopener">https://blog.csdn.net/qq_43692920/article/details/90266704</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -177,25 +281,121 @@
         		</li>
       		 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">数据结构</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机基础</a>
         		</li>
       		
 		</ul>
 	</div>
 
-          
+      
 
+      
+
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
         </div>
-        <div class="clearfix"></div>
-    </header>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/09/多线程/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
+      
+      <div class="clearfix"></div>
+    </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+    <a href="/2019/09/09/面试准备/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          面试准备
+        
+      </div>
+    </a>
   
   
-    </div></section>
+    <a href="/2019/09/09/数据库复习/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">数据库复习</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+  
+  
   
 
-    
+  
+
+  
+
+  
 
 
           </div>
@@ -218,9 +418,9 @@
 	var yiliaConfig = {
 		mathjax: false,
 		isHome: false,
-		isPost: false,
+		isPost: true,
 		isArchive: false,
-		isTag: true,
+		isTag: false,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
