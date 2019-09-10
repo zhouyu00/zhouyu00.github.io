@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="多线程 https://www.jianshu.com/p/125ccf0046f3   线程池的参数public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,ThreadFactory threadFactory,RejectedExecutionHandler">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2019-09-08T16:17:32.525Z">
+<meta property="og:updated_time" content="2019-09-10T01:00:41.569Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="多线程">
 <meta name="twitter:description" content="多线程 https://www.jianshu.com/p/125ccf0046f3   线程池的参数public ThreadPoolExecutor(int corePoolSize,int maximumPoolSize,long keepAliveTime,TimeUnit unit,ThreadFactory threadFactory,RejectedExecutionHandler">
@@ -215,14 +215,15 @@
 <li><a href="https://blog.csdn.net/wanglha/article/details/51133819" target="_blank" rel="noopener">https://blog.csdn.net/wanglha/article/details/51133819</a></li>
 </ul>
 <ol start="9">
-<li>并发容器种类<br><a href="https://www.cnblogs.com/ygj0930/p/6543877.html" target="_blank" rel="noopener">https://www.cnblogs.com/ygj0930/p/6543877.html</a></li>
+<li>并发容器种类</li>
 </ol>
 <ul>
+<li><a href="https://www.cnblogs.com/ygj0930/p/6543877.html" target="_blank" rel="noopener">https://www.cnblogs.com/ygj0930/p/6543877.html</a></li>
 <li><a href="https://blog.csdn.net/cdefggg/article/details/86426917" target="_blank" rel="noopener">https://blog.csdn.net/cdefggg/article/details/86426917</a></li>
 <li><a href="https://www.jianshu.com/p/7f50497b7f30" target="_blank" rel="noopener">https://www.jianshu.com/p/7f50497b7f30</a></li>
 </ul>
 <ol start="10">
-<li><p>concurrenthashmap数据结构</p>
+<li><p>concurrenthashmap数据结构<br>JDK1.7 数组+segment+分段锁+HashEntry<br>JDK1.8 数组+链表+红黑树</p>
 </li>
 <li><p>线程状态(blocked   waiting  timed_waiting)</p>
 </li>
@@ -253,13 +254,20 @@
 <li>sychronized 和 RetreenLock的区别</li>
 </ol>
 <ul>
-<li><a href="https://www.cnblogs.com/java-spring/p/10792097.html" target="_blank" rel="noopener">https://www.cnblogs.com/java-spring/p/10792097.html</a></li>
+<li><a href="https://blog.csdn.net/zhglance/article/details/81485820" target="_blank" rel="noopener">https://blog.csdn.net/zhglance/article/details/81485820</a></li>
+<li><a href="https://blog.csdn.net/chenkaibsw/article/details/80234123" target="_blank" rel="noopener">https://blog.csdn.net/chenkaibsw/article/details/80234123</a></li>
 </ul>
 <ol start="16">
-<li><p>介绍一下线程池</p>
-</li>
-<li><p>五种线程池及使用场景</p>
-</li>
+<li>介绍一下线程池<br>线程池的组成</li>
+</ol>
+<ul>
+<li>ThreadPool线程池管理器</li>
+<li>PoolWorker 工作线程</li>
+<li>Task 任务接口</li>
+<li>TaskQueue 任务队列</li>
+</ul>
+<ol start="17">
+<li>四种线程池及使用场景</li>
 </ol>
 <ul>
 <li><a href="https://blog.csdn.net/qq_43692920/article/details/90266704" target="_blank" rel="noopener">https://blog.csdn.net/qq_43692920/article/details/90266704</a></li>
@@ -480,6 +488,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java基础复习</a>
               </li>
              
@@ -489,10 +501,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -508,7 +516,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -517,6 +525,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
               </li>
              
               <li class="article-tag-list-item">

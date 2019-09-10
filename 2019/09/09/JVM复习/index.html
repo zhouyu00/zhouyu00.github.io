@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="JVM JVM中的gc，Full GC   https://baijiahao.baidu.com/s?id=1632743030610982339&amp;amp;wfr=spider&amp;amp;for=pc https://blog.csdn.net/hellozhxy/article/details/80649342 https://blog.csdn.net/weixin_39788856/arti">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2019-09-08T16:18:29.328Z">
+<meta property="og:updated_time" content="2019-09-10T01:48:41.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="JVM复习">
 <meta name="twitter:description" content="JVM JVM中的gc，Full GC   https://baijiahao.baidu.com/s?id=1632743030610982339&amp;amp;wfr=spider&amp;amp;for=pc https://blog.csdn.net/hellozhxy/article/details/80649342 https://blog.csdn.net/weixin_39788856/arti">
@@ -178,7 +178,7 @@
 </ol>
 <ul>
 <li>标记-清除</li>
-<li>标记-复制</li>
+<li>复制</li>
 <li>标记-整理</li>
 <li>分代回收</li>
 </ul>
@@ -206,10 +206,43 @@
 <li>本地方法栈中JNI引用的对象</li>
 </ul>
 <ol start="5">
-<li>虚拟机栈异常类型以及复现代码</li>
-<li>堆内存异常类型以及复现</li>
-<li>直接内存怎么使用以及jvm对其管理</li>
+<li><p>虚拟机栈异常类型以及复现代码</p>
+</li>
+<li><p>堆内存异常类型以及复现</p>
+</li>
+<li><p>直接内存怎么使用以及jvm对其管理</p>
+</li>
+<li><p>CMS 和 G1 的区别<br>CMS和G1 的STW时间都发生在初始标记和重新标记（最终标记）阶段</p>
+</li>
 </ol>
+<ul>
+<li><a href="https://www.cnblogs.com/fanguangdexiaoyuer/p/10197486.html" target="_blank" rel="noopener">https://www.cnblogs.com/fanguangdexiaoyuer/p/10197486.html</a></li>
+<li><a href="https://www.jianshu.com/p/bdd6f03923d1" target="_blank" rel="noopener">https://www.jianshu.com/p/bdd6f03923d1</a></li>
+<li><a href="https://blog.csdn.net/xzp_12345/article/details/81839026" target="_blank" rel="noopener">https://blog.csdn.net/xzp_12345/article/details/81839026</a></li>
+</ul>
+<ol start="9">
+<li><p>堆内存分配策略</p>
+<ol>
+<li>对象优先在Eden分配</li>
+<li>大对象直接进入老年代</li>
+<li>长期存活对象进入老年代</li>
+<li>动态对象年龄判断</li>
+<li>空间分配担保</li>
+</ol>
+</li>
+<li><p>老年代，新生代，Eden，Survivor</p>
+</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/lojze_ly/article/details/49456255" target="_blank" rel="noopener">https://blog.csdn.net/lojze_ly/article/details/49456255</a></li>
+<li><a href="https://blog.csdn.net/Muyundefeng/article/details/72667863" target="_blank" rel="noopener">https://blog.csdn.net/Muyundefeng/article/details/72667863</a></li>
+</ul>
+<ol start="11">
+<li>MinorGC和FullGC的发起时机</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/afsvsv/article/details/85611601" target="_blank" rel="noopener">https://blog.csdn.net/afsvsv/article/details/85611601</a></li>
+</ul>
 
       
 
@@ -426,6 +459,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java基础复习</a>
               </li>
              
@@ -435,10 +472,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -454,7 +487,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -463,6 +496,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
               </li>
              
               <li class="article-tag-list-item">
