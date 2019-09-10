@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="网络 各类协议头部   https://blog.csdn.net/winbobob/article/details/41475959    漏桶算法  InetAddress IP协议/URL/URLConnection/HTTPURLConnection/Socket/ServerSocket    https://www.cnblogs.com/kuangzhisen/p/7053689.h">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2019-09-08T16:17:50.026Z">
+<meta property="og:updated_time" content="2019-09-10T07:10:17.993Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="计算机网络复习">
 <meta name="twitter:description" content="网络 各类协议头部   https://blog.csdn.net/winbobob/article/details/41475959    漏桶算法  InetAddress IP协议/URL/URLConnection/HTTPURLConnection/Socket/ServerSocket    https://www.cnblogs.com/kuangzhisen/p/7053689.h">
@@ -401,6 +401,51 @@ b. 提供流量控制与拥塞控制</code></pre></li>
 <li><a href="https://blog.csdn.net/bieleyang/article/details/76272699" target="_blank" rel="noopener">https://blog.csdn.net/bieleyang/article/details/76272699</a></li>
 <li><a href="https://baijiahao.baidu.com/s?id=1626599028653203490&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1626599028653203490&amp;wfr=spider&amp;for=pc</a></li>
 </ul>
+<h1 id="计算机网络安全"><a href="#计算机网络安全" class="headerlink" title="计算机网络安全"></a>计算机网络安全</h1><ol>
+<li>计算机网络所面临的安全威胁</li>
+</ol>
+<ul>
+<li>被动攻击<ul>
+<li>截获/流量分析</li>
+</ul>
+</li>
+<li>主动攻击<ul>
+<li>篡改/更改报文流</li>
+<li>恶意程序 <ul>
+<li>计算机病毒</li>
+<li>计算机蠕虫</li>
+<li>特洛伊木马</li>
+<li>逻辑炸弹</li>
+</ul>
+</li>
+<li>拒绝服务DoS/分布式拒绝服务DDoS（网络带宽攻击或者连通性攻击）</li>
+</ul>
+</li>
+</ul>
+<ol start="2">
+<li>对称加密算法和非对称加密算法（对称密钥密码体制和公钥密码体制）<ul>
+<li><a href="https://blog.csdn.net/Jack__iT/article/details/86490908" target="_blank" rel="noopener">https://blog.csdn.net/Jack__iT/article/details/86490908</a></li>
+<li>DES数据加密标准 </li>
+<li>IDEA国际数据加密算法  </li>
+</ul>
+</li>
+<li>数字签名必须保证实现以下三点功能：<ul>
+<li>报文鉴别  </li>
+<li>报文完整性</li>
+<li>不可否认</li>
+</ul>
+</li>
+<li>鉴别<ol>
+<li>报文鉴别<br> 常用的报文摘要算法：MD5 安全散列算法SHA <ol>
+<li>从报文按照报文摘要算法生成报文摘要</li>
+<li>对报文摘要打上数字签名，即得到报文鉴别码MAC</li>
+<li>追加MAC在报文后  </li>
+</ol>
+</li>
+<li>实体鉴别</li>
+</ol>
+</li>
+</ol>
 
       
 
@@ -617,7 +662,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">-学习计划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -629,7 +678,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -641,11 +690,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">数据结构</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -654,10 +711,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">LeetCode</a>
               </li>
              
               <li class="article-tag-list-item">

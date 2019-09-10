@@ -6,20 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <link rel="dns-prefetch" href="http://yoursite.com">
-  <title>想学的东西 | Hexo</title>
+  <title>0x07贪心 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="算法 复习机器学习  学习深度学习 并做几个相关项目  刷爆leetcode   前端 vuejs  Angularjs 看过书还没有实践过  reactjs   服务器常见工具 netty  zookeeper  nginx  rabbitMQ  k8s  solr  elasticSearch   大数据方面 hadoop  HDFS  spark   语言方面 c++  nodejs  go">
-<meta name="keywords" content="学习欲望">
+  <meta name="description" content="Sunscreen例题：有c头牛日光浴，第i头奶牛需要minSPF[i]和maxSPF[i]单位强度之间的阳光。每头牛在日光浴前必须涂防晒霜，防晒霜有L种，涂上防晒霜后，身体接受到的阳光强度就会稳定为SPF[i]，第i种防晒霜有cover[i]瓶。求最多可以满足多少头奶牛进行日光浴 英文描述：To avoid unsightly burns while tanning, each of the C">
+<meta name="keywords" content="算法竞赛进阶指南">
 <meta property="og:type" content="article">
-<meta property="og:title" content="想学的东西">
-<meta property="og:url" content="http://yoursite.com/2019/09/05/想学的东西/index.html">
+<meta property="og:title" content="0x07贪心">
+<meta property="og:url" content="http://yoursite.com/2019/09/10/0x07贪心/index.html">
 <meta property="og:site_name" content="Hexo">
-<meta property="og:description" content="算法 复习机器学习  学习深度学习 并做几个相关项目  刷爆leetcode   前端 vuejs  Angularjs 看过书还没有实践过  reactjs   服务器常见工具 netty  zookeeper  nginx  rabbitMQ  k8s  solr  elasticSearch   大数据方面 hadoop  HDFS  spark   语言方面 c++  nodejs  go">
+<meta property="og:description" content="Sunscreen例题：有c头牛日光浴，第i头奶牛需要minSPF[i]和maxSPF[i]单位强度之间的阳光。每头牛在日光浴前必须涂防晒霜，防晒霜有L种，涂上防晒霜后，身体接受到的阳光强度就会稳定为SPF[i]，第i种防晒霜有cover[i]瓶。求最多可以满足多少头奶牛进行日光浴 英文描述：To avoid unsightly burns while tanning, each of the C">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2019-09-10T02:33:24.643Z">
+<meta property="og:updated_time" content="2019-09-10T08:40:57.508Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="想学的东西">
-<meta name="twitter:description" content="算法 复习机器学习  学习深度学习 并做几个相关项目  刷爆leetcode   前端 vuejs  Angularjs 看过书还没有实践过  reactjs   服务器常见工具 netty  zookeeper  nginx  rabbitMQ  k8s  solr  elasticSearch   大数据方面 hadoop  HDFS  spark   语言方面 c++  nodejs  go">
+<meta name="twitter:title" content="0x07贪心">
+<meta name="twitter:description" content="Sunscreen例题：有c头牛日光浴，第i头奶牛需要minSPF[i]和maxSPF[i]单位强度之间的阳光。每头牛在日光浴前必须涂防晒霜，防晒霜有L种，涂上防晒霜后，身体接受到的阳光强度就会稳定为SPF[i]，第i种防晒霜有cover[i]瓶。求最多可以满足多少头奶牛进行日光浴 英文描述：To avoid unsightly burns while tanning, each of the C">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -143,76 +143,41 @@
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-想学的东西" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-0x07贪心" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      想学的东西
+      0x07贪心
     </h1>
   
 
         
-        <a href="/2019/09/05/想学的东西/" class="archive-article-date">
-  	<time datetime="2019-09-05T15:31:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
+        <a href="/2019/09/10/0x07贪心/" class="archive-article-date">
+  	<time datetime="2019-09-10T07:39:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><ul>
-<li><p>复习机器学习</p>
-</li>
-<li><p>学习深度学习 并做几个相关项目</p>
-</li>
-<li><p>刷爆leetcode</p>
-</li>
+        <h1 id="Sunscreen"><a href="#Sunscreen" class="headerlink" title="Sunscreen"></a>Sunscreen</h1><p>例题：有c头牛日光浴，第i头奶牛需要minSPF[i]和maxSPF[i]单位强度之间的阳光。每头牛在日光浴前必须涂防晒霜，防晒霜有L种，涂上防晒霜后，身体接受到的阳光强度就会稳定为SPF[i]，第i种防晒霜有cover[i]瓶。求最多可以满足多少头奶牛进行日光浴</p>
+<p>英文描述：<br>To avoid unsightly burns while tanning, each of the C (1 ≤ C ≤ 2500) cows must cover her hide with sunscreen when they’re at the beach. Cow i has a minimum and maximum SPF rating (1 ≤ minSPFi ≤ 1,000; minSPFi ≤ maxSPFi ≤ 1,000) that will work. If the SPF rating is too low, the cow suffers sunburn; if the SPF rating is too high, the cow doesn’t tan at all……..<br>The cows have a picnic basket with L (1 ≤ L ≤ 2500) bottles of sunscreen lotion, each bottle i with an SPF rating SPFi (1 ≤ SPFi ≤ 1,000). Lotion bottle i can cover coveri cows with lotion. A cow may lotion from only one bottle.<br>What is the maximum number of cows that can protect themselves while tanning given the available lotions?</p>
+<p>输入描述： </p>
+<ul>
+<li>Line 1: Two space-separated integers: C and L</li>
+<li>Lines 2..C+1: Line i describes cow i’s lotion requires with two integers: minSPFi and maxSPFi</li>
+<li>Lines C+2..C+L+1: Line i+C+1 describes a sunscreen lotion bottle i with space-separated integers: SPFi and coveri</li>
 </ul>
-<h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><ul>
-<li><p>vuejs</p>
-</li>
-<li><p>Angularjs 看过书还没有实践过</p>
-</li>
-<li><p>reactjs</p>
-</li>
-</ul>
-<h1 id="服务器常见工具"><a href="#服务器常见工具" class="headerlink" title="服务器常见工具"></a>服务器常见工具</h1><ul>
-<li><p>netty</p>
-</li>
-<li><p>zookeeper</p>
-</li>
-<li><p>nginx</p>
-</li>
-<li><p>rabbitMQ</p>
-</li>
-<li><p>k8s</p>
-</li>
-<li><p>solr</p>
-</li>
-<li><p>elasticSearch</p>
-</li>
-</ul>
-<h1 id="大数据方面"><a href="#大数据方面" class="headerlink" title="大数据方面"></a>大数据方面</h1><ul>
-<li><p>hadoop</p>
-</li>
-<li><p>HDFS</p>
-</li>
-<li><p>spark</p>
-</li>
-</ul>
-<h1 id="语言方面"><a href="#语言方面" class="headerlink" title="语言方面"></a>语言方面</h1><ul>
-<li><p>c++</p>
-</li>
-<li><p>nodejs</p>
-</li>
-<li><p>go</p>
-</li>
-<li><p>kotlin</p>
-</li>
-</ul>
+<p>输出描述：  </p>
+<p>A single line with an integer that is the maximum number of cows that can be protected while tanning</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line">        import java.util.Comparator;</span><br><span class="line">        import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class Sunscreen &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner in = new Scanner(System.in);</span><br><span class="line">        int C = in.nextInt();</span><br><span class="line">        int L = in.nextInt();</span><br><span class="line">        int[] minSPF = new int[C];</span><br><span class="line">        int[] maxSPF = new int[C];</span><br><span class="line">        int[] SPF = new int[L];</span><br><span class="line">        int[] cover = new int[L];</span><br><span class="line">        for(int i=0;i&lt;C;i++)&#123;</span><br><span class="line">            minSPF[i]=in.nextInt();</span><br><span class="line">            maxSPF[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;L;i++)&#123;</span><br><span class="line">            SPF[i]=in.nextInt();</span><br><span class="line">            cover[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Integer[] c = new Integer[C];</span><br><span class="line">        for(int i=0;i&lt;C;i++)c[i]=i;</span><br><span class="line">        Arrays.sort(c, new Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public int compare(Integer o1, Integer o2) &#123;</span><br><span class="line">                return minSPF[o2]-minSPF[o1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        int res = 0;</span><br><span class="line">        for(int i=0;i&lt;C;i++)&#123;</span><br><span class="line">            int ix = c[i];</span><br><span class="line">            int minSPFi = minSPF[ix];</span><br><span class="line">            int maxSPFi = maxSPF[ix];</span><br><span class="line">            int maxIx = 0;</span><br><span class="line">            int maxSPFC = Integer.MIN_VALUE;</span><br><span class="line">            boolean findOne = false;</span><br><span class="line">            for(int j=0;j&lt;L;j++)&#123;</span><br><span class="line">                if(SPF[j]&gt;=minSPFi&amp;&amp;SPF[j]&lt;=maxSPFi)&#123;</span><br><span class="line">                    //需要满足条件</span><br><span class="line">                    //System.out.println(&quot;im in!&quot;);</span><br><span class="line">                    if(SPF[j]&gt;maxSPFC&amp;&amp;cover[j]&gt;0)&#123;</span><br><span class="line">                        maxSPFC=SPF[j];</span><br><span class="line">                        maxIx = j;</span><br><span class="line">                        findOne=true;</span><br><span class="line">                        //System.out.println(maxIx);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             /*</span><br><span class="line">             贪心策略：由于minSPF按照递减策略排序，那么每一个不低于当前minSPF的防晒霜都不会低于其他后续防晒霜的minSPF，</span><br><span class="line">             对于当前可选的x，y，如果SPF[y]&gt;SFP[x],那么后续奶牛只可能有三种情况“x,y都可”，“x可，y大于maxSPF了”，“x，y都不可”</span><br><span class="line">             选择SPF最大的显然能够满足更多奶牛们的要求</span><br><span class="line">              */</span><br><span class="line">            if(findOne)&#123;</span><br><span class="line">                cover[maxIx]--;//用掉一瓶</span><br><span class="line">                res++;//满足一头牛</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Stall-Reservations"><a href="#Stall-Reservations" class="headerlink" title="Stall Reservations"></a>Stall Reservations</h1><p>题目：<br>有N头牛在畜栏种吃草。每个畜栏在同一时间段只能提供给一头牛吃草，所以可能会需要多个畜栏。给定N头牛和每头牛开始吃草和结束吃草的时间，每头牛在给定时间段会一直吃草，求需要的最小畜栏数目和每头牛对应的畜栏方案。N&lt;=5*10^4</p>
+<p>输入描述：  </p>
+<p>输出描述：  </p>
 
       
 
@@ -226,7 +191,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习欲望</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法竞赛进阶指南</a>
         		</li>
       		
 		</ul>
@@ -282,7 +247,7 @@
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/05/想学的东西/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http://yoursite.com/2019/09/10/0x07贪心/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -296,18 +261,18 @@
   
 <nav id="article-nav">
   
-    <a href="/2019/09/05/摆花盆问题/" id="article-nav-newer" class="article-nav-link-wrap">
+    <a href="/2019/09/10/TODO/" id="article-nav-newer" class="article-nav-link-wrap">
       <i class="icon-circle-left"></i>
       <div class="article-nav-title">
         
-          摆花盆问题
+          TODO
         
       </div>
     </a>
   
   
-    <a href="/2019/09/05/有序矩阵中第k大的元素LeetCode378/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">有序矩阵中第k大的元素LeetCode378</div>
+    <a href="/2019/09/10/9-10月份的安排/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">9/10月份的安排</div>
       <i class="icon-circle-right"></i>
     </a>
   
