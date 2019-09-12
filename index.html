@@ -140,6 +140,512 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-接雨水LeetCode42" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/12/接雨水LeetCode42/">接雨水LeetCode42</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/12/接雨水LeetCode42/" class="archive-article-date">
+  	<time datetime="2019-09-12T01:22:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><h1 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h1><h2 id="方法一：栈"><a href="#方法一：栈" class="headerlink" title="方法一：栈"></a>方法一：栈</h2><p>这种方法其实本质上就是利用栈找到两边最大的，然后依次计算中间的水</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;height.length;i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!stack.isEmpty()&amp;&amp;height[i]&gt;height[stack.peek()])&#123;</span><br><span class="line">                <span class="keyword">int</span> top = stack.pop();</span><br><span class="line">                <span class="keyword">if</span>(stack.isEmpty())<span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">int</span> distance = i-stack.peek()-<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> rHeight = Math.min(height[i],height[stack.peek()])-height[top];</span><br><span class="line">                res+=(distance*rHeight);</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/12/接雨水LeetCode42/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-深入理解dubbo第二周" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/深入理解dubbo第二周/">深入理解dubbo第二周</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/11/深入理解dubbo第二周/" class="archive-article-date">
+  	<time datetime="2019-09-11T15:22:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/11/深入理解dubbo第二周/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2019-9-11题目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/2019-9-11题目总结/">2019-9-11题目总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/11/2019-9-11题目总结/" class="archive-article-date">
+  	<time datetime="2019-09-11T15:16:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h1><h2 id="用友笔试"><a href="#用友笔试" class="headerlink" title="用友笔试"></a>用友笔试</h2><h2 id="旷视笔试"><a href="#旷视笔试" class="headerlink" title="旷视笔试"></a>旷视笔试</h2><h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><p>计算非负数n中1的个数<br>这个题我做了好几遍了，还没记住，真的是不长记性，最后考完才想起来；有的时候觉得自己是真蠢，做了记不住和没做没学有啥区别？这样的问题希望不要再犯了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KuangShi1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> N)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(N!=<span class="number">0</span>)&#123;</span><br><span class="line">            N=N&amp;(N-<span class="number">1</span>);</span><br><span class="line">            res+=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        System.out.println(count(N));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><p>接雨水问题 LeetCode42题</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习日记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/11/2019-9-11题目总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2019-9-10题目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/2019-9-10题目总结/">2019-9-10题目总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/11/2019-9-10题目总结/" class="archive-article-date">
+  	<time datetime="2019-09-11T00:33:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h1><h2 id="Bilibili"><a href="#Bilibili" class="headerlink" title="Bilibili"></a>Bilibili</h2><p>第二题<br>题目：将输入的N，写成连续数字相加的形式，一共可以有多少组，1&lt;=N&lt;=10^9</p>
+<p>输入示例：5<br>输出示例：2<br>解释：5=5=2+3<br>分析：<br>请看这里最后一种方法，来自大佬的解释<br><a href="https://blog.csdn.net/zj_whu/article/details/82990030" target="_blank" rel="noopener">https://blog.csdn.net/zj_whu/article/details/82990030</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> M = <span class="number">2</span>*N;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> p=(<span class="keyword">int</span>)Math.sqrt(M);p&gt;=<span class="number">1</span>;p--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(M%p!=<span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> q = M/p;</span><br><span class="line">            <span class="keyword">int</span> i = (q-p+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> j = (p+q-<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">            res+=<span class="number">1</span>;</span><br><span class="line">            System.out.println(<span class="string">"i="</span>+i+<span class="string">",j="</span>+j);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第三题<br>一个要求必须c++来解的题，不难，但是。。。我不太会c++<br>题目：<br>输入第一个为分隔符d1；第二个为分割符d2；第三个为一个序列，要将序列用分隔符d1和分隔符d2切分输出；</p>
+<p>输出总行数，要求输出分隔符前后都不为空串<br>输入示例：<br># : a:3#b:4#c:5<br>输出示例：<br>3<br>a 3</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">## 电信</span><br><span class="line">第二题  </span><br><span class="line">数字转罗马数字  </span><br><span class="line">输入：  </span><br><span class="line">36  </span><br><span class="line">输出：  </span><br><span class="line">XXXVI</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第三题</span><br><span class="line">题目：最大整数</span><br><span class="line">输入：[4 ,-2 ,5 ,2 ,-6]</span><br><span class="line">输出：9</span><br><span class="line"></span><br><span class="line">没做出来的原因是当时想通过正则表达式匹配数字，搞出来，实在是无能为力</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class CDianXin3 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner in = new Scanner(System.in);</span><br><span class="line">        String line = in.nextLine();</span><br><span class="line">        String[] cs = line.replace(&quot;[&quot;,&quot;&quot;).replace(&quot;]&quot;,&quot;&quot;).split(&quot;,&quot;);</span><br><span class="line">        int s =0;</span><br><span class="line">        int maxS = Integer.MIN_VALUE;</span><br><span class="line">        </span><br><span class="line">        for(int i=0;i&lt;cs.length;i++)&#123;</span><br><span class="line">            s+=Integer.valueOf(cs[i].trim());</span><br><span class="line">            System.out.println(s);</span><br><span class="line">            if(s&lt;0)&#123;</span><br><span class="line">                s=0;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(s&gt;maxS)&#123;</span><br><span class="line">                    maxS=s;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(maxS);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-学习日记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/11/2019-9-10题目总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/spring学习/">spring学习</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/11/spring学习/" class="archive-article-date">
+  	<time datetime="2019-09-10T17:20:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/11/spring学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-面向简历编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/面向简历编程/">面向简历编程</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/11/面向简历编程/" class="archive-article-date">
+  	<time datetime="2019-09-10T16:44:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="面向简历编程"><a href="#面向简历编程" class="headerlink" title="面向简历编程"></a>面向简历编程</h1><h2 id="TODO1-0-SSM"><a href="#TODO1-0-SSM" class="headerlink" title="TODO1.0 SSM"></a>TODO1.0 SSM</h2><p>我假装学了两年程序，感觉好多时间都在补基础，还搞过一段时间机器学习，花了大量的时间学数学，最终无功而返，最终还是回来搞后端，后端也就实训的时候有个整体框架，现在忘得都差不多了，准备在工作前重新捡回来。</p>
+<h3 id="选型"><a href="#选型" class="headerlink" title="选型"></a>选型</h3><ul>
+<li>spring <a href="https://spring.io/projects/spring-framework#learn" target="_blank" rel="noopener">https://spring.io/projects/spring-framework#learn</a></li>
+<li>vuejs <a href="https://cn.vuejs.org/v2/guide/" target="_blank" rel="noopener">https://cn.vuejs.org/v2/guide/</a></li>
+</ul>
+<h3 id="前后端分离方式"><a href="#前后端分离方式" class="headerlink" title="前后端分离方式"></a>前后端分离方式</h3><ul>
+<li>mockjs <a href="http://mockjs.com/" target="_blank" rel="noopener">http://mockjs.com/</a></li>
+<li>json-server </li>
+</ul>
+<table>
+<thead>
+<tr>
+<th>模块</th>
+<th>版本</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>spring-bean</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-core</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-context</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-context-support</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-expression</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-test</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-aop</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-instrument</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-instrument-tomcat</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-orm</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-tx</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-web</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td>spring-webmvc</td>
+<td>4.3.25</td>
+</tr>
+<tr>
+<td></td>
+<td></td>
+</tr>
+</tbody></table>
+<p>#进度维护</p>
+<ol>
+<li>写好了基础依赖和基本技术选型，准备尝试一下前后端分离的开发方式</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">-spring学习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/11/面向简历编程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-TODO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -232,11 +738,28 @@
 </ul>
 <p>输出描述：  </p>
 <p>A single line with an integer that is the maximum number of cows that can be protected while tanning</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">import java.util.Arrays;</span><br><span class="line">        import java.util.Comparator;</span><br><span class="line">        import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class Sunscreen &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner in = new Scanner(System.in);</span><br><span class="line">        int C = in.nextInt();</span><br><span class="line">        int L = in.nextInt();</span><br><span class="line">        int[] minSPF = new int[C];</span><br><span class="line">        int[] maxSPF = new int[C];</span><br><span class="line">        int[] SPF = new int[L];</span><br><span class="line">        int[] cover = new int[L];</span><br><span class="line">        for(int i=0;i&lt;C;i++)&#123;</span><br><span class="line">            minSPF[i]=in.nextInt();</span><br><span class="line">            maxSPF[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        for(int i=0;i&lt;L;i++)&#123;</span><br><span class="line">            SPF[i]=in.nextInt();</span><br><span class="line">            cover[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Integer[] c = new Integer[C];</span><br><span class="line">        for(int i=0;i&lt;C;i++)c[i]=i;</span><br><span class="line">        Arrays.sort(c, new Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">            @Override</span><br><span class="line">            public int compare(Integer o1, Integer o2) &#123;</span><br><span class="line">                return minSPF[o2]-minSPF[o1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        int res = 0;</span><br><span class="line">        for(int i=0;i&lt;C;i++)&#123;</span><br><span class="line">            int ix = c[i];</span><br><span class="line">            int minSPFi = minSPF[ix];</span><br><span class="line">            int maxSPFi = maxSPF[ix];</span><br><span class="line">            int maxIx = 0;</span><br><span class="line">            int maxSPFC = Integer.MIN_VALUE;</span><br><span class="line">            boolean findOne = false;</span><br><span class="line">            for(int j=0;j&lt;L;j++)&#123;</span><br><span class="line">                if(SPF[j]&gt;=minSPFi&amp;&amp;SPF[j]&lt;=maxSPFi)&#123;</span><br><span class="line">                    //需要满足条件</span><br><span class="line">                    //System.out.println(&quot;im in!&quot;);</span><br><span class="line">                    if(SPF[j]&gt;maxSPFC&amp;&amp;cover[j]&gt;0)&#123;</span><br><span class="line">                        maxSPFC=SPF[j];</span><br><span class="line">                        maxIx = j;</span><br><span class="line">                        findOne=true;</span><br><span class="line">                        //System.out.println(maxIx);</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             /*</span><br><span class="line">             贪心策略：由于minSPF按照递减策略排序，那么每一个不低于当前minSPF的防晒霜都不会低于其他后续防晒霜的minSPF，</span><br><span class="line">             对于当前可选的x，y，如果SPF[y]&gt;SFP[x],那么后续奶牛只可能有三种情况“x,y都可”，“x可，y大于maxSPF了”，“x，y都不可”</span><br><span class="line">             选择SPF最大的显然能够满足更多奶牛们的要求</span><br><span class="line">              */</span><br><span class="line">            if(findOne)&#123;</span><br><span class="line">                cover[maxIx]--;//用掉一瓶</span><br><span class="line">                res++;//满足一头牛</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sunscreen</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> C = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span> L = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span>[] minSPF = <span class="keyword">new</span> <span class="keyword">int</span>[C];</span><br><span class="line">        <span class="keyword">int</span>[] maxSPF = <span class="keyword">new</span> <span class="keyword">int</span>[C];</span><br><span class="line">        <span class="keyword">int</span>[] SPF = <span class="keyword">new</span> <span class="keyword">int</span>[L];</span><br><span class="line">        <span class="keyword">int</span>[] cover = <span class="keyword">new</span> <span class="keyword">int</span>[L];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;C;i++)&#123;</span><br><span class="line">            minSPF[i]=in.nextInt();</span><br><span class="line">            maxSPF[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;L;i++)&#123;</span><br><span class="line">            SPF[i]=in.nextInt();</span><br><span class="line">            cover[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Integer[] c = <span class="keyword">new</span> Integer[C];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;C;i++)c[i]=i;</span><br><span class="line">        Arrays.sort(c, <span class="keyword">new</span> Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer o1, Integer o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> minSPF[o2]-minSPF[o1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;C;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> ix = c[i];</span><br><span class="line">            <span class="keyword">int</span> minSPFi = minSPF[ix];</span><br><span class="line">            <span class="keyword">int</span> maxSPFi = maxSPF[ix];</span><br><span class="line">            <span class="keyword">int</span> maxIx = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> maxSPFC = Integer.MIN_VALUE;</span><br><span class="line">            <span class="keyword">boolean</span> findOne = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;L;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(SPF[j]&gt;=minSPFi&amp;&amp;SPF[j]&lt;=maxSPFi)&#123;</span><br><span class="line">                    <span class="comment">//需要满足条件</span></span><br><span class="line">                    <span class="comment">//System.out.println("im in!");</span></span><br><span class="line">                    <span class="keyword">if</span>(SPF[j]&gt;maxSPFC&amp;&amp;cover[j]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                        maxSPFC=SPF[j];</span><br><span class="line">                        maxIx = j;</span><br><span class="line">                        findOne=<span class="keyword">true</span>;</span><br><span class="line">                        <span class="comment">//System.out.println(maxIx);</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             <span class="comment">/*</span></span><br><span class="line"><span class="comment">             贪心策略：由于minSPF按照递减策略排序，那么每一个不低于当前minSPF的防晒霜都不会低于其他后续防晒霜的minSPF，</span></span><br><span class="line"><span class="comment">             对于当前可选的x，y，如果SPF[y]&gt;SFP[x],那么后续奶牛只可能有三种情况“x,y都可”，“x可，y大于maxSPF了”，“x，y都不可”</span></span><br><span class="line"><span class="comment">             选择SPF最大的显然能够满足更多奶牛们的要求</span></span><br><span class="line"><span class="comment">              */</span></span><br><span class="line">            <span class="keyword">if</span>(findOne)&#123;</span><br><span class="line">                cover[maxIx]--;<span class="comment">//用掉一瓶</span></span><br><span class="line">                res++;<span class="comment">//满足一头牛</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
 <h1 id="Stall-Reservations"><a href="#Stall-Reservations" class="headerlink" title="Stall Reservations"></a>Stall Reservations</h1><p>题目：<br>有N头牛在畜栏种吃草。每个畜栏在同一时间段只能提供给一头牛吃草，所以可能会需要多个畜栏。给定N头牛和每头牛开始吃草和结束吃草的时间，每头牛在给定时间段会一直吃草，求需要的最小畜栏数目和每头牛对应的畜栏方案。N&lt;=5*10^4</p>
-<p>输入描述：  </p>
+<p>英文题目：<br>Oh those picky N (1 \leq N \leq 50,000)(1≤N≤50,000) cows! They are so picky that each one will only be milked over some precise time interval A..B (1 \leq A \leq B \leq 1,000,000)(1≤A≤B≤1,000,000), which includes both times A and B. Obviously, FJ must create a reservation system to determine which stall each cow can be assigned for her milking time. Of course, no cow will share such a private moment with other cows.</p>
+<p>Help FJ by determining:<br>The minimum number of stalls required in the barn so that each cow can have her private milking period<br>An assignment of cows to these stalls over time<br>Many answers are correct for each test dataset; a program will grade your answer.</p>
+<p>输入描述：<br>Line 1: A single integer, N<br>Lines 2..N+1: Line i+1 describes cow i’s milking interval with two space-separated integers.</p>
 <p>输出描述：  </p>
+<p>Line 1: The minimum number of stalls the barn must have.<br>Lines 2..N+1: Line i+1 describes the stall to which cow i will be assigned for her milking period.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StallReservations</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span>[] S = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">int</span>[] E = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        Integer[] I = <span class="keyword">new</span> Integer[N];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)I[i]=i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            S[i]=in.nextInt();</span><br><span class="line">            E[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(I);</span><br><span class="line">        ArrayList&lt;Integer&gt; tall = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        ArrayList&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> ix = I[i];</span><br><span class="line">            <span class="keyword">boolean</span> findOne = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j =<span class="number">0</span> ;j&lt;tall.size();j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> endTime = tall.get(j);</span><br><span class="line">                <span class="keyword">if</span>(S[ix]&gt;endTime)&#123;</span><br><span class="line">                    findOne=<span class="keyword">true</span>;</span><br><span class="line">                    tall.set(j,E[ix]);</span><br><span class="line">                    res.add(j+<span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(tall.size()==<span class="number">0</span>||!findOne)&#123;</span><br><span class="line">                tall.add(E[ix]);</span><br><span class="line">                res.add(tall.size());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(tall.size());</span><br><span class="line">        <span class="keyword">for</span>(Integer t:res) System.out.println(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">6</span></span><br><span class="line"><span class="comment">1 10</span></span><br><span class="line"><span class="comment">2 4</span></span><br><span class="line"><span class="comment">3 6</span></span><br><span class="line"><span class="comment">5 8</span></span><br><span class="line"><span class="comment">4 7</span></span><br><span class="line"><span class="comment">8 9</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<p>做来做去22.22%，本着先过一遍书的原则，先过</p>
+<h1 id="Radar-Installation"><a href="#Radar-Installation" class="headerlink" title="Radar Installation"></a>Radar Installation</h1><p>题目：<br>校长想通过监控设备覆盖学校内的N座建筑物，每座建筑物被视作一个质点，在笛卡尔坐标系中给出它们的坐标（x，y），并且所有的建筑物均在x轴的上方。因为学校的供电和传输线路均沿x轴，所以监控设备只被允许建立在x轴上。每台监控设备的监控范围均为一个半径为R的圆形，圆心即为这台设备。先给出N座建筑物的坐标，问最少需要几台这样的设备可以实现对所有建筑物的监控。N&lt;=1000</p>
+<p>英文题目：<br>Assume the coasting is an infinite straight line. Land is in one side of coasting, sea in the other. Each small island is a point locating in the sea side. And any radar installation, locating on the coasting, can only cover d distance, so an island in the sea can be covered by a radius installation, if the distance between them is at most d.<br>We use Cartesian coordinate system, defining the coasting is the x-axis. The sea side is above x-axis, and the land side below. Given the position of each island in the sea, and given the distance of the coverage of the radar installation, your task is to write a program to find the minimal number of radar installations to cover all the islands. Note that the position of an island is represented by its x-y coordinates.   </p>
+<p>输入：<br>The input consists of several test cases.<br>The first line of each case contains two integers n(1 \leq n \leq1000)(1≤n≤1000)and d, where n is the number of islands in the sea and d is the distance of coverage of the radar installation.<br>This is followed by n lines each containing two integers representing the coordinate of the position of each island.<br>Then a blank line follows to separate the cases.<br>The input is terminated by a line containing pair of zeros</p>
+<p>输出：<br>For each test case output one line of the minimal number of radar installations needed. “-1” installation means no solution for that case.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RadarInstallation</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Range</span></span>&#123;</span><br><span class="line">        <span class="keyword">double</span> start;</span><br><span class="line">        <span class="keyword">double</span> end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n ,d=<span class="number">0</span>;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        n=in.nextInt();</span><br><span class="line">        d=in.nextInt();</span><br><span class="line">        <span class="keyword">while</span> (n!=<span class="number">0</span>&amp;&amp;d!=<span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span>[][] island = <span class="keyword">new</span> <span class="keyword">int</span>[n][<span class="number">2</span>];</span><br><span class="line">            Range[] ranges = <span class="keyword">new</span> Range[n];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">                island[i][<span class="number">0</span>]=in.nextInt();</span><br><span class="line">                island[i][<span class="number">1</span>]=in.nextInt();</span><br><span class="line">                ranges[i]=<span class="keyword">new</span> Range();</span><br><span class="line">                <span class="keyword">if</span>(island[i][<span class="number">1</span>]&lt;=d)&#123;</span><br><span class="line">                    <span class="keyword">double</span> deltaX = Math.sqrt(Math.pow(d,<span class="number">2</span>)-Math.pow(island[i][<span class="number">1</span>],<span class="number">2</span>));</span><br><span class="line">                    ranges[i].start=island[i][<span class="number">0</span>]-deltaX;</span><br><span class="line">                    ranges[i].end=island[i][<span class="number">0</span>]+deltaX;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    ranges[i].start=Integer.MAX_VALUE;</span><br><span class="line">                    ranges[i].end=Integer.MIN_VALUE;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            Arrays.sort(ranges, <span class="keyword">new</span> Comparator&lt;Range&gt;() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Range o1, Range o2)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> (<span class="keyword">int</span>)(o1.start-o2.start);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//for(int i=0;i&lt;n;i++) System.out.println("start="+ranges[i].start+",end="+ranges[i].end);</span></span><br><span class="line">            <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">double</span> pos = Integer.MIN_VALUE;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(ranges[i].start&lt;=pos)&#123;</span><br><span class="line">                    pos = Math.min(pos,ranges[i].end);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    pos = ranges[i].end;</span><br><span class="line">                    res+=<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(res);</span><br><span class="line">            n=in.nextInt();</span><br><span class="line">            d=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//白给0.0%，没发现哪里出问题--！</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="国王游戏"><a href="#国王游戏" class="headerlink" title="国王游戏"></a>国王游戏</h1><p>题目：<br>恰逢 H 国国庆，国王邀请 n 位大臣来玩一个有奖游戏。首先，他让每个大臣在左、右手上面分别写下一个整数，国王自己也在左、右手上各写一个整数。然后，让这 n 位大臣排成一排，国王站在队伍的最前面。排好队后，所有的大臣都会获得国王奖赏的若干金币，每位大臣获得的金币数分别是：排在该大臣前面的所有人的左手上的数的乘积除以他自己右手上的数，然后向下取整得到的结果。<br>国王不希望某一个大臣获得特别多的奖赏，所以他想请你帮他重新安排一下队伍的顺序，使得获得奖赏最多的大臣，所获奖赏尽可能的少。注意，国王的位置始终在队伍的最前面。</p>
+<p>输入：<br>第一行包含一个整数 n ，表示大臣的人数。<br>第二行包含两个整数 a 和 b ，之间用一个空格隔开，分别表示国王左手和右手上的整数。<br>接下来 n 行，每行包含两个整数 a 和 b ，之间用一个空格隔开，分别表示每个大臣左手和右手上的整数。</p>
+<p>输出：<br>一个整数，表示重新排列后的队伍中获奖赏最多的大臣所获得的金币数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
 
       
 
@@ -351,10 +874,11 @@
 <ol>
 <li>计算机网络视频看到一半<br>计算机网络 第八章看到308页</li>
 <li>设计模式 看到p5</li>
-<li>算法竞赛 看到p38</li>
+<li>算法竞赛 看到p40</li>
 <li>准备开一个项目坑 todoList 给自己维护任务用，同时复习SSM，练习vue，面向简历编程，这个项目会单独开一个文件维护进度</li>
 <li>有个基本算法复习坑，准备用 python 撸一遍严蔚敏</li>
-<li>还有个牛客网视频坑，刚开的 看到第1集</li>
+<li>还有个牛客网视频坑，刚开的 看到p1</li>
+<li>新开个坑 LeetCode刷题</li>
 </ol>
 
       
@@ -409,19 +933,19 @@
 
 
   
-    <article id="post-2019-9-9笔试及学习总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-2019-9-9题目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/2019-9-9笔试及学习总结/">2019-9-9笔试及学习总结</a>
+      <a class="article-title" href="/2019/09/09/2019-9-9题目总结/">2019-9-9题目总结</a>
     </h1>
   
 
         
-        <a href="/2019/09/09/2019-9-9笔试及学习总结/" class="archive-article-date">
+        <a href="/2019/09/09/2019-9-9题目总结/" class="archive-article-date">
   	<time datetime="2019-09-09T15:07:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
 </a>
         
@@ -466,936 +990,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/2019-9-9笔试及学习总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-面试准备" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/面试准备/">面试准备</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/面试准备/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:19:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><ol>
-<li>Redis数据结构及持久化机制</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/neooelric/p/9621736.html" target="_blank" rel="noopener">https://www.cnblogs.com/neooelric/p/9621736.html</a></li>
-</ul>
-<ol start="2">
-<li>Redis持久化机制</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/yyjie/p/7487937.html" target="_blank" rel="noopener">https://www.cnblogs.com/yyjie/p/7487937.html</a></li>
-</ul>
-<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><ol>
-<li>mybatis 如何获取自增ID </li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zonghao123/article/details/78374169" target="_blank" rel="noopener">https://blog.csdn.net/zonghao123/article/details/78374169</a></li>
-</ul>
-<ol start="2">
-<li>mybatis  一二级缓存</li>
-</ol>
-<h1 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h1><ol>
-<li>分布式锁的实现</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_32924343/article/details/79814133" target="_blank" rel="noopener">https://blog.csdn.net/qq_32924343/article/details/79814133</a><br>附：<br>CAP原理</li>
-<li><a href="http://www.ruanyifeng.com/blog/2018/07/cap.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/07/cap.html</a></li>
-</ul>
-<ol start="2">
-<li><p>了解微服务吗？</p>
-</li>
-<li><p>RPC调用</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/linlinismine/p/9205676.html" target="_blank" rel="noopener">https://www.cnblogs.com/linlinismine/p/9205676.html</a></li>
-<li><a href="https://www.cnblogs.com/FG123/p/10261676.html" target="_blank" rel="noopener">https://www.cnblogs.com/FG123/p/10261676.html</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工具复习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/面试准备/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-多线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/多线程/">多线程</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/多线程/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:16:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><ul>
-<li><a href="https://www.jianshu.com/p/125ccf0046f3" target="_blank" rel="noopener">https://www.jianshu.com/p/125ccf0046f3</a></li>
-</ul>
-<ol>
-<li><p>线程池的参数<br>public ThreadPoolExecutor(<br>int corePoolSize,<br>int maximumPoolSize,<br>long keepAliveTime,<br>TimeUnit unit,<br>ThreadFactory threadFactory,<br>RejectedExecutionHandler handler<br>);</p>
-</li>
-<li><p>为什么要使用线程池</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/a497393102/article/details/8597819" target="_blank" rel="noopener">https://blog.csdn.net/a497393102/article/details/8597819</a></li>
-<li><a href="https://blog.csdn.net/Muz_victory/article/details/81216771" target="_blank" rel="noopener">https://blog.csdn.net/Muz_victory/article/details/81216771</a></li>
-</ul>
-<ol start="3">
-<li>如何合理的配置线程池<br>CPU密集型 Ncpu+1<br>IO密集型 2*Ncpu</li>
-</ol>
-<p>混合型任务 进行任务拆分</p>
-<ol start="4">
-<li>饱和策略/任务队列满了以后再来一个任务如何处理</li>
-</ol>
-<ul>
-<li>AbortPolicy</li>
-<li>CallerRunsPolicy</li>
-<li>DiscardOldestPolicy</li>
-<li>DiscardPolicy</li>
-<li><a href="https://www.cnblogs.com/skywang12345/p/3512947.html" target="_blank" rel="noopener">https://www.cnblogs.com/skywang12345/p/3512947.html</a></li>
-</ul>
-<ol start="5">
-<li>JUC包里的东西，有哪些常用锁</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/doit8791/p/9131148.html" target="_blank" rel="noopener">https://www.cnblogs.com/doit8791/p/9131148.html</a><br>Lock，AQS，ReentrantLock，ReadWriteLock，LockSupport，Condition</li>
-</ul>
-<ol start="6">
-<li>线程同步的几种方法？</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/baizhanshi/p/7025974.html" target="_blank" rel="noopener">https://www.cnblogs.com/baizhanshi/p/7025974.html</a></li>
-</ul>
-<ol start="7">
-<li>线程同步使用哪些锁？</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/lixiangyang521/p/6861768.html" target="_blank" rel="noopener">https://www.cnblogs.com/lixiangyang521/p/6861768.html</a></li>
-</ul>
-<ol start="8">
-<li>死锁和死循环都会导致程序hold住，怎么判断是死锁还是死循环</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/wanglha/article/details/51133819" target="_blank" rel="noopener">https://blog.csdn.net/wanglha/article/details/51133819</a></li>
-</ul>
-<ol start="9">
-<li>并发容器种类</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/ygj0930/p/6543877.html" target="_blank" rel="noopener">https://www.cnblogs.com/ygj0930/p/6543877.html</a></li>
-<li><a href="https://blog.csdn.net/cdefggg/article/details/86426917" target="_blank" rel="noopener">https://blog.csdn.net/cdefggg/article/details/86426917</a></li>
-<li><a href="https://www.jianshu.com/p/7f50497b7f30" target="_blank" rel="noopener">https://www.jianshu.com/p/7f50497b7f30</a></li>
-</ul>
-<ol start="10">
-<li><p>concurrenthashmap数据结构<br>JDK1.7 数组+segment+分段锁+HashEntry<br>JDK1.8 数组+链表+红黑树</p>
-</li>
-<li><p>线程状态(blocked   waiting  timed_waiting)</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/cowboys/p/9315331.html" target="_blank" rel="noopener">https://www.cnblogs.com/cowboys/p/9315331.html</a></li>
-</ul>
-<ol start="12">
-<li>等待和阻塞的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/woshiyigeliangliang/article/details/81116872" target="_blank" rel="noopener">https://blog.csdn.net/woshiyigeliangliang/article/details/81116872</a></li>
-</ul>
-<ol start="13">
-<li>wait和sleep的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/kangkanglou/article/details/82221301" target="_blank" rel="noopener">https://blog.csdn.net/kangkanglou/article/details/82221301</a></li>
-</ul>
-<ol start="14">
-<li>volatile变量i++</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/zemliu/p/3298685.html" target="_blank" rel="noopener">https://www.cnblogs.com/zemliu/p/3298685.html</a></li>
-<li><a href="https://blog.csdn.net/dm_vincent/article/details/79604716" target="_blank" rel="noopener">https://blog.csdn.net/dm_vincent/article/details/79604716</a></li>
-</ul>
-<ol start="15">
-<li>sychronized 和 RetreenLock的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zhglance/article/details/81485820" target="_blank" rel="noopener">https://blog.csdn.net/zhglance/article/details/81485820</a></li>
-<li><a href="https://blog.csdn.net/chenkaibsw/article/details/80234123" target="_blank" rel="noopener">https://blog.csdn.net/chenkaibsw/article/details/80234123</a></li>
-</ul>
-<ol start="16">
-<li>介绍一下线程池<br>线程池的组成</li>
-</ol>
-<ul>
-<li>ThreadPool线程池管理器</li>
-<li>PoolWorker 工作线程</li>
-<li>Task 任务接口</li>
-<li>TaskQueue 任务队列</li>
-</ul>
-<ol start="17">
-<li>四种线程池及使用场景</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_43692920/article/details/90266704" target="_blank" rel="noopener">https://blog.csdn.net/qq_43692920/article/details/90266704</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/多线程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据库复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/数据库复习/">数据库复习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/数据库复习/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:14:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="数据库-MySql"><a href="#数据库-MySql" class="headerlink" title="数据库/MySql"></a>数据库/MySql</h1><ol>
-<li>Mysql的事务隔离级别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/rxbook/p/8975924.html" target="_blank" rel="noopener">https://www.cnblogs.com/rxbook/p/8975924.html</a><br>设置mysql的事务隔离级别</li>
-<li><a href="https://www.cnblogs.com/huasky/p/11190086.html" target="_blank" rel="noopener">https://www.cnblogs.com/huasky/p/11190086.html</a></li>
-<li><a href="https://www.cnblogs.com/satng/p/7759899.html" target="_blank" rel="noopener">https://www.cnblogs.com/satng/p/7759899.html</a></li>
-</ul>
-<ol start="2">
-<li>数据库的连接池</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_39659876/article/details/80958450" target="_blank" rel="noopener">https://blog.csdn.net/qq_39659876/article/details/80958450</a></li>
-<li><a href="https://blog.csdn.net/qq_34468186/article/details/83892496" target="_blank" rel="noopener">https://blog.csdn.net/qq_34468186/article/details/83892496</a></li>
-<li><a href="https://baijiahao.baidu.com/s?id=1599699339020031595&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1599699339020031595&amp;wfr=spider&amp;for=pc</a></li>
-</ul>
-<ol start="3">
-<li>乐观锁悲观锁</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/suger43894/p/11024102.html" target="_blank" rel="noopener">https://www.cnblogs.com/suger43894/p/11024102.html</a></li>
-</ul>
-<ol start="4">
-<li>数据库分页优化</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/geningchao/p/6649907.html" target="_blank" rel="noopener">https://www.cnblogs.com/geningchao/p/6649907.html</a></li>
-<li><a href="https://www.cnblogs.com/RunForLove/p/5100009.html" target="_blank" rel="noopener">https://www.cnblogs.com/RunForLove/p/5100009.html</a></li>
-<li><a href="https://www.cnblogs.com/waterystone/p/9392421.html" target="_blank" rel="noopener">https://www.cnblogs.com/waterystone/p/9392421.html</a></li>
-</ul>
-<ol start="5">
-<li>mysql数据引擎知道几种？innodb和mylsam区别<br>6种，InnoDB,MyISAM,NDB,Memory,Archive,Federated,Maria</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/zhangchaoyang/articles/4214237.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangchaoyang/articles/4214237.html</a></li>
-</ul>
-<ol start="6">
-<li>索引失效</li>
-</ol>
-<ul>
-<li>复合索引不能跨列或者无序使用；尽量使用全索引匹配</li>
-<li>不要在索引上进行任何操作（计算，函数，类型转换）</li>
-<li>复合索引不能使用不等于或is null，否则自身及右侧全部失效</li>
-<li>复合索引中有&gt;,&lt;,in，之后的索引失效</li>
-<li>like尽量用常量开头，不以“%”开头；如果必须以“%”开头，可以用索引覆盖挽救一部分</li>
-<li>尽量不要用or，否则or左侧的索引也失效</li>
-</ul>
-<ol start="7">
-<li>覆盖索引</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_15037231/article/details/87891683" target="_blank" rel="noopener">https://blog.csdn.net/qq_15037231/article/details/87891683</a></li>
-<li><a href="https://www.cnblogs.com/happyflyingpig/p/7662881.html" target="_blank" rel="noopener">https://www.cnblogs.com/happyflyingpig/p/7662881.html</a></li>
-<li><a href="https://www.cnblogs.com/pyng/p/9599977.html" target="_blank" rel="noopener">https://www.cnblogs.com/pyng/p/9599977.html</a></li>
-</ul>
-<ol start="8">
-<li>倒排序索引</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/gered/p/9561710.html" target="_blank" rel="noopener">https://www.cnblogs.com/gered/p/9561710.html</a></li>
-<li><a href="https://www.cnblogs.com/luminous1/p/8383777.html" target="_blank" rel="noopener">https://www.cnblogs.com/luminous1/p/8383777.html</a></li>
-<li><a href="https://blog.csdn.net/zsd_31/article/details/79979818" target="_blank" rel="noopener">https://blog.csdn.net/zsd_31/article/details/79979818</a></li>
-</ul>
-<ol start="9">
-<li>MVCC</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/rocling/article/details/81193431" target="_blank" rel="noopener">https://blog.csdn.net/rocling/article/details/81193431</a></li>
-<li><a href="https://www.cnblogs.com/liulvzhong/articles/9242299.html" target="_blank" rel="noopener">https://www.cnblogs.com/liulvzhong/articles/9242299.html</a></li>
-</ul>
-<ol start="10">
-<li>索引失效</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/42cfeec20301" target="_blank" rel="noopener">https://www.jianshu.com/p/42cfeec20301</a></li>
-</ul>
-<ol start="11">
-<li>幻读的解决</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_27007251/article/details/70016787" target="_blank" rel="noopener">https://blog.csdn.net/qq_27007251/article/details/70016787</a></li>
-</ul>
-<ol start="12">
-<li>快照读和当前读</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/27352449bcc0" target="_blank" rel="noopener">https://www.jianshu.com/p/27352449bcc0</a></li>
-</ul>
-<ol start="13">
-<li>间隙锁</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zcl_love_wx/article/details/82382582" target="_blank" rel="noopener">https://blog.csdn.net/zcl_love_wx/article/details/82382582</a></li>
-</ul>
-<ol start="14">
-<li>mysql innodb三种行锁</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/weixin_34006468/article/details/88039873" target="_blank" rel="noopener">https://blog.csdn.net/weixin_34006468/article/details/88039873</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/数据库复习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaEE复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/JavaEE复习/">JavaEE</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/JavaEE复习/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:13:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JavaEE"><a href="#JavaEE" class="headerlink" title="JavaEE"></a>JavaEE</h1><ol>
-<li>Session，Cookie和Token</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/zlw-xf/p/8001383.html" target="_blank" rel="noopener">https://www.cnblogs.com/zlw-xf/p/8001383.html</a></li>
-<li><a href="https://www.cnblogs.com/roxy/p/7805858.html" target="_blank" rel="noopener">https://www.cnblogs.com/roxy/p/7805858.html</a></li>
-<li><a href="https://www.cnblogs.com/moyand/p/9047978.html" target="_blank" rel="noopener">https://www.cnblogs.com/moyand/p/9047978.html</a></li>
-</ul>
-<ol start="2">
-<li>Servlet的生命周期</li>
-<li>拦截器和过滤器的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zxd1435513775/article/details/80556034" target="_blank" rel="noopener">https://blog.csdn.net/zxd1435513775/article/details/80556034</a></li>
-<li><a href="https://www.cnblogs.com/panxuejun/p/7715917.html" target="_blank" rel="noopener">https://www.cnblogs.com/panxuejun/p/7715917.html</a><br>过滤器只在容器初始化时调用一次该怎么理解？</li>
-<li><a href="https://blog.csdn.net/dingchenxixi/article/details/81391831" target="_blank" rel="noopener">https://blog.csdn.net/dingchenxixi/article/details/81391831</a></li>
-</ul>
-<ol start="4">
-<li>防止XSS攻击</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/hero123/p/9091625.html" target="_blank" rel="noopener">https://www.cnblogs.com/hero123/p/9091625.html</a></li>
-<li><a href="https://www.jianshu.com/p/cd49578bdd48" target="_blank" rel="noopener">https://www.jianshu.com/p/cd49578bdd48</a></li>
-</ul>
-<h1 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h1><ol>
-<li>spring的主要特点？介绍一下AOP和IOC；AOP的实现方式；IOC的实现方式<br>AOP和IOC；AOP是面向切面编程；IOC是控制反转；spring AOC的实现是 jdk动态代理和cglib代理；<br>AOP的实现</li>
-</ol>
-<ul>
-<li><p><a href="https://blog.csdn.net/wyl6019/article/details/80136000" target="_blank" rel="noopener">https://blog.csdn.net/wyl6019/article/details/80136000</a><br>IOC的实现</p>
-</li>
-<li><p><a href="https://www.cnblogs.com/neon/p/10929759.html" target="_blank" rel="noopener">https://www.cnblogs.com/neon/p/10929759.html</a></p>
-</li>
-<li><p><a href="https://www.cnblogs.com/study-everyday/p/8566532.html" target="_blank" rel="noopener">https://www.cnblogs.com/study-everyday/p/8566532.html</a></p>
-</li>
-<li><p><a href="https://www.jianshu.com/p/4b31dacf3a63" target="_blank" rel="noopener">https://www.jianshu.com/p/4b31dacf3a63</a></p>
-</li>
-</ul>
-<p>附：常见的四种代理方式</p>
-<ul>
-<li><a href="https://blog.csdn.net/luanlouis/article/details/24589193" target="_blank" rel="noopener">https://blog.csdn.net/luanlouis/article/details/24589193</a><br>cglib和jdk动态代理的比较</li>
-<li><a href="https://blog.csdn.net/liangwenmail/article/details/78457106" target="_blank" rel="noopener">https://blog.csdn.net/liangwenmail/article/details/78457106</a></li>
-</ul>
-<ol start="2">
-<li>spring中如何配置事务管理级别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/cxyj/p/3906402.html" target="_blank" rel="noopener">https://www.cnblogs.com/cxyj/p/3906402.html</a></li>
-</ul>
-<ol start="3">
-<li>springMVC的处理流程</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/5ishare/p/8683971.html" target="_blank" rel="noopener">https://www.cnblogs.com/5ishare/p/8683971.html</a></li>
-</ul>
-<ol start="4">
-<li><p>一个Controller中会涉及到哪些注解<br>@Controller<br>@Autowire<br>@RequestMapping<br>@RequestParam<br>@RequestBody<br>@ResponseBody<br>@ModelAttribute</p>
-</li>
-<li><p>Spring和Spring boot的区别</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/ffe5ebe17c3a" target="_blank" rel="noopener">https://www.jianshu.com/p/ffe5ebe17c3a</a></li>
-<li><a href="https://blog.csdn.net/wang_666_/article/details/80527113" target="_blank" rel="noopener">https://blog.csdn.net/wang_666_/article/details/80527113</a></li>
-<li><a href="https://www.codercto.com/a/27048.html" target="_blank" rel="noopener">https://www.codercto.com/a/27048.html</a></li>
-</ul>
-<ol start="6">
-<li><p>@transaction</p>
-</li>
-<li><p>SpringMVC 工作流程图</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_39470733/article/details/80980320" target="_blank" rel="noopener">https://blog.csdn.net/qq_39470733/article/details/80980320</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java基础复习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/JavaEE复习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaSE复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/JavaSE复习/">JavaSE复习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/JavaSE复习/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:11:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JavaSE"><a href="#JavaSE" class="headerlink" title="JavaSE"></a>JavaSE</h1><ol>
-<li>根据反射加载一个类的具体步骤</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/xiaobiqiang/p/6047146.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaobiqiang/p/6047146.html</a></li>
-<li><a href="https://www.cnblogs.com/FanJava/p/9512775.html" target="_blank" rel="noopener">https://www.cnblogs.com/FanJava/p/9512775.html</a></li>
-</ul>
-<ol start="2">
-<li>泛型</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/coprince/p/8603492.html" target="_blank" rel="noopener">https://www.cnblogs.com/coprince/p/8603492.html</a></li>
-</ul>
-<ol start="3">
-<li>面向对象</li>
-<li>HashMap为什么初始化为16</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/l18848956739/article/details/85998121" target="_blank" rel="noopener">https://blog.csdn.net/l18848956739/article/details/85998121</a></li>
-</ul>
-<ol start="5">
-<li>hashCode 怎么对应桶的位置</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/yue31313/article/details/77513353" target="_blank" rel="noopener">https://blog.csdn.net/yue31313/article/details/77513353</a></li>
-</ul>
-<ol start="6">
-<li>hashCode的计算</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/tanggao1314/article/details/51457585" target="_blank" rel="noopener">https://blog.csdn.net/tanggao1314/article/details/51457585</a></li>
-<li><a href="https://blog.csdn.net/zhucegemingzizheng/article/details/81289479" target="_blank" rel="noopener">https://blog.csdn.net/zhucegemingzizheng/article/details/81289479</a></li>
-</ul>
-<ol start="7">
-<li><p>字符串快速去重</p>
-</li>
-<li><p>Error和Exception的区别</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/lcl-dcr/p/7653274.html" target="_blank" rel="noopener">https://www.cnblogs.com/lcl-dcr/p/7653274.html</a></li>
-<li><a href="https://www.cnblogs.com/hustzzl/p/7840780.html" target="_blank" rel="noopener">https://www.cnblogs.com/hustzzl/p/7840780.html</a></li>
-</ul>
-<ol start="9">
-<li><p>聊一下java里的对象（java里的包）</p>
-</li>
-<li><p>HashMap底层转红黑树的时机</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/laipimei/p/11282055.html" target="_blank" rel="noopener">https://www.cnblogs.com/laipimei/p/11282055.html</a></li>
-<li><a href="https://www.cnblogs.com/laipimei/p/11275235.html" target="_blank" rel="noopener">https://www.cnblogs.com/laipimei/p/11275235.html</a></li>
-</ul>
-<ol start="11">
-<li>io类型；nio是其中哪一种</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/datadev_sh/article/details/79241186" target="_blank" rel="noopener">https://blog.csdn.net/datadev_sh/article/details/79241186</a></li>
-<li><a href="https://blog.csdn.net/Yufail/article/details/88825123" target="_blank" rel="noopener">https://blog.csdn.net/Yufail/article/details/88825123</a></li>
-</ul>
-<ol start="12">
-<li>静态代码块，构造代码块，构造函数与普通代码块</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/ysocean/p/8194428.html" target="_blank" rel="noopener">https://www.cnblogs.com/ysocean/p/8194428.html</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java基础复习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/JavaSE复习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JVM复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/JVM复习/">JVM复习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/JVM复习/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:10:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><ol>
-<li>JVM中的gc，Full GC</li>
-</ol>
-<ul>
-<li><a href="https://baijiahao.baidu.com/s?id=1632743030610982339&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1632743030610982339&amp;wfr=spider&amp;for=pc</a></li>
-<li><a href="https://blog.csdn.net/hellozhxy/article/details/80649342" target="_blank" rel="noopener">https://blog.csdn.net/hellozhxy/article/details/80649342</a></li>
-<li><a href="https://blog.csdn.net/weixin_39788856/article/details/80388002" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39788856/article/details/80388002</a></li>
-<li><a href="https://www.cnblogs.com/jenkov/p/full_gc_old_gc_cms_gc.html" target="_blank" rel="noopener">https://www.cnblogs.com/jenkov/p/full_gc_old_gc_cms_gc.html</a></li>
-<li><a href="https://www.cnblogs.com/williamjie/p/9516264.html" target="_blank" rel="noopener">https://www.cnblogs.com/williamjie/p/9516264.html</a></li>
-</ul>
-<ol start="2">
-<li>垃圾回收及算法<br>垃圾回收算法：</li>
-</ol>
-<ul>
-<li>标记-清除</li>
-<li>复制</li>
-<li>标记-整理</li>
-<li>分代回收</li>
-</ul>
-<p>垃圾收集器</p>
-<p>年轻代<br>Serial：单线程<br>ParNew：多线程<br>Parallel Scavenge：使用复制算法，强调精确控制吞吐量</p>
-<p>老年代<br>Serial Old：单线程，Serial 的老年代版本<br>Parallel Old：Parallel Scavenge 使用多线程和”标记-整理“算法 吞吐量优先<br>CMS：”标记-清除“算法，强调最短回收停顿时间<br>兼顾年轻代和老年代：<br>G1收集器：并行与并发，分代回收，”标记-整理”算法，可预测的停顿</p>
-<ul>
-<li><a href="https://www.jianshu.com/p/35805f809a21" target="_blank" rel="noopener">https://www.jianshu.com/p/35805f809a21</a></li>
-</ul>
-<ol start="3">
-<li><p>假设有一个加法类从编译到最终使用的整个过程</p>
-</li>
-<li><p>如何判断对象是否需要被回收？两个相互引用的对象如何被回收</p>
-</li>
-</ol>
-<ul>
-<li>引用计数</li>
-<li>可达性分析</li>
-</ul>
-<p>附：GCRoot的对象包括：</p>
-<ul>
-<li>虚拟机栈中引用的对象</li>
-<li>方法区中类静态属性引用的对象</li>
-<li>方法区中常量引用的对象</li>
-<li>本地方法栈中JNI引用的对象</li>
-</ul>
-<ol start="5">
-<li><p>虚拟机栈异常类型以及复现代码</p>
-</li>
-<li><p>堆内存异常类型以及复现</p>
-</li>
-<li><p>直接内存怎么使用以及jvm对其管理</p>
-</li>
-<li><p>CMS 和 G1 的区别<br>CMS和G1 的STW时间都发生在初始标记和重新标记（最终标记）阶段</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/fanguangdexiaoyuer/p/10197486.html" target="_blank" rel="noopener">https://www.cnblogs.com/fanguangdexiaoyuer/p/10197486.html</a></li>
-<li><a href="https://www.jianshu.com/p/bdd6f03923d1" target="_blank" rel="noopener">https://www.jianshu.com/p/bdd6f03923d1</a></li>
-<li><a href="https://blog.csdn.net/xzp_12345/article/details/81839026" target="_blank" rel="noopener">https://blog.csdn.net/xzp_12345/article/details/81839026</a></li>
-</ul>
-<ol start="9">
-<li><p>堆内存分配策略</p>
-<ol>
-<li>对象优先在Eden分配</li>
-<li>大对象直接进入老年代</li>
-<li>长期存活对象进入老年代</li>
-<li>动态对象年龄判断</li>
-<li>空间分配担保</li>
-</ol>
-</li>
-<li><p>老年代，新生代，Eden，Survivor</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/lojze_ly/article/details/49456255" target="_blank" rel="noopener">https://blog.csdn.net/lojze_ly/article/details/49456255</a></li>
-<li><a href="https://blog.csdn.net/Muyundefeng/article/details/72667863" target="_blank" rel="noopener">https://blog.csdn.net/Muyundefeng/article/details/72667863</a></li>
-</ul>
-<ol start="11">
-<li>MinorGC和FullGC的发起时机</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/afsvsv/article/details/85611601" target="_blank" rel="noopener">https://blog.csdn.net/afsvsv/article/details/85611601</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java基础复习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/JVM复习/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/09/2019-9-9题目总结/">展开全文 >></a>
         </p>
       
 
@@ -1514,7 +1109,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
+                <a href="javascript:void(0)" class="js-tag color1">-学习日记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1530,15 +1129,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1558,11 +1153,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
               </li>
              
               <li class="article-tag-list-item">

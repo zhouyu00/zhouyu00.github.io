@@ -140,6 +140,541 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-正则表达式LeetCode10" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/06/正则表达式LeetCode10/">正则表达式LeetCode10</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/06/正则表达式LeetCode10/" class="archive-article-date">
+  	<time datetime="2019-09-06T02:43:41.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>题目：</p>
+<blockquote>
+<p>给你一个字符串 s 和一个字符规律 p，请你来实现一个支持 ‘.’ 和 ‘<em>‘ 的正则表达式匹配。<br>‘.’ 匹配任意单个字符<br>‘</em>‘ 匹配零个或多个前面的那一个元素<br>所谓匹配，是要涵盖 整个 字符串 s的，而不是部分字符串。  </p>
+</blockquote>
+<p>说明:</p>
+<blockquote>
+<p>s 可能为空，且只包含从 a-z 的小写字母。<br>p 可能为空，且只包含从 a-z 的小写字母，以及字符 . 和 *。</p>
+</blockquote>
+<h3 id="方法一：回溯法"><a href="#方法一：回溯法" class="headerlink" title="方法一：回溯法"></a>方法一：回溯法</h3><p>分析：主要是分清楚碰到*和碰到.两种情况</p>
+<ul>
+<li><p>星号（显然碰到*时）：</p>
+<ul>
+<li>星号前面的字符如果出现零次是不需要firstMatch的，为什么，因为这种字符*可能出现在第一个</li>
+<li>在firstMatch满足的情况下，如果碰到星号组合，如果s[i]==p[j]，那么跳过s[i]继续检测是s[i+1]==p[j]</li>
+</ul>
+</li>
+<li><p>点号：</p>
+<ul>
+<li>碰到点号就相当于该位字符相等</li>
+</ul>
+</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isMatch</span><span class="params">(String s, String p)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(p.length()==<span class="number">0</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> s.length()==<span class="number">0</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">boolean</span> firstMatch = !s.isEmpty()&amp;&amp;(s.charAt(<span class="number">0</span>)==p.charAt(<span class="number">0</span>)||p.charAt(<span class="number">0</span>)==<span class="string">'.'</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(p.length()&gt;=<span class="number">2</span>&amp;&amp;p.charAt(<span class="number">1</span>)==<span class="string">'*'</span>)&#123;</span><br><span class="line">            <span class="keyword">return</span> (isMatch(s,p.substring(<span class="number">2</span>)))||(firstMatch&amp;&amp;isMatch(s.substring(<span class="number">1</span>),p));</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> firstMatch&amp;&amp;isMatch(s.substring(<span class="number">1</span>),p.substring(<span class="number">1</span>));</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="方法二-动态规划"><a href="#方法二-动态规划" class="headerlink" title="方法二:动态规划"></a>方法二:动态规划</h3><ul>
+<li>边界条件搞得比较复杂，需要调试不够简单易懂</li>
+</ul>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isMatchDp</span><span class="params">(String s,String p)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = s.length();</span><br><span class="line">        <span class="keyword">int</span> M = p.length();</span><br><span class="line">        <span class="keyword">if</span>(M==<span class="number">0</span>)<span class="keyword">return</span> N==<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">boolean</span>[][] dp = <span class="keyword">new</span> <span class="keyword">boolean</span>[N+<span class="number">1</span>][M+<span class="number">1</span>];</span><br><span class="line">        dp[N][M]=<span class="keyword">true</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=N;i&gt;=<span class="number">0</span>;i--)&#123;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=M;j&gt;<span class="number">0</span>;j--)&#123;</span><br><span class="line">                <span class="keyword">if</span>(j&gt;=<span class="number">2</span>&amp;&amp;p.charAt(j-<span class="number">1</span>)==<span class="string">'*'</span>)&#123;</span><br><span class="line">                    <span class="comment">//0个</span></span><br><span class="line">                    dp[i][j-<span class="number">2</span>]|=dp[i][j];</span><br><span class="line">                    <span class="comment">//1个或多个</span></span><br><span class="line">                    <span class="keyword">int</span> k = <span class="number">1</span>;</span><br><span class="line">                    <span class="keyword">while</span>(i&gt;=k&amp;&amp;(p.charAt(j-<span class="number">2</span>)==s.charAt(i-k)||p.charAt(j-<span class="number">2</span>)==<span class="string">'.'</span>))&#123;</span><br><span class="line">                        dp[i-k][j-<span class="number">2</span>]|=dp[i][j];</span><br><span class="line">                        k++;</span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i&gt;=<span class="number">1</span>&amp;&amp;(p.charAt(j-<span class="number">1</span>)==<span class="string">'.'</span>||p.charAt(j-<span class="number">1</span>)==s.charAt(i-<span class="number">1</span>)))&#123;</span><br><span class="line">                    dp[i-<span class="number">1</span>][j-<span class="number">1</span>]|=dp[i][j];</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        PrintHelper.print2DArray(dp);</span><br><span class="line">        <span class="keyword">return</span> dp[<span class="number">0</span>][<span class="number">0</span>];</span><br><span class="line">    &#125;</span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/06/正则表达式LeetCode10/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-排序复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/06/排序复习/">排序复习</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/06/排序复习/" class="archive-article-date">
+  	<time datetime="2019-09-05T16:02:13.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-06</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/06/排序复习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-摆花盆问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/05/摆花盆问题/">摆花盆问题</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/05/摆花盆问题/" class="archive-article-date">
+  	<time datetime="2019-09-05T15:59:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/05/摆花盆问题/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-想学的东西" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/05/想学的东西/">想学的东西</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/05/想学的东西/" class="archive-article-date">
+  	<time datetime="2019-09-05T15:31:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="算法"><a href="#算法" class="headerlink" title="算法"></a>算法</h1><ul>
+<li><p>复习机器学习</p>
+</li>
+<li><p>学习深度学习 并做几个相关项目</p>
+</li>
+<li><p>刷爆leetcode</p>
+</li>
+</ul>
+<h1 id="前端"><a href="#前端" class="headerlink" title="前端"></a>前端</h1><ul>
+<li><p>vuejs</p>
+</li>
+<li><p>Angularjs 看过书还没有实践过</p>
+</li>
+<li><p>reactjs</p>
+</li>
+</ul>
+<h1 id="服务器常见工具"><a href="#服务器常见工具" class="headerlink" title="服务器常见工具"></a>服务器常见工具</h1><ul>
+<li><p>netty</p>
+</li>
+<li><p>zookeeper</p>
+</li>
+<li><p>nginx</p>
+</li>
+<li><p>rabbitMQ</p>
+</li>
+<li><p>k8s</p>
+</li>
+<li><p>solr</p>
+</li>
+<li><p>elasticSearch</p>
+</li>
+</ul>
+<h1 id="大数据方面"><a href="#大数据方面" class="headerlink" title="大数据方面"></a>大数据方面</h1><ul>
+<li><p>hadoop</p>
+</li>
+<li><p>HDFS</p>
+</li>
+<li><p>spark</p>
+</li>
+</ul>
+<h1 id="语言方面"><a href="#语言方面" class="headerlink" title="语言方面"></a>语言方面</h1><ul>
+<li><p>c++</p>
+</li>
+<li><p>nodejs</p>
+</li>
+<li><p>go</p>
+</li>
+<li><p>kotlin</p>
+</li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习欲望</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/05/想学的东西/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-有序矩阵中第k大的元素LeetCode378" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/05/有序矩阵中第k大的元素LeetCode378/">有序矩阵中第k大的元素LeetCode378</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/05/有序矩阵中第k大的元素LeetCode378/" class="archive-article-date">
+  	<time datetime="2019-09-05T06:39:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-05</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>题目：给定一个 n x n 矩阵，其中每行和每列元素均按升序排序，找到矩阵中第k小的元素。<br>请注意，它是排序后的第k小元素，而不是第k个元素。</p>
+<p>示例:</p>
+<blockquote>
+<p>matrix = [<br>   [ 1,  5,  9],<br>   [10, 11, 13],<br>   [12, 13, 15]<br>],<br>k = 8,<br>返回 13。</p>
+</blockquote>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeetCode378</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">kthSmallest</span><span class="params">(<span class="keyword">int</span>[][] matrix, <span class="keyword">int</span> k)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = matrix.length;</span><br><span class="line">        <span class="keyword">int</span> M = matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> m,l=<span class="number">0</span>,r = matrix[N-<span class="number">1</span>][M-<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            m=l+(r-l)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(isTrue(matrix,k,m))&#123;</span><br><span class="line">                l=m+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                r=m;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> r;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span>  <span class="title">isTrue</span><span class="params">(<span class="keyword">int</span>[][] matrix,<span class="keyword">int</span> k,<span class="keyword">int</span> target)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> N = matrix.length;</span><br><span class="line">        <span class="keyword">int</span> M = matrix[<span class="number">0</span>].length;</span><br><span class="line">        <span class="keyword">int</span> count =<span class="number">0</span>;<span class="keyword">int</span> i =N-<span class="number">1</span>;<span class="keyword">int</span> j=<span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(i&gt;=<span class="number">0</span>&amp;&amp;j&lt;M)&#123;</span><br><span class="line">            <span class="keyword">if</span>(matrix[i][j]&gt;target)&#123;</span><br><span class="line">                i--;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                count+=(i+<span class="number">1</span>);</span><br><span class="line">                j++;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> count&lt;k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[][] matrix=&#123;&#123;<span class="number">1</span>,<span class="number">2</span>,<span class="number">3</span>&#125;,</span><br><span class="line">                        &#123;<span class="number">2</span>,<span class="number">4</span>,<span class="number">6</span>&#125;,</span><br><span class="line">                        &#123;<span class="number">3</span>,<span class="number">6</span>,<span class="number">9</span>&#125;&#125;;</span><br><span class="line">        <span class="keyword">int</span> k=<span class="number">8</span>;</span><br><span class="line">        System.out.println(kthSmallest(matrix,<span class="number">8</span>));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/05/有序矩阵中第k大的元素LeetCode378/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-n个中心m个任务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/04/n个中心m个任务/">n个中心m个任务</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/04/n个中心m个任务/" class="archive-article-date">
+  	<time datetime="2019-09-04T14:36:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>题目：n个分布式中心，m个任务，任务消耗时间为array[i],任务只能连续执行；求任务执行的最短时间</p>
+<p>示例：</p>
+<p>输入</p>
+<blockquote>
+<p>3 5</p>
+</blockquote>
+<blockquote>
+<p>1 5 3 2 4</p>
+</blockquote>
+<p>输出</p>
+<blockquote>
+<p>6</p>
+</blockquote>
+<p>解析：</p>
+<p>这道题类似于N本不同厚度的书分成M组，第i本的厚度是Ai，使T最小化，其中T表示厚度之和最大的一组的厚度</p>
+<p>将T看作一个在(0,sum)空间上做二分查找，关键在于对于T搜索时候的值的有效性判断，在本题中就是以T为最大，划分为x组，x组是否能够小于等于给定的组数，或者大于给定的组数；最优解在这个分界点处</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxTime</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span>[] arrays)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> r = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x:arrays)r+=x;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            m=l+(r-l)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(isTrue(m,k,arrays))&#123;</span><br><span class="line">                r=m;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                l=m+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isTrue</span><span class="params">(<span class="keyword">int</span> S,<span class="keyword">int</span> k,<span class="keyword">int</span>[] arrays)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> group =<span class="number">1</span> ; <span class="keyword">int</span> rest = S;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arrays.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(rest&gt;=arrays[i])&#123;</span><br><span class="line">                rest-=arrays[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                group++;</span><br><span class="line">                rest=S-arrays[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> group&lt;=k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arrays=&#123;<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>&#125;;</span><br><span class="line">        System.out.println(maxTime(<span class="number">3</span>,arrays));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/04/n个中心m个任务/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-滑动窗口最大值LeetCode239" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -476,7 +1011,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
+                <a href="javascript:void(0)" class="js-tag color1">-学习日记</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -492,15 +1031,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -520,11 +1055,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
               </li>
              
               <li class="article-tag-list-item">
