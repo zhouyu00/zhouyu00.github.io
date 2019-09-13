@@ -140,6 +140,95 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-大战严蔚敏第一集-排序算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/12/大战严蔚敏第一集-排序算法/">大战严蔚敏第一集-排序算法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/12/大战严蔚敏第一集-排序算法/" class="archive-article-date">
+  	<time datetime="2019-09-12T12:05:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h1><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="简单插入排序"><a href="#简单插入排序" class="headerlink" title="简单插入排序"></a>简单插入排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    插入排序的时间复杂度O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    t = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">if</span> arr[i]&lt;arr[i<span class="number">-1</span>]: <span class="comment"># 如果当前元素小于前一个元素，进入一趟插入排序</span></span><br><span class="line">            t=arr[i]        <span class="comment"># 把自己赋给哨兵，向前寻找合适的位置</span></span><br><span class="line">            arr[i]=arr[i<span class="number">-1</span>]</span><br><span class="line">            j= i<span class="number">-2</span></span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> t&lt;arr[j]:</span><br><span class="line">                arr[j+<span class="number">1</span>]=arr[j]</span><br><span class="line">                j-=<span class="number">1</span></span><br><span class="line">            arr[j+<span class="number">1</span>]=t      <span class="comment"># 找到合适的位置，注意这时是j+1，因为上一个满足条件的位置已经被移到了此时的j+2</span></span><br><span class="line">    print(arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    insert_sort(arr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="折半插入"><a href="#折半插入" class="headerlink" title="折半插入"></a>折半插入</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binsert_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    折半插入显然只是插入时用来找位置使用了折半查找</span></span><br><span class="line"><span class="string">    没有改善需要移动记录的次数，因此时间复杂度为O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">if</span> arr[i]&lt;arr[i<span class="number">-1</span>]:</span><br><span class="line">            t = arr[i]</span><br><span class="line">            left = <span class="number">0</span></span><br><span class="line">            right = i<span class="number">-1</span></span><br><span class="line">            mid = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> left&lt;right:</span><br><span class="line">                mid=(left+right)//<span class="number">2</span></span><br><span class="line">                <span class="keyword">if</span> arr[mid]&gt;=t:</span><br><span class="line">                    right=mid</span><br><span class="line">                <span class="keyword">else</span>: left=mid+<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(i<span class="number">-1</span>,left<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">                arr[k+<span class="number">1</span>]=arr[k]</span><br><span class="line">            arr[left]=t</span><br><span class="line">    print(arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    binsert_sort(arr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="二路插入排序"><a href="#二路插入排序" class="headerlink" title="二路插入排序"></a>二路插入排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">twopath_insertSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    排序的时间复杂度O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    res =[<span class="number">0</span>]*N</span><br><span class="line">    first = <span class="number">0</span> </span><br><span class="line">    final = <span class="number">0</span></span><br><span class="line">    res[<span class="number">0</span>]=arr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">if</span>  arr[i]&gt;=res[<span class="number">0</span>]:</span><br><span class="line">            j= final</span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> arr[i]&lt;res[j]:</span><br><span class="line">                res[j+<span class="number">1</span>]=res[j]</span><br><span class="line">                j-=<span class="number">1</span></span><br><span class="line">            res[j+<span class="number">1</span>]=arr[i]</span><br><span class="line">            final+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=first</span><br><span class="line">            <span class="keyword">while</span> j&lt;N <span class="keyword">and</span> arr[i]&gt;res[j]:</span><br><span class="line">                res[j<span class="number">-1</span>]=res[j]</span><br><span class="line">                j+=<span class="number">1</span></span><br><span class="line">            res[j<span class="number">-1</span>]=arr[i]</span><br><span class="line">            first-=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(first,final+<span class="number">1</span>):</span><br><span class="line">        print(res[i],end=<span class="string">" "</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    twopath_insertSort(arr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_Insert</span><span class="params">(arr,dk)</span>:</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(dk,N):</span><br><span class="line">        <span class="keyword">if</span> arr[i]&lt;arr[i-dk]:</span><br><span class="line">            t= arr[i]</span><br><span class="line">            arr[i]=arr[i-dk]</span><br><span class="line">            j= i<span class="number">-2</span>*dk</span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> arr[j]&gt;t:</span><br><span class="line">                arr[j+dk]=arr[j]</span><br><span class="line">                j-=dk</span><br><span class="line">            arr[j+dk]=t</span><br><span class="line">    print(arr)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_sort</span><span class="params">(arr,dlta,t)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>,t):</span><br><span class="line">        shell_Insert(arr,dlta[k])</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment">#dlta[k]=2^(t-k+1)-1时，希尔排序时间复杂度为O(3/2)，1&lt;=k&lt;=t&lt;=cell(log(2,n+1))</span></span><br><span class="line">    dlta=[<span class="number">7</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    shell_sort(arr,dlta,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    冒泡排序的时间复杂度O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len (arr)</span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> range(N<span class="number">-1</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,e):</span><br><span class="line">            <span class="keyword">if</span> arr[i]&gt;arr[i+<span class="number">1</span>]:</span><br><span class="line">                t=arr[i]</span><br><span class="line">                arr[i]=arr[i+<span class="number">1</span>]</span><br><span class="line">                arr[i+<span class="number">1</span>]=t</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    bubble_sort(arr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">快排的平均时间复杂度为O(knlogn)</span></span><br><span class="line"><span class="string">被认为是nlogn级的排序算法中平均性能最好的</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(arr,low,high)</span>:</span></span><br><span class="line">    pivotkey= arr[low]</span><br><span class="line">    <span class="keyword">while</span> low&lt;high:</span><br><span class="line">        <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[high]&gt;=pivotkey:</span><br><span class="line">            high-=<span class="number">1</span></span><br><span class="line">        arr[low]=arr[high]</span><br><span class="line">        <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[low]&lt;=pivotkey:</span><br><span class="line">            low+=<span class="number">1</span></span><br><span class="line">        arr[high]=arr[low]</span><br><span class="line">        <span class="comment">#print(arr)</span></span><br><span class="line">    arr[low]=pivotkey</span><br><span class="line">    print(arr)</span><br><span class="line">    <span class="keyword">return</span> low</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition2</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    pick = random.randint(L,R)</span><br><span class="line">    swap(arr,pick,R)</span><br><span class="line">    less,more=L,R</span><br><span class="line">    <span class="keyword">while</span> L&lt;more:</span><br><span class="line">        <span class="keyword">if</span> arr[L]&lt;arr[R]:</span><br><span class="line">            swap(arr,less,L)</span><br><span class="line">            less+=<span class="number">1</span></span><br><span class="line">            L+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> arr[L]&gt;arr[R]:</span><br><span class="line">            more-=<span class="number">1</span></span><br><span class="line">            swap(arr,more,L)</span><br><span class="line">        <span class="keyword">else</span>:L+=<span class="number">1</span></span><br><span class="line">    print(arr)</span><br><span class="line">    swap(arr,more,R)</span><br><span class="line">    <span class="keyword">return</span> less,more</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort_v2</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> L&lt;R:</span><br><span class="line">        less,more=partition2(arr,L,R)</span><br><span class="line">        quick_sort_v2(arr,L,less<span class="number">-1</span>)</span><br><span class="line">        quick_sort_v2(arr,more+<span class="number">1</span>,R)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(arr,low,high)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> low&lt;high:</span><br><span class="line">        mid= partition(arr,low,high)</span><br><span class="line">        quick_sort(arr,low,mid<span class="number">-1</span>)</span><br><span class="line">        quick_sort(arr,mid+<span class="number">1</span>,high)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    <span class="comment">#quick_sort(arr,0,len(arr)-1)</span></span><br><span class="line">    quick_sort_v2(arr,<span class="number">0</span>,len(arr)<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_sort</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    简单选择排序的时间复杂度为O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N=len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(L,N):</span><br><span class="line">        j = select_min_key(arr,i,R)</span><br><span class="line">        <span class="keyword">if</span> i!=j:</span><br><span class="line">            swap(arr,i,j)</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_min_key</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    ix = L</span><br><span class="line">    min_value = arr[L]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(L,R):</span><br><span class="line">        <span class="keyword">if</span> min_value&gt;arr[j]:</span><br><span class="line">            min_value=arr[j]</span><br><span class="line">            ix=j</span><br><span class="line">    <span class="keyword">return</span> ix</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    select_sort(arr,<span class="number">0</span>,len(arr))</span><br></pre></td></tr></table></figure>
+
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_adjust</span><span class="params">(arr,s,m)</span>:</span></span><br><span class="line">    rc = arr[s]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>*s,m,<span class="number">2</span>*s):</span><br><span class="line">        <span class="keyword">if</span> j&lt;m <span class="keyword">and</span> arr[j]&lt;arr[j+<span class="number">1</span>]:</span><br><span class="line">            j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> arr[s]&gt;=arr[j]:<span class="keyword">break</span> <span class="comment">#循环出口</span></span><br><span class="line">        arr[s]=arr[j]</span><br><span class="line">        s=j</span><br><span class="line">    arr[s]=rc</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    快排在最坏的情况下，时间复杂度也为O(nlogn)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N=len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N//<span class="number">2</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        heap_adjust(arr,i,N)</span><br><span class="line">    print(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>):</span><br><span class="line">        swap(arr,<span class="number">1</span>,i)</span><br><span class="line">        heap_adjust(arr,<span class="number">1</span>,i<span class="number">-1</span>)</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    arr.insert(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">    heap_sort(arr)</span><br><span class="line">    <span class="keyword">del</span> arr[<span class="number">0</span>]</span><br><span class="line">    print(arr)</span><br></pre></td></tr></table></figure>
+
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_adjust</span><span class="params">(arr,s,m)</span>:</span></span><br><span class="line">    rc = arr[s]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>*s,m,<span class="number">2</span>*s):</span><br><span class="line">        <span class="keyword">if</span> j&lt;m <span class="keyword">and</span> arr[j]&lt;arr[j+<span class="number">1</span>]:</span><br><span class="line">            j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> arr[s]&gt;=arr[j]:<span class="keyword">break</span> <span class="comment">#循环出口</span></span><br><span class="line">        arr[s]=arr[j]</span><br><span class="line">        s=j</span><br><span class="line">    arr[s]=rc</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    快排在最坏的情况下，时间复杂度也为O(nlogn)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N=len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N//<span class="number">2</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        heap_adjust(arr,i,N)</span><br><span class="line">    print(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>):</span><br><span class="line">        swap(arr,<span class="number">1</span>,i)</span><br><span class="line">        heap_adjust(arr,<span class="number">1</span>,i<span class="number">-1</span>)</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    arr.insert(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">    heap_sort(arr)</span><br><span class="line">    <span class="keyword">del</span> arr[<span class="number">0</span>]</span><br><span class="line">    print(arr)</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">算法复习</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/12/大战严蔚敏第一集-排序算法/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-接雨水LeetCode42" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -296,10 +385,12 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h1><h2 id="用友笔试"><a href="#用友笔试" class="headerlink" title="用友笔试"></a>用友笔试</h2><h2 id="旷视笔试"><a href="#旷视笔试" class="headerlink" title="旷视笔试"></a>旷视笔试</h2><h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><p>计算非负数n中1的个数<br>这个题我做了好几遍了，还没记住，真的是不长记性，最后考完才想起来；有的时候觉得自己是真蠢，做了记不住和没做没学有啥区别？这样的问题希望不要再犯了</p>
+        <h1 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h1><h2 id="用友笔试"><a href="#用友笔试" class="headerlink" title="用友笔试"></a>用友笔试</h2><h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><p>是个sql问题，已经忘了题目了–！</p>
+<h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><p>打牌问题</p>
+<h2 id="旷视笔试"><a href="#旷视笔试" class="headerlink" title="旷视笔试"></a>旷视笔试</h2><h3 id="题目一-1"><a href="#题目一-1" class="headerlink" title="题目一"></a>题目一</h3><p>计算非负数n中1的个数<br>这个题我做了好几遍了，还没记住，真的是不长记性，最后考完才想起来；有的时候觉得自己是真蠢，做了记不住和没做没学有啥区别？这样的问题希望不要再犯了</p>
 <figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KuangShi1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> N)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(N!=<span class="number">0</span>)&#123;</span><br><span class="line">            N=N&amp;(N-<span class="number">1</span>);</span><br><span class="line">            res+=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        System.out.println(count(N));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-<h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><p>接雨水问题 LeetCode42题</p>
+<h3 id="题目二-1"><a href="#题目二-1" class="headerlink" title="题目二"></a>题目二</h3><p>接雨水问题 LeetCode42题 已处理 只学了一种方法</p>
 
       
 
@@ -394,7 +485,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-学习日记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习日记</a>
         		</li>
       		
 		</ul>
@@ -893,7 +984,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">-学习计划</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习计划</a>
         		</li>
       		
 		</ul>
@@ -904,93 +995,6 @@
       
         <p class="article-more-link">
           <a class="article-more-a" href="/2019/09/10/9-10月份的安排/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-9-9题目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/2019-9-9题目总结/">2019-9-9题目总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/2019-9-9题目总结/" class="archive-article-date">
-  	<time datetime="2019-09-09T15:07:28.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h1><h2 id="iHandy"><a href="#iHandy" class="headerlink" title="iHandy"></a>iHandy</h2><h3 id="第一题"><a href="#第一题" class="headerlink" title="第一题"></a>第一题</h3><p>题目：有一个长度为N的数组，数组元素从0到N-1编号，刚开始数组中每个元素都是0，接下来给出M次操作，每次操作会将一段区间内所有元素递增1<br>请输出M次操作过后数组中有多少个奇数</p>
-<p>输入描述：<br>第一行两个用空格隔开的正整数N(10&lt;=N&lt;=10000)和M(1&lt;=M&lt;=10000)<br>接下来M行，每行两个用空格隔开的正整数a(0&lt;=a&lt;N)和b(a&lt;=b&lt;N)，表示将区间[a,b](包括a和b)内所有元素递增</p>
-<p>输出描述:<br>一个整数x，表示M次操作后数组中有x个奇数</p>
-<p>分析个人思路：<br>1.第一反应是贪心策略，将数组区间按照开始点排序，然后依次取用<br>加或者减区间长度<br>2.如果区间长于前一个区间长度则要记录上一个结束点lastEnd,</p>
-<p>想了一晚上发现上面都是错的。原因在于，可能出现</p>
-<p>输入<br>10 3<br>0 5<br>1 9<br>3 4</p>
-<p>输出<br>7</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-<h3 id="第二题"><a href="#第二题" class="headerlink" title="第二题"></a>第二题</h3><p>题目：给定一个二维数组，数组中每个数字代标一种颜色。请根据每种颜色的总面积（面积等同于数字出现次数）从大到小排序，相同的总面积则按照最大连续面积（连续定义是上下左右四个方向直接相邻）从大到小排序</p>
-<p>输入描述：<br>第一行输入中间用空格隔开的m和n，表示矩阵的行数和列数<br>之后有m行，每行有n个用空格隔开的数字，每个数字代表一种颜色</p>
-<p>输出描述:<br>一行用空格隔开的数字，次序如题所述</p>
-<p>输入<br>3 3<br>1 1 1<br>2 2 2<br>3 2 3</p>
-<p>输出<br>2 1 3</p>
-<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习日记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/2019-9-9题目总结/">展开全文 >></a>
         </p>
       
 
@@ -1109,15 +1113,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-学习日记</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">-学习计划</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1129,7 +1129,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">算法复习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1137,7 +1141,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1153,11 +1157,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
+                <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
+                <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
               </li>
              
               <li class="article-tag-list-item">
