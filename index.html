@@ -140,6 +140,258 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-linux命令学习每日一课" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/14/linux命令学习每日一课/">linux命令学习每日一课</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/14/linux命令学习每日一课/" class="archive-article-date">
+  	<time datetime="2019-09-14T15:03:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="最重要的命令-help"><a href="#最重要的命令-help" class="headerlink" title="最重要的命令 help"></a>最重要的命令 help</h1><p>输入：<br>help help<br>输出：  </p>
+<p>help: help [-dms] [pattern …]<br>    Display information about builtin commands.</p>
+<pre><code>Displays brief summaries of builtin commands.  If PATTERN is
+specified, gives detailed help on all commands matching PATTERN,
+otherwise the list of help topics is printed.
+
+Options:
+  -d    output short description for each topic
+  -m    display usage in pseudo-manpage format
+  -s    output only a short usage synopsis for each topic matching
+    PATTERN
+
+Arguments:
+  PATTERN    Pattern specifiying a help topic
+
+Exit Status:
+Returns success unless PATTERN is not found or an invalid option is given.</code></pre><p>options:<br>-d:输出简单描述<br>-m:用pesudo-manpage 格式输出用法指南<br>-s:只输出一个简单的用法梗概</p>
+<h1 id="bg"><a href="#bg" class="headerlink" title="bg"></a>bg</h1><p>输入：<br>help bg<br>输出：<br>bg: bg [job_spec …]<br>    Move jobs to the background.</p>
+<pre><code>Place the jobs identified by each JOB_SPEC in the background, as if they
+had been started with `&amp;&apos;.  If JOB_SPEC is not present, the shell&apos;s notion
+of the current job is used.
+
+Exit Status:
+Returns success unless job control is not enabled or an error occurs.</code></pre>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/14/linux命令学习每日一课/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-有效括号长度LeetCode32" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/14/有效括号长度LeetCode32/">有效括号长度LeetCode32</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/14/有效括号长度LeetCode32/" class="archive-article-date">
+  	<time datetime="2019-09-14T07:38:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="有效括号长度"><a href="#有效括号长度" class="headerlink" title="有效括号长度"></a>有效括号长度</h1><p>题目：<br>给定一个只包含 ‘(‘ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeetCode32</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[s.length()];</span><br><span class="line">        <span class="keyword">int</span> maxAns = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">')'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s.charAt(i-<span class="number">1</span>)==<span class="string">'('</span>)&#123;</span><br><span class="line">                    dp[i] = (i &gt;= <span class="number">2</span> ? dp[i - <span class="number">2</span>] : <span class="number">0</span>) + <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i-dp[i-<span class="number">1</span>]&gt;<span class="number">0</span>&amp;&amp;s.charAt(i-dp[i-<span class="number">1</span>]-<span class="number">1</span>)==<span class="string">'('</span>)&#123;</span><br><span class="line">                    dp[i]=dp[i-<span class="number">1</span>]+(i-dp[i-<span class="number">1</span>]&gt;=<span class="number">2</span>?dp[i-dp[i-<span class="number">1</span>]-<span class="number">2</span>]:<span class="number">0</span>)+<span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            maxAns=Math.max(maxAns,dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[s.length()-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s =<span class="string">")()())"</span>;</span><br><span class="line">        System.out.println(longestValidParentheses(s));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我是一个无情的看答案机器人！</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/14/有效括号长度LeetCode32/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-大战严蔚敏第二集-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/14/大战严蔚敏第二集-树/">大战严蔚敏第二集-树</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/14/大战严蔚敏第二集-树/" class="archive-article-date">
+  	<time datetime="2019-09-14T01:05:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> * </span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_traverse_recurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> root==<span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(root.val,end=<span class="string">","</span>)</span><br><span class="line">    preorder_traverse_recurse(root.left)</span><br><span class="line">    preorder_traverse_recurse(root.right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_traverse_norecurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    dq = deque()</span><br><span class="line">    dq.append(root)</span><br><span class="line">    <span class="keyword">while</span> len(dq):</span><br><span class="line">        t = dq.popleft()</span><br><span class="line">        print(t.val,end=<span class="string">","</span>)</span><br><span class="line">        <span class="keyword">if</span> t.right:</span><br><span class="line">            dq.appendleft(t.right)</span><br><span class="line">        <span class="keyword">if</span> t.left:</span><br><span class="line">            dq.appendleft(t.left)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    tree = TreeNode.exampleTree()</span><br><span class="line">    <span class="comment">#preorder_traverse_recurse(tree)</span></span><br><span class="line">    preorder_traverse_norecurse(tree)</span><br></pre></td></tr></table></figure>
+
+<h1 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder_traverse_recurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> root==<span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    inorder_traverse_recurse(root.left)</span><br><span class="line">    print(root.val,end=<span class="string">","</span>)</span><br><span class="line">    inorder_traverse_recurse(root.right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder_traverse_without_recurse1</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    在这种方法中利用None值是一个很巧妙的办法，</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    s=[]</span><br><span class="line">    s.append(root)</span><br><span class="line">    <span class="keyword">while</span> s:</span><br><span class="line">        <span class="keyword">while</span> s[<span class="number">-1</span>]:</span><br><span class="line">            s.append(s[<span class="number">-1</span>].left)</span><br><span class="line">        s.pop()<span class="comment"># 处理空指针</span></span><br><span class="line">        <span class="keyword">if</span> s:</span><br><span class="line">            t=s.pop()</span><br><span class="line">            print(t.val,end=<span class="string">","</span>)</span><br><span class="line">            s.append(t.right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder_traverse_without_recurse2</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    p=root</span><br><span class="line">    s=[]</span><br><span class="line">    <span class="keyword">while</span> p <span class="keyword">or</span> s:</span><br><span class="line">        <span class="keyword">if</span> p: <span class="comment">#进栈流程</span></span><br><span class="line">            s.append(p)</span><br><span class="line">            p=p.left</span><br><span class="line">        <span class="keyword">else</span>: <span class="comment">#出栈流程</span></span><br><span class="line">            p=s.pop()</span><br><span class="line">            print(p.val,end=<span class="string">","</span>)</span><br><span class="line">            p=p.right</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    tree = TreeNode.exampleTree()</span><br><span class="line">    inorder_traverse_recurse(tree)</span><br><span class="line">    print()</span><br><span class="line">    inorder_traverse_without_recurse1(tree)</span><br><span class="line">    print()</span><br><span class="line">    inorder_traverse_without_recurse2(tree)</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/14/大战严蔚敏第二集-树/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-大战严蔚敏第一集-排序算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -174,7 +426,7 @@
 
 <h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_sort</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    简单选择排序的时间复杂度为O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N=len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(L,N):</span><br><span class="line">        j = select_min_key(arr,i,R)</span><br><span class="line">        <span class="keyword">if</span> i!=j:</span><br><span class="line">            swap(arr,i,j)</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_min_key</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    ix = L</span><br><span class="line">    min_value = arr[L]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(L,R):</span><br><span class="line">        <span class="keyword">if</span> min_value&gt;arr[j]:</span><br><span class="line">            min_value=arr[j]</span><br><span class="line">            ix=j</span><br><span class="line">    <span class="keyword">return</span> ix</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    select_sort(arr,<span class="number">0</span>,len(arr))</span><br></pre></td></tr></table></figure>
 
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_adjust</span><span class="params">(arr,s,m)</span>:</span></span><br><span class="line">    rc = arr[s]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>*s,m,<span class="number">2</span>*s):</span><br><span class="line">        <span class="keyword">if</span> j&lt;m <span class="keyword">and</span> arr[j]&lt;arr[j+<span class="number">1</span>]:</span><br><span class="line">            j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> arr[s]&gt;=arr[j]:<span class="keyword">break</span> <span class="comment">#循环出口</span></span><br><span class="line">        arr[s]=arr[j]</span><br><span class="line">        s=j</span><br><span class="line">    arr[s]=rc</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    快排在最坏的情况下，时间复杂度也为O(nlogn)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N=len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N//<span class="number">2</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        heap_adjust(arr,i,N)</span><br><span class="line">    print(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>):</span><br><span class="line">        swap(arr,<span class="number">1</span>,i)</span><br><span class="line">        heap_adjust(arr,<span class="number">1</span>,i<span class="number">-1</span>)</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    arr.insert(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">    heap_sort(arr)</span><br><span class="line">    <span class="keyword">del</span> arr[<span class="number">0</span>]</span><br><span class="line">    print(arr)</span><br></pre></td></tr></table></figure>
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_adjust</span><span class="params">(arr,s,m)</span>:</span></span><br><span class="line">    rc = arr[s]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>*s,m,<span class="number">2</span>*s):</span><br><span class="line">        <span class="keyword">if</span> j&lt;m <span class="keyword">and</span> arr[j]&lt;arr[j+<span class="number">1</span>]:</span><br><span class="line">            j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> arr[s]&gt;=arr[j]:<span class="keyword">break</span> <span class="comment">#循环出口</span></span><br><span class="line">        arr[s]=arr[j]</span><br><span class="line">        s=j</span><br><span class="line">    arr[s]=rc</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    堆排序在最坏的情况下，时间复杂度也为O(nlogn)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N=len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N//<span class="number">2</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        heap_adjust(arr,i,N)</span><br><span class="line">    print(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>):</span><br><span class="line">        swap(arr,<span class="number">1</span>,i)</span><br><span class="line">        heap_adjust(arr,<span class="number">1</span>,i<span class="number">-1</span>)</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    arr.insert(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">    heap_sort(arr)</span><br><span class="line">    <span class="keyword">del</span> arr[<span class="number">0</span>]</span><br><span class="line">    print(arr)</span><br></pre></td></tr></table></figure>
 
 <h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> L==R:<span class="keyword">return</span></span><br><span class="line">    M=(L+R)//<span class="number">2</span></span><br><span class="line">    merge_sort(arr,L,M)</span><br><span class="line">    merge_sort(arr,M+<span class="number">1</span>,R)</span><br><span class="line">    merge(arr,L,M,R)</span><br><span class="line">    print(arr)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(arr,L,M,R)</span>:</span></span><br><span class="line">    res=[<span class="number">0</span>]*(R-L+<span class="number">1</span>)</span><br><span class="line">    p,q=L,M+<span class="number">1</span></span><br><span class="line">    i=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> p&lt;=M <span class="keyword">and</span> q&lt;=R:</span><br><span class="line">        <span class="keyword">if</span> arr[p]&lt;arr[q]:</span><br><span class="line">            res[i]=arr[p]    </span><br><span class="line">            i+=<span class="number">1</span>;p+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res[i]=arr[q]</span><br><span class="line">            i+=<span class="number">1</span>;q+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> p&lt;=M:</span><br><span class="line">        res[i]=arr[p]</span><br><span class="line">        i+=<span class="number">1</span>;p+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> q&lt;=R:</span><br><span class="line">        res[i]=arr[q]</span><br><span class="line">        i+=<span class="number">1</span>;q+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(res)):</span><br><span class="line">        arr[L+j]=res[j]</span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    merge_sort(arr,<span class="number">0</span>,len(arr)<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
       
@@ -737,296 +989,9 @@
 
 
   
-    <article id="post-TODO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/10/TODO/">TODO</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/10/TODO/" class="archive-article-date">
-  	<time datetime="2019-09-10T07:55:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/10/TODO/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-0x07贪心" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/10/0x07贪心/">0x07贪心</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/10/0x07贪心/" class="archive-article-date">
-  	<time datetime="2019-09-10T07:39:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="Sunscreen"><a href="#Sunscreen" class="headerlink" title="Sunscreen"></a>Sunscreen</h1><p>例题：有c头牛日光浴，第i头奶牛需要minSPF[i]和maxSPF[i]单位强度之间的阳光。每头牛在日光浴前必须涂防晒霜，防晒霜有L种，涂上防晒霜后，身体接受到的阳光强度就会稳定为SPF[i]，第i种防晒霜有cover[i]瓶。求最多可以满足多少头奶牛进行日光浴</p>
-<p>英文描述：<br>To avoid unsightly burns while tanning, each of the C (1 ≤ C ≤ 2500) cows must cover her hide with sunscreen when they’re at the beach. Cow i has a minimum and maximum SPF rating (1 ≤ minSPFi ≤ 1,000; minSPFi ≤ maxSPFi ≤ 1,000) that will work. If the SPF rating is too low, the cow suffers sunburn; if the SPF rating is too high, the cow doesn’t tan at all……..<br>The cows have a picnic basket with L (1 ≤ L ≤ 2500) bottles of sunscreen lotion, each bottle i with an SPF rating SPFi (1 ≤ SPFi ≤ 1,000). Lotion bottle i can cover coveri cows with lotion. A cow may lotion from only one bottle.<br>What is the maximum number of cows that can protect themselves while tanning given the available lotions?</p>
-<p>输入描述： </p>
-<ul>
-<li>Line 1: Two space-separated integers: C and L</li>
-<li>Lines 2..C+1: Line i describes cow i’s lotion requires with two integers: minSPFi and maxSPFi</li>
-<li>Lines C+2..C+L+1: Line i+C+1 describes a sunscreen lotion bottle i with space-separated integers: SPFi and coveri</li>
-</ul>
-<p>输出描述：  </p>
-<p>A single line with an integer that is the maximum number of cows that can be protected while tanning</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sunscreen</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> C = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span> L = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span>[] minSPF = <span class="keyword">new</span> <span class="keyword">int</span>[C];</span><br><span class="line">        <span class="keyword">int</span>[] maxSPF = <span class="keyword">new</span> <span class="keyword">int</span>[C];</span><br><span class="line">        <span class="keyword">int</span>[] SPF = <span class="keyword">new</span> <span class="keyword">int</span>[L];</span><br><span class="line">        <span class="keyword">int</span>[] cover = <span class="keyword">new</span> <span class="keyword">int</span>[L];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;C;i++)&#123;</span><br><span class="line">            minSPF[i]=in.nextInt();</span><br><span class="line">            maxSPF[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;L;i++)&#123;</span><br><span class="line">            SPF[i]=in.nextInt();</span><br><span class="line">            cover[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Integer[] c = <span class="keyword">new</span> Integer[C];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;C;i++)c[i]=i;</span><br><span class="line">        Arrays.sort(c, <span class="keyword">new</span> Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer o1, Integer o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> minSPF[o2]-minSPF[o1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;C;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> ix = c[i];</span><br><span class="line">            <span class="keyword">int</span> minSPFi = minSPF[ix];</span><br><span class="line">            <span class="keyword">int</span> maxSPFi = maxSPF[ix];</span><br><span class="line">            <span class="keyword">int</span> maxIx = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> maxSPFC = Integer.MIN_VALUE;</span><br><span class="line">            <span class="keyword">boolean</span> findOne = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;L;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(SPF[j]&gt;=minSPFi&amp;&amp;SPF[j]&lt;=maxSPFi)&#123;</span><br><span class="line">                    <span class="comment">//需要满足条件</span></span><br><span class="line">                    <span class="comment">//System.out.println("im in!");</span></span><br><span class="line">                    <span class="keyword">if</span>(SPF[j]&gt;maxSPFC&amp;&amp;cover[j]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                        maxSPFC=SPF[j];</span><br><span class="line">                        maxIx = j;</span><br><span class="line">                        findOne=<span class="keyword">true</span>;</span><br><span class="line">                        <span class="comment">//System.out.println(maxIx);</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             <span class="comment">/*</span></span><br><span class="line"><span class="comment">             贪心策略：由于minSPF按照递减策略排序，那么每一个不低于当前minSPF的防晒霜都不会低于其他后续防晒霜的minSPF，</span></span><br><span class="line"><span class="comment">             对于当前可选的x，y，如果SPF[y]&gt;SFP[x],那么后续奶牛只可能有三种情况“x,y都可”，“x可，y大于maxSPF了”，“x，y都不可”</span></span><br><span class="line"><span class="comment">             选择SPF最大的显然能够满足更多奶牛们的要求</span></span><br><span class="line"><span class="comment">              */</span></span><br><span class="line">            <span class="keyword">if</span>(findOne)&#123;</span><br><span class="line">                cover[maxIx]--;<span class="comment">//用掉一瓶</span></span><br><span class="line">                res++;<span class="comment">//满足一头牛</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-<h1 id="Stall-Reservations"><a href="#Stall-Reservations" class="headerlink" title="Stall Reservations"></a>Stall Reservations</h1><p>题目：<br>有N头牛在畜栏种吃草。每个畜栏在同一时间段只能提供给一头牛吃草，所以可能会需要多个畜栏。给定N头牛和每头牛开始吃草和结束吃草的时间，每头牛在给定时间段会一直吃草，求需要的最小畜栏数目和每头牛对应的畜栏方案。N&lt;=5*10^4</p>
-<p>英文题目：<br>Oh those picky N (1 \leq N \leq 50,000)(1≤N≤50,000) cows! They are so picky that each one will only be milked over some precise time interval A..B (1 \leq A \leq B \leq 1,000,000)(1≤A≤B≤1,000,000), which includes both times A and B. Obviously, FJ must create a reservation system to determine which stall each cow can be assigned for her milking time. Of course, no cow will share such a private moment with other cows.</p>
-<p>Help FJ by determining:<br>The minimum number of stalls required in the barn so that each cow can have her private milking period<br>An assignment of cows to these stalls over time<br>Many answers are correct for each test dataset; a program will grade your answer.</p>
-<p>输入描述：<br>Line 1: A single integer, N<br>Lines 2..N+1: Line i+1 describes cow i’s milking interval with two space-separated integers.</p>
-<p>输出描述：  </p>
-<p>Line 1: The minimum number of stalls the barn must have.<br>Lines 2..N+1: Line i+1 describes the stall to which cow i will be assigned for her milking period.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StallReservations</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span>[] S = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">int</span>[] E = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        Integer[] I = <span class="keyword">new</span> Integer[N];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)I[i]=i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            S[i]=in.nextInt();</span><br><span class="line">            E[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(I);</span><br><span class="line">        ArrayList&lt;Integer&gt; tall = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        ArrayList&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> ix = I[i];</span><br><span class="line">            <span class="keyword">boolean</span> findOne = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j =<span class="number">0</span> ;j&lt;tall.size();j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> endTime = tall.get(j);</span><br><span class="line">                <span class="keyword">if</span>(S[ix]&gt;endTime)&#123;</span><br><span class="line">                    findOne=<span class="keyword">true</span>;</span><br><span class="line">                    tall.set(j,E[ix]);</span><br><span class="line">                    res.add(j+<span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(tall.size()==<span class="number">0</span>||!findOne)&#123;</span><br><span class="line">                tall.add(E[ix]);</span><br><span class="line">                res.add(tall.size());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(tall.size());</span><br><span class="line">        <span class="keyword">for</span>(Integer t:res) System.out.println(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">6</span></span><br><span class="line"><span class="comment">1 10</span></span><br><span class="line"><span class="comment">2 4</span></span><br><span class="line"><span class="comment">3 6</span></span><br><span class="line"><span class="comment">5 8</span></span><br><span class="line"><span class="comment">4 7</span></span><br><span class="line"><span class="comment">8 9</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-<p>做来做去22.22%，本着先过一遍书的原则，先过</p>
-<h1 id="Radar-Installation"><a href="#Radar-Installation" class="headerlink" title="Radar Installation"></a>Radar Installation</h1><p>题目：<br>校长想通过监控设备覆盖学校内的N座建筑物，每座建筑物被视作一个质点，在笛卡尔坐标系中给出它们的坐标（x，y），并且所有的建筑物均在x轴的上方。因为学校的供电和传输线路均沿x轴，所以监控设备只被允许建立在x轴上。每台监控设备的监控范围均为一个半径为R的圆形，圆心即为这台设备。先给出N座建筑物的坐标，问最少需要几台这样的设备可以实现对所有建筑物的监控。N&lt;=1000</p>
-<p>英文题目：<br>Assume the coasting is an infinite straight line. Land is in one side of coasting, sea in the other. Each small island is a point locating in the sea side. And any radar installation, locating on the coasting, can only cover d distance, so an island in the sea can be covered by a radius installation, if the distance between them is at most d.<br>We use Cartesian coordinate system, defining the coasting is the x-axis. The sea side is above x-axis, and the land side below. Given the position of each island in the sea, and given the distance of the coverage of the radar installation, your task is to write a program to find the minimal number of radar installations to cover all the islands. Note that the position of an island is represented by its x-y coordinates.   </p>
-<p>输入：<br>The input consists of several test cases.<br>The first line of each case contains two integers n(1 \leq n \leq1000)(1≤n≤1000)and d, where n is the number of islands in the sea and d is the distance of coverage of the radar installation.<br>This is followed by n lines each containing two integers representing the coordinate of the position of each island.<br>Then a blank line follows to separate the cases.<br>The input is terminated by a line containing pair of zeros</p>
-<p>输出：<br>For each test case output one line of the minimal number of radar installations needed. “-1” installation means no solution for that case.</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RadarInstallation</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Range</span></span>&#123;</span><br><span class="line">        <span class="keyword">double</span> start;</span><br><span class="line">        <span class="keyword">double</span> end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n ,d=<span class="number">0</span>;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        n=in.nextInt();</span><br><span class="line">        d=in.nextInt();</span><br><span class="line">        <span class="keyword">while</span> (n!=<span class="number">0</span>&amp;&amp;d!=<span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span>[][] island = <span class="keyword">new</span> <span class="keyword">int</span>[n][<span class="number">2</span>];</span><br><span class="line">            Range[] ranges = <span class="keyword">new</span> Range[n];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">                island[i][<span class="number">0</span>]=in.nextInt();</span><br><span class="line">                island[i][<span class="number">1</span>]=in.nextInt();</span><br><span class="line">                ranges[i]=<span class="keyword">new</span> Range();</span><br><span class="line">                <span class="keyword">if</span>(island[i][<span class="number">1</span>]&lt;=d)&#123;</span><br><span class="line">                    <span class="keyword">double</span> deltaX = Math.sqrt(Math.pow(d,<span class="number">2</span>)-Math.pow(island[i][<span class="number">1</span>],<span class="number">2</span>));</span><br><span class="line">                    ranges[i].start=island[i][<span class="number">0</span>]-deltaX;</span><br><span class="line">                    ranges[i].end=island[i][<span class="number">0</span>]+deltaX;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    ranges[i].start=Integer.MAX_VALUE;</span><br><span class="line">                    ranges[i].end=Integer.MIN_VALUE;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            Arrays.sort(ranges, <span class="keyword">new</span> Comparator&lt;Range&gt;() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Range o1, Range o2)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> (<span class="keyword">int</span>)(o1.start-o2.start);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//for(int i=0;i&lt;n;i++) System.out.println("start="+ranges[i].start+",end="+ranges[i].end);</span></span><br><span class="line">            <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">double</span> pos = Integer.MIN_VALUE;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(ranges[i].start&lt;=pos)&#123;</span><br><span class="line">                    pos = Math.min(pos,ranges[i].end);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    pos = ranges[i].end;</span><br><span class="line">                    res+=<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(res);</span><br><span class="line">            n=in.nextInt();</span><br><span class="line">            d=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//白给0.0%，没发现哪里出问题--！</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="国王游戏"><a href="#国王游戏" class="headerlink" title="国王游戏"></a>国王游戏</h1><p>题目：<br>恰逢 H 国国庆，国王邀请 n 位大臣来玩一个有奖游戏。首先，他让每个大臣在左、右手上面分别写下一个整数，国王自己也在左、右手上各写一个整数。然后，让这 n 位大臣排成一排，国王站在队伍的最前面。排好队后，所有的大臣都会获得国王奖赏的若干金币，每位大臣获得的金币数分别是：排在该大臣前面的所有人的左手上的数的乘积除以他自己右手上的数，然后向下取整得到的结果。<br>国王不希望某一个大臣获得特别多的奖赏，所以他想请你帮他重新安排一下队伍的顺序，使得获得奖赏最多的大臣，所获奖赏尽可能的少。注意，国王的位置始终在队伍的最前面。</p>
-<p>输入：<br>第一行包含一个整数 n ，表示大臣的人数。<br>第二行包含两个整数 a 和 b ，之间用一个空格隔开，分别表示国王左手和右手上的整数。<br>接下来 n 行，每行包含两个整数 a 和 b ，之间用一个空格隔开，分别表示每个大臣左手和右手上的整数。</p>
-<p>输出：<br>一个整数，表示重新排列后的队伍中获奖赏最多的大臣所获得的金币数。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法竞赛进阶指南</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/10/0x07贪心/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-9-10月份的安排" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/10/9-10月份的安排/">9/10月份的安排</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/10/9-10月份的安排/" class="archive-article-date">
-  	<time datetime="2019-09-10T07:24:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>我本是一个极端没有计划的人，从来都是干到哪里算哪里，但是我发现没有计划很容易把要干的事情做一半忘了，所以还是要大概的列一下</p>
-<table>
-<thead>
-<tr>
-<th>时间</th>
-<th>内容</th>
-</tr>
-</thead>
-<tbody><tr>
-<td>9:00</td>
-<td>整理前一天的笔试题+严蔚敏python实现+做一道LeetCode</td>
-</tr>
-<tr>
-<td>11:00</td>
-<td>吃饭/投递简历/刷牛客网</td>
-</tr>
-<tr>
-<td>1:30</td>
-<td>计算机网络/操作系统/数据库/等基础知识</td>
-</tr>
-<tr>
-<td>3:30</td>
-<td>算法竞赛</td>
-</tr>
-<tr>
-<td>5:00</td>
-<td>吃饭/投递简历/刷牛客网/整理错题</td>
-</tr>
-<tr>
-<td>7:00</td>
-<td>笔试/LeetCode</td>
-</tr>
-<tr>
-<td>9:00</td>
-<td>Dubbo/springCloud/vue/等各类工具，搞一点自己项目</td>
-</tr>
-</tbody></table>
-<p> 大概的计划如上：<br> 由于太菜，基本啥都等同于从头再来，每天标记一下当前进度，目前开坑的内容有</p>
-<ol>
-<li>计算机网络视频看到一半<br>计算机网络 第八章看到308页</li>
-<li>设计模式 看到p5</li>
-<li>算法竞赛 看到p40</li>
-<li>准备开一个项目坑 todoList 给自己维护任务用，同时复习SSM，练习vue，面向简历编程，这个项目会单独开一个文件维护进度</li>
-<li>有个基本算法复习坑，准备用 python 撸一遍严蔚敏</li>
-<li>还有个牛客网视频坑，刚开的 看到p1</li>
-<li>新开个坑 LeetCode刷题</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习计划</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/10/9-10月份的安排/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -1129,6 +1094,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
@@ -1137,7 +1106,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1145,7 +1114,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1161,11 +1130,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
               </li>
              
               <li class="article-tag-list-item">

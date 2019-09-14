@@ -140,6 +140,294 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-TODO" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/10/TODO/">TODO</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/10/TODO/" class="archive-article-date">
+  	<time datetime="2019-09-10T07:55:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/10/TODO/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-0x07贪心" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/10/0x07贪心/">0x07贪心</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/10/0x07贪心/" class="archive-article-date">
+  	<time datetime="2019-09-10T07:39:31.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="Sunscreen"><a href="#Sunscreen" class="headerlink" title="Sunscreen"></a>Sunscreen</h1><p>例题：有c头牛日光浴，第i头奶牛需要minSPF[i]和maxSPF[i]单位强度之间的阳光。每头牛在日光浴前必须涂防晒霜，防晒霜有L种，涂上防晒霜后，身体接受到的阳光强度就会稳定为SPF[i]，第i种防晒霜有cover[i]瓶。求最多可以满足多少头奶牛进行日光浴</p>
+<p>英文描述：<br>To avoid unsightly burns while tanning, each of the C (1 ≤ C ≤ 2500) cows must cover her hide with sunscreen when they’re at the beach. Cow i has a minimum and maximum SPF rating (1 ≤ minSPFi ≤ 1,000; minSPFi ≤ maxSPFi ≤ 1,000) that will work. If the SPF rating is too low, the cow suffers sunburn; if the SPF rating is too high, the cow doesn’t tan at all……..<br>The cows have a picnic basket with L (1 ≤ L ≤ 2500) bottles of sunscreen lotion, each bottle i with an SPF rating SPFi (1 ≤ SPFi ≤ 1,000). Lotion bottle i can cover coveri cows with lotion. A cow may lotion from only one bottle.<br>What is the maximum number of cows that can protect themselves while tanning given the available lotions?</p>
+<p>输入描述： </p>
+<ul>
+<li>Line 1: Two space-separated integers: C and L</li>
+<li>Lines 2..C+1: Line i describes cow i’s lotion requires with two integers: minSPFi and maxSPFi</li>
+<li>Lines C+2..C+L+1: Line i+C+1 describes a sunscreen lotion bottle i with space-separated integers: SPFi and coveri</li>
+</ul>
+<p>输出描述：  </p>
+<p>A single line with an integer that is the maximum number of cows that can be protected while tanning</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Sunscreen</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> C = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span> L = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span>[] minSPF = <span class="keyword">new</span> <span class="keyword">int</span>[C];</span><br><span class="line">        <span class="keyword">int</span>[] maxSPF = <span class="keyword">new</span> <span class="keyword">int</span>[C];</span><br><span class="line">        <span class="keyword">int</span>[] SPF = <span class="keyword">new</span> <span class="keyword">int</span>[L];</span><br><span class="line">        <span class="keyword">int</span>[] cover = <span class="keyword">new</span> <span class="keyword">int</span>[L];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;C;i++)&#123;</span><br><span class="line">            minSPF[i]=in.nextInt();</span><br><span class="line">            maxSPF[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;L;i++)&#123;</span><br><span class="line">            SPF[i]=in.nextInt();</span><br><span class="line">            cover[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Integer[] c = <span class="keyword">new</span> Integer[C];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;C;i++)c[i]=i;</span><br><span class="line">        Arrays.sort(c, <span class="keyword">new</span> Comparator&lt;Integer&gt;() &#123;</span><br><span class="line">            <span class="meta">@Override</span></span><br><span class="line">            <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Integer o1, Integer o2)</span> </span>&#123;</span><br><span class="line">                <span class="keyword">return</span> minSPF[o2]-minSPF[o1];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;);</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;C;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> ix = c[i];</span><br><span class="line">            <span class="keyword">int</span> minSPFi = minSPF[ix];</span><br><span class="line">            <span class="keyword">int</span> maxSPFi = maxSPF[ix];</span><br><span class="line">            <span class="keyword">int</span> maxIx = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">int</span> maxSPFC = Integer.MIN_VALUE;</span><br><span class="line">            <span class="keyword">boolean</span> findOne = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;L;j++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(SPF[j]&gt;=minSPFi&amp;&amp;SPF[j]&lt;=maxSPFi)&#123;</span><br><span class="line">                    <span class="comment">//需要满足条件</span></span><br><span class="line">                    <span class="comment">//System.out.println("im in!");</span></span><br><span class="line">                    <span class="keyword">if</span>(SPF[j]&gt;maxSPFC&amp;&amp;cover[j]&gt;<span class="number">0</span>)&#123;</span><br><span class="line">                        maxSPFC=SPF[j];</span><br><span class="line">                        maxIx = j;</span><br><span class="line">                        findOne=<span class="keyword">true</span>;</span><br><span class="line">                        <span class="comment">//System.out.println(maxIx);</span></span><br><span class="line">                    &#125;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">             <span class="comment">/*</span></span><br><span class="line"><span class="comment">             贪心策略：由于minSPF按照递减策略排序，那么每一个不低于当前minSPF的防晒霜都不会低于其他后续防晒霜的minSPF，</span></span><br><span class="line"><span class="comment">             对于当前可选的x，y，如果SPF[y]&gt;SFP[x],那么后续奶牛只可能有三种情况“x,y都可”，“x可，y大于maxSPF了”，“x，y都不可”</span></span><br><span class="line"><span class="comment">             选择SPF最大的显然能够满足更多奶牛们的要求</span></span><br><span class="line"><span class="comment">              */</span></span><br><span class="line">            <span class="keyword">if</span>(findOne)&#123;</span><br><span class="line">                cover[maxIx]--;<span class="comment">//用掉一瓶</span></span><br><span class="line">                res++;<span class="comment">//满足一头牛</span></span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="Stall-Reservations"><a href="#Stall-Reservations" class="headerlink" title="Stall Reservations"></a>Stall Reservations</h1><p>题目：<br>有N头牛在畜栏种吃草。每个畜栏在同一时间段只能提供给一头牛吃草，所以可能会需要多个畜栏。给定N头牛和每头牛开始吃草和结束吃草的时间，每头牛在给定时间段会一直吃草，求需要的最小畜栏数目和每头牛对应的畜栏方案。N&lt;=5*10^4</p>
+<p>英文题目：<br>Oh those picky N (1 \leq N \leq 50,000)(1≤N≤50,000) cows! They are so picky that each one will only be milked over some precise time interval A..B (1 \leq A \leq B \leq 1,000,000)(1≤A≤B≤1,000,000), which includes both times A and B. Obviously, FJ must create a reservation system to determine which stall each cow can be assigned for her milking time. Of course, no cow will share such a private moment with other cows.</p>
+<p>Help FJ by determining:<br>The minimum number of stalls required in the barn so that each cow can have her private milking period<br>An assignment of cows to these stalls over time<br>Many answers are correct for each test dataset; a program will grade your answer.</p>
+<p>输入描述：<br>Line 1: A single integer, N<br>Lines 2..N+1: Line i+1 describes cow i’s milking interval with two space-separated integers.</p>
+<p>输出描述：  </p>
+<p>Line 1: The minimum number of stalls the barn must have.<br>Lines 2..N+1: Line i+1 describes the stall to which cow i will be assigned for her milking period.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.ArrayList;</span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">StallReservations</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span>[] S = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        <span class="keyword">int</span>[] E = <span class="keyword">new</span> <span class="keyword">int</span>[N];</span><br><span class="line">        Integer[] I = <span class="keyword">new</span> Integer[N];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)I[i]=i;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            S[i]=in.nextInt();</span><br><span class="line">            E[i]=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">        Arrays.sort(I);</span><br><span class="line">        ArrayList&lt;Integer&gt; tall = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        ArrayList&lt;Integer&gt; res = <span class="keyword">new</span> ArrayList&lt;&gt;();</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;N;i++)&#123;</span><br><span class="line">            <span class="keyword">int</span> ix = I[i];</span><br><span class="line">            <span class="keyword">boolean</span> findOne = <span class="keyword">false</span>;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> j =<span class="number">0</span> ;j&lt;tall.size();j++)&#123;</span><br><span class="line">                <span class="keyword">int</span> endTime = tall.get(j);</span><br><span class="line">                <span class="keyword">if</span>(S[ix]&gt;endTime)&#123;</span><br><span class="line">                    findOne=<span class="keyword">true</span>;</span><br><span class="line">                    tall.set(j,E[ix]);</span><br><span class="line">                    res.add(j+<span class="number">1</span>);</span><br><span class="line">                    <span class="keyword">break</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">if</span>(tall.size()==<span class="number">0</span>||!findOne)&#123;</span><br><span class="line">                tall.add(E[ix]);</span><br><span class="line">                res.add(tall.size());</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(tall.size());</span><br><span class="line">        <span class="keyword">for</span>(Integer t:res) System.out.println(t);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">6</span></span><br><span class="line"><span class="comment">1 10</span></span><br><span class="line"><span class="comment">2 4</span></span><br><span class="line"><span class="comment">3 6</span></span><br><span class="line"><span class="comment">5 8</span></span><br><span class="line"><span class="comment">4 7</span></span><br><span class="line"><span class="comment">8 9</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<p>做来做去22.22%，本着先过一遍书的原则，先过</p>
+<h1 id="Radar-Installation"><a href="#Radar-Installation" class="headerlink" title="Radar Installation"></a>Radar Installation</h1><p>题目：<br>校长想通过监控设备覆盖学校内的N座建筑物，每座建筑物被视作一个质点，在笛卡尔坐标系中给出它们的坐标（x，y），并且所有的建筑物均在x轴的上方。因为学校的供电和传输线路均沿x轴，所以监控设备只被允许建立在x轴上。每台监控设备的监控范围均为一个半径为R的圆形，圆心即为这台设备。先给出N座建筑物的坐标，问最少需要几台这样的设备可以实现对所有建筑物的监控。N&lt;=1000</p>
+<p>英文题目：<br>Assume the coasting is an infinite straight line. Land is in one side of coasting, sea in the other. Each small island is a point locating in the sea side. And any radar installation, locating on the coasting, can only cover d distance, so an island in the sea can be covered by a radius installation, if the distance between them is at most d.<br>We use Cartesian coordinate system, defining the coasting is the x-axis. The sea side is above x-axis, and the land side below. Given the position of each island in the sea, and given the distance of the coverage of the radar installation, your task is to write a program to find the minimal number of radar installations to cover all the islands. Note that the position of an island is represented by its x-y coordinates.   </p>
+<p>输入：<br>The input consists of several test cases.<br>The first line of each case contains two integers n(1 \leq n \leq1000)(1≤n≤1000)and d, where n is the number of islands in the sea and d is the distance of coverage of the radar installation.<br>This is followed by n lines each containing two integers representing the coordinate of the position of each island.<br>Then a blank line follows to separate the cases.<br>The input is terminated by a line containing pair of zeros</p>
+<p>输出：<br>For each test case output one line of the minimal number of radar installations needed. “-1” installation means no solution for that case.</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Arrays;</span><br><span class="line"><span class="keyword">import</span> java.util.Comparator;</span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">RadarInstallation</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">Range</span></span>&#123;</span><br><span class="line">        <span class="keyword">double</span> start;</span><br><span class="line">        <span class="keyword">double</span> end;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> n ,d=<span class="number">0</span>;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        n=in.nextInt();</span><br><span class="line">        d=in.nextInt();</span><br><span class="line">        <span class="keyword">while</span> (n!=<span class="number">0</span>&amp;&amp;d!=<span class="number">0</span>) &#123;</span><br><span class="line">            <span class="keyword">int</span>[][] island = <span class="keyword">new</span> <span class="keyword">int</span>[n][<span class="number">2</span>];</span><br><span class="line">            Range[] ranges = <span class="keyword">new</span> Range[n];</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">                island[i][<span class="number">0</span>]=in.nextInt();</span><br><span class="line">                island[i][<span class="number">1</span>]=in.nextInt();</span><br><span class="line">                ranges[i]=<span class="keyword">new</span> Range();</span><br><span class="line">                <span class="keyword">if</span>(island[i][<span class="number">1</span>]&lt;=d)&#123;</span><br><span class="line">                    <span class="keyword">double</span> deltaX = Math.sqrt(Math.pow(d,<span class="number">2</span>)-Math.pow(island[i][<span class="number">1</span>],<span class="number">2</span>));</span><br><span class="line">                    ranges[i].start=island[i][<span class="number">0</span>]-deltaX;</span><br><span class="line">                    ranges[i].end=island[i][<span class="number">0</span>]+deltaX;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    ranges[i].start=Integer.MAX_VALUE;</span><br><span class="line">                    ranges[i].end=Integer.MIN_VALUE;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            Arrays.sort(ranges, <span class="keyword">new</span> Comparator&lt;Range&gt;() &#123;</span><br><span class="line">                <span class="meta">@Override</span></span><br><span class="line">                <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">compare</span><span class="params">(Range o1, Range o2)</span> </span>&#123;</span><br><span class="line">                    <span class="keyword">return</span> (<span class="keyword">int</span>)(o1.start-o2.start);</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;);</span><br><span class="line"></span><br><span class="line">            <span class="comment">//for(int i=0;i&lt;n;i++) System.out.println("start="+ranges[i].start+",end="+ranges[i].end);</span></span><br><span class="line">            <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">            <span class="keyword">double</span> pos = Integer.MIN_VALUE;</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)&#123;</span><br><span class="line">                <span class="keyword">if</span>(ranges[i].start&lt;=pos)&#123;</span><br><span class="line">                    pos = Math.min(pos,ranges[i].end);</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span>&#123;</span><br><span class="line">                    pos = ranges[i].end;</span><br><span class="line">                    res+=<span class="number">1</span>;</span><br><span class="line">                &#125;</span><br><span class="line"></span><br><span class="line">            &#125;</span><br><span class="line">            System.out.println(res);</span><br><span class="line">            n=in.nextInt();</span><br><span class="line">            d=in.nextInt();</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">//白给0.0%，没发现哪里出问题--！</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="国王游戏"><a href="#国王游戏" class="headerlink" title="国王游戏"></a>国王游戏</h1><p>题目：<br>恰逢 H 国国庆，国王邀请 n 位大臣来玩一个有奖游戏。首先，他让每个大臣在左、右手上面分别写下一个整数，国王自己也在左、右手上各写一个整数。然后，让这 n 位大臣排成一排，国王站在队伍的最前面。排好队后，所有的大臣都会获得国王奖赏的若干金币，每位大臣获得的金币数分别是：排在该大臣前面的所有人的左手上的数的乘积除以他自己右手上的数，然后向下取整得到的结果。<br>国王不希望某一个大臣获得特别多的奖赏，所以他想请你帮他重新安排一下队伍的顺序，使得获得奖赏最多的大臣，所获奖赏尽可能的少。注意，国王的位置始终在队伍的最前面。</p>
+<p>输入：<br>第一行包含一个整数 n ，表示大臣的人数。<br>第二行包含两个整数 a 和 b ，之间用一个空格隔开，分别表示国王左手和右手上的整数。<br>接下来 n 行，每行包含两个整数 a 和 b ，之间用一个空格隔开，分别表示每个大臣左手和右手上的整数。</p>
+<p>输出：<br>一个整数，表示重新排列后的队伍中获奖赏最多的大臣所获得的金币数。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法竞赛进阶指南</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/10/0x07贪心/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-9-10月份的安排" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/10/9-10月份的安排/">9/10月份的安排</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/10/9-10月份的安排/" class="archive-article-date">
+  	<time datetime="2019-09-10T07:24:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-10</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p>我本是一个极端没有计划的人，从来都是干到哪里算哪里，但是我发现没有计划很容易把要干的事情做一半忘了，所以还是要大概的列一下</p>
+<table>
+<thead>
+<tr>
+<th>时间</th>
+<th>内容</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>9:00</td>
+<td>整理前一天的笔试题+严蔚敏python实现+做一道LeetCode</td>
+</tr>
+<tr>
+<td>11:00</td>
+<td>吃饭/投递简历/刷牛客网</td>
+</tr>
+<tr>
+<td>1:30</td>
+<td>计算机网络/操作系统/数据库/等基础知识</td>
+</tr>
+<tr>
+<td>3:30</td>
+<td>算法竞赛</td>
+</tr>
+<tr>
+<td>5:00</td>
+<td>吃饭/投递简历/刷牛客网/整理错题</td>
+</tr>
+<tr>
+<td>7:00</td>
+<td>笔试/LeetCode</td>
+</tr>
+<tr>
+<td>9:00</td>
+<td>Dubbo/springCloud/vue/等各类工具，搞一点自己项目</td>
+</tr>
+</tbody></table>
+<p> 大概的计划如上：<br> 由于太菜，基本啥都等同于从头再来，每天标记一下当前进度，目前开坑的内容有</p>
+<ol>
+<li>计算机网络视频看到一半<br>计算机网络 第八章看到308页</li>
+<li>设计模式 看到p7</li>
+<li>算法竞赛 看到p40</li>
+<li>准备开一个项目坑 todoList 给自己维护任务用，同时复习SSM，练习vue，面向简历编程，这个项目会单独开一个文件维护进度</li>
+<li>有个基本算法复习坑，准备用 python 撸一遍严蔚敏</li>
+<li>还有个牛客网视频坑，刚开的 看到p1</li>
+<li>新开个坑 LeetCode每天一题</li>
+<li>新坑每天一个linux命令用法，命令总进度会添加到这里</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习计划</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/10/9-10月份的安排/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-2019-9-9题目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -274,6 +562,7 @@
 <ul>
 <li><a href="https://blog.csdn.net/qq_32924343/article/details/79814133" target="_blank" rel="noopener">https://blog.csdn.net/qq_32924343/article/details/79814133</a><br>附：<br>CAP原理</li>
 <li><a href="http://www.ruanyifeng.com/blog/2018/07/cap.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/07/cap.html</a></li>
+<li><a href="https://blog.csdn.net/yeyazhishang/article/details/80758354" target="_blank" rel="noopener">https://blog.csdn.net/yeyazhishang/article/details/80758354</a></li>
 </ul>
 <ol start="2">
 <li><p>了解微服务吗？</p>
@@ -284,6 +573,12 @@
 <ul>
 <li><a href="https://www.cnblogs.com/linlinismine/p/9205676.html" target="_blank" rel="noopener">https://www.cnblogs.com/linlinismine/p/9205676.html</a></li>
 <li><a href="https://www.cnblogs.com/FG123/p/10261676.html" target="_blank" rel="noopener">https://www.cnblogs.com/FG123/p/10261676.html</a></li>
+</ul>
+<ol start="4">
+<li>BASE</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/stateis0/p/9062123.html" target="_blank" rel="noopener">https://www.cnblogs.com/stateis0/p/9062123.html</a></li>
 </ul>
 
       
@@ -661,6 +956,12 @@
 <ul>
 <li><a href="https://blog.csdn.net/eagle89/article/details/82148751" target="_blank" rel="noopener">https://blog.csdn.net/eagle89/article/details/82148751</a></li>
 <li><a href="https://blog.csdn.net/dmt742055597/article/details/79283739" target="_blank" rel="noopener">https://blog.csdn.net/dmt742055597/article/details/79283739</a></li>
+</ul>
+<ol start="17">
+<li>mysql分库分表</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/qq_21873747/article/details/80668939" target="_blank" rel="noopener">https://blog.csdn.net/qq_21873747/article/details/80668939</a> </li>
 </ul>
 
       
@@ -1170,735 +1471,9 @@
 
 
   
-    <article id="post-计算机网络复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/计算机网络复习/">计算机网络复习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/计算机网络复习/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:09:27.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="网络"><a href="#网络" class="headerlink" title="网络"></a>网络</h1><ol>
-<li>各类协议头部</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/winbobob/article/details/41475959" target="_blank" rel="noopener">https://blog.csdn.net/winbobob/article/details/41475959</a> </li>
-</ul>
-<ol start="2">
-<li><p>漏桶算法</p>
-</li>
-<li><p>InetAddress IP协议/URL/URLConnection/HTTPURLConnection/Socket/ServerSocket</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/kuangzhisen/p/7053689.html" target="_blank" rel="noopener">https://www.cnblogs.com/kuangzhisen/p/7053689.html</a></li>
-</ul>
-<ol start="4">
-<li>UrlConnection连接和Socket连接的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/iteye_1429/article/details/82168974" target="_blank" rel="noopener">https://blog.csdn.net/iteye_1429/article/details/82168974</a></li>
-<li><a href="https://blog.csdn.net/bibi1314123/article/details/17090927" target="_blank" rel="noopener">https://blog.csdn.net/bibi1314123/article/details/17090927</a></li>
-</ul>
-<ol start="5">
-<li>五层模型及协议</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_22238021/article/details/80279001" target="_blank" rel="noopener">https://blog.csdn.net/qq_22238021/article/details/80279001</a></li>
-</ul>
-<ol start="6">
-<li>列举几个网络攻击<br>SYN攻击（DDOS攻击）</li>
-</ol>
-<ul>
-<li><a href="https://baijiahao.baidu.com/s?id=1622812984571131456&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1622812984571131456&amp;wfr=spider&amp;for=pc</a></li>
-</ul>
-<ol start="7">
-<li>HTTP，TCP，IP 报文头</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/CodingUniversal/p/7524088.html" target="_blank" rel="noopener">https://www.cnblogs.com/CodingUniversal/p/7524088.html</a></li>
-<li><a href="https://blog.csdn.net/ythunder/article/details/65664309" target="_blank" rel="noopener">https://blog.csdn.net/ythunder/article/details/65664309</a></li>
-</ul>
-<ol start="8">
-<li><p>网页访问全过程<br><a href="https://blog.csdn.net/u012862311/article/details/78753232" target="_blank" rel="noopener">https://blog.csdn.net/u012862311/article/details/78753232</a></p>
-</li>
-<li><p>优化网页访问方案</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/xg1010831107/p/optimization.html" target="_blank" rel="noopener">https://www.cnblogs.com/xg1010831107/p/optimization.html</a></li>
-<li><a href="https://www.cnblogs.com/propheterLiu/p/5935622.html" target="_blank" rel="noopener">https://www.cnblogs.com/propheterLiu/p/5935622.html</a></li>
-</ul>
-<ol start="10">
-<li>各协议的默认端口号</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qiucheng_198806/article/details/87375505" target="_blank" rel="noopener">https://blog.csdn.net/qiucheng_198806/article/details/87375505</a></li>
-</ul>
-<ol start="11">
-<li>MSL/TTL/RTT</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/u013074465/article/details/45097183" target="_blank" rel="noopener">https://blog.csdn.net/u013074465/article/details/45097183</a></li>
-</ul>
-<ol start="12">
-<li>MTU/MSS</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/scythe666/article/details/51965782" target="_blank" rel="noopener">https://blog.csdn.net/scythe666/article/details/51965782</a></li>
-</ul>
-<ol start="13">
-<li><p>各层的中继设备</p>
-<p>a. 物理层：中继器或集线器</p>
-<p>b. 数据链路层：网桥或者交换机</p>
-<p>c. 网络层： 路由器</p>
-<p>d. 网络层之上：网关</p>
-</li>
-<li></li>
-</ol>
-<h3 id="物理层"><a href="#物理层" class="headerlink" title="物理层"></a>物理层</h3><h3 id="数据链路层"><a href="#数据链路层" class="headerlink" title="数据链路层"></a>数据链路层</h3><ol>
-<li>ARP协议的原理过程</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/csguo/p/7542944.html" target="_blank" rel="noopener">https://www.cnblogs.com/csguo/p/7542944.html</a></li>
-</ul>
-<h3 id="网络层"><a href="#网络层" class="headerlink" title="网络层"></a>网络层</h3><ol>
-<li><p>网络层的功能：</p>
-<p> a. 异构网络互连</p>
-<p> b. 拥塞控制</p>
-<p> c. 路由选择与转发</p>
-</li>
-<li><p>路由算法：距离向量路由算法与链路状态路由算法；RIP算法与OSPF算法</p>
-</li>
-<li><p>IP数据报头部固定长度=  </p>
-<p> 版本（1B）+ 首部长度（1/2B）+ 区分服务（1B) + 总长度（2B）</p>
-<p> 标识（2B）+ 标志（3bit) + 片偏移（13bit）</p>
-<p> 生存时间TTL（1B） + 协议（1B） + 校验和（2B)</p>
-<p> 源地址（4B）</p>
-<p> 目的地址（4B）</p>
-</li>
-<li><p>ICMP</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/iiiiher/p/8513748.html" target="_blank" rel="noopener">https://www.cnblogs.com/iiiiher/p/8513748.html</a></li>
-<li><a href="https://blog.csdn.net/u011784495/article/details/71743516" target="_blank" rel="noopener">https://blog.csdn.net/u011784495/article/details/71743516</a></li>
-</ul>
-<h3 id="传输层"><a href="#传输层" class="headerlink" title="传输层"></a>传输层</h3><ol>
-<li><p>传输层的功能</p>
-<p> ①  对于整个传输层来说</p>
-<pre><code>a. 提供进程之间的抽象连接
-
-b. 差错控制（包括首部与数据一起的）
-
-c. 提供面向连接与无连接的服务
-
-d. 复用与分用</code></pre><p> ②  对于面向连接的服务</p>
-<pre><code>a. 提供可靠的连接管理
-
-b. 提供流量控制与拥塞控制</code></pre></li>
-</ol>
-<h4 id="UDP"><a href="#UDP" class="headerlink" title="UDP"></a>UDP</h4><ol>
-<li><p>UDP伪首部（12B） =<br> 源IP地址（4B)</p>
-<p> 目的IP地址（4B）</p>
-<p> 保留字节（1B）+传输协议号（1B）+ 报文长度（2B）</p>
-</li>
-<li><p>UDP报文首部（8B）=</p>
-<p> 源端口地址（2B）+ 目的端口 （2B）</p>
-<p> 长度 （2B）+ 校验和（2B）</p>
-</li>
-</ol>
-<h4 id="TCP"><a href="#TCP" class="headerlink" title="TCP"></a>TCP</h4><ol>
-<li><p>TCP 报文首部固定部分（20B）=</p>
-<p> 源端口地址（2B）+ 目的端口 （2B）</p>
-<p> 序号（4B）</p>
-<p> 确认号（4B）</p>
-<p> 数据偏移（4bit）+ 保留（6bit）+标志位（6bit）+窗口（2B）</p>
-<p> 校验和（2B）+ 紧急指针（2B）</p>
-</li>
-<li><p>三次握手和四次挥手</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_38950316/article/details/81087809" target="_blank" rel="noopener">https://blog.csdn.net/qq_38950316/article/details/81087809</a><br>建立连接阶段及数据传输阶段ACK的值的意义</li>
-<li><a href="https://blog.csdn.net/ygm_linux/article/details/79546034" target="_blank" rel="noopener">https://blog.csdn.net/ygm_linux/article/details/79546034</a></li>
-<li>注意*其中减去的54为 以太网协议头（14B）+TCP协议头（20B）+IP协议头（20B）</li>
-</ul>
-<ol start="3">
-<li>TCP和UDP的区别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/williamjie/p/9390164.html" target="_blank" rel="noopener">https://www.cnblogs.com/williamjie/p/9390164.html</a></li>
-<li><a href="https://www.cnblogs.com/twoheads/p/9713936.html" target="_blank" rel="noopener">https://www.cnblogs.com/twoheads/p/9713936.html</a></li>
-</ul>
-<p>面向报文与面向字节</p>
-<ul>
-<li><a href="https://blog.csdn.net/ce123_zhouwei/article/details/8976006" target="_blank" rel="noopener">https://blog.csdn.net/ce123_zhouwei/article/details/8976006</a></li>
-</ul>
-<ol start="4">
-<li>TCP如何保证可靠传输</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/liuchenxia8/article/details/80428157" target="_blank" rel="noopener">https://blog.csdn.net/liuchenxia8/article/details/80428157</a></li>
-</ul>
-<ol start="5">
-<li>TCP如何进行流量控制</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/u011784495/article/details/72639876" target="_blank" rel="noopener">https://blog.csdn.net/u011784495/article/details/72639876</a></li>
-</ul>
-<ol start="6">
-<li>TCP如何进行拥塞控制</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/m0_37962600/article/details/79993310" target="_blank" rel="noopener">https://blog.csdn.net/m0_37962600/article/details/79993310</a></li>
-</ul>
-<ol start="7">
-<li>三次握手中ack的值是什么？SYN攻击与防护</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/huskiesir/p/10212053.html" target="_blank" rel="noopener">https://www.cnblogs.com/huskiesir/p/10212053.html</a></li>
-<li><a href="https://baijiahao.baidu.com/s?id=1627339324399698792&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1627339324399698792&amp;wfr=spider&amp;for=pc</a></li>
-</ul>
-<ol start="8">
-<li><p>tcp的time wait 和 close wait</p>
-</li>
-<li><p>长连接及心跳连接</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/16c8c9e09feb" target="_blank" rel="noopener">https://www.jianshu.com/p/16c8c9e09feb</a></li>
-</ul>
-<ol start="10">
-<li>粘包现象及如何处理粘包</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zhengzhaoyang122/article/details/81784306" target="_blank" rel="noopener">https://blog.csdn.net/zhengzhaoyang122/article/details/81784306</a></li>
-<li><a href="https://www.cnblogs.com/zhangsanfeng/p/8891149.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangsanfeng/p/8891149.html</a></li>
-</ul>
-<h3 id="应用层"><a href="#应用层" class="headerlink" title="应用层"></a>应用层</h3><h4 id="HTTP"><a href="#HTTP" class="headerlink" title="HTTP"></a>HTTP</h4><ol>
-<li>HTTP非持久连接与持久连接</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/shoren/p/http-connection.html" target="_blank" rel="noopener">https://www.cnblogs.com/shoren/p/http-connection.html</a></li>
-</ul>
-<ol start="2">
-<li>HTTP协议中常见的contentType类型</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/wushifeng/p/6707248.html" target="_blank" rel="noopener">https://www.cnblogs.com/wushifeng/p/6707248.html</a></li>
-</ul>
-<ol start="3">
-<li>HTTP1.0和HTTP1.1,HTTP2.0的区别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/smlp/p/9779206.html" target="_blank" rel="noopener">https://www.cnblogs.com/smlp/p/9779206.html</a></li>
-<li><a href="https://www.cnblogs.com/heluan/p/8620312.html" target="_blank" rel="noopener">https://www.cnblogs.com/heluan/p/8620312.html</a></li>
-</ul>
-<ol start="4">
-<li>HTTP和HTTPS的区别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/jesse131/p/9080925.html" target="_blank" rel="noopener">https://www.cnblogs.com/jesse131/p/9080925.html</a></li>
-<li><a href="https://www.cnblogs.com/shoshana-kong/p/10583760.html" target="_blank" rel="noopener">https://www.cnblogs.com/shoshana-kong/p/10583760.html</a></li>
-</ul>
-<ol start="5">
-<li>HTTP状态码</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/xflonga/p/9368993.html" target="_blank" rel="noopener">https://www.cnblogs.com/xflonga/p/9368993.html</a></li>
-</ul>
-<ol start="6">
-<li>HTTP POST和GET</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/liziweiblog/p/11066333.html" target="_blank" rel="noopener">https://www.cnblogs.com/liziweiblog/p/11066333.html</a></li>
-<li><a href="https://blog.csdn.net/bieleyang/article/details/76272699" target="_blank" rel="noopener">https://blog.csdn.net/bieleyang/article/details/76272699</a></li>
-<li><a href="https://baijiahao.baidu.com/s?id=1626599028653203490&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1626599028653203490&amp;wfr=spider&amp;for=pc</a></li>
-</ul>
-<ol start="7">
-<li>HTTPS 建立连接过程</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/xiaoming100001/article/details/81109617" target="_blank" rel="noopener">https://blog.csdn.net/xiaoming100001/article/details/81109617</a></li>
-<li><a href="https://www.jianshu.com/p/ca7df01a9041" target="_blank" rel="noopener">https://www.jianshu.com/p/ca7df01a9041</a><h1 id="计算机网络安全"><a href="#计算机网络安全" class="headerlink" title="计算机网络安全"></a>计算机网络安全</h1></li>
-</ul>
-<ol>
-<li>计算机网络所面临的安全威胁</li>
-</ol>
-<ul>
-<li>被动攻击<ul>
-<li>截获/流量分析</li>
-</ul>
-</li>
-<li>主动攻击<ul>
-<li>篡改/更改报文流</li>
-<li>恶意程序 <ul>
-<li>计算机病毒</li>
-<li>计算机蠕虫</li>
-<li>特洛伊木马</li>
-<li>逻辑炸弹</li>
-</ul>
-</li>
-<li>拒绝服务DoS/分布式拒绝服务DDoS（网络带宽攻击或者连通性攻击）</li>
-</ul>
-</li>
-</ul>
-<ol start="2">
-<li>对称加密算法和非对称加密算法（对称密钥密码体制和公钥密码体制）<ul>
-<li><a href="https://blog.csdn.net/Jack__iT/article/details/86490908" target="_blank" rel="noopener">https://blog.csdn.net/Jack__iT/article/details/86490908</a></li>
-<li>DES数据加密标准 </li>
-<li>IDEA国际数据加密算法  </li>
-</ul>
-</li>
-<li>数字签名必须保证实现以下三点功能：<ul>
-<li>报文鉴别  </li>
-<li>报文完整性</li>
-<li>不可否认</li>
-</ul>
-</li>
-<li>鉴别<ol>
-<li>报文鉴别<br> 常用的报文摘要算法：MD5 安全散列算法SHA <ol>
-<li>从报文按照报文摘要算法生成报文摘要</li>
-<li>对报文摘要打上数字签名，即得到报文鉴别码MAC</li>
-<li>追加MAC在报文后  </li>
-</ol>
-</li>
-<li>实体鉴别<ol>
-<li>重放攻击，破解：不重数nonce</li>
-<li>中间人攻击，破解：</li>
-</ol>
-</li>
-</ol>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/计算机网络复习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-操作系统复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/操作系统复习/">操作系统复习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/操作系统复习/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:06:39.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="操作系统-Linux"><a href="#操作系统-Linux" class="headerlink" title="操作系统 Linux"></a>操作系统 Linux</h1><ol>
-<li><p>Linux Cpu的轮询方式</p>
-</li>
-<li><p>Linux中查询当前系统有多少个进程的指令</p>
-</li>
-<li><p>Linux的五种io模式，javaNIO</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/datadev_sh/article/details/79241186" target="_blank" rel="noopener">https://blog.csdn.net/datadev_sh/article/details/79241186</a></li>
-<li><a href="https://blog.csdn.net/Yufail/article/details/88825123" target="_blank" rel="noopener">https://blog.csdn.net/Yufail/article/details/88825123</a></li>
-</ul>
-<ol start="4">
-<li>Linux 的swap分区</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/saneri/p/10319412.html" target="_blank" rel="noopener">https://www.cnblogs.com/saneri/p/10319412.html</a></li>
-</ul>
-<ol start="5">
-<li>select,poll和epoll的区别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/Anker/p/3265058.html" target="_blank" rel="noopener">https://www.cnblogs.com/Anker/p/3265058.html</a></li>
-</ul>
-<ol start="6">
-<li>runlevel 查看系统运行级别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/yingsong/p/6012180.html" target="_blank" rel="noopener">https://www.cnblogs.com/yingsong/p/6012180.html</a></li>
-</ul>
-<ol start="7">
-<li>exit() 函数</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/weibo1230123/article/details/81408535" target="_blank" rel="noopener">https://blog.csdn.net/weibo1230123/article/details/81408535</a></li>
-</ul>
-<h3 id="绪论"><a href="#绪论" class="headerlink" title="绪论"></a>绪论</h3><ol>
-<li><p>内核态与用户态，特权指令<br>内核态：又称管态，是操作系统管理程序执行时机器所处的状态。它具有较高的特权，能够执行包括特权指令的一切指令，能够访问所有的寄存器和存储区<br>用户态：又称目态，是用户程序执行时机器所处的状态。它具有较低的特权，只能执行规定的指令，只能访问指定的寄存器和存储区<br>特权指令：只能由操作系统内核使用的，不允许用户程序使用的指令，如IO指令，设置中断屏蔽指令，清内存指令，存储保护指令和设置时钟指令</p>
-</li>
-<li><p>中断与异常</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/u014134180/article/details/78418428" target="_blank" rel="noopener">https://blog.csdn.net/u014134180/article/details/78418428</a><br>什么是中断</li>
-<li><a href="https://www.cnblogs.com/jacklong-yin/p/11263052.html" target="_blank" rel="noopener">https://www.cnblogs.com/jacklong-yin/p/11263052.html</a></li>
-</ul>
-<ol start="3">
-<li>系统调用<br>操作系统提供给用户程序请求内核完成某种功能的一种过程调用</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/xiaomimi1993/article/details/81710623" target="_blank" rel="noopener">https://blog.csdn.net/xiaomimi1993/article/details/81710623</a></li>
-</ul>
-<h3 id="进程管理"><a href="#进程管理" class="headerlink" title="进程管理"></a>进程管理</h3><h4 id="进程与线程"><a href="#进程与线程" class="headerlink" title="进程与线程"></a>进程与线程</h4><ol>
-<li>进程的组成</li>
-</ol>
-<ul>
-<li>进程控制块（PCB）</li>
-<li>程序段</li>
-<li>数据段</li>
-</ul>
-<ol start="2">
-<li>进程的状态与转换</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qwe6112071/article/details/70473905" target="_blank" rel="noopener">https://blog.csdn.net/qwe6112071/article/details/70473905</a></li>
-</ul>
-<ol start="3">
-<li>内核级线程与用户级线程</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/feng9exe/p/7890934.html" target="_blank" rel="noopener">https://www.cnblogs.com/feng9exe/p/7890934.html</a></li>
-</ul>
-<ol start="4">
-<li>进程通信方式<br>a，管道；b，消息队列；c，共享内存<br>几种通信方式的联系与区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/u014800094/article/details/53993275" target="_blank" rel="noopener">https://blog.csdn.net/u014800094/article/details/53993275</a></li>
-</ul>
-<h4 id="处理器调度"><a href="#处理器调度" class="headerlink" title="处理器调度"></a>处理器调度</h4><ol>
-<li>常见的调度算法<br>a，先来先服务<br>b，短作业优先<br>c，优先级调度<br>d，时间片轮转<br>e，高相应比调度<br>f，多级队列调度<br>g，多级反馈队列调度</li>
-</ol>
-<h4 id="互斥与同步"><a href="#互斥与同步" class="headerlink" title="互斥与同步"></a>互斥与同步</h4><ol>
-<li>互斥的要求</li>
-</ol>
-<ul>
-<li>空闲让进</li>
-<li>忙则等待</li>
-<li>有限等待</li>
-<li>让权等待</li>
-</ul>
-<ol start="9">
-<li><p>互斥的实现<br>信号量机制；PV原子操作</p>
-</li>
-<li><p>经典同步问题<br>a，生产者消费问题<br>b，读者-写者问题<br>c，哲学家进餐问题<br>d，理发师问题</p>
-</li>
-<li><p>管程</p>
-</li>
-<li><p>死锁产生的原因和必要条件<br>原因：竞争资源；系统资源不足和进程推进顺序不当<br>必要条件：</p>
-</li>
-</ol>
-<ul>
-<li>互斥条件</li>
-<li>不剥夺条件</li>
-<li>请求与保持条件</li>
-<li>环路等待条件</li>
-</ul>
-<ol start="13">
-<li>死锁的预防</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/bopo/p/9228834.html" target="_blank" rel="noopener">https://www.cnblogs.com/bopo/p/9228834.html</a></li>
-</ul>
-<ol start="17">
-<li>死锁代码demo</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/wanglha/article/details/51133819" target="_blank" rel="noopener">https://blog.csdn.net/wanglha/article/details/51133819</a></li>
-</ul>
-<h3 id="内存管理"><a href="#内存管理" class="headerlink" title="内存管理"></a>内存管理</h3><ol>
-<li><p>交换与覆盖</p>
-</li>
-<li><p>存储管理方式<br>连续管理方式<br>非连续管理方式</p>
-</li>
-<li><p>MMU和快表<br>MMU</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/alantu2018/p/9002309.html" target="_blank" rel="noopener">https://www.cnblogs.com/alantu2018/p/9002309.html</a><br>快表TLB</li>
-<li><a href="https://blog.csdn.net/weixin_36725931/article/details/85344814" target="_blank" rel="noopener">https://blog.csdn.net/weixin_36725931/article/details/85344814</a><br>TLB和MMU的区别</li>
-<li><a href="https://www.cnblogs.com/linhaostudy/p/7771437.html" target="_blank" rel="noopener">https://www.cnblogs.com/linhaostudy/p/7771437.html</a></li>
-</ul>
-<ol start="4">
-<li>虚拟内存</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/kexinxin/p/9939085.html" target="_blank" rel="noopener">https://www.cnblogs.com/kexinxin/p/9939085.html</a></li>
-</ul>
-<ol start="5">
-<li><p>缺页中断与普通中断的区别<br>a，在指令的执行期间产生和处理中断<br>b，一条指令可以产生多个缺页中断</p>
-</li>
-<li><p>页面置换算法<br>a，OPT最佳置换算法<br>b，FIFO先进先出<br>c，LRU最近最少使用<br>d，CLOCK时钟置换算法</p>
-</li>
-<li><p>改进时钟算法</p>
-</li>
-</ol>
-<h3 id="文件管理"><a href="#文件管理" class="headerlink" title="文件管理"></a>文件管理</h3><ol>
-<li>软链接和硬链接</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/rswss/p/9466882.html" target="_blank" rel="noopener">https://www.cnblogs.com/rswss/p/9466882.html</a></li>
-<li><a href="https://www.cnblogs.com/sanjun/p/9971993.html" target="_blank" rel="noopener">https://www.cnblogs.com/sanjun/p/9971993.html</a></li>
-</ul>
-<ol start="2">
-<li>i节点</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/cc_946079647/article/details/19088205" target="_blank" rel="noopener">https://blog.csdn.net/cc_946079647/article/details/19088205</a></li>
-</ul>
-<h3 id="设备管理"><a href="#设备管理" class="headerlink" title="设备管理"></a>设备管理</h3><ol>
-<li>IO控制方式</li>
-</ol>
-<ul>
-<li>程序直接控制方式</li>
-<li>中断控制方式</li>
-<li>DMA控制方式</li>
-<li>通道控制方式</li>
-</ul>
-<h3 id="其他"><a href="#其他" class="headerlink" title="其他"></a>其他</h3><ol>
-<li>线程通信方式<br>共享内存，管道，消息传递</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/pengzhisen123/article/details/79455742" target="_blank" rel="noopener">https://blog.csdn.net/pengzhisen123/article/details/79455742</a></li>
-<li><a href="https://www.cnblogs.com/shilinnpu/p/8873390.html" target="_blank" rel="noopener">https://www.cnblogs.com/shilinnpu/p/8873390.html</a></li>
-</ul>
-<p>实现中</p>
-<ul>
-<li><a href="https://www.cnblogs.com/linyufeng/p/9671844.html" target="_blank" rel="noopener">https://www.cnblogs.com/linyufeng/p/9671844.html</a></li>
-</ul>
-<h1 id="Linux命令"><a href="#Linux命令" class="headerlink" title="Linux命令"></a>Linux命令</h1><ul>
-<li>cat\more\less区别<br><a href="https://www.cnblogs.com/lidabo/p/6196457.html" target="_blank" rel="noopener">https://www.cnblogs.com/lidabo/p/6196457.html</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/操作系统复习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-设计模式复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/设计模式复习/">设计模式复习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/设计模式复习/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:04:55.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="设计模式"><a href="#设计模式" class="headerlink" title="设计模式"></a>设计模式</h1><ol>
-<li>单例模式的好处，应用</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/restartyang/articles/7770856.html" target="_blank" rel="noopener">https://www.cnblogs.com/restartyang/articles/7770856.html</a></li>
-</ul>
-<ol start="2">
-<li>工厂模式</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/weixin_41843053/article/details/80853758" target="_blank" rel="noopener">https://blog.csdn.net/weixin_41843053/article/details/80853758</a></li>
-<li><a href="https://www.jianshu.com/p/ae2e22aa6147" target="_blank" rel="noopener">https://www.jianshu.com/p/ae2e22aa6147</a></li>
-</ul>
-<ol start="3">
-<li>Java单例的饱汉与饿汉模式</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/sai739295732/article/details/62411016" target="_blank" rel="noopener">https://blog.csdn.net/sai739295732/article/details/62411016</a></li>
-<li><a href="https://blog.csdn.net/qq_37768482/article/details/77539850" target="_blank" rel="noopener">https://blog.csdn.net/qq_37768482/article/details/77539850</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">计算机基础复习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/设计模式复习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -2001,6 +1576,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
@@ -2009,7 +1588,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2017,7 +1596,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -2033,11 +1612,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
               </li>
              
               <li class="article-tag-list-item">
