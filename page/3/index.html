@@ -140,6 +140,163 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-JVM复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/09/JVM复习/">JVM复习</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/09/JVM复习/" class="archive-article-date">
+  	<time datetime="2019-09-08T16:10:01.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="JVM"><a href="#JVM" class="headerlink" title="JVM"></a>JVM</h1><ol>
+<li>JVM中的gc，Full GC</li>
+</ol>
+<ul>
+<li><a href="https://baijiahao.baidu.com/s?id=1632743030610982339&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1632743030610982339&amp;wfr=spider&amp;for=pc</a></li>
+<li><a href="https://blog.csdn.net/hellozhxy/article/details/80649342" target="_blank" rel="noopener">https://blog.csdn.net/hellozhxy/article/details/80649342</a></li>
+<li><a href="https://blog.csdn.net/weixin_39788856/article/details/80388002" target="_blank" rel="noopener">https://blog.csdn.net/weixin_39788856/article/details/80388002</a></li>
+<li><a href="https://www.cnblogs.com/jenkov/p/full_gc_old_gc_cms_gc.html" target="_blank" rel="noopener">https://www.cnblogs.com/jenkov/p/full_gc_old_gc_cms_gc.html</a></li>
+<li><a href="https://www.cnblogs.com/williamjie/p/9516264.html" target="_blank" rel="noopener">https://www.cnblogs.com/williamjie/p/9516264.html</a></li>
+</ul>
+<ol start="2">
+<li>垃圾回收及算法<br>垃圾回收算法：</li>
+</ol>
+<ul>
+<li>标记-清除</li>
+<li>复制</li>
+<li>标记-整理</li>
+<li>分代回收</li>
+</ul>
+<p>垃圾收集器</p>
+<p>年轻代<br>Serial：单线程<br>ParNew：多线程<br>Parallel Scavenge：使用复制算法，强调精确控制吞吐量</p>
+<p>老年代<br>Serial Old：单线程，Serial 的老年代版本<br>Parallel Old：Parallel Scavenge 使用多线程和”标记-整理“算法 吞吐量优先<br>CMS：”标记-清除“算法，强调最短回收停顿时间<br>兼顾年轻代和老年代：<br>G1收集器：并行与并发，分代回收，”标记-整理”算法，可预测的停顿</p>
+<ul>
+<li><a href="https://www.jianshu.com/p/35805f809a21" target="_blank" rel="noopener">https://www.jianshu.com/p/35805f809a21</a></li>
+</ul>
+<ol start="3">
+<li><p>假设有一个加法类从编译到最终使用的整个过程</p>
+</li>
+<li><p>如何判断对象是否需要被回收？两个相互引用的对象如何被回收</p>
+</li>
+</ol>
+<ul>
+<li>引用计数</li>
+<li>可达性分析</li>
+</ul>
+<p>附：GCRoot的对象包括：</p>
+<ul>
+<li>虚拟机栈中引用的对象</li>
+<li>方法区中类静态属性引用的对象</li>
+<li>方法区中常量引用的对象</li>
+<li>本地方法栈中JNI引用的对象</li>
+</ul>
+<ol start="5">
+<li><p>虚拟机栈异常类型以及复现代码</p>
+</li>
+<li><p>堆内存异常类型以及复现</p>
+</li>
+<li><p>直接内存怎么使用以及jvm对其管理</p>
+</li>
+<li><p>CMS 和 G1 的区别<br>CMS和G1 的STW时间都发生在初始标记和重新标记（最终标记）阶段</p>
+</li>
+</ol>
+<ul>
+<li><a href="https://www.cnblogs.com/fanguangdexiaoyuer/p/10197486.html" target="_blank" rel="noopener">https://www.cnblogs.com/fanguangdexiaoyuer/p/10197486.html</a></li>
+<li><a href="https://www.jianshu.com/p/bdd6f03923d1" target="_blank" rel="noopener">https://www.jianshu.com/p/bdd6f03923d1</a></li>
+<li><a href="https://blog.csdn.net/xzp_12345/article/details/81839026" target="_blank" rel="noopener">https://blog.csdn.net/xzp_12345/article/details/81839026</a></li>
+</ul>
+<ol start="9">
+<li><p>堆内存分配策略</p>
+<ol>
+<li>对象优先在Eden分配</li>
+<li>大对象直接进入老年代</li>
+<li>长期存活对象进入老年代</li>
+<li>动态对象年龄判断</li>
+<li>空间分配担保</li>
+</ol>
+</li>
+<li><p>老年代，新生代，Eden，Survivor</p>
+</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/lojze_ly/article/details/49456255" target="_blank" rel="noopener">https://blog.csdn.net/lojze_ly/article/details/49456255</a></li>
+<li><a href="https://blog.csdn.net/Muyundefeng/article/details/72667863" target="_blank" rel="noopener">https://blog.csdn.net/Muyundefeng/article/details/72667863</a></li>
+</ul>
+<ol start="11">
+<li>MinorGC和FullGC的发起时机</li>
+</ol>
+<ul>
+<li><a href="https://blog.csdn.net/afsvsv/article/details/85611601" target="_blank" rel="noopener">https://blog.csdn.net/afsvsv/article/details/85611601</a></li>
+</ul>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java基础复习</a>
+        		</li>
+      		 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/09/JVM复习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-计算机网络复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -1428,95 +1585,6 @@ b. 提供流量控制与拥塞控制</code></pre></li>
 
 
   
-    <article id="post-n个中心m个任务" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/04/n个中心m个任务/">n个中心m个任务</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/04/n个中心m个任务/" class="archive-article-date">
-  	<time datetime="2019-09-04T14:36:14.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-04</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>题目：n个分布式中心，m个任务，任务消耗时间为array[i],任务只能连续执行；求任务执行的最短时间</p>
-<p>示例：</p>
-<p>输入</p>
-<blockquote>
-<p>3 5</p>
-</blockquote>
-<blockquote>
-<p>1 5 3 2 4</p>
-</blockquote>
-<p>输出</p>
-<blockquote>
-<p>6</p>
-</blockquote>
-<p>解析：</p>
-<p>这道题类似于N本不同厚度的书分成M组，第i本的厚度是Ai，使T最小化，其中T表示厚度之和最大的一组的厚度</p>
-<p>将T看作一个在(0,sum)空间上做二分查找，关键在于对于T搜索时候的值的有效性判断，在本题中就是以T为最大，划分为x组，x组是否能够小于等于给定的组数，或者大于给定的组数；最优解在这个分界点处</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">maxTime</span><span class="params">(<span class="keyword">int</span> k,<span class="keyword">int</span>[] arrays)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> l = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> r = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> m;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> x:arrays)r+=x;</span><br><span class="line">        <span class="keyword">while</span>(l&lt;r)&#123;</span><br><span class="line">            m=l+(r-l)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">if</span>(isTrue(m,k,arrays))&#123;</span><br><span class="line">                r=m;</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                l=m+<span class="number">1</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> l;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">boolean</span> <span class="title">isTrue</span><span class="params">(<span class="keyword">int</span> S,<span class="keyword">int</span> k,<span class="keyword">int</span>[] arrays)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> group =<span class="number">1</span> ; <span class="keyword">int</span> rest = S;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;arrays.length;i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(rest&gt;=arrays[i])&#123;</span><br><span class="line">                rest-=arrays[i];</span><br><span class="line">            &#125;</span><br><span class="line">            <span class="keyword">else</span>&#123;</span><br><span class="line">                group++;</span><br><span class="line">                rest=S-arrays[i];</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> group&lt;=k;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] arrays=&#123;<span class="number">1</span>,<span class="number">5</span>,<span class="number">3</span>,<span class="number">4</span>,<span class="number">2</span>&#125;;</span><br><span class="line">        System.out.println(maxTime(<span class="number">3</span>,arrays));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/04/n个中心m个任务/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/page/2/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/4/">Next &raquo;</a>
@@ -1610,10 +1678,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java基础复习</a>
               </li>
              
@@ -1626,15 +1690,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法复习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1643,6 +1703,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">算法复习</a>
               </li>
              
               <li class="article-tag-list-item">
