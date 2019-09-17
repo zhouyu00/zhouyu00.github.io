@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="数据库/MySql Mysql的事务隔离级别   https://www.cnblogs.com/rxbook/p/8975924.html设置mysql的事务隔离级别 https://www.cnblogs.com/huasky/p/11190086.html https://www.cnblogs.com/satng/p/7759899.html   数据库的连接池   https://blo">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2019-09-14T08:54:25.783Z">
+<meta property="og:updated_time" content="2019-09-17T00:58:22.839Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库复习">
 <meta name="twitter:description" content="数据库/MySql Mysql的事务隔离级别   https://www.cnblogs.com/rxbook/p/8975924.html设置mysql的事务隔离级别 https://www.cnblogs.com/huasky/p/11190086.html https://www.cnblogs.com/satng/p/7759899.html   数据库的连接池   https://blo">
@@ -283,6 +283,27 @@
 <ul>
 <li><a href="https://blog.csdn.net/qq_21873747/article/details/80668939" target="_blank" rel="noopener">https://blog.csdn.net/qq_21873747/article/details/80668939</a> </li>
 </ul>
+<h1 id="数据库理论"><a href="#数据库理论" class="headerlink" title="数据库理论"></a>数据库理论</h1><p>1.依赖理论</p>
+<ul>
+<li>平凡的函数依赖与非平凡的函数依赖</li>
+<li>完全函数依赖与部分函数依赖</li>
+<li>传递函数依赖</li>
+<li>多值依赖：设R(U)是属性集上的一个关系模式。X，Y，Z是U的子集，并且Z=U-X-Y。关系模式R(U)中多值依赖X-&gt;-&gt;Y成立，当且仅当对R(U)的任一关系r，给定一对(x,z)值，这组值仅仅取决于x值而与z值无关</li>
+<li>平凡的多值依赖</li>
+<li>多值依赖理解 <a href="https://blog.csdn.net/u013043762/article/details/57415423" target="_blank" rel="noopener">https://blog.csdn.net/u013043762/article/details/57415423</a>  </li>
+</ul>
+<p>2.范式</p>
+<ul>
+<li>1NF：若R∈1NF，则R的每一个关系r的属性都是原子项，不可再分</li>
+<li>2NF：若R∈1NF，且每一个非主属性完全函数依赖于任何一个候选码，则R∈2NF</li>
+<li>3NF：若关系模式R&lt;U,F&gt;∈1NF，若R中不存在这样的码X，属性组Y及非主属性Z（Y不是Z的真子集）使得X-&gt;Y,Y-&gt;Z成立，Y-/-&gt;X，则称R&lt;U,F&gt;∈3NF</li>
+<li>BCNF：若关系模式R&lt;U,F&gt;∈1NF，若X-&gt;Y且Y不属于X的真子集时，X必含有码，则R&lt;U,F&gt;∈BCNF；也就是说关系模式R&lt;U,F&gt;中，每一个决定因素都包含码，则R&lt;U,F&gt;∈BCNF。<ul>
+<li>所有的非主属性对每一个码都是完全函数依赖</li>
+<li>所有的主属性对每一个不包含它的码也是完全函数依赖</li>
+<li>没有任何属性完全函数依赖于非码的任何一组属性</li>
+</ul>
+</li>
+</ul>
 
       
 
@@ -503,6 +524,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java基础复习</a>
               </li>
              
@@ -511,7 +536,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -519,7 +552,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法复习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -528,14 +561,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法复习</a>
               </li>
              
               <li class="article-tag-list-item">

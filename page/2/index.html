@@ -140,6 +140,364 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-接雨水LeetCode42" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/12/接雨水LeetCode42/">接雨水LeetCode42</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/12/接雨水LeetCode42/" class="archive-article-date">
+  	<time datetime="2019-09-12T01:22:52.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-12</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><h1 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h1><h2 id="方法一：栈"><a href="#方法一：栈" class="headerlink" title="方法一：栈"></a>方法一：栈</h2><p>这种方法其实本质上就是利用栈找到两边最大的，然后依次计算中间的水</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;height.length;i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!stack.isEmpty()&amp;&amp;height[i]&gt;height[stack.peek()])&#123;</span><br><span class="line">                <span class="keyword">int</span> top = stack.pop();</span><br><span class="line">                <span class="keyword">if</span>(stack.isEmpty())<span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">int</span> distance = i-stack.peek()-<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> rHeight = Math.min(height[i],height[stack.peek()])-height[top];</span><br><span class="line">                res+=(distance*rHeight);</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">-算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/12/接雨水LeetCode42/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-深入理解dubbo第二周" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/深入理解dubbo第二周/">深入理解dubbo第二周</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/11/深入理解dubbo第二周/" class="archive-article-date">
+  	<time datetime="2019-09-11T15:22:38.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/11/深入理解dubbo第二周/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2019-9-11题目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/2019-9-11题目总结/">2019-9-11题目总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/11/2019-9-11题目总结/" class="archive-article-date">
+  	<time datetime="2019-09-11T15:16:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h1><h2 id="用友笔试"><a href="#用友笔试" class="headerlink" title="用友笔试"></a>用友笔试</h2><h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><p>是个sql问题，已经忘了题目了–！</p>
+<h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><p>打牌问题</p>
+<h2 id="旷视笔试"><a href="#旷视笔试" class="headerlink" title="旷视笔试"></a>旷视笔试</h2><h3 id="题目一-1"><a href="#题目一-1" class="headerlink" title="题目一"></a>题目一</h3><p>计算非负数n中1的个数<br>这个题我做了好几遍了，还没记住，真的是不长记性，最后考完才想起来；有的时候觉得自己是真蠢，做了记不住和没做没学有啥区别？这样的问题希望不要再犯了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KuangShi1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> N)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(N!=<span class="number">0</span>)&#123;</span><br><span class="line">            N=N&amp;(N-<span class="number">1</span>);</span><br><span class="line">            res+=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        System.out.println(count(N));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="题目二-1"><a href="#题目二-1" class="headerlink" title="题目二"></a>题目二</h3><p>接雨水问题 LeetCode42题 已处理 只学了一种方法</p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习日记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/11/2019-9-11题目总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2019-9-10题目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/2019-9-10题目总结/">2019-9-10题目总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/11/2019-9-10题目总结/" class="archive-article-date">
+  	<time datetime="2019-09-11T00:33:43.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h1><h2 id="Bilibili"><a href="#Bilibili" class="headerlink" title="Bilibili"></a>Bilibili</h2><p>第二题<br>题目：将输入的N，写成连续数字相加的形式，一共可以有多少组，1&lt;=N&lt;=10^9</p>
+<p>输入示例：5<br>输出示例：2<br>解释：5=5=2+3<br>分析：<br>请看这里最后一种方法，来自大佬的解释<br><a href="https://blog.csdn.net/zj_whu/article/details/82990030" target="_blank" rel="noopener">https://blog.csdn.net/zj_whu/article/details/82990030</a></p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Main</span> </span>&#123;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">int</span> M = <span class="number">2</span>*N;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> p=(<span class="keyword">int</span>)Math.sqrt(M);p&gt;=<span class="number">1</span>;p--)&#123;</span><br><span class="line">            <span class="keyword">if</span>(M%p!=<span class="number">0</span>)<span class="keyword">continue</span>;</span><br><span class="line">            <span class="keyword">int</span> q = M/p;</span><br><span class="line">            <span class="keyword">int</span> i = (q-p+<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">            <span class="keyword">int</span> j = (p+q-<span class="number">1</span>)/<span class="number">2</span>;</span><br><span class="line">            res+=<span class="number">1</span>;</span><br><span class="line">            System.out.println(<span class="string">"i="</span>+i+<span class="string">",j="</span>+j);</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(res);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>第三题<br>一个要求必须c++来解的题，不难，但是。。。我不太会c++<br>题目：<br>输入第一个为分隔符d1；第二个为分割符d2；第三个为一个序列，要将序列用分隔符d1和分隔符d2切分输出；</p>
+<p>输出总行数，要求输出分隔符前后都不为空串<br>输入示例：<br># : a:3#b:4#c:5<br>输出示例：<br>3<br>a 3</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">```</span><br><span class="line">## 电信</span><br><span class="line">第二题  </span><br><span class="line">数字转罗马数字  </span><br><span class="line">输入：  </span><br><span class="line">36  </span><br><span class="line">输出：  </span><br><span class="line">XXXVI</span><br></pre></td></tr></table></figure>
+
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line">第三题</span><br><span class="line">题目：最大整数</span><br><span class="line">输入：[4 ,-2 ,5 ,2 ,-6]</span><br><span class="line">输出：9</span><br><span class="line"></span><br><span class="line">没做出来的原因是当时想通过正则表达式匹配数字，搞出来，实在是无能为力</span><br><span class="line"></span><br><span class="line">```java</span><br><span class="line">import java.util.Scanner;</span><br><span class="line"></span><br><span class="line">public class CDianXin3 &#123;</span><br><span class="line">    public static void main(String[] args) &#123;</span><br><span class="line">        Scanner in = new Scanner(System.in);</span><br><span class="line">        String line = in.nextLine();</span><br><span class="line">        String[] cs = line.replace(&quot;[&quot;,&quot;&quot;).replace(&quot;]&quot;,&quot;&quot;).split(&quot;,&quot;);</span><br><span class="line">        int s =0;</span><br><span class="line">        int maxS = Integer.MIN_VALUE;</span><br><span class="line">        </span><br><span class="line">        for(int i=0;i&lt;cs.length;i++)&#123;</span><br><span class="line">            s+=Integer.valueOf(cs[i].trim());</span><br><span class="line">            System.out.println(s);</span><br><span class="line">            if(s&lt;0)&#123;</span><br><span class="line">                s=0;</span><br><span class="line">            &#125;</span><br><span class="line">            else&#123;</span><br><span class="line">                if(s&gt;maxS)&#123;</span><br><span class="line">                    maxS=s;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        System.out.println(maxS);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习日记</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/11/2019-9-10题目总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-spring学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/11/spring学习/">spring学习</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/11/spring学习/" class="archive-article-date">
+  	<time datetime="2019-09-10T17:20:11.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-11</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/11/spring学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-面向简历编程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -681,805 +1039,6 @@
 
 
   
-    <article id="post-面试准备" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/面试准备/">面试准备</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/面试准备/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:19:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="redis"><a href="#redis" class="headerlink" title="redis"></a>redis</h1><ol>
-<li>Redis数据结构及持久化机制</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/neooelric/p/9621736.html" target="_blank" rel="noopener">https://www.cnblogs.com/neooelric/p/9621736.html</a></li>
-</ul>
-<ol start="2">
-<li>Redis持久化机制</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/yyjie/p/7487937.html" target="_blank" rel="noopener">https://www.cnblogs.com/yyjie/p/7487937.html</a></li>
-</ul>
-<h1 id="MyBatis"><a href="#MyBatis" class="headerlink" title="MyBatis"></a>MyBatis</h1><ol>
-<li>mybatis 如何获取自增ID </li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zonghao123/article/details/78374169" target="_blank" rel="noopener">https://blog.csdn.net/zonghao123/article/details/78374169</a></li>
-</ul>
-<ol start="2">
-<li>mybatis  一二级缓存</li>
-</ol>
-<h1 id="分布式"><a href="#分布式" class="headerlink" title="分布式"></a>分布式</h1><ol>
-<li>分布式锁的实现</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_32924343/article/details/79814133" target="_blank" rel="noopener">https://blog.csdn.net/qq_32924343/article/details/79814133</a><br>附：<br>CAP原理</li>
-<li><a href="http://www.ruanyifeng.com/blog/2018/07/cap.html" target="_blank" rel="noopener">http://www.ruanyifeng.com/blog/2018/07/cap.html</a></li>
-<li><a href="https://blog.csdn.net/yeyazhishang/article/details/80758354" target="_blank" rel="noopener">https://blog.csdn.net/yeyazhishang/article/details/80758354</a></li>
-</ul>
-<ol start="2">
-<li><p>了解微服务吗？</p>
-</li>
-<li><p>RPC调用</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/linlinismine/p/9205676.html" target="_blank" rel="noopener">https://www.cnblogs.com/linlinismine/p/9205676.html</a></li>
-<li><a href="https://www.cnblogs.com/FG123/p/10261676.html" target="_blank" rel="noopener">https://www.cnblogs.com/FG123/p/10261676.html</a></li>
-</ul>
-<ol start="4">
-<li>BASE</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/stateis0/p/9062123.html" target="_blank" rel="noopener">https://www.cnblogs.com/stateis0/p/9062123.html</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">工具复习</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/面试准备/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-多线程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/多线程/">多线程</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/多线程/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:16:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="多线程"><a href="#多线程" class="headerlink" title="多线程"></a>多线程</h1><ul>
-<li><a href="https://www.jianshu.com/p/125ccf0046f3" target="_blank" rel="noopener">https://www.jianshu.com/p/125ccf0046f3</a></li>
-</ul>
-<ol>
-<li><p>线程池的参数<br>public ThreadPoolExecutor(<br>int corePoolSize,<br>int maximumPoolSize,<br>long keepAliveTime,<br>TimeUnit unit,<br>ThreadFactory threadFactory,<br>RejectedExecutionHandler handler<br>);</p>
-</li>
-<li><p>为什么要使用线程池</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/a497393102/article/details/8597819" target="_blank" rel="noopener">https://blog.csdn.net/a497393102/article/details/8597819</a></li>
-<li><a href="https://blog.csdn.net/Muz_victory/article/details/81216771" target="_blank" rel="noopener">https://blog.csdn.net/Muz_victory/article/details/81216771</a></li>
-</ul>
-<ol start="3">
-<li>如何合理的配置线程池<br>CPU密集型 Ncpu+1<br>IO密集型 2*Ncpu</li>
-</ol>
-<p>混合型任务 进行任务拆分</p>
-<ol start="4">
-<li>饱和策略/任务队列满了以后再来一个任务如何处理</li>
-</ol>
-<ul>
-<li>AbortPolicy</li>
-<li>CallerRunsPolicy</li>
-<li>DiscardOldestPolicy</li>
-<li>DiscardPolicy</li>
-<li><a href="https://www.cnblogs.com/skywang12345/p/3512947.html" target="_blank" rel="noopener">https://www.cnblogs.com/skywang12345/p/3512947.html</a></li>
-</ul>
-<ol start="5">
-<li>JUC包里的东西，有哪些常用锁</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/doit8791/p/9131148.html" target="_blank" rel="noopener">https://www.cnblogs.com/doit8791/p/9131148.html</a><br>Lock，AQS，ReentrantLock，ReadWriteLock，LockSupport，Condition</li>
-</ul>
-<ol start="6">
-<li>线程同步的几种方法？</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/baizhanshi/p/7025974.html" target="_blank" rel="noopener">https://www.cnblogs.com/baizhanshi/p/7025974.html</a></li>
-</ul>
-<ol start="7">
-<li>线程同步使用哪些锁？</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/lixiangyang521/p/6861768.html" target="_blank" rel="noopener">https://www.cnblogs.com/lixiangyang521/p/6861768.html</a></li>
-</ul>
-<ol start="8">
-<li>死锁和死循环都会导致程序hold住，怎么判断是死锁还是死循环</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/wanglha/article/details/51133819" target="_blank" rel="noopener">https://blog.csdn.net/wanglha/article/details/51133819</a></li>
-</ul>
-<ol start="9">
-<li>并发容器种类</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/ygj0930/p/6543877.html" target="_blank" rel="noopener">https://www.cnblogs.com/ygj0930/p/6543877.html</a></li>
-<li><a href="https://blog.csdn.net/cdefggg/article/details/86426917" target="_blank" rel="noopener">https://blog.csdn.net/cdefggg/article/details/86426917</a></li>
-<li><a href="https://www.jianshu.com/p/7f50497b7f30" target="_blank" rel="noopener">https://www.jianshu.com/p/7f50497b7f30</a></li>
-</ul>
-<ol start="10">
-<li><p>concurrenthashmap数据结构<br>JDK1.7 数组+segment+分段锁+HashEntry<br>JDK1.8 数组+链表+红黑树</p>
-</li>
-<li><p>线程状态(blocked   waiting  timed_waiting)</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/cowboys/p/9315331.html" target="_blank" rel="noopener">https://www.cnblogs.com/cowboys/p/9315331.html</a></li>
-</ul>
-<ol start="12">
-<li>等待和阻塞的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/woshiyigeliangliang/article/details/81116872" target="_blank" rel="noopener">https://blog.csdn.net/woshiyigeliangliang/article/details/81116872</a></li>
-</ul>
-<ol start="13">
-<li>wait和sleep的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/kangkanglou/article/details/82221301" target="_blank" rel="noopener">https://blog.csdn.net/kangkanglou/article/details/82221301</a></li>
-</ul>
-<ol start="14">
-<li>volatile变量i++</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/zemliu/p/3298685.html" target="_blank" rel="noopener">https://www.cnblogs.com/zemliu/p/3298685.html</a></li>
-<li><a href="https://blog.csdn.net/dm_vincent/article/details/79604716" target="_blank" rel="noopener">https://blog.csdn.net/dm_vincent/article/details/79604716</a></li>
-</ul>
-<ol start="15">
-<li>sychronized 和 RetreenLock的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zhglance/article/details/81485820" target="_blank" rel="noopener">https://blog.csdn.net/zhglance/article/details/81485820</a></li>
-<li><a href="https://blog.csdn.net/chenkaibsw/article/details/80234123" target="_blank" rel="noopener">https://blog.csdn.net/chenkaibsw/article/details/80234123</a></li>
-</ul>
-<ol start="16">
-<li>介绍一下线程池<br>线程池的组成</li>
-</ol>
-<ul>
-<li>ThreadPool线程池管理器</li>
-<li>PoolWorker 工作线程</li>
-<li>Task 任务接口</li>
-<li>TaskQueue 任务队列</li>
-</ul>
-<ol start="17">
-<li>四种线程池及使用场景</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_43692920/article/details/90266704" target="_blank" rel="noopener">https://blog.csdn.net/qq_43692920/article/details/90266704</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/多线程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据库复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/数据库复习/">数据库复习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/数据库复习/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:14:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="数据库-MySql"><a href="#数据库-MySql" class="headerlink" title="数据库/MySql"></a>数据库/MySql</h1><ol>
-<li>Mysql的事务隔离级别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/rxbook/p/8975924.html" target="_blank" rel="noopener">https://www.cnblogs.com/rxbook/p/8975924.html</a><br>设置mysql的事务隔离级别</li>
-<li><a href="https://www.cnblogs.com/huasky/p/11190086.html" target="_blank" rel="noopener">https://www.cnblogs.com/huasky/p/11190086.html</a></li>
-<li><a href="https://www.cnblogs.com/satng/p/7759899.html" target="_blank" rel="noopener">https://www.cnblogs.com/satng/p/7759899.html</a></li>
-</ul>
-<ol start="2">
-<li>数据库的连接池</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_39659876/article/details/80958450" target="_blank" rel="noopener">https://blog.csdn.net/qq_39659876/article/details/80958450</a></li>
-<li><a href="https://blog.csdn.net/qq_34468186/article/details/83892496" target="_blank" rel="noopener">https://blog.csdn.net/qq_34468186/article/details/83892496</a></li>
-<li><a href="https://baijiahao.baidu.com/s?id=1599699339020031595&amp;wfr=spider&amp;for=pc" target="_blank" rel="noopener">https://baijiahao.baidu.com/s?id=1599699339020031595&amp;wfr=spider&amp;for=pc</a></li>
-</ul>
-<ol start="3">
-<li>乐观锁悲观锁</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/suger43894/p/11024102.html" target="_blank" rel="noopener">https://www.cnblogs.com/suger43894/p/11024102.html</a></li>
-</ul>
-<ol start="4">
-<li>数据库分页优化</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/geningchao/p/6649907.html" target="_blank" rel="noopener">https://www.cnblogs.com/geningchao/p/6649907.html</a></li>
-<li><a href="https://www.cnblogs.com/RunForLove/p/5100009.html" target="_blank" rel="noopener">https://www.cnblogs.com/RunForLove/p/5100009.html</a></li>
-<li><a href="https://www.cnblogs.com/waterystone/p/9392421.html" target="_blank" rel="noopener">https://www.cnblogs.com/waterystone/p/9392421.html</a></li>
-</ul>
-<ol start="5">
-<li>mysql数据引擎知道几种？innodb和mylsam区别<br>6种，InnoDB,MyISAM,NDB,Memory,Archive,Federated,Maria</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/zhangchaoyang/articles/4214237.html" target="_blank" rel="noopener">https://www.cnblogs.com/zhangchaoyang/articles/4214237.html</a></li>
-</ul>
-<ol start="6">
-<li>索引失效</li>
-</ol>
-<ul>
-<li>复合索引不能跨列或者无序使用；尽量使用全索引匹配</li>
-<li>不要在索引上进行任何操作（计算，函数，类型转换）</li>
-<li>复合索引不能使用不等于或is null，否则自身及右侧全部失效</li>
-<li>复合索引中有&gt;,&lt;,in，之后的索引失效</li>
-<li>like尽量用常量开头，不以“%”开头；如果必须以“%”开头，可以用索引覆盖挽救一部分</li>
-<li>尽量不要用or，否则or左侧的索引也失效</li>
-</ul>
-<ol start="7">
-<li>覆盖索引</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_15037231/article/details/87891683" target="_blank" rel="noopener">https://blog.csdn.net/qq_15037231/article/details/87891683</a></li>
-<li><a href="https://www.cnblogs.com/happyflyingpig/p/7662881.html" target="_blank" rel="noopener">https://www.cnblogs.com/happyflyingpig/p/7662881.html</a></li>
-<li><a href="https://www.cnblogs.com/pyng/p/9599977.html" target="_blank" rel="noopener">https://www.cnblogs.com/pyng/p/9599977.html</a></li>
-</ul>
-<ol start="8">
-<li>倒排序索引</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/gered/p/9561710.html" target="_blank" rel="noopener">https://www.cnblogs.com/gered/p/9561710.html</a></li>
-<li><a href="https://www.cnblogs.com/luminous1/p/8383777.html" target="_blank" rel="noopener">https://www.cnblogs.com/luminous1/p/8383777.html</a></li>
-<li><a href="https://blog.csdn.net/zsd_31/article/details/79979818" target="_blank" rel="noopener">https://blog.csdn.net/zsd_31/article/details/79979818</a></li>
-</ul>
-<ol start="9">
-<li>MVCC</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/rocling/article/details/81193431" target="_blank" rel="noopener">https://blog.csdn.net/rocling/article/details/81193431</a></li>
-<li><a href="https://www.cnblogs.com/liulvzhong/articles/9242299.html" target="_blank" rel="noopener">https://www.cnblogs.com/liulvzhong/articles/9242299.html</a></li>
-</ul>
-<ol start="10">
-<li>索引失效</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/42cfeec20301" target="_blank" rel="noopener">https://www.jianshu.com/p/42cfeec20301</a></li>
-</ul>
-<ol start="11">
-<li>幻读的解决</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_27007251/article/details/70016787" target="_blank" rel="noopener">https://blog.csdn.net/qq_27007251/article/details/70016787</a></li>
-</ul>
-<ol start="12">
-<li>快照读和当前读</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/27352449bcc0" target="_blank" rel="noopener">https://www.jianshu.com/p/27352449bcc0</a></li>
-</ul>
-<ol start="13">
-<li>间隙锁</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zcl_love_wx/article/details/82382582" target="_blank" rel="noopener">https://blog.csdn.net/zcl_love_wx/article/details/82382582</a></li>
-</ul>
-<ol start="14">
-<li>mysql innodb三种行锁</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/weixin_34006468/article/details/88039873" target="_blank" rel="noopener">https://blog.csdn.net/weixin_34006468/article/details/88039873</a></li>
-</ul>
-<ol start="15">
-<li>utf8 与utf8mb4</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/u010584271/article/details/80835547" target="_blank" rel="noopener">https://blog.csdn.net/u010584271/article/details/80835547</a></li>
-<li><a href="https://www.cnblogs.com/amyzhu/p/9595665.html" target="_blank" rel="noopener">https://www.cnblogs.com/amyzhu/p/9595665.html</a></li>
-</ul>
-<ol start="16">
-<li>更改MySQL数据库的编码为utf8mb4</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/eagle89/article/details/82148751" target="_blank" rel="noopener">https://blog.csdn.net/eagle89/article/details/82148751</a></li>
-<li><a href="https://blog.csdn.net/dmt742055597/article/details/79283739" target="_blank" rel="noopener">https://blog.csdn.net/dmt742055597/article/details/79283739</a></li>
-</ul>
-<ol start="17">
-<li>mysql分库分表</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_21873747/article/details/80668939" target="_blank" rel="noopener">https://blog.csdn.net/qq_21873747/article/details/80668939</a> </li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">计算机基础</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/数据库复习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaEE复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/JavaEE复习/">JavaEE</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/JavaEE复习/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:13:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JavaEE"><a href="#JavaEE" class="headerlink" title="JavaEE"></a>JavaEE</h1><ol>
-<li>Session，Cookie和Token</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/zlw-xf/p/8001383.html" target="_blank" rel="noopener">https://www.cnblogs.com/zlw-xf/p/8001383.html</a></li>
-<li><a href="https://www.cnblogs.com/roxy/p/7805858.html" target="_blank" rel="noopener">https://www.cnblogs.com/roxy/p/7805858.html</a></li>
-<li><a href="https://www.cnblogs.com/moyand/p/9047978.html" target="_blank" rel="noopener">https://www.cnblogs.com/moyand/p/9047978.html</a></li>
-</ul>
-<ol start="2">
-<li>Servlet的生命周期</li>
-<li>拦截器和过滤器的区别</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/zxd1435513775/article/details/80556034" target="_blank" rel="noopener">https://blog.csdn.net/zxd1435513775/article/details/80556034</a></li>
-<li><a href="https://www.cnblogs.com/panxuejun/p/7715917.html" target="_blank" rel="noopener">https://www.cnblogs.com/panxuejun/p/7715917.html</a><br>过滤器只在容器初始化时调用一次该怎么理解？</li>
-<li><a href="https://blog.csdn.net/dingchenxixi/article/details/81391831" target="_blank" rel="noopener">https://blog.csdn.net/dingchenxixi/article/details/81391831</a></li>
-</ul>
-<ol start="4">
-<li>防止XSS攻击</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/hero123/p/9091625.html" target="_blank" rel="noopener">https://www.cnblogs.com/hero123/p/9091625.html</a></li>
-<li><a href="https://www.jianshu.com/p/cd49578bdd48" target="_blank" rel="noopener">https://www.jianshu.com/p/cd49578bdd48</a></li>
-</ul>
-<h1 id="spring"><a href="#spring" class="headerlink" title="spring"></a>spring</h1><ol>
-<li>spring的主要特点？介绍一下AOP和IOC；AOP的实现方式；IOC的实现方式<br>AOP和IOC；AOP是面向切面编程；IOC是控制反转；spring AOC的实现是 jdk动态代理和cglib代理；<br>AOP的实现</li>
-</ol>
-<ul>
-<li><p><a href="https://blog.csdn.net/wyl6019/article/details/80136000" target="_blank" rel="noopener">https://blog.csdn.net/wyl6019/article/details/80136000</a><br>IOC的实现</p>
-</li>
-<li><p><a href="https://www.cnblogs.com/neon/p/10929759.html" target="_blank" rel="noopener">https://www.cnblogs.com/neon/p/10929759.html</a></p>
-</li>
-<li><p><a href="https://www.cnblogs.com/study-everyday/p/8566532.html" target="_blank" rel="noopener">https://www.cnblogs.com/study-everyday/p/8566532.html</a></p>
-</li>
-<li><p><a href="https://www.jianshu.com/p/4b31dacf3a63" target="_blank" rel="noopener">https://www.jianshu.com/p/4b31dacf3a63</a></p>
-</li>
-</ul>
-<p>附：常见的四种代理方式</p>
-<ul>
-<li><a href="https://blog.csdn.net/luanlouis/article/details/24589193" target="_blank" rel="noopener">https://blog.csdn.net/luanlouis/article/details/24589193</a><br>cglib和jdk动态代理的比较</li>
-<li><a href="https://blog.csdn.net/liangwenmail/article/details/78457106" target="_blank" rel="noopener">https://blog.csdn.net/liangwenmail/article/details/78457106</a></li>
-</ul>
-<ol start="2">
-<li>spring中如何配置事务管理级别</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/cxyj/p/3906402.html" target="_blank" rel="noopener">https://www.cnblogs.com/cxyj/p/3906402.html</a></li>
-</ul>
-<ol start="3">
-<li>springMVC的处理流程</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/5ishare/p/8683971.html" target="_blank" rel="noopener">https://www.cnblogs.com/5ishare/p/8683971.html</a></li>
-</ul>
-<ol start="4">
-<li><p>一个Controller中会涉及到哪些注解<br>@Controller<br>@Autowire<br>@RequestMapping<br>@RequestParam<br>@RequestBody<br>@ResponseBody<br>@ModelAttribute</p>
-</li>
-<li><p>Spring和Spring boot的区别</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.jianshu.com/p/ffe5ebe17c3a" target="_blank" rel="noopener">https://www.jianshu.com/p/ffe5ebe17c3a</a></li>
-<li><a href="https://blog.csdn.net/wang_666_/article/details/80527113" target="_blank" rel="noopener">https://blog.csdn.net/wang_666_/article/details/80527113</a></li>
-<li><a href="https://www.codercto.com/a/27048.html" target="_blank" rel="noopener">https://www.codercto.com/a/27048.html</a></li>
-</ul>
-<ol start="6">
-<li><p>@transaction</p>
-</li>
-<li><p>SpringMVC 工作流程图</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/qq_39470733/article/details/80980320" target="_blank" rel="noopener">https://blog.csdn.net/qq_39470733/article/details/80980320</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java基础复习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/JavaEE复习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-JavaSE复习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/09/JavaSE复习/">JavaSE复习</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/09/JavaSE复习/" class="archive-article-date">
-  	<time datetime="2019-09-08T16:11:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-09</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="JavaSE"><a href="#JavaSE" class="headerlink" title="JavaSE"></a>JavaSE</h1><ol>
-<li>根据反射加载一个类的具体步骤</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/xiaobiqiang/p/6047146.html" target="_blank" rel="noopener">https://www.cnblogs.com/xiaobiqiang/p/6047146.html</a></li>
-<li><a href="https://www.cnblogs.com/FanJava/p/9512775.html" target="_blank" rel="noopener">https://www.cnblogs.com/FanJava/p/9512775.html</a></li>
-</ul>
-<ol start="2">
-<li>泛型</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/coprince/p/8603492.html" target="_blank" rel="noopener">https://www.cnblogs.com/coprince/p/8603492.html</a></li>
-</ul>
-<ol start="3">
-<li>面向对象</li>
-<li>HashMap为什么初始化为16</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/l18848956739/article/details/85998121" target="_blank" rel="noopener">https://blog.csdn.net/l18848956739/article/details/85998121</a></li>
-</ul>
-<ol start="5">
-<li>hashCode 怎么对应桶的位置</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/yue31313/article/details/77513353" target="_blank" rel="noopener">https://blog.csdn.net/yue31313/article/details/77513353</a></li>
-</ul>
-<ol start="6">
-<li>hashCode的计算</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/tanggao1314/article/details/51457585" target="_blank" rel="noopener">https://blog.csdn.net/tanggao1314/article/details/51457585</a></li>
-<li><a href="https://blog.csdn.net/zhucegemingzizheng/article/details/81289479" target="_blank" rel="noopener">https://blog.csdn.net/zhucegemingzizheng/article/details/81289479</a></li>
-</ul>
-<ol start="7">
-<li><p>字符串快速去重</p>
-</li>
-<li><p>Error和Exception的区别</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/lcl-dcr/p/7653274.html" target="_blank" rel="noopener">https://www.cnblogs.com/lcl-dcr/p/7653274.html</a></li>
-<li><a href="https://www.cnblogs.com/hustzzl/p/7840780.html" target="_blank" rel="noopener">https://www.cnblogs.com/hustzzl/p/7840780.html</a></li>
-</ul>
-<ol start="9">
-<li><p>聊一下java里的对象（java里的包）</p>
-</li>
-<li><p>HashMap底层转红黑树的时机</p>
-</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/laipimei/p/11282055.html" target="_blank" rel="noopener">https://www.cnblogs.com/laipimei/p/11282055.html</a></li>
-<li><a href="https://www.cnblogs.com/laipimei/p/11275235.html" target="_blank" rel="noopener">https://www.cnblogs.com/laipimei/p/11275235.html</a></li>
-</ul>
-<ol start="11">
-<li>io类型；nio是其中哪一种</li>
-</ol>
-<ul>
-<li><a href="https://blog.csdn.net/datadev_sh/article/details/79241186" target="_blank" rel="noopener">https://blog.csdn.net/datadev_sh/article/details/79241186</a></li>
-<li><a href="https://blog.csdn.net/Yufail/article/details/88825123" target="_blank" rel="noopener">https://blog.csdn.net/Yufail/article/details/88825123</a></li>
-</ul>
-<ol start="12">
-<li>静态代码块，构造代码块，构造函数与普通代码块</li>
-</ol>
-<ul>
-<li><a href="https://www.cnblogs.com/ysocean/p/8194428.html" target="_blank" rel="noopener">https://www.cnblogs.com/ysocean/p/8194428.html</a></li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">Java基础复习</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">面试准备</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/09/JavaSE复习/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
       <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
@@ -1573,6 +1132,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color4">Java基础复习</a>
               </li>
              
@@ -1581,7 +1144,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color1">linux</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1589,7 +1160,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">算法复习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1598,14 +1169,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">算法复习</a>
               </li>
              
               <li class="article-tag-list-item">
