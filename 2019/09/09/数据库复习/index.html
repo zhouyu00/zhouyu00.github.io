@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="数据库/MySql Mysql的事务隔离级别   https://www.cnblogs.com/rxbook/p/8975924.html设置mysql的事务隔离级别 https://www.cnblogs.com/huasky/p/11190086.html https://www.cnblogs.com/satng/p/7759899.html   数据库的连接池   https://blo">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2019-09-17T00:58:22.839Z">
+<meta property="og:updated_time" content="2019-09-17T02:37:58.119Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="数据库复习">
 <meta name="twitter:description" content="数据库/MySql Mysql的事务隔离级别   https://www.cnblogs.com/rxbook/p/8975924.html设置mysql的事务隔离级别 https://www.cnblogs.com/huasky/p/11190086.html https://www.cnblogs.com/satng/p/7759899.html   数据库的连接池   https://blo">
@@ -238,6 +238,7 @@
 </ol>
 <ul>
 <li><a href="https://www.jianshu.com/p/42cfeec20301" target="_blank" rel="noopener">https://www.jianshu.com/p/42cfeec20301</a></li>
+<li>索引失效的情况 <a href="https://www.cnblogs.com/wdss/p/11186411.html" target="_blank" rel="noopener">https://www.cnblogs.com/wdss/p/11186411.html</a></li>
 </ul>
 <ol start="11">
 <li>幻读的解决</li>
@@ -283,7 +284,17 @@
 <ul>
 <li><a href="https://blog.csdn.net/qq_21873747/article/details/80668939" target="_blank" rel="noopener">https://blog.csdn.net/qq_21873747/article/details/80668939</a> </li>
 </ul>
-<h1 id="数据库理论"><a href="#数据库理论" class="headerlink" title="数据库理论"></a>数据库理论</h1><p>1.依赖理论</p>
+<ol start="18">
+<li><p>从binlog恢复数据</p>
+</li>
+<li><p>redolog,undolog</p>
+</li>
+<li><p>分库分表</p>
+</li>
+</ol>
+<h1 id="数据库理论"><a href="#数据库理论" class="headerlink" title="数据库理论"></a>数据库理论</h1><ol>
+<li>依赖理论基础概念</li>
+</ol>
 <ul>
 <li>平凡的函数依赖与非平凡的函数依赖</li>
 <li>完全函数依赖与部分函数依赖</li>
@@ -291,8 +302,15 @@
 <li>多值依赖：设R(U)是属性集上的一个关系模式。X，Y，Z是U的子集，并且Z=U-X-Y。关系模式R(U)中多值依赖X-&gt;-&gt;Y成立，当且仅当对R(U)的任一关系r，给定一对(x,z)值，这组值仅仅取决于x值而与z值无关</li>
 <li>平凡的多值依赖</li>
 <li>多值依赖理解 <a href="https://blog.csdn.net/u013043762/article/details/57415423" target="_blank" rel="noopener">https://blog.csdn.net/u013043762/article/details/57415423</a>  </li>
+<li>函数依赖与多值依赖的概念比较<ul>
+<li>函数依赖：对于关系R(U)的任意一个可能的关系r中，不存在两个元组在属性X上相等在Y上不等的情况，则称X函数确定Y或者Y函数依赖于X，X-&gt;Y</li>
+<li>多值依赖：设R(U)是属性集上的一个关系模式。X，Y，Z是U的子集，并且Z=U-X-Y，关系模式R(U)中多值依赖X-&gt;-&gt;Y成立，当且仅当对R(U)的任一关系r，给定的一对(x,z)值，有一组Y的值，这组值仅仅取决于x值而与z值无关</li>
 </ul>
-<p>2.范式</p>
+</li>
+</ul>
+<ol start="2">
+<li>范式</li>
+</ol>
 <ul>
 <li>1NF：若R∈1NF，则R的每一个关系r的属性都是原子项，不可再分</li>
 <li>2NF：若R∈1NF，且每一个非主属性完全函数依赖于任何一个候选码，则R∈2NF</li>
@@ -303,7 +321,12 @@
 <li>没有任何属性完全函数依赖于非码的任何一组属性</li>
 </ul>
 </li>
+<li>4NF：关系模式R&lt;U,F&gt;∈1NF，如果对于R的每个非平凡多值依赖，X-&gt;-&gt;Y(Y不是X的真子集)，X都含有码，则称R&lt;U,F&gt;∈4NF；4NF就是限制关系模式之间不允许有非平凡且非函数依赖的多值依赖。</li>
 </ul>
+<ol start="3">
+<li>为什么说4NF允许的非平凡的多值依赖实际上是函数依赖?  </li>
+</ol>
+<p><strong>“对于每一个非平凡多值依赖X-&gt;-&gt;Y，X若含有候选码，也就是X-&gt;Y，所以4NF所允许的非平凡多值依赖是函数依赖。”</strong><br>如何理解上面这句话，我的理解，满足函数依赖要求的，非平凡多值依赖实际上是只存在于全码中（暂时的理解，可能有误），否则X能够确定一组Y值是无法满足函数依赖的<br>因此，如果X含有候选码，即X能够唯一确定Y，此时Y只对应一个值，不再是多值依赖的一组值，则非平凡多值依赖提升为函数依赖（用提升是因为函数依赖实际上是多值依赖的一种情况）</p>
 
       
 
@@ -520,11 +543,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -536,7 +559,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -544,11 +575,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">每日任务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -556,11 +583,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -572,11 +607,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
+                <a href="javascript:void(0)" class="js-tag color2">-dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">-spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据库基本操作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -584,11 +631,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
               </li>
             
             <div class="clearfix"></div>

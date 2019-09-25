@@ -16,7 +16,7 @@
 <meta property="og:site_name" content="Hexo">
 <meta property="og:description" content="第一题 配置文件如何解析成config承载对象 parse方法  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2019-09-11T15:32:10.275Z">
+<meta property="og:updated_time" content="2019-09-25T00:17:16.611Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解dubbo第一周">
 <meta name="twitter:description" content="第一题 配置文件如何解析成config承载对象 parse方法  12345678910111213141516171819202122232425262728293031323334353637383940414243444546474849505152535455565758596061626364656667686970717273747576777879808182838485868788">
@@ -197,7 +197,38 @@
 </li>
 </ul>
 <h1 id="第四题"><a href="#第四题" class="headerlink" title="第四题"></a>第四题</h1><p>观察com.alibaba.dubbo.config.ServiceConfig#doExport和com.alibaba.dubbo.config.ReferenceConfig#init</p>
-<h3 id="doExport"><a href="#doExport" class="headerlink" title="doExport"></a>doExport</h3><h1 id="一些资料"><a href="#一些资料" class="headerlink" title="一些资料"></a>一些资料</h1><ul>
+<h3 id="doExport的处理流程"><a href="#doExport的处理流程" class="headerlink" title="doExport的处理流程"></a>doExport的处理流程</h3><ol>
+<li>检查是否已经暴露</li>
+<li>检查配置接口规范</li>
+<li>checkDefault()配置服务提供者默认调用反射</li>
+<li>准备application,module,registries,monitor,protocol</li>
+<li>标记泛化服务</li>
+<li>非泛化服务加载线程上下文类加载器;checkInterfaceAndMethods()检查接口规范;checkRef()引用规范;标记为非泛化服务</li>
+<li>针对local和stub加载不同的类加载器</li>
+<li>checkApplication()检查application配置完整性</li>
+<li>checkRegistry() 检查registry配置完整性</li>
+<li>checkProtocol() 检查protocol配置完整性</li>
+<li>appendProperties(this) 添加服务配置调用反射</li>
+<li>checkStub(interfaceClass) 检查父子关系及构造函数</li>
+<li>checkMock(interfaceClass) 检查Mock</li>
+<li>doExportUrls-&gt;doExportsUrlsFor1Protocol-&gt;appendParameters() 添加配置参数到map</li>
+<li>通过动态代理将ref转换为invoker</li>
+<li>打包元数据和invoker为wrapperInvoker后，使用AdaptiveProtocol实现，暴露invoker</li>
+</ol>
+<h3 id="init的处理流程"><a href="#init的处理流程" class="headerlink" title="init的处理流程"></a>init的处理流程</h3><ol>
+<li>checkDefualt() 获取全局配置</li>
+<li>处理泛化服务和非泛化服务</li>
+<li>获得dubbo.resolve.file属性值resolve</li>
+<li>准备consumer、application、module、registry、monitor</li>
+<li>checkApplication()检查application配置完整性</li>
+<li>checkStub(interfaceClass) 检查父子关系及构造函数</li>
+<li>checkMock(interfaceClass) 检查Mock</li>
+<li>存储attributes到系统上下文</li>
+<li>createProxy(map)-&gt;refProtocol#refer返回invoker-&gt;proxyFactory#getProxy(invoker)</li>
+<li>创建consumerModel</li>
+<li>通过ApplicationModel初始化consumerModel</li>
+</ol>
+<h1 id="一些资料"><a href="#一些资料" class="headerlink" title="一些资料"></a>一些资料</h1><ul>
 <li>dubbo协议头<a href="https://www.jianshu.com/p/cc7597dfe21a" target="_blank" rel="noopener">https://www.jianshu.com/p/cc7597dfe21a</a></li>
 <li>dubbo协议的一些比较<ul>
 <li><a href="https://www.cnblogs.com/barrywxx/p/8589374.html" target="_blank" rel="noopener">https://www.cnblogs.com/barrywxx/p/8589374.html</a></li>
@@ -417,11 +448,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -433,7 +464,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -441,11 +480,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">每日任务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -453,11 +488,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -469,11 +512,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
+                <a href="javascript:void(0)" class="js-tag color2">-dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">-spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据库基本操作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -481,11 +536,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
               </li>
             
             <div class="clearfix"></div>

@@ -140,27 +140,130 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-大战左神第三集-字符串问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-第八章Dubbo扩展点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/16/大战左神第三集-字符串问题/">大战左神第三集-字符串问题</a>
+      <a class="article-title" href="/2019/09/25/第八章Dubbo扩展点/">第八章Dubbo扩展点</a>
     </h1>
   
 
         
-        <a href="/2019/09/16/大战左神第三集-字符串问题/" class="archive-article-date">
-  	<time datetime="2019-09-16T02:10:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
+        <a href="/2019/09/25/第八章Dubbo扩展点/" class="archive-article-date">
+  	<time datetime="2019-09-25T07:25:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="8-1-Dubbo核心扩展点概述"><a href="#8-1-Dubbo核心扩展点概述" class="headerlink" title="8.1 Dubbo核心扩展点概述"></a>8.1 Dubbo核心扩展点概述</h1><h2 id="8-1-1扩展点的背景"><a href="#8-1-1扩展点的背景" class="headerlink" title="8.1.1扩展点的背景"></a>8.1.1扩展点的背景</h2><h2 id="8-1-2扩展点整体架构"><a href="#8-1-2扩展点整体架构" class="headerlink" title="8.1.2扩展点整体架构"></a>8.1.2扩展点整体架构</h2><h1 id="8-2-RPC层扩展点"><a href="#8-2-RPC层扩展点" class="headerlink" title="8.2 RPC层扩展点"></a>8.2 RPC层扩展点</h1><h2 id="8-2-1-Proxy扩展点"><a href="#8-2-1-Proxy扩展点" class="headerlink" title="8.2.1 Proxy扩展点"></a>8.2.1 Proxy扩展点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"javassist"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ProxyFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;Constants.PROXY_KEY&#125;)</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;Constants.PROXY_KEY&#125;)</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker,<span class="keyword">boolean</span> generic)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker,Class&lt;T&gt; type,URL url)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="已有的扩展类实现"><a href="#已有的扩展类实现" class="headerlink" title="已有的扩展类实现"></a>已有的扩展类实现</h3><ol>
+<li>stub</li>
+<li>jdk</li>
+<li>javassist</li>
+</ol>
+<h2 id="8-2-2-Registry层扩展点"><a href="#8-2-2-Registry层扩展点" class="headerlink" title="8.2.2 Registry层扩展点"></a>8.2.2 Registry层扩展点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"dubbo"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RegistryFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;<span class="string">"protocol"</span>&#125;)</span><br><span class="line">    <span class="function">Registry <span class="title">getRegistry</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类实现"><a href="#扩展类实现" class="headerlink" title="扩展类实现"></a>扩展类实现</h3><ol>
+<li>zookeeper</li>
+<li>redis</li>
+<li>multicast</li>
+<li>dubbo</li>
+</ol>
+<h2 id="8-2-3Cluster扩展点"><a href="#8-2-3Cluster扩展点" class="headerlink" title="8.2.3Cluster扩展点"></a>8.2.3Cluster扩展点</h2><h3 id="1Cluster扩展点"><a href="#1Cluster扩展点" class="headerlink" title="1Cluster扩展点"></a>1Cluster扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(FailoverCluster.NAME)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cluster</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span></span><br><span class="line">    &lt;T&gt; <span class="function">Invoker&lt;T&gt; <span class="title">join</span><span class="params">(Directory&lt;T&gt; directory)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类实现-1"><a href="#扩展类实现-1" class="headerlink" title="扩展类实现"></a>扩展类实现</h3><ol>
+<li>mock</li>
+<li>failover</li>
+<li>failfast</li>
+<li>failsafe</li>
+<li>failback</li>
+<li>forking</li>
+<li>available</li>
+<li>mergeable</li>
+<li>boardcast</li>
+<li>registryaware</li>
+</ol>
+<h3 id="2-RouterFactory扩展点"><a href="#2-RouterFactory扩展点" class="headerlink" title="2 RouterFactory扩展点"></a>2 RouterFactory扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RouterFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(<span class="string">"protocol"</span>)</span><br><span class="line">    <span class="function">Router <span class="title">getRouter</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类"><a href="#扩展类" class="headerlink" title="扩展类"></a>扩展类</h3><ol>
+<li>file</li>
+<li>script</li>
+<li>condition</li>
+<li>service</li>
+<li>app</li>
+<li>tag</li>
+<li>mock</li>
+</ol>
+<h3 id="3-LoadBalance扩展点"><a href="#3-LoadBalance扩展点" class="headerlink" title="3 LoadBalance扩展点"></a>3 LoadBalance扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(RandomLoadBalance.NAME)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LoadBalance</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(<span class="string">"loadbalance"</span>)</span><br><span class="line">    &lt;T&gt; <span class="function">Invoker&lt;T&gt; <span class="title">select</span><span class="params">(List&lt;Invoker&lt;T&gt;&gt; invokers,URL url,Invocation invocation)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类-1"><a href="#扩展类-1" class="headerlink" title="扩展类"></a>扩展类</h3><ol>
+<li>random</li>
+<li>roundrobin</li>
+<li>leastactive</li>
+<li>consistenthash</li>
+</ol>
+<h3 id="4-ConfiguratorFactory扩展点"><a href="#4-ConfiguratorFactory扩展点" class="headerlink" title="4 ConfiguratorFactory扩展点"></a>4 ConfiguratorFactory扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ConfiguratorFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(<span class="string">"protocol"</span>)</span><br><span class="line">    <span class="function">Configurator <span class="title">getConfigurator</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现类"><a href="#实现类" class="headerlink" title="实现类"></a>实现类</h3><ol>
+<li>override</li>
+<li>absent</li>
+</ol>
+<h3 id="5-Merger扩展点"><a href="#5-Merger扩展点" class="headerlink" title="5 Merger扩展点"></a>5 Merger扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Merger</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function">T <span class="title">merge</span> <span class="params">(T... items)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类-2"><a href="#扩展类-2" class="headerlink" title="扩展类"></a>扩展类</h3><ol>
+<li>map</li>
+<li>set</li>
+<li>list</li>
+<li>byte</li>
+<li>char</li>
+<li>short</li>
+<li>int</li>
+<li>long</li>
+<li>float</li>
+<li>double</li>
+<li>boolean</li>
+</ol>
+<h1 id="8-3Remote层扩展点"><a href="#8-3Remote层扩展点" class="headerlink" title="8.3Remote层扩展点"></a>8.3Remote层扩展点</h1><h2 id="8-3-1Protocol层扩展点"><a href="#8-3-1Protocol层扩展点" class="headerlink" title="8.3.1Protocol层扩展点"></a>8.3.1Protocol层扩展点</h2><h3 id="1-protocol扩展点"><a href="#1-protocol扩展点" class="headerlink" title="1 protocol扩展点"></a>1 protocol扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"dubbo"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Protocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getDefaultPort</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="meta">@Adaptive</span></span><br><span class="line">    &lt;T&gt; <span class="function">Exporter&lt;T&gt; <span class="title">export</span><span class="params">(Invoker&lt;T&gt; invoker)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="meta">@Adaptive</span></span><br><span class="line">    &lt;T&gt; <span class="function">Invoker&lt;T&gt; <span class="title">refer</span><span class="params">(Class&lt;T&gt; type,URL url)</span><span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="接口默认规则"><a href="#接口默认规则" class="headerlink" title="接口默认规则"></a>接口默认规则</h3><p>export方法：</p>
+<ol>
+<li>协议收到请求后应记录请求源IP地址</li>
+<li>export方法必须实现幂等</li>
+<li>Invoker实例由框架传入，无需关心协议层</li>
+</ol>
+<p>refer方法：</p>
+<ol>
+<li>调用refer方法返回Invoker对象的invoke方法时，协议也要执行invoke方法</li>
+<li>refer方法返回的自定义Invoker需要继承Invoker接口</li>
+<li>URL参数有check=false时，自定义协议实现必须不能抛出异常，二十在出现连接失败时尝试恢复连接</li>
+</ol>
+<p>destroy方法：</p>
+<ol>
+<li>调用destroy方法的时候，需要销毁所有本协议暴露和引用的方法</li>
+<li>需要释放所有占用的资源</li>
+<li>自定义协议可以在被销毁后，继续导出 和引用新服务</li>
+</ol>
+<h3 id="已实现的Protocol扩展点"><a href="#已实现的Protocol扩展点" class="headerlink" title="已实现的Protocol扩展点"></a>已实现的Protocol扩展点</h3><ol>
+<li>injvm</li>
+<li>dubbo</li>
+<li>rmi</li>
+<li>http</li>
+<li>hessian</li>
+<li>rest</li>
+<li>thrift</li>
+<li>-</li>
+<li>redis</li>
+<li>memcached</li>
+</ol>
+<h3 id="2Filter扩展点"><a href="#2Filter扩展点" class="headerlink" title="2Filter扩展点"></a>2Filter扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Filter</span></span>&#123;</span><br><span class="line">    <span class="function">Result <span class="title">invoke</span><span class="params">(Invoker&lt;?&gt; invoker,Invocation invocation)</span><span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> Result <span class="title">onResponse</span><span class="params">(Result result,Invoker&lt;?&gt; invoker,Invocation invocation)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3ExporterListener-InvokerListener扩展点"><a href="#3ExporterListener-InvokerListener扩展点" class="headerlink" title="3ExporterListener/InvokerListener扩展点"></a>3ExporterListener/InvokerListener扩展点</h3>
       
 
       
@@ -168,11 +271,22 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/16/大战左神第三集-字符串问题/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/25/第八章Dubbo扩展点/">展开全文 >></a>
         </p>
       
 
@@ -202,102 +316,527 @@
 
 
   
-    <article id="post-大战左神第二集-递归和动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-第七章Dubbo集群容错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/16/大战左神第二集-递归和动态规划/">大战左神第二集-递归和动态规划</a>
+      <a class="article-title" href="/2019/09/25/第七章Dubbo集群容错/">第七章Dubbo集群容错</a>
     </h1>
   
 
         
-        <a href="/2019/09/16/大战左神第二集-递归和动态规划/" class="archive-article-date">
-  	<time datetime="2019-09-16T02:09:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
+        <a href="/2019/09/25/第七章Dubbo集群容错/" class="archive-article-date">
+  	<time datetime="2019-09-25T05:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/16/大战左神第二集-递归和动态规划/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-VIM快捷键" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/16/VIM快捷键/">VIM快捷键</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/16/VIM快捷键/" class="archive-article-date">
-  	<time datetime="2019-09-16T01:57:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="命令模式下"><a href="#命令模式下" class="headerlink" title="命令模式下"></a>命令模式下</h1><ul>
-<li>ggyG 全选复制<ul>
-<li>gg:跳到首行</li>
-<li>y :复制到0号寄存器</li>
-<li>G :光标移到最后一样</li>
+        <h1 id="7-1-Cluster层概述"><a href="#7-1-Cluster层概述" class="headerlink" title="7.1 Cluster层概述"></a>7.1 Cluster层概述</h1><h3 id="Cluster层总体工作流程"><a href="#Cluster层总体工作流程" class="headerlink" title="Cluster层总体工作流程"></a>Cluster层总体工作流程</h3><ol>
+<li>生成Invoker对象</li>
+<li>获得可调用服务列表</li>
+<li>做负载均衡</li>
+<li>做RPC调用</li>
+</ol>
+<h1 id="7-2-容错机制的实现"><a href="#7-2-容错机制的实现" class="headerlink" title="7.2 容错机制的实现"></a>7.2 容错机制的实现</h1><h2 id="7-2-1-容错机制概述"><a href="#7-2-1-容错机制概述" class="headerlink" title="7.2.1 容错机制概述"></a>7.2.1 容错机制概述</h2><h3 id="容错机制特性表"><a href="#容错机制特性表" class="headerlink" title="容错机制特性表"></a>容错机制特性表</h3><table>
+<thead>
+<tr>
+<th>机制名</th>
+<th>机制简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Failover</td>
+<td>失败重试</td>
+</tr>
+<tr>
+<td>Failfast</td>
+<td>快速失败并返回异常结果</td>
+</tr>
+<tr>
+<td>Failsafe</td>
+<td>直接忽略异常</td>
+</tr>
+<tr>
+<td>Failback</td>
+<td>记入失败队列，定时重试</td>
+</tr>
+<tr>
+<td>Forking</td>
+<td>同时调用多个，返回一个</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td>广播调用所有可用服务</td>
+</tr>
+<tr>
+<td>Mock</td>
+<td>广播调用所有可用服务，任意一个报错则报错</td>
+</tr>
+<tr>
+<td>Available</td>
+<td>不做负载均衡，遍历到第一个可用节点</td>
+</tr>
+<tr>
+<td>Mergeable</td>
+<td>合并多个节点得到结果</td>
+</tr>
+</tbody></table>
+<h2 id="7-2-2-Cluster接口关系"><a href="#7-2-2-Cluster接口关系" class="headerlink" title="7.2.2 Cluster接口关系"></a>7.2.2 Cluster接口关系</h2><ul>
+<li>invoker<ul>
+<li>AbstractClusterInvoker<ul>
+<li>AvailableClusterInvoker</li>
+<li>BroadcastClusterInvoker</li>
+<li>ForkingClusterInvoker</li>
+<li>FailoverClusterInvoker</li>
+<li>FailfastClusterInvoker</li>
+<li>FailbackClusterInvoker</li>
+<li>FailsafeClusterInvoker</li>
 </ul>
 </li>
-<li>ggvG或ggVG 全选高亮<ul>
-<li>v 进入visual模式</li>
+<li>MockClusterInvoker</li>
+<li>MergeableClusterInvoker</li>
 </ul>
 </li>
-<li>dG 全部删除</li>
-<li>“+y 复制到+寄存器，即系统剪贴板</li>
 </ul>
+<h2 id="7-2-3-FailOver策略"><a href="#7-2-3-FailOver策略" class="headerlink" title="7.2.3 FailOver策略"></a>7.2.3 FailOver策略</h2><h3 id="策略逻辑"><a href="#策略逻辑" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>获取配置参数retries</li>
+<li>初始化集合和对象</li>
+<li>for循环重试<ol>
+<li>校验次数</li>
+<li>负载均衡</li>
+<li>远程调用</li>
+</ol>
+</li>
+</ol>
+<h2 id="7-2-4-Failfast策略"><a href="#7-2-4-Failfast策略" class="headerlink" title="7.2.4 Failfast策略"></a>7.2.4 Failfast策略</h2><h3 id="策略逻辑-1"><a href="#策略逻辑-1" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>负载均衡</li>
+<li>进行远程调用。如果捕获异常，则包装成RpcException抛出</li>
+</ol>
+<h2 id="7-2-5-Failsafe策略"><a href="#7-2-5-Failsafe策略" class="headerlink" title="7.2.5 Failsafe策略"></a>7.2.5 Failsafe策略</h2><h3 id="策略逻辑-2"><a href="#策略逻辑-2" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>负载均衡</li>
+<li>远程调用。如果捕获异常，直接吞掉，返回空结果</li>
+</ol>
+<h2 id="7-2-6-Failback策略"><a href="#7-2-6-Failback策略" class="headerlink" title="7.2.6 Failback策略"></a>7.2.6 Failback策略</h2><h3 id="策略逻辑-3"><a href="#策略逻辑-3" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>负载均衡</li>
+<li>远程调用。如果捕获异常，把invocation保存到重试的cocurrentMap中，并返回空结果集</li>
+<li>定时处理CocurrentMap的失败请求；如果还是失败catch，不做其他处理</li>
+</ol>
+<h2 id="7-2-7-Available策略"><a href="#7-2-7-Available策略" class="headerlink" title="7.2.7 Available策略"></a>7.2.7 Available策略</h2><ol>
+<li>遍历invoker列表；如果可用，调用并返回</li>
+<li>如果没有，抛出异常</li>
+</ol>
+<h2 id="7-2-8-Broadcast策略"><a href="#7-2-8-Broadcast策略" class="headerlink" title="7.2.8 Broadcast策略"></a>7.2.8 Broadcast策略</h2><ol>
+<li>前置操作</li>
+<li>循环遍历所有invoker，直接做rpc调用。记录异常，最后抛出，如果多个异常，只抛出最后一个</li>
+</ol>
+<h2 id="7-2-9-Forking策略"><a href="#7-2-9-Forking策略" class="headerlink" title="7.2.9 Forking策略"></a>7.2.9 Forking策略</h2><ol>
+<li>准备工作</li>
+<li>获取最终调用invoker列表（多个节点）</li>
+<li>调用前的准备工作</li>
+<li>执行调用</li>
+<li>同步等待结果</li>
+</ol>
+<h1 id="7-3-Directory的实现"><a href="#7-3-Directory的实现" class="headerlink" title="7.3 Directory的实现"></a>7.3 Directory的实现</h1><h2 id="7-3-1-总体实现"><a href="#7-3-1-总体实现" class="headerlink" title="7.3.1 总体实现"></a>7.3.1 总体实现</h2><ul>
+<li>Directory<ul>
+<li>AbstractDirectory<ul>
+<li>RegistryDirectory</li>
+<li>StaticDirectory<h3 id="AbstractDirectory"><a href="#AbstractDirectory" class="headerlink" title="AbstractDirectory"></a>AbstractDirectory</h3><h4 id="list方法逻辑"><a href="#list方法逻辑" class="headerlink" title="list方法逻辑"></a>list方法逻辑</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>doList获取所有Invoker列表</li>
+<li>遍历所有router列表，进行invoker过滤</li>
+</ol>
+<h3 id="RegistryDirectory"><a href="#RegistryDirectory" class="headerlink" title="RegistryDirectory"></a>RegistryDirectory</h3><p>动态列表实现：自动从注册中心更新Invoker列表、配置信息、路由列表</p>
+<h3 id="StaticDirectory"><a href="#StaticDirectory" class="headerlink" title="StaticDirectory"></a>StaticDirectory</h3><p>静态列表实现：用于包装已知invoker列表，Directory对象</p>
+<h2 id="7-3-2-RegistryDirectory的实现"><a href="#7-3-2-RegistryDirectory的实现" class="headerlink" title="7.3.2 RegistryDirectory的实现"></a>7.3.2 RegistryDirectory的实现</h2><h3 id="两条逻辑线"><a href="#两条逻辑线" class="headerlink" title="两条逻辑线"></a>两条逻辑线</h3><ol>
+<li>框架与注册中心的订阅，并动态更新本地Invoker列表、路由列表、配置信息的逻辑</li>
+<li>子类实现父类的doList方法</li>
+</ol>
+<h3 id="1订阅与动态更新"><a href="#1订阅与动态更新" class="headerlink" title="1订阅与动态更新"></a>1订阅与动态更新</h3><h4 id="subscribe"><a href="#subscribe" class="headerlink" title="subscribe"></a>subscribe</h4><h4 id="notify"><a href="#notify" class="headerlink" title="notify"></a>notify</h4><p>监听内容包括：配置configurators、路由规则router、Invoker列表</p>
+<ol>
+<li>新建三个List</li>
+<li>解析并更新配置参数<ol>
+<li>router类：遍历所有router类URL，然后通过Router工厂包装URL为路由规则</li>
+<li>Configurator</li>
+<li>Invoker类：<ul>
+<li>禁用empty协议URL，并销毁本地缓存的invoker</li>
+<li>如果监听的URL不为空，则把URL和本地老的URL合并，创建新的Invoker，销毁旧的Invoker</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="2doList的实现"><a href="#2doList的实现" class="headerlink" title="2doList的实现"></a>2doList的实现</h3><ol>
+<li>检查服务是否被禁用</li>
+<li>根据方法名和首参数匹配Invoker</li>
+<li>根据方法名匹配invoker</li>
+<li>根据* 匹配invoker</li>
+<li>遍历methodInvokerMap。兜底操作，如果还没有返回空列表</li>
+</ol>
+<h1 id="7-4-路由的实现"><a href="#7-4-路由的实现" class="headerlink" title="7.4 路由的实现"></a>7.4 路由的实现</h1><h2 id="7-4-1-路由的总体结构"><a href="#7-4-1-路由的总体结构" class="headerlink" title="7.4.1 路由的总体结构"></a>7.4.1 路由的总体结构</h2><ul>
+<li>RouterFactory@SPI<ul>
+<li>ConditionRouterFactory</li>
+<li>FileRouterFactory</li>
+<li>ScriptRouterFactory</li>
+</ul>
+</li>
+<li>Router<ul>
+<li>MockInvokerSelector</li>
+<li>ScriptRouter</li>
+<li>ConditionRouter</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-4-2-条件路由的参数规则"><a href="#7-4-2-条件路由的参数规则" class="headerlink" title="7.4.2 条件路由的参数规则"></a>7.4.2 条件路由的参数规则</h2><h3 id="路由规则"><a href="#路由规则" class="headerlink" title="路由规则"></a>路由规则</h3><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>condition://</td>
+<td>路由规则类型</td>
+</tr>
+<tr>
+<td>0.0.0.0</td>
+<td>对所有ip生效</td>
+</tr>
+<tr>
+<td>com.foo.Service</td>
+<td>对指定服务生效</td>
+</tr>
+<tr>
+<td>category=routers</td>
+<td>动态配置类型</td>
+</tr>
+<tr>
+<td>dynamic=false</td>
+<td>持久数据</td>
+</tr>
+<tr>
+<td>enable=true</td>
+<td>覆盖规则是否生效。默认生效</td>
+</tr>
+<tr>
+<td>force=false</td>
+<td>路由为空时是否强制执行</td>
+</tr>
+<tr>
+<td>runtime=false</td>
+<td>是否每次调用时实行路由规则</td>
+</tr>
+<tr>
+<td>priority=1</td>
+<td>路由规则优先级，越大越先执行</td>
+</tr>
+<tr>
+<td>rule=URL.endcode(“host=10.20.153.10=&gt;host=10.20.153.11”)</td>
+<td>表示路由规则的内容</td>
+</tr>
+</tbody></table>
+<h2 id="7-4-3-条件路由的实现"><a href="#7-4-3-条件路由的实现" class="headerlink" title="7.4.3 条件路由的实现"></a>7.4.3 条件路由的实现</h2><h3 id="ConditionRouter构造逻辑"><a href="#ConditionRouter构造逻辑" class="headerlink" title="ConditionRouter构造逻辑"></a>ConditionRouter构造逻辑</h3><ol>
+<li>根据URL的键rule获取对应的规则字符串</li>
+<li>解析两个路由规则</li>
+</ol>
+<h3 id="route-方法的实现原理"><a href="#route-方法的实现原理" class="headerlink" title="route 方法的实现原理"></a>route 方法的实现原理</h3><ol>
+<li>校验</li>
+<li>遍历invoker列表，按照thenRule规则找出符合规则的Invoker加入集合</li>
+<li>返回结果</li>
+</ol>
+<h2 id="7-4-4-文件路由的实现"><a href="#7-4-4-文件路由的实现" class="headerlink" title="7.4.4 文件路由的实现"></a>7.4.4 文件路由的实现</h2><p>读取文件内容，然后调用对应的脚本路由进行解析</p>
+<h2 id="7-4-5-脚本路由的实现"><a href="#7-4-5-脚本路由的实现" class="headerlink" title="7.4.5 脚本路由的实现"></a>7.4.5 脚本路由的实现</h2><p>默认使用js解析器</p>
+<h3 id="脚本路由的构造方法逻辑"><a href="#脚本路由的构造方法逻辑" class="headerlink" title="脚本路由的构造方法逻辑"></a>脚本路由的构造方法逻辑</h3><ol>
+<li>初始化参数</li>
+<li>初始化脚本执行引擎</li>
+</ol>
+<h1 id="7-5-负载均衡"><a href="#7-5-负载均衡" class="headerlink" title="7.5 负载均衡"></a>7.5 负载均衡</h1><h2 id="7-5-1-包装后的负载均衡"><a href="#7-5-1-包装后的负载均衡" class="headerlink" title="7.5.1 包装后的负载均衡"></a>7.5.1 包装后的负载均衡</h2><h3 id="AbstractClusterInvoker-select封装了一些新特性"><a href="#AbstractClusterInvoker-select封装了一些新特性" class="headerlink" title="AbstractClusterInvoker#select封装了一些新特性"></a>AbstractClusterInvoker#select封装了一些新特性</h3><ol>
+<li>粘滞连接</li>
+<li>可用检测</li>
+<li>避免重复调用<ol>
+<li>检查URL中是否由配置粘滞连接，优先使用粘滞连接</li>
+<li>ExtensionLoader获取负载均衡的具体实现</li>
+<li>节点的重新选择</li>
+<li>遍历已用节点，选出可用节点，负载均衡选出一个节点；如果还找不到调用节点，返回null</li>
+</ol>
+</li>
+</ol>
+<h2 id="7-5-2-负载均衡的总体结构"><a href="#7-5-2-负载均衡的总体结构" class="headerlink" title="7.5.2 负载均衡的总体结构"></a>7.5.2 负载均衡的总体结构</h2><h1 id="7-6-Merger的实现"><a href="#7-6-Merger的实现" class="headerlink" title="7.6 Merger的实现"></a>7.6 Merger的实现</h1><h1 id="7-7-Mock"><a href="#7-7-Mock" class="headerlink" title="7.7 Mock"></a>7.7 Mock</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/25/第七章Dubbo集群容错/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-第六章Dubbo远程调用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/25/第六章Dubbo远程调用/">第六章Dubbo远程调用</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/25/第六章Dubbo远程调用/" class="archive-article-date">
+  	<time datetime="2019-09-25T00:49:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="6-1-Dubbo调用介绍"><a href="#6-1-Dubbo调用介绍" class="headerlink" title="6.1 Dubbo调用介绍"></a>6.1 Dubbo调用介绍</h1><ol>
+<li>客户端启动时，从注册中心拉取和订阅服务列表，然后由cluster聚合为一个invoker</li>
+<li>具体调用时，首先在本地进行路由，然后根据路由的结果进行负载均衡，最终选择一个机器进行调用</li>
+<li>调用时，客户端将请求交给底层io线程池，</li>
+<li>Dubbo将服务调用和telnet调用做了端口复用，区别是telnet调用使用fastjson，而其他RPC调用使用Hessian方式</li>
+</ol>
+<h1 id="6-2-Dubbo协议详解"><a href="#6-2-Dubbo协议详解" class="headerlink" title="6.2 Dubbo协议详解"></a>6.2 Dubbo协议详解</h1><ol>
+<li>0-3字节：<ol>
+<li>0-15bit 魔数(0-7魔数高位0xda00，8-15魔术低位0xbb)</li>
+<li>16 请求相应位</li>
+<li>17 需要往返位</li>
+<li>18 事件</li>
+<li>19-23 序列化器ID</li>
+<li>24-31 状态</li>
+</ol>
+</li>
+<li>4-11字节：RPC请求ID</li>
+<li>12-15字节：消息体数据长度</li>
+<li>16-20字节：各种参数等 </li>
+</ol>
+<h3 id="粘包处理"><a href="#粘包处理" class="headerlink" title="粘包处理"></a>粘包处理</h3><ol>
+<li>协议头魔数0xdabb</li>
+</ol>
+<h3 id="并发处理"><a href="#并发处理" class="headerlink" title="并发处理"></a>并发处理</h3><ol>
+<li>协议头全局请求id</li>
+</ol>
+<h1 id="6-3-编解码器原理"><a href="#6-3-编解码器原理" class="headerlink" title="6.3 编解码器原理"></a>6.3 编解码器原理</h1><h2 id="6-3-1-Dubbo协议编码器"><a href="#6-3-1-Dubbo协议编码器" class="headerlink" title="6.3.1 Dubbo协议编码器"></a>6.3.1 Dubbo协议编码器</h2><h3 id="请求对象编码流程-ExchangeCodec-encodeRequst"><a href="#请求对象编码流程-ExchangeCodec-encodeRequst" class="headerlink" title="请求对象编码流程 ExchangeCodec#encodeRequst"></a>请求对象编码流程 ExchangeCodec#encodeRequst</h3><ol>
+<li>获取指定或默认的序列化协议（Hessian2）</li>
+<li>构造16字节头</li>
+<li>写入魔数</li>
+<li>写入请求位+往返位+事件+序列化编号</li>
+<li>写入RPC唯一请求ID</li>
+<li>向buffer写入消息体</li>
+<li>向16字节头写入消息体长度</li>
+<li>将header写入buffer</li>
+<li>设置buffer到消息体结束位置</li>
+</ol>
+<h3 id="编码请求对象体-DubboCodec-encodeRequestData"><a href="#编码请求对象体-DubboCodec-encodeRequestData" class="headerlink" title="编码请求对象体 DubboCodec#encodeRequestData"></a>编码请求对象体 DubboCodec#encodeRequestData</h3><ol>
+<li>写入框架版本</li>
+<li>写入调用接口</li>
+<li>写入接口指定版本</li>
+<li>写入方法名称</li>
+<li>写入方法参数类型</li>
+<li>写入方法参数值</li>
+<li>写入隐式参数</li>
+</ol>
+<h3 id="响应对象编码流程-ExcanhgeCodec-encodeResponse"><a href="#响应对象编码流程-ExcanhgeCodec-encodeResponse" class="headerlink" title="响应对象编码流程 ExcanhgeCodec#encodeResponse"></a>响应对象编码流程 ExcanhgeCodec#encodeResponse</h3><ol>
+<li>获取指定或默认序列化协议</li>
+<li>构造16字头</li>
+<li>写入魔数</li>
+<li>写入响应位+事件位</li>
+<li>写入响应状态</li>
+<li>写入唯一标识</li>
+<li>写入响应对象Result</li>
+<li>写入消息体长度</li>
+<li>写入消息到buffer</li>
+<li>处理异常</li>
+</ol>
+<h3 id="编码响应对象体-DubboCodec-endcodeResponseData"><a href="#编码响应对象体-DubboCodec-endcodeResponseData" class="headerlink" title="编码响应对象体 DubboCodec#endcodeResponseData"></a>编码响应对象体 DubboCodec#endcodeResponseData</h3><ol>
+<li>判断版本参数是否支持服务端参数返回</li>
+<li>提取正常返回结果</li>
+<li>根据结果写标志位</li>
+<li>标记调用抛异常，并序列化异常</li>
+<li>记录服务端Dubbo版本，并且返回服务端隐藏参数</li>
+</ol>
+<h2 id="6-3-2-Dubbo协议解码器"><a href="#6-3-2-Dubbo协议解码器" class="headerlink" title="6.3.2 Dubbo协议解码器"></a>6.3.2 Dubbo协议解码器</h2><h3 id="dubboCodec-decodeBody"><a href="#dubboCodec-decodeBody" class="headerlink" title="dubboCodec#decodeBody"></a>dubboCodec#decodeBody</h3><ol>
+<li>检查requst，获取requestId</li>
+<li>在io线程中直接解码/交给Dubbo业务线程池解码</li>
+<li>消息体转换成RpcInvocation对象</li>
+</ol>
+<h3 id="DecodeableRpcInvocation-decode"><a href="#DecodeableRpcInvocation-decode" class="headerlink" title="DecodeableRpcInvocation#decode"></a>DecodeableRpcInvocation#decode</h3><ol>
+<li>读取框架版本</li>
+<li>读取调用接口</li>
+<li>读取接口版本</li>
+<li>读取方法名称</li>
+<li>读取方法参数类型</li>
+<li>读取方法参数</li>
+<li>读取隐式参数</li>
+<li>处理异步回调</li>
+</ol>
+<h3 id="解析响应-DecodeableRpcResult-decode"><a href="#解析响应-DecodeableRpcResult-decode" class="headerlink" title="解析响应 DecodeableRpcResult#decode"></a>解析响应 DecodeableRpcResult#decode</h3><ol>
+<li>处理返回接口标记位NULL</li>
+<li>读取方法调用返回指类型；如果返回值包含泛型，则调用反序列化解析接口；结果保存在result中</li>
+<li>处理返回异常结果，结果保存在exception中</li>
+<li>处理NULL带隐式参数</li>
+<li>处理其他隐式参数</li>
+</ol>
+<h1 id="6-4-telnet调用原理"><a href="#6-4-telnet调用原理" class="headerlink" title="6.4 telnet调用原理"></a>6.4 telnet调用原理</h1><h2 id="6-4-1-tel指令解析原理"><a href="#6-4-1-tel指令解析原理" class="headerlink" title="6.4.1 tel指令解析原理"></a>6.4.1 tel指令解析原理</h2><h3 id="TelnetHandlerAdapter-telnet-telnet转发解析"><a href="#TelnetHandlerAdapter-telnet-telnet转发解析" class="headerlink" title="TelnetHandlerAdapter#telnet telnet转发解析"></a>TelnetHandlerAdapter#telnet telnet转发解析</h3><ol>
+<li>提取command</li>
+<li>提取message</li>
+<li>检查系统是否有对应的扩展点，交给对应的扩展点执行</li>
+<li>返回消息结果</li>
+</ol>
+<h3 id="InvokerTelnetHandler-telnet"><a href="#InvokerTelnetHandler-telnet" class="headerlink" title="InvokerTelnetHandler#telnet"></a>InvokerTelnetHandler#telnet</h3><ol>
+<li>提取service,method,参数</li>
+<li>检索方法</li>
+<li>根据检索结果invoker进行调用</li>
+</ol>
+<h2 id="6-4-2-Telnet实现健康监测"><a href="#6-4-2-Telnet实现健康监测" class="headerlink" title="6.4.2 Telnet实现健康监测"></a>6.4.2 Telnet实现健康监测</h2><h3 id="健康监测扩展点"><a href="#健康监测扩展点" class="headerlink" title="健康监测扩展点"></a>健康监测扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StatusChecker</span></span>&#123;</span><br><span class="line">    <span class="function">Status <span class="title">check</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>健康检查实现类</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DataSourceStatusChecker</td>
+<td>数据库状态检查</td>
+</tr>
+<tr>
+<td>LoadStatusChecker</td>
+<td>系统平均负载检查</td>
+</tr>
+<tr>
+<td>MemoryStatusChecker</td>
+<td>JVM内存检查</td>
+</tr>
+<tr>
+<td>RegistryStatusChecker</td>
+<td>注册中心状态检查</td>
+</tr>
+<tr>
+<td>ServerStatusChecker</td>
+<td>Dubbo服务暴露检查</td>
+</tr>
+<tr>
+<td>SpringStatusChecker</td>
+<td>Spring状态检查</td>
+</tr>
+<tr>
+<td>ThreadPoolStatusChecker</td>
+<td>Dubbo线程池检查</td>
+</tr>
+</tbody></table>
+<h1 id="6-5-ChannelHandler"><a href="#6-5-ChannelHandler" class="headerlink" title="6.5 ChannelHandler"></a>6.5 ChannelHandler</h1><h2 id="6-5-1-核心Handler和模型"><a href="#6-5-1-核心Handler和模型" class="headerlink" title="6.5.1 核心Handler和模型"></a>6.5.1 核心Handler和模型</h2><h3 id="Handler五种状态"><a href="#Handler五种状态" class="headerlink" title="Handler五种状态"></a>Handler五种状态</h3><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>connected</td>
+<td>Channel已经被创建</td>
+</tr>
+<tr>
+<td>disconnected</td>
+<td>Channel已经被断开</td>
+</tr>
+<tr>
+<td>sent</td>
+<td>消息被发送</td>
+</tr>
+<tr>
+<td>received</td>
+<td>消息被接受</td>
+</tr>
+<tr>
+<td>caught</td>
+<td>捕获到异常</td>
+</tr>
+</tbody></table>
+<h3 id="ChannelPipeline"><a href="#ChannelPipeline" class="headerlink" title="ChannelPipeline"></a>ChannelPipeline</h3><ol>
+<li>通过ChannelInboundHandler,ChannelOutboundHandler来控制范围</li>
+<li>通过装饰器模式来减少PipelineHandler数量</li>
+</ol>
+<h3 id="ExchangeHandlerAdapter"><a href="#ExchangeHandlerAdapter" class="headerlink" title="ExchangeHandlerAdapter"></a>ExchangeHandlerAdapter</h3><ol>
+<li>查找Invocation相关的invoker</li>
+<li>调用业务方具体方法</li>
+</ol>
+<h2 id="6-5-2Dubbo请求响应Handler"><a href="#6-5-2Dubbo请求响应Handler" class="headerlink" title="6.5.2Dubbo请求响应Handler"></a>6.5.2Dubbo请求响应Handler</h2><h3 id="HeaderExchangeHandler处理内容"><a href="#HeaderExchangeHandler处理内容" class="headerlink" title="HeaderExchangeHandler处理内容"></a>HeaderExchangeHandler处理内容</h3><ol>
+<li>更新发送和读取请求时间戳</li>
+<li>判断请求格式和编解码是否有错</li>
+<li>处理Request请求和Response正常响应</li>
+<li>支持telnet调用</li>
+</ol>
+<h3 id="HeaderExchangeHandler-handleRequest"><a href="#HeaderExchangeHandler-handleRequest" class="headerlink" title="HeaderExchangeHandler#handleRequest"></a>HeaderExchangeHandler#handleRequest</h3><ol>
+<li>检查请求格式</li>
+<li>触发方法调用</li>
+</ol>
+<h3 id="HeaderExchangeHandler-handleResponse"><a href="#HeaderExchangeHandler-handleResponse" class="headerlink" title="HeaderExchangeHandler#handleResponse"></a>HeaderExchangeHandler#handleResponse</h3><ol>
+<li>唤醒阻塞线程</li>
+</ol>
+<h2 id="6-5-3-Dubbo心跳Handler"><a href="#6-5-3-Dubbo心跳Handler" class="headerlink" title="6.5.3 Dubbo心跳Handler"></a>6.5.3 Dubbo心跳Handler</h2><p>Dubbo在客户端和服务端都复用心跳实现代码，抽象成HeartBeatTask任务进行处理</p>
+<ol>
+<li>TCP连接超过心跳事件发送，事件报文</li>
+<li>客户端空闲超时触发重连（默认超时3分钟）</li>
+</ol>
 
       
 
@@ -311,7 +850,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">装逼利器</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
         		</li>
       		
 		</ul>
@@ -321,7 +860,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/16/VIM快捷键/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/25/第六章Dubbo远程调用/">展开全文 >></a>
         </p>
       
 
@@ -351,35 +890,159 @@
 
 
   
-    <article id="post-大战左神第一集-二叉树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-Idea快捷键收集" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/16/大战左神第一集-二叉树/">大战左神第一集-二叉树</a>
+      <a class="article-title" href="/2019/09/24/Idea快捷键收集/">Idea快捷键收集</a>
     </h1>
   
 
         
-        <a href="/2019/09/16/大战左神第一集-二叉树/" class="archive-article-date">
-  	<time datetime="2019-09-16T01:00:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
+        <a href="/2019/09/24/Idea快捷键收集/" class="archive-article-date">
+  	<time datetime="2019-09-24T10:51:35.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-24</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="1打印二叉树边界"><a href="#1打印二叉树边界" class="headerlink" title="1打印二叉树边界"></a>1打印二叉树边界</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> InOrderTraverse <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHeight</span><span class="params">(t)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    lHeight = getHeight(t.left)</span><br><span class="line">    rHeight =getHeight(t.right)</span><br><span class="line">    <span class="keyword">return</span> max(lHeight,rHeight)+<span class="number">1</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_border1</span><span class="params">(t)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    1.头节点为边界节点</span></span><br><span class="line"><span class="string">    2.叶子节点为边界节点</span></span><br><span class="line"><span class="string">    3.每层最左或最右的节点</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    tHeight=getHeight(t)</span><br><span class="line">    NodeEdge=[[<span class="literal">None</span>,<span class="literal">None</span>] <span class="keyword">for</span> i <span class="keyword">in</span> range(tHeight)]</span><br><span class="line">    set_edge(t,<span class="number">0</span>,NodeEdge)</span><br><span class="line">    <span class="comment">#打印左边界</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(tHeight):</span><br><span class="line">        print(NodeEdge[i][<span class="number">0</span>].val,end=<span class="string">","</span>)</span><br><span class="line">    <span class="comment">#打印既不是左边界也不是右边界</span></span><br><span class="line">    print_leaf_not_in_map(t,<span class="number">0</span>,NodeEdge) </span><br><span class="line">    <span class="comment">#打印右边界</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(tHeight<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">        print(NodeEdge[j][<span class="number">1</span>].val,end=<span class="string">","</span>)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_edge</span><span class="params">(head,level,NodeEdge)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    NodeEdge[level][<span class="number">0</span>]= head <span class="keyword">if</span> <span class="keyword">not</span> NodeEdge[level][<span class="number">0</span>] <span class="keyword">else</span> NodeEdge[level][<span class="number">0</span>]</span><br><span class="line">    NodeEdge[level][<span class="number">1</span>]= head</span><br><span class="line">    set_edge(head.left,level+<span class="number">1</span>,NodeEdge)</span><br><span class="line">    set_edge(head.right,level+<span class="number">1</span>,NodeEdge)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_leaf_not_in_map</span><span class="params">(t,level,NodeEdge)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> t.left==<span class="literal">None</span> <span class="keyword">and</span> t.right==<span class="literal">None</span> <span class="keyword">and</span> t!=NodeEdge[level][<span class="number">0</span>] <span class="keyword">and</span> t!=NodeEdge[<span class="number">1</span>]:</span><br><span class="line">        print(t.val,end=<span class="string">","</span>)</span><br><span class="line">    print_leaf_not_in_map(t.left,level+<span class="number">1</span>,NodeEdge)</span><br><span class="line">    print_leaf_not_in_map(t.right,level+<span class="number">1</span>,NodeEdge)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_border2</span><span class="params">(t)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    1.头节点为边界节点</span></span><br><span class="line"><span class="string">    2.叶节点为边界节点</span></span><br><span class="line"><span class="string">    3.树左边界延伸下去的为边界节点</span></span><br><span class="line"><span class="string">    4.树右边界延伸下去的为边界节点</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(t.val,end=<span class="string">","</span>)</span><br><span class="line">    <span class="keyword">if</span> t.left <span class="keyword">and</span> t.right:</span><br><span class="line">        printLeftEdge(t.left,<span class="literal">True</span>)</span><br><span class="line">        printRightEdge(t.right,<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print_border2(t.left <span class="keyword">if</span> t.left <span class="keyword">else</span> t.right)</span><br><span class="line">    print()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printLeftEdge</span><span class="params">(t,p)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">print</span> <span class="keyword">or</span> ((<span class="keyword">not</span> t.left) <span class="keyword">and</span> (<span class="keyword">not</span> t.right)):</span><br><span class="line">        print(t.val,end=<span class="string">","</span>)</span><br><span class="line">    printLeftEdge(t.left,p)</span><br><span class="line">    printLeftEdge(t.right,p <span class="keyword">and</span> (<span class="keyword">not</span> t.left))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printRightEdge</span><span class="params">(t,p)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    printRightEdge(t.left,p <span class="keyword">and</span> (<span class="keyword">not</span> t.right))</span><br><span class="line">    printRightEdge(t.right,p)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">print</span> <span class="keyword">or</span> ((<span class="keyword">not</span> t.left) <span class="keyword">and</span> (<span class="keyword">not</span> t.right)):</span><br><span class="line">        print(t.val,end=<span class="string">","</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    t=TreeNode.exampleTree()</span><br><span class="line">    inorder_traverse_recurse(t)</span><br><span class="line">    print()</span><br><span class="line">    print_border1(t)</span><br><span class="line">    print()</span><br><span class="line">    print_border2(t)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">        1</span></span><br><span class="line"><span class="string">       2 8</span></span><br><span class="line"><span class="string">      3 4</span></span><br><span class="line"><span class="string">       5 6</span></span><br><span class="line"><span class="string">        7</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+        
+      
 
-<h1 id="2直观的打印二叉树"><a href="#2直观的打印二叉树" class="headerlink" title="2直观的打印二叉树"></a>2直观的打印二叉树</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> *</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_tree</span><span class="params">(t)</span>:</span></span><br><span class="line">    print(<span class="string">"Binary Tree:"</span>)</span><br><span class="line">    print_inorder(t,<span class="number">0</span>,<span class="string">"H"</span>,<span class="number">17</span>)</span><br><span class="line">    print()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_inorder</span><span class="params">(head,height,to,l)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print_inorder(head.right,height+<span class="number">1</span>,<span class="string">"v"</span>,l)</span><br><span class="line">    val =to+str(head.val)+to</span><br><span class="line">    lenM = len(val)</span><br><span class="line">    lenL = (l-lenM)//<span class="number">2</span></span><br><span class="line">    lenR = l-lenM-lenL</span><br><span class="line">    val= <span class="string">" "</span>*lenL+val+<span class="string">" "</span>*lenR</span><br><span class="line">    print(<span class="string">" "</span>*height*l+val)</span><br><span class="line">    print_inorder(head.left,height+<span class="number">1</span>,<span class="string">"^"</span>,l)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    r = TreeNode.exampleTree()</span><br><span class="line">    print_tree(r)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 
-<h1 id="3二叉树的序列化与反序列化"><a href="#3二叉树的序列化与反序列化" class="headerlink" title="3二叉树的序列化与反序列化"></a>3二叉树的序列化与反序列化</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> InOrderTraverse <span class="keyword">import</span> inorder_traverse_recurse</span><br><span class="line"><span class="keyword">from</span> queue <span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_serial_tree</span><span class="params">(t)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"None,"</span></span><br><span class="line">    res=str(t.val)+<span class="string">","</span></span><br><span class="line">    res+=preorder_serial_tree(t.left)</span><br><span class="line">    res+=preorder_serial_tree(t.right)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_deserial_tree</span><span class="params">(s)</span>:</span></span><br><span class="line">    st = s.pop(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">if</span> st==<span class="string">"None"</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    nt = TreeNode(int(st))</span><br><span class="line">    nt.left=preorder_deserial_tree(s)</span><br><span class="line">    nt.right=preorder_deserial_tree(s)</span><br><span class="line">    <span class="keyword">return</span> nt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">levelorder_serial_tree</span><span class="params">(t)</span>:</span></span><br><span class="line">    q=[t]</span><br><span class="line">    res=<span class="string">""</span></span><br><span class="line">    <span class="keyword">while</span> q:</span><br><span class="line">        tq = q.pop(<span class="number">0</span>)</span><br><span class="line">        res+=((str(tq.val)+<span class="string">","</span>) <span class="keyword">if</span> tq <span class="keyword">else</span> <span class="string">"None,"</span>)</span><br><span class="line">        <span class="keyword">if</span> tq:</span><br><span class="line">            q.append(tq.left)</span><br><span class="line">            q.append(tq.right)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">levelorder_deserial_tree</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(s)==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    head = TreeNode(int(s.pop(<span class="number">0</span>)))</span><br><span class="line">    q=[head]</span><br><span class="line">    <span class="keyword">while</span> q:</span><br><span class="line">        st= q.pop(<span class="number">0</span>)</span><br><span class="line">        left = s.pop(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> left!=<span class="string">"None"</span>:</span><br><span class="line">            st.left=TreeNode(int(left))</span><br><span class="line">            q.append(st.left)</span><br><span class="line">        right = s.pop(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> right!=<span class="string">"None"</span>:</span><br><span class="line">            st.right=TreeNode(int(right))</span><br><span class="line">            q.append(st.right)</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    t = TreeNode.exampleTree()</span><br><span class="line">    res = preorder_serial_tree(t)</span><br><span class="line">    print(res)</span><br><span class="line">    res1 = res.strip(<span class="string">','</span>).split(<span class="string">','</span>)</span><br><span class="line">    r = preorder_deserial_tree(res1)</span><br><span class="line">    inorder_traverse_recurse(t)</span><br><span class="line">    print()</span><br><span class="line">    inorder_traverse_recurse(r) </span><br><span class="line">    print()</span><br><span class="line">    res2=levelorder_serial_tree(t)</span><br><span class="line">    print(res2)</span><br><span class="line">    res3=res2.strip(<span class="string">','</span>).split(<span class="string">','</span>)</span><br><span class="line">    r2 = levelorder_deserial_tree(res3)</span><br><span class="line">    inorder_traverse_recurse(r2)</span><br></pre></td></tr></table></figure>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/24/Idea快捷键收集/">展开全文 >></a>
+        </p>
+      
 
-<h1 id="4遍历二叉树的神级方法"><a href="#4遍历二叉树的神级方法" class="headerlink" title="4遍历二叉树的神级方法"></a>4遍历二叉树的神级方法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
 
-<h1 id="5在二叉树中找到累加和为指定值的最长路径长度"><a href="#5在二叉树中找到累加和为指定值的最长路径长度" class="headerlink" title="5在二叉树中找到累加和为指定值的最长路径长度"></a>5在二叉树中找到累加和为指定值的最长路径长度</h1><h1 id="6找到二叉树中的最大搜索二叉子树"><a href="#6找到二叉树中的最大搜索二叉子树" class="headerlink" title="6找到二叉树中的最大搜索二叉子树"></a>6找到二叉树中的最大搜索二叉子树</h1><h1 id="7找到二叉树中符合搜索二叉树条件的最大拓扑结构"><a href="#7找到二叉树中符合搜索二叉树条件的最大拓扑结构" class="headerlink" title="7找到二叉树中符合搜索二叉树条件的最大拓扑结构"></a>7找到二叉树中符合搜索二叉树条件的最大拓扑结构</h1><h1 id="8二叉树的按层打印与zigzag打印"><a href="#8二叉树的按层打印与zigzag打印" class="headerlink" title="8二叉树的按层打印与zigzag打印"></a>8二叉树的按层打印与zigzag打印</h1><h1 id="9调整搜索二叉树中两个错误的节点"><a href="#9调整搜索二叉树中两个错误的节点" class="headerlink" title="9调整搜索二叉树中两个错误的节点"></a>9调整搜索二叉树中两个错误的节点</h1><h1 id="10判断t1树是否包含t2树的全部拓扑结构"><a href="#10判断t1树是否包含t2树的全部拓扑结构" class="headerlink" title="10判断t1树是否包含t2树的全部拓扑结构"></a>10判断t1树是否包含t2树的全部拓扑结构</h1><h1 id="11判断t1树种是否有与t2树拓扑结构完全相同的子树"><a href="#11判断t1树种是否有与t2树拓扑结构完全相同的子树" class="headerlink" title="11判断t1树种是否有与t2树拓扑结构完全相同的子树"></a>11判断t1树种是否有与t2树拓扑结构完全相同的子树</h1><h1 id="12判断二叉树是否为平衡二叉树"><a href="#12判断二叉树是否为平衡二叉树" class="headerlink" title="12判断二叉树是否为平衡二叉树"></a>12判断二叉树是否为平衡二叉树</h1><h1 id="13根据后序数组重建搜索二叉树"><a href="#13根据后序数组重建搜索二叉树" class="headerlink" title="13根据后序数组重建搜索二叉树"></a>13根据后序数组重建搜索二叉树</h1><h1 id="14判断一棵二叉树是否为搜索二叉树和完全二叉树"><a href="#14判断一棵二叉树是否为搜索二叉树和完全二叉树" class="headerlink" title="14判断一棵二叉树是否为搜索二叉树和完全二叉树"></a>14判断一棵二叉树是否为搜索二叉树和完全二叉树</h1><h1 id="15通过有序数组生成平衡搜索二叉树"><a href="#15通过有序数组生成平衡搜索二叉树" class="headerlink" title="15通过有序数组生成平衡搜索二叉树"></a>15通过有序数组生成平衡搜索二叉树</h1><h1 id="16在二叉树种找到一个节点的后继节点"><a href="#16在二叉树种找到一个节点的后继节点" class="headerlink" title="16在二叉树种找到一个节点的后继节点"></a>16在二叉树种找到一个节点的后继节点</h1><h1 id="17在二叉树中找到两个节点的最近祖先"><a href="#17在二叉树中找到两个节点的最近祖先" class="headerlink" title="17在二叉树中找到两个节点的最近祖先"></a>17在二叉树中找到两个节点的最近祖先</h1><h1 id="18Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询问题"><a href="#18Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询问题" class="headerlink" title="18Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询问题"></a>18Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询问题</h1><h1 id="19二叉树节点间的最大距离问题"><a href="#19二叉树节点间的最大距离问题" class="headerlink" title="19二叉树节点间的最大距离问题"></a>19二叉树节点间的最大距离问题</h1><h1 id="20先序中序和后序数组两两结合重建二叉树"><a href="#20先序中序和后序数组两两结合重建二叉树" class="headerlink" title="20先序中序和后序数组两两结合重建二叉树"></a>20先序中序和后序数组两两结合重建二叉树</h1><h1 id="21通过先序和中序数组生成后序数组"><a href="#21通过先序和中序数组生成后序数组" class="headerlink" title="21通过先序和中序数组生成后序数组"></a>21通过先序和中序数组生成后序数组</h1><h1 id="22统计和生成所有不同的二叉树"><a href="#22统计和生成所有不同的二叉树" class="headerlink" title="22统计和生成所有不同的二叉树"></a>22统计和生成所有不同的二叉树</h1><h1 id="23统计完全二叉树的节点数"><a href="#23统计完全二叉树的节点数" class="headerlink" title="23统计完全二叉树的节点数"></a>23统计完全二叉树的节点数</h1>
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-第一章Dubbo高性能RPC通信框架" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/23/第一章Dubbo高性能RPC通信框架/">第一章Dubbo高性能RPC通信框架</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/23/第一章Dubbo高性能RPC通信框架/" class="archive-article-date">
+  	<time datetime="2019-09-23T14:59:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="1-1-应用框架演进过程"><a href="#1-1-应用框架演进过程" class="headerlink" title="1.1 应用框架演进过程"></a>1.1 应用框架演进过程</h1><h1 id="1-2-Dubbo简介"><a href="#1-2-Dubbo简介" class="headerlink" title="1.2 Dubbo简介"></a>1.2 Dubbo简介</h1><h1 id="1-3-Dubbo总体大图"><a href="#1-3-Dubbo总体大图" class="headerlink" title="1.3 Dubbo总体大图"></a>1.3 Dubbo总体大图</h1><h2 id="1-3-1-Dubbo总体分层"><a href="#1-3-1-Dubbo总体分层" class="headerlink" title="1.3.1 Dubbo总体分层"></a>1.3.1 Dubbo总体分层</h2><table>
+<thead>
+<tr>
+<th align="center">大层</th>
+<th align="center">细分层</th>
+<th align="center">API/SPI</th>
+<th align="center">重要API</th>
+</tr>
+</thead>
+<tbody><tr>
+<td align="center">Biz</td>
+<td align="center">Service</td>
+<td align="center">API</td>
+<td align="center">Interface</td>
+</tr>
+<tr>
+<td align="center">RPC</td>
+<td align="center">Config</td>
+<td align="center"></td>
+<td align="center">ConfigParser</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Proxy</td>
+<td align="center">SPI</td>
+<td align="center">ProxyFactory</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Registry</td>
+<td align="center"></td>
+<td align="center">Registry/RegisFactory/RegisService</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Cluster</td>
+<td align="center"></td>
+<td align="center">Cluster/Directory/LoadBalance</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Monitor</td>
+<td align="center"></td>
+<td align="center">Monitor/MonitorFactory/MonitorService</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Protocol</td>
+<td align="center"></td>
+<td align="center">Protocol/Invoker/Exporter</td>
+</tr>
+<tr>
+<td align="center">Remoting</td>
+<td align="center">Exchange</td>
+<td align="center"></td>
+<td align="center">Exchanger/ExchangeChannel/ExchangeClient/ExchangeServer</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Transport</td>
+<td align="center"></td>
+<td align="center">Codec/Transporter/ChannelHandler/Server\Client</td>
+</tr>
+<tr>
+<td align="center"></td>
+<td align="center">Serialize</td>
+<td align="center"></td>
+<td align="center">ObjectOutput/Serialization/ObjectInput</td>
+</tr>
+</tbody></table>
+<h2 id="1-3-2-Dubbo核心组件"><a href="#1-3-2-Dubbo核心组件" class="headerlink" title="1.3.2 Dubbo核心组件"></a>1.3.2 Dubbo核心组件</h2><h2 id="1-3-3-Dubbo总体调用过程"><a href="#1-3-3-Dubbo总体调用过程" class="headerlink" title="1.3.3 Dubbo总体调用过程"></a>1.3.3 Dubbo总体调用过程</h2>
       
 
       
@@ -392,7 +1055,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
         		</li>
       		
 		</ul>
@@ -402,7 +1065,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/16/大战左神第一集-二叉树/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/23/第一章Dubbo高性能RPC通信框架/">展开全文 >></a>
         </p>
       
 
@@ -432,174 +1095,28 @@
 
 
   
-    <article id="post-2019-9-15题目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-深入理解ApacheDubbo与实战" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/15/2019-9-15题目总结/">2019-9-15题目总结</a>
+      <a class="article-title" href="/2019/09/23/深入理解ApacheDubbo与实战/">深入理解ApacheDubbo与实战</a>
     </h1>
   
 
         
-        <a href="/2019/09/15/2019-9-15题目总结/" class="archive-article-date">
-  	<time datetime="2019-09-15T15:19:09.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
+        <a href="/2019/09/23/深入理解ApacheDubbo与实战/" class="archive-article-date">
+  	<time datetime="2019-09-23T14:03:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/15/2019-9-15题目总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-大战严蔚敏第三集-图" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/15/大战严蔚敏第三集-图/">大战严蔚敏第三集-图</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/15/大战严蔚敏第三集-图/" class="archive-article-date">
-  	<time datetime="2019-09-15T08:30:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-15</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/15/大战严蔚敏第三集-图/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-linux命令学习每日一课" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/14/linux命令学习每日一课/">linux命令学习每日一课</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/14/linux命令学习每日一课/" class="archive-article-date">
-  	<time datetime="2019-09-14T15:03:03.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="最重要的命令-help"><a href="#最重要的命令-help" class="headerlink" title="最重要的命令 help"></a>最重要的命令 help</h1><p>输入：<br>help help<br>输出：  </p>
-<p>help: help [-dms] [pattern …]<br>    Display information about builtin commands.</p>
-<pre><code>Displays brief summaries of builtin commands.  If PATTERN is
-specified, gives detailed help on all commands matching PATTERN,
-otherwise the list of help topics is printed.
-
-Options:
-  -d    output short description for each topic
-  -m    display usage in pseudo-manpage format
-  -s    output only a short usage synopsis for each topic matching
-    PATTERN
-
-Arguments:
-  PATTERN    Pattern specifiying a help topic
-
-Exit Status:
-Returns success unless PATTERN is not found or an invalid option is given.</code></pre><p>options:<br>-d:输出简单描述<br>-m:用pesudo-manpage 格式输出用法指南<br>-s:只输出一个简单的用法梗概</p>
-<h1 id="bg"><a href="#bg" class="headerlink" title="bg"></a>bg</h1><p>输入：<br>help bg<br>输出：<br>bg: bg [job_spec …]<br>    Move jobs to the background.</p>
-<pre><code>Place the jobs identified by each JOB_SPEC in the background, as if they
-had been started with `&amp;&apos;.  If JOB_SPEC is not present, the shell&apos;s notion
-of the current job is used.
-
-Exit Status:
-Returns success unless job control is not enabled or an error occurs.</code></pre>
+        <h1 id="看书内容"><a href="#看书内容" class="headerlink" title="看书内容"></a>看书内容</h1><h1 id="提问内容"><a href="#提问内容" class="headerlink" title="提问内容"></a>提问内容</h1><p><a href="./深入理解dubbo第一周.md">深入理解dubbo第一周</a><br><a href="./深入理解dubbo第一周.md">深入理解dubbo第二周</a></p>
+<h1 id="总结"><a href="#总结" class="headerlink" title="总结"></a>总结</h1>
       
 
       
@@ -612,7 +1129,7 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">linux</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-dubbo</a>
         		</li>
       		
 		</ul>
@@ -622,7 +1139,7 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/14/linux命令学习每日一课/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/23/深入理解ApacheDubbo与实战/">展开全文 >></a>
         </p>
       
 
@@ -652,31 +1169,96 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 
 
   
-    <article id="post-有效括号长度LeetCode32" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-第三章Dubbo注册中心" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/14/有效括号长度LeetCode32/">有效括号长度LeetCode32</a>
+      <a class="article-title" href="/2019/09/23/第三章Dubbo注册中心/">第三章Dubbo注册中心</a>
     </h1>
   
 
         
-        <a href="/2019/09/14/有效括号长度LeetCode32/" class="archive-article-date">
-  	<time datetime="2019-09-14T07:38:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+        <a href="/2019/09/23/第三章Dubbo注册中心/" class="archive-article-date">
+  	<time datetime="2019-09-23T14:02:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="有效括号长度"><a href="#有效括号长度" class="headerlink" title="有效括号长度"></a>有效括号长度</h1><p>题目：<br>给定一个只包含 ‘(‘ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeetCode32</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[s.length()];</span><br><span class="line">        <span class="keyword">int</span> maxAns = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">')'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s.charAt(i-<span class="number">1</span>)==<span class="string">'('</span>)&#123;</span><br><span class="line">                    dp[i] = (i &gt;= <span class="number">2</span> ? dp[i - <span class="number">2</span>] : <span class="number">0</span>) + <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i-dp[i-<span class="number">1</span>]&gt;<span class="number">0</span>&amp;&amp;s.charAt(i-dp[i-<span class="number">1</span>]-<span class="number">1</span>)==<span class="string">'('</span>)&#123;</span><br><span class="line">                    dp[i]=dp[i-<span class="number">1</span>]+(i-dp[i-<span class="number">1</span>]&gt;=<span class="number">2</span>?dp[i-dp[i-<span class="number">1</span>]-<span class="number">2</span>]:<span class="number">0</span>)+<span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            maxAns=Math.max(maxAns,dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[s.length()-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s =<span class="string">")()())"</span>;</span><br><span class="line">        System.out.println(longestValidParentheses(s));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="3-1-注册中心概述"><a href="#3-1-注册中心概述" class="headerlink" title="3.1 注册中心概述"></a>3.1 注册中心概述</h1><h3 id="注册中心的主要作用"><a href="#注册中心的主要作用" class="headerlink" title="注册中心的主要作用"></a>注册中心的主要作用</h3><ul>
+<li>动态加入</li>
+<li>动态发现</li>
+<li>动态调整</li>
+<li>统一配置</li>
+</ul>
+<h3 id="模块介绍"><a href="#模块介绍" class="headerlink" title="模块介绍"></a>模块介绍</h3><table>
+<thead>
+<tr>
+<th>模块名称</th>
+<th>模块介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dubbo-registry-api</td>
+<td>包含了注册中心的所有API和抽象实现类</td>
+</tr>
+<tr>
+<td>dubbo-registry-zookeeper</td>
+<td>使用Zookeeper作为注册中心的实现</td>
+</tr>
+<tr>
+<td>dubbo-registry-redis</td>
+<td>使用redis作为注册中心的实现</td>
+</tr>
+<tr>
+<td>dubbo-registry-default</td>
+<td>Dubbo基于内存的默认实现</td>
+</tr>
+<tr>
+<td>dubbo-registry-multicast</td>
+<td>multicast模式的服务注册与发现</td>
+</tr>
+</tbody></table>
+<h2 id="3-1-1-工作流程"><a href="#3-1-1-工作流程" class="headerlink" title="3.1.1 工作流程"></a>3.1.1 工作流程</h2><h3 id="注册中心的工作流程"><a href="#注册中心的工作流程" class="headerlink" title="注册中心的工作流程"></a>注册中心的工作流程</h3><ol>
+<li>服务提供者启动时，会向注册中心写入自己的元数据信息，同时会订阅配置元数据</li>
+<li>消费者启动时，也会向注册中心写入自己的元数据信息，并订阅服务提供者、路由配置元数据</li>
+<li>服务治理中心(dubbo-admin)时，会同时订阅所有消费者、服务提供者、路由配置元数据信息</li>
+<li>当有服务提供者离开或者有新的服务提供者加入时，注册中心服务提供者目录会发生变化，变化信息会动态通知给消费者，服务治理中心</li>
+<li>当消费方发起服务调用时，会异步将调用、统计信息等上报给监控中心(dubbo-monitor-simple)</li>
+</ol>
+<h2 id="3-1-2-数据结构"><a href="#3-1-2-数据结构" class="headerlink" title="3.1.2 数据结构"></a>3.1.2 数据结构</h2><h2 id="3-1-3-ZooKeeper原理概述"><a href="#3-1-3-ZooKeeper原理概述" class="headerlink" title="3.1.3 ZooKeeper原理概述"></a>3.1.3 ZooKeeper原理概述</h2><h3 id="ZooKeeper的节点类型"><a href="#ZooKeeper的节点类型" class="headerlink" title="ZooKeeper的节点类型"></a>ZooKeeper的节点类型</h3><ul>
+<li>持久节点：服务注册后保证节点不会丢失，注册中心重启也会在</li>
+<li>持久顺序节点：在持久节点特性的基础上增加了先后顺序的能力</li>
+<li>临时节点：服务注册后连接丢失或session超时，注册节点会自动被移除</li>
+<li>临时顺序节点：在临时节点特性的基础上增加了先后顺序能力</li>
+</ul>
+<h3 id="ZooKeeper的树形结构"><a href="#ZooKeeper的树形结构" class="headerlink" title="ZooKeeper的树形结构"></a>ZooKeeper的树形结构</h3><ol>
+<li>树的根节点是注册中心分组，下面有多个服务接口，分组值来自用户<a href="dubbo:registry" target="_blank" rel="noopener">dubbo:registry</a>中的group属性，默认/dubbo</li>
+<li>服务接口下包含4类子目录，分别是providers,consumers,routers,configurators元数据信息</li>
+<li>服务提供者目录（/dubbo/service/providers）下面包含的接口有多个服务者URL元数据信息</li>
+<li>服务消费者目录（/dubbo/service/consumers）下面包含的接口有多个消费者URL元数据信息</li>
+<li>路由配置目录（/dubbo/service/routers）下面包含多个用于消费者路由策略元数据信息</li>
+<li>动态配置目录（/dubbo/service/configurators)下面包含多个用于服务者动态配置URL元数据信息</li>
+</ol>
+<h3 id="Dubbo启用注册中心"><a href="#Dubbo启用注册中心" class="headerlink" title="Dubbo启用注册中心"></a>Dubbo启用注册中心</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--使用于ZooKeeper一个集群多个节点，多个IP和端口用逗号分隔--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">protocol</span>=<span class="string">"zookeeper"</span> <span class="attr">address</span>=<span class="string">"ip:port,ip:port"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--适用于ZooKeeper多个集群多个节点，多个IP和端口用竖线分隔--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">protocol</span>=<span class="string">"zookeeper"</span> <span class="attr">address</span>=<span class="string">"ip:port|ip:port"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
 
-<p>我是一个无情的看答案机器人！</p>
-
+<h2 id="3-1-4-Redis原理概述"><a href="#3-1-4-Redis原理概述" class="headerlink" title="3.1.4 Redis原理概述"></a>3.1.4 Redis原理概述</h2><ul>
+<li>四层结构:Root\Service\Type\URL  </li>
+<li>具体的存储:(Key/Map)     <ul>
+<li>Rediskey:Root/Service/Type  </li>
+<li>Redisvalue:  <ul>
+<li>mapKey:URL  </li>
+<li>mapValue:过期时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-2-订阅-发布"><a href="#3-2-订阅-发布" class="headerlink" title="3.2 订阅/发布"></a>3.2 订阅/发布</h1><h2 id="3-2-1-Zookeeper的实现"><a href="#3-2-1-Zookeeper的实现" class="headerlink" title="3.2.1 Zookeeper的实现"></a>3.2.1 Zookeeper的实现</h2><h2 id="3-2-2-Redis的实现"><a href="#3-2-2-Redis的实现" class="headerlink" title="3.2.2 Redis的实现"></a>3.2.2 Redis的实现</h2>
       
 
       
@@ -689,11 +1271,7 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">LeetCode</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
         		</li>
       		
 		</ul>
@@ -703,7 +1281,7 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/14/有效括号长度LeetCode32/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/23/第三章Dubbo注册中心/">展开全文 >></a>
         </p>
       
 
@@ -733,33 +1311,149 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 
 
   
-    <article id="post-大战严蔚敏第二集-树" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-第五章Dubbo启停原理解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/14/大战严蔚敏第二集-树/">大战严蔚敏第二集-树</a>
+      <a class="article-title" href="/2019/09/23/第五章Dubbo启停原理解析/">第五章Dubbo启停原理解析</a>
     </h1>
   
 
         
-        <a href="/2019/09/14/大战严蔚敏第二集-树/" class="archive-article-date">
-  	<time datetime="2019-09-14T01:05:49.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-14</time>
+        <a href="/2019/09/23/第五章Dubbo启停原理解析/" class="archive-article-date">
+  	<time datetime="2019-09-23T13:35:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> * </span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_traverse_recurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> root==<span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(root.val,end=<span class="string">","</span>)</span><br><span class="line">    preorder_traverse_recurse(root.left)</span><br><span class="line">    preorder_traverse_recurse(root.right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_traverse_norecurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    dq = deque()</span><br><span class="line">    dq.append(root)</span><br><span class="line">    <span class="keyword">while</span> len(dq):</span><br><span class="line">        t = dq.popleft()</span><br><span class="line">        print(t.val,end=<span class="string">","</span>)</span><br><span class="line">        <span class="keyword">if</span> t.right:</span><br><span class="line">            dq.appendleft(t.right)</span><br><span class="line">        <span class="keyword">if</span> t.left:</span><br><span class="line">            dq.appendleft(t.left)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    tree = TreeNode.exampleTree()</span><br><span class="line">    <span class="comment">#preorder_traverse_recurse(tree)</span></span><br><span class="line">    preorder_traverse_norecurse(tree)</span><br></pre></td></tr></table></figure>
+        <h1 id="5-1-配置解析"><a href="#5-1-配置解析" class="headerlink" title="5.1 配置解析"></a>5.1 配置解析</h1><h3 id="Dubbo框架提供的三种配置方式："><a href="#Dubbo框架提供的三种配置方式：" class="headerlink" title="Dubbo框架提供的三种配置方式："></a>Dubbo框架提供的三种配置方式：</h3><ul>
+<li>XML配置</li>
+<li>注解</li>
+<li>属性文件<h2 id="5-1-1-基于schema设计解析"><a href="#5-1-1-基于schema设计解析" class="headerlink" title="5.1.1 基于schema设计解析"></a>5.1.1 基于schema设计解析</h2></li>
+<li>dubbo-config/dubbo-config-spring/src/main/resources/下：<ul>
+<li>spring.schemeas 指明约束文件路径</li>
+<li>spring.handlers 指明解析类路径</li>
+</ul>
+</li>
+</ul>
+<h3 id="schema模块"><a href="#schema模块" class="headerlink" title="schema模块"></a>schema模块</h3><h2 id="5-1-2-基于XML配置原理解析"><a href="#5-1-2-基于XML配置原理解析" class="headerlink" title="5.1.2 基于XML配置原理解析"></a>5.1.2 基于XML配置原理解析</h2><h3 id="解析主要在DubboNamespaceHandler中完成"><a href="#解析主要在DubboNamespaceHandler中完成" class="headerlink" title="解析主要在DubboNamespaceHandler中完成"></a>解析主要在DubboNamespaceHandler中完成</h3><h4 id="BeanDefinationParser的解析过程"><a href="#BeanDefinationParser的解析过程" class="headerlink" title="BeanDefinationParser的解析过程"></a>BeanDefinationParser的解析过程</h4><ol>
+<li>新建SpringBean定义文件，交给Spring反射创建实例</li>
+<li>确保没有重复定义SpringBean定义</li>
+<li>依次尝试获取XML标签配置的name和interface 作为Bean唯一id</li>
+<li>如果协议标签没有指定name，则默认使用dubbo</li>
+<li>检查重复bean，如果重复则生成唯一id</li>
+<li>每次解析向Spring注册新的BeanDefinition，后续会追加属性<h3 id="具体的标签解析"><a href="#具体的标签解析" class="headerlink" title="具体的标签解析"></a>具体的标签解析</h3><h4 id="dubbo-service"><a href="#dubbo-service" class="headerlink" title="dubbo:service"></a><a href="dubbo:service" target="_blank" rel="noopener">dubbo:service</a></h4></li>
+<li>如果<a href="dubbo:service" target="_blank" rel="noopener">dubbo:service</a>配置了class属性，那么为具体的class配置类注册Bean，并注入ref属性</li>
+</ol>
+<h3 id="attribute-提取逻辑"><a href="#attribute-提取逻辑" class="headerlink" title="attribute 提取逻辑"></a>attribute 提取逻辑</h3><ol>
+<li>查找配置对象的get、set 和is前缀方法，如果标签属性和方法名称相同，则通过反射调用存储标签对应值</li>
+<li>如果没有和get、set和is前缀方法匹配，则当作parameters参数存储，parameters是一个Map对象</li>
+</ol>
+<h2 id="5-1-3-基于注解配置原理解析"><a href="#5-1-3-基于注解配置原理解析" class="headerlink" title="5.1.3 基于注解配置原理解析"></a>5.1.3 基于注解配置原理解析</h2><h3 id="注解处理逻辑"><a href="#注解处理逻辑" class="headerlink" title="注解处理逻辑"></a>注解处理逻辑</h3><h4 id="按需生成Bean"><a href="#按需生成Bean" class="headerlink" title="按需生成Bean"></a>按需生成Bean</h4><ol>
+<li>获取EnableDouuboConfigBindings注解所有值</li>
+<li>将每个EnableDubboCongfingBinding注解包含的Bean注册到Spring容器</li>
+</ol>
+<h4 id="提升-Service类为Bean"><a href="#提升-Service类为Bean" class="headerlink" title="提升@Service类为Bean"></a>提升@Service类为Bean</h4><p>ServiceAnnotationBeanPostProcessor</p>
+<ol>
+<li>提取用户配置的扫描包名称</li>
+<li>触发ServiceBean定义和注入；</li>
+<li>指定扫描dubbo的注解@Service，不会扫描Spring的Service注解，设置过滤器</li>
+<li>将@Service作为不同的Bean注入容器</li>
+<li>对扫描的服务创建BeanDefinitionHolder，用户生成ServiceBean定义</li>
+<li>注册ServiceBean定义并做数据绑定</li>
+</ol>
+<p>实际使用过程中，会在@Service注解的服务中注入@Reference注解，这样就可以很方便地发起远端服务调用</p>
+<h4 id="为-Reference注入代理对象"><a href="#为-Reference注入代理对象" class="headerlink" title="为@Reference注入代理对象"></a>为@Reference注入代理对象</h4><ol>
+<li>查找所有@Reference字段和方法</li>
+<li>对字段、和方法进行反射绑定 </li>
+</ol>
+<h1 id="5-2-服务暴露的实现原理"><a href="#5-2-服务暴露的实现原理" class="headerlink" title="5.2 服务暴露的实现原理"></a>5.2 服务暴露的实现原理</h1><h2 id="5-2-1-配置承载初始化"><a href="#5-2-1-配置承载初始化" class="headerlink" title="5.2.1 配置承载初始化"></a>5.2.1 配置承载初始化</h2><h3 id="覆盖策略"><a href="#覆盖策略" class="headerlink" title="覆盖策略"></a>覆盖策略</h3><ol>
+<li>-D 传递给JVM参数优先级最高</li>
+<li>代码或XML配置优先级次高</li>
+<li>配置文件优先级最低</li>
+</ol>
+<h3 id="provider和客户端的配置"><a href="#provider和客户端的配置" class="headerlink" title="provider和客户端的配置"></a>provider和客户端的配置</h3><ol>
+<li>如果provider指定了配置，会透传到客户端</li>
+<li>如果客户端也配置了相应属性，则服务端的配置会被覆盖</li>
+</ol>
+<h2 id="5-2-2-远程服务的暴露机制"><a href="#5-2-2-远程服务的暴露机制" class="headerlink" title="5.2.2 远程服务的暴露机制"></a>5.2.2 远程服务的暴露机制</h2><h3 id="服务暴露的两大部分"><a href="#服务暴露的两大部分" class="headerlink" title="服务暴露的两大部分"></a>服务暴露的两大部分</h3><ol>
+<li>将持有的服务实例通过代理转换成Invoker</li>
+<li>将Invoker通过具体的协议转换成Exporter</li>
+</ol>
+<h4 id="ref-gt-invoker"><a href="#ref-gt-invoker" class="headerlink" title="ref-&gt;invoker"></a>ref-&gt;invoker</h4><ol>
+<li>获取配置信息到Map，用于后续构造URL</li>
+<li>读取全局配置信息，会自动添加前缀</li>
+<li>本地服务暴露</li>
+<li>上报监控地址</li>
+<li>通过动态代理转换成invoker</li>
+<li>服务暴露后进行服务元数据注册</li>
+<li>处理没有注册中心场景，直接暴露服务</li>
+</ol>
+<h3 id="注册中心的服务暴露-Registry-export"><a href="#注册中心的服务暴露-Registry-export" class="headerlink" title="注册中心的服务暴露 Registry#export"></a>注册中心的服务暴露 Registry#export</h3><ol>
+<li>委托具体协议进行暴露，创建NettyServer监听端口和保存服务实例</li>
+<li>创建注册中心对象，与注册中心创建TCP连接</li>
+<li>注册服务元数据到注册中心</li>
+<li>订阅configurators节点，监听服务动态属性变更事件</li>
+<li>服务销毁收尾工作（Invoker销毁时，注销端口和map中服务实例等资源，移除已注册的元数据，去掉订阅配置监听器）</li>
+</ol>
+<h3 id="从Invoker构造拦截器链"><a href="#从Invoker构造拦截器链" class="headerlink" title="从Invoker构造拦截器链"></a>从Invoker构造拦截器链</h3><p>拦截器初始化时，会自动注入ProtocolListenerWrapper和ProtocolFilterWrapper</p>
+<h3 id="Dubboprotocol-export"><a href="#Dubboprotocol-export" class="headerlink" title="Dubboprotocol#export"></a>Dubboprotocol#export</h3><ol>
+<li>从服务分组、版本、接口和端口构造key</li>
+<li>把exporter存储到单例DubboProtocol中</li>
+<li>创建NettyServer，并且初始化Handler</li>
+</ol>
+<h2 id="5-2-3-本地服务的暴露机制"><a href="#5-2-3-本地服务的暴露机制" class="headerlink" title="5.2.3 本地服务的暴露机制"></a>5.2.3 本地服务的暴露机制</h2><ol>
+<li>显式指定injvm协议进行暴露</li>
+<li>调用injvmProtocol#export</li>
+</ol>
+<h1 id="5-3-服务消费的实现原理"><a href="#5-3-服务消费的实现原理" class="headerlink" title="5.3 服务消费的实现原理"></a>5.3 服务消费的实现原理</h1><h2 id="5-3-1-单注册中心消费原理"><a href="#5-3-1-单注册中心消费原理" class="headerlink" title="5.3.1 单注册中心消费原理"></a>5.3.1 单注册中心消费原理</h2><h3 id="invoker处理：referenceConfig-createProxy"><a href="#invoker处理：referenceConfig-createProxy" class="headerlink" title="invoker处理：referenceConfig#createProxy"></a>invoker处理：referenceConfig#createProxy</h3><ol>
+<li>优先判断jvm中是否包含所需服务</li>
+<li>在url追加消费者元数据信息</li>
+<li>单注册中心消费，客户端启动拉取服务元数据，订阅provider、路由和配置变更</li>
+<li>处理多注册中心，通过cluster进行invoker合并</li>
+<li>将invoker转换成接口代理</li>
+</ol>
+<h3 id="通过注册中心消费：RegistryProtocol-refer"><a href="#通过注册中心消费：RegistryProtocol-refer" class="headerlink" title="通过注册中心消费：RegistryProtocol#refer"></a>通过注册中心消费：RegistryProtocol#refer</h3><p>通过注册中心消费的核心数据结构是RegistryDirectory</p>
+<ol>
+<li>设置注册中心协议，创建注册中心实例</li>
+<li>根据配置处理多分组结果聚合</li>
+<li>处理订阅数据并通过Cluster合并多个Invoker</li>
+</ol>
+<h3 id="RegistryProtocol-doRefer"><a href="#RegistryProtocol-doRefer" class="headerlink" title="RegistryProtocol#doRefer"></a>RegistryProtocol#doRefer</h3><ol>
+<li>directory持有实际invoker和接收订阅通知</li>
+<li>注册消费信息到注册中心</li>
+<li>订阅服务提供者，路由和动态配置</li>
+<li>通过Cluster合并invoker</li>
+</ol>
+<h3 id="RegistryDirectory-toInvokers"><a href="#RegistryDirectory-toInvokers" class="headerlink" title="RegistryDirectory#toInvokers"></a>RegistryDirectory#toInvokers</h3><ol>
+<li>根据消费方protocol配置过滤不匹配协议</li>
+<li>合并provider端配置数据</li>
+<li>忽略重复推送的服务列表</li>
+</ol>
+<h2 id="5-3-2-多注册中心消费原理"><a href="#5-3-2-多注册中心消费原理" class="headerlink" title="5.3.2 多注册中心消费原理"></a>5.3.2 多注册中心消费原理</h2><ol>
+<li>遍历注册中心invoker实例，判断是否包含provider服务</li>
+</ol>
+<h2 id="5-3-3-直连服务消费原理"><a href="#5-3-3-直连服务消费原理" class="headerlink" title="5.3.3 直连服务消费原理"></a>5.3.3 直连服务消费原理</h2><ol>
+<li><h1 id="5-4-优雅停机原理解析"><a href="#5-4-优雅停机原理解析" class="headerlink" title="5.4 优雅停机原理解析"></a>5.4 优雅停机原理解析</h1><h3 id="优雅停机6个步骤"><a href="#优雅停机6个步骤" class="headerlink" title="优雅停机6个步骤"></a>优雅停机6个步骤</h3></li>
+<li><p>收到kill 9 进程退出信号，spring触发容器销毁事件</p>
+</li>
+<li><p>provider 端会取消注册服务元数据信息</p>
+</li>
+<li><p>consumer 端会收到最新地址列表（不包含准备停机的地址）</p>
+</li>
+<li><p>dubbo协议会发送readonly事件报文通知consumer服务不可用（客户端收到readonly后，将服务端标记为不可用）</p>
+</li>
+<li><p>服务端等待已经执行的任务结束并拒绝新任务执行</p>
+</li>
+<li><p>TCP断开</p>
+</li>
+</ol>
 
-<h1 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder_traverse_recurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> root==<span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    inorder_traverse_recurse(root.left)</span><br><span class="line">    print(root.val,end=<span class="string">","</span>)</span><br><span class="line">    inorder_traverse_recurse(root.right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder_traverse_without_recurse1</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    在这种方法中利用None值是一个很巧妙的办法，</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    s=[]</span><br><span class="line">    s.append(root)</span><br><span class="line">    <span class="keyword">while</span> s:</span><br><span class="line">        <span class="keyword">while</span> s[<span class="number">-1</span>]:</span><br><span class="line">            s.append(s[<span class="number">-1</span>].left)</span><br><span class="line">        s.pop()<span class="comment"># 处理空指针</span></span><br><span class="line">        <span class="keyword">if</span> s:</span><br><span class="line">            t=s.pop()</span><br><span class="line">            print(t.val,end=<span class="string">","</span>)</span><br><span class="line">            s.append(t.right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder_traverse_without_recurse2</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    p=root</span><br><span class="line">    s=[]</span><br><span class="line">    <span class="keyword">while</span> p <span class="keyword">or</span> s:</span><br><span class="line">        <span class="keyword">if</span> p: <span class="comment">#进栈流程</span></span><br><span class="line">            s.append(p)</span><br><span class="line">            p=p.left</span><br><span class="line">        <span class="keyword">else</span>: <span class="comment">#出栈流程</span></span><br><span class="line">            p=s.pop()</span><br><span class="line">            print(p.val,end=<span class="string">","</span>)</span><br><span class="line">            p=p.right</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    tree = TreeNode.exampleTree()</span><br><span class="line">    inorder_traverse_recurse(tree)</span><br><span class="line">    print()</span><br><span class="line">    inorder_traverse_without_recurse1(tree)</span><br><span class="line">    print()</span><br><span class="line">    inorder_traverse_without_recurse2(tree)</span><br></pre></td></tr></table></figure>
-
-<h1 id="从后序和中序生成树并用先序打印"><a href="#从后序和中序生成树并用先序打印" class="headerlink" title="从后序和中序生成树并用先序打印"></a>从后序和中序生成树并用先序打印</h1><h2 id="java实现"><a href="#java实现" class="headerlink" title="java实现"></a>java实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuNaer2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line">        TreeNode left;</span><br><span class="line">        TreeNode right;</span><br><span class="line">        TreeNode(<span class="keyword">char</span> c)&#123;</span><br><span class="line">            <span class="keyword">this</span>.c=c;</span><br><span class="line">            <span class="keyword">this</span>.left=<span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">this</span>.right=<span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> String post = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">static</span> String mid = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        mid = in.nextLine();</span><br><span class="line">        post= in.nextLine();</span><br><span class="line">        TreeNode root = rebuildTree(<span class="number">0</span>,post.length()-<span class="number">1</span>,<span class="number">0</span>,mid.length()-<span class="number">1</span>);</span><br><span class="line">        preTravel(root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title">rebuildTree</span><span class="params">(<span class="keyword">int</span> postLeft,<span class="keyword">int</span> postRight,<span class="keyword">int</span> inLeft,<span class="keyword">int</span> inRight)</span></span>&#123;</span><br><span class="line">        <span class="keyword">char</span> curChar = post.charAt(postRight);</span><br><span class="line">        TreeNode curNode = <span class="keyword">new</span> TreeNode(curChar);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(postLeft==postRight&amp;&amp;inLeft==inRight&amp;&amp;post.charAt(postRight)==mid.charAt(inRight))</span><br><span class="line">            <span class="keyword">return</span> curNode;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//找到根节点在中序序列中的位置</span></span><br><span class="line">        <span class="keyword">int</span> pos=inLeft;</span><br><span class="line">        <span class="keyword">for</span>(;pos&lt;=inRight;pos++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(mid.charAt(pos)==curChar)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> rightLength = inRight-pos;</span><br><span class="line">        <span class="keyword">int</span> RightPostStart = postRight-rightLength;</span><br><span class="line">        <span class="keyword">if</span>(rightLength&gt;<span class="number">0</span>)</span><br><span class="line">        curNode.right = rebuildTree(RightPostStart,postRight-<span class="number">1</span>,pos+<span class="number">1</span>,inRight);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(rightLength&lt;postRight-postLeft)</span><br><span class="line">        curNode.left = rebuildTree(postLeft,RightPostStart-<span class="number">1</span>,inLeft,pos-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> curNode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">preTravel</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)<span class="keyword">return</span>;</span><br><span class="line">        System.out.print(root.c);</span><br><span class="line">        <span class="comment">//System.out.println(",left");</span></span><br><span class="line">        preTravel(root.left);</span><br><span class="line">        <span class="comment">//System.out.println(",right");</span></span><br><span class="line">        preTravel(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">inOrder:</span></span><br><span class="line"><span class="comment">ADEFGHMZ</span></span><br><span class="line"><span class="comment">AEFDHZMG</span></span><br><span class="line"><span class="comment">postOrder:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">preOrder:</span></span><br><span class="line"><span class="comment">GDAFEMHZ</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
-
-<h1 id="从先序和中序重建树并用后序输出"><a href="#从先序和中序重建树并用后序输出" class="headerlink" title="从先序和中序重建树并用后序输出"></a>从先序和中序重建树并用后序输出</h1><h2 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h2>
       
 
       
@@ -772,7 +1466,7 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
         		</li>
       		
 		</ul>
@@ -782,7 +1476,7 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/14/大战严蔚敏第二集-树/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/23/第五章Dubbo启停原理解析/">展开全文 >></a>
         </p>
       
 
@@ -812,43 +1506,287 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 
 
   
-    <article id="post-大战严蔚敏第一集-排序算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-常见的动态代理的库及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/12/大战严蔚敏第一集-排序算法/">大战严蔚敏第一集-排序算法</a>
+      <a class="article-title" href="/2019/09/23/常见的动态代理的库及使用/">常见的动态代理的库及使用</a>
     </h1>
   
 
         
-        <a href="/2019/09/12/大战严蔚敏第一集-排序算法/" class="archive-article-date">
-  	<time datetime="2019-09-12T12:05:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-12</time>
+        <a href="/2019/09/23/常见的动态代理的库及使用/" class="archive-article-date">
+  	<time datetime="2019-09-23T13:26:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h1><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="简单插入排序"><a href="#简单插入排序" class="headerlink" title="简单插入排序"></a>简单插入排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    插入排序的时间复杂度O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    t = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">if</span> arr[i]&lt;arr[i<span class="number">-1</span>]: <span class="comment"># 如果当前元素小于前一个元素，进入一趟插入排序</span></span><br><span class="line">            t=arr[i]        <span class="comment"># 把自己赋给哨兵，向前寻找合适的位置</span></span><br><span class="line">            arr[i]=arr[i<span class="number">-1</span>]</span><br><span class="line">            j= i<span class="number">-2</span></span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> t&lt;arr[j]:</span><br><span class="line">                arr[j+<span class="number">1</span>]=arr[j]</span><br><span class="line">                j-=<span class="number">1</span></span><br><span class="line">            arr[j+<span class="number">1</span>]=t      <span class="comment"># 找到合适的位置，注意这时是j+1，因为上一个满足条件的位置已经被移到了此时的j+2</span></span><br><span class="line">    print(arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    insert_sort(arr)</span><br></pre></td></tr></table></figure>
+        
+      
 
-<h3 id="折半插入"><a href="#折半插入" class="headerlink" title="折半插入"></a>折半插入</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binsert_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    折半插入显然只是插入时用来找位置使用了折半查找</span></span><br><span class="line"><span class="string">    没有改善需要移动记录的次数，因此时间复杂度为O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">if</span> arr[i]&lt;arr[i<span class="number">-1</span>]:</span><br><span class="line">            t = arr[i]</span><br><span class="line">            left = <span class="number">0</span></span><br><span class="line">            right = i<span class="number">-1</span></span><br><span class="line">            mid = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> left&lt;right:</span><br><span class="line">                mid=(left+right)//<span class="number">2</span></span><br><span class="line">                <span class="keyword">if</span> arr[mid]&gt;=t:</span><br><span class="line">                    right=mid</span><br><span class="line">                <span class="keyword">else</span>: left=mid+<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(i<span class="number">-1</span>,left<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">                arr[k+<span class="number">1</span>]=arr[k]</span><br><span class="line">            arr[left]=t</span><br><span class="line">    print(arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    binsert_sort(arr)</span><br></pre></td></tr></table></figure>
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
 
-<h3 id="二路插入排序"><a href="#二路插入排序" class="headerlink" title="二路插入排序"></a>二路插入排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">twopath_insertSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    排序的时间复杂度O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    res =[<span class="number">0</span>]*N</span><br><span class="line">    first = <span class="number">0</span> </span><br><span class="line">    final = <span class="number">0</span></span><br><span class="line">    res[<span class="number">0</span>]=arr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">if</span>  arr[i]&gt;=res[<span class="number">0</span>]:</span><br><span class="line">            j= final</span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> arr[i]&lt;res[j]:</span><br><span class="line">                res[j+<span class="number">1</span>]=res[j]</span><br><span class="line">                j-=<span class="number">1</span></span><br><span class="line">            res[j+<span class="number">1</span>]=arr[i]</span><br><span class="line">            final+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=first</span><br><span class="line">            <span class="keyword">while</span> j&lt;N <span class="keyword">and</span> arr[i]&gt;res[j]:</span><br><span class="line">                res[j<span class="number">-1</span>]=res[j]</span><br><span class="line">                j+=<span class="number">1</span></span><br><span class="line">            res[j<span class="number">-1</span>]=arr[i]</span><br><span class="line">            first-=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(first,final+<span class="number">1</span>):</span><br><span class="line">        print(res[i],end=<span class="string">" "</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    twopath_insertSort(arr)</span><br></pre></td></tr></table></figure>
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/23/常见的动态代理的库及使用/">展开全文 >></a>
+        </p>
+      
 
-<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_Insert</span><span class="params">(arr,dk)</span>:</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(dk,N):</span><br><span class="line">        <span class="keyword">if</span> arr[i]&lt;arr[i-dk]:</span><br><span class="line">            t= arr[i]</span><br><span class="line">            arr[i]=arr[i-dk]</span><br><span class="line">            j= i<span class="number">-2</span>*dk</span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> arr[j]&gt;t:</span><br><span class="line">                arr[j+dk]=arr[j]</span><br><span class="line">                j-=dk</span><br><span class="line">            arr[j+dk]=t</span><br><span class="line">    print(arr)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_sort</span><span class="params">(arr,dlta,t)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>,t):</span><br><span class="line">        shell_Insert(arr,dlta[k])</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment">#dlta[k]=2^(t-k+1)-1时，希尔排序时间复杂度为O(3/2)，1&lt;=k&lt;=t&lt;=cell(log(2,n+1))</span></span><br><span class="line">    dlta=[<span class="number">7</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    shell_sort(arr,dlta,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
 
-<h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    冒泡排序的时间复杂度O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len (arr)</span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> range(N<span class="number">-1</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,e):</span><br><span class="line">            <span class="keyword">if</span> arr[i]&gt;arr[i+<span class="number">1</span>]:</span><br><span class="line">                t=arr[i]</span><br><span class="line">                arr[i]=arr[i+<span class="number">1</span>]</span><br><span class="line">                arr[i+<span class="number">1</span>]=t</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    bubble_sort(arr)</span><br></pre></td></tr></table></figure>
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
 
-<h3 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">快排的平均时间复杂度为O(knlogn)</span></span><br><span class="line"><span class="string">被认为是nlogn级的排序算法中平均性能最好的</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(arr,low,high)</span>:</span></span><br><span class="line">    pivotkey= arr[low]</span><br><span class="line">    <span class="keyword">while</span> low&lt;high:</span><br><span class="line">        <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[high]&gt;=pivotkey:</span><br><span class="line">            high-=<span class="number">1</span></span><br><span class="line">        arr[low]=arr[high]</span><br><span class="line">        <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[low]&lt;=pivotkey:</span><br><span class="line">            low+=<span class="number">1</span></span><br><span class="line">        arr[high]=arr[low]</span><br><span class="line">        <span class="comment">#print(arr)</span></span><br><span class="line">    arr[low]=pivotkey</span><br><span class="line">    print(arr)</span><br><span class="line">    <span class="keyword">return</span> low</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition2</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    pick = random.randint(L,R)</span><br><span class="line">    swap(arr,pick,R)</span><br><span class="line">    less,more=L,R</span><br><span class="line">    <span class="keyword">while</span> L&lt;more:</span><br><span class="line">        <span class="keyword">if</span> arr[L]&lt;arr[R]:</span><br><span class="line">            swap(arr,less,L)</span><br><span class="line">            less+=<span class="number">1</span></span><br><span class="line">            L+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> arr[L]&gt;arr[R]:</span><br><span class="line">            more-=<span class="number">1</span></span><br><span class="line">            swap(arr,more,L)</span><br><span class="line">        <span class="keyword">else</span>:L+=<span class="number">1</span></span><br><span class="line">    print(arr)</span><br><span class="line">    swap(arr,more,R)</span><br><span class="line">    <span class="keyword">return</span> less,more</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort_v2</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> L&lt;R:</span><br><span class="line">        less,more=partition2(arr,L,R)</span><br><span class="line">        quick_sort_v2(arr,L,less<span class="number">-1</span>)</span><br><span class="line">        quick_sort_v2(arr,more+<span class="number">1</span>,R)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(arr,low,high)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> low&lt;high:</span><br><span class="line">        mid= partition(arr,low,high)</span><br><span class="line">        quick_sort(arr,low,mid<span class="number">-1</span>)</span><br><span class="line">        quick_sort(arr,mid+<span class="number">1</span>,high)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    <span class="comment">#quick_sort(arr,0,len(arr)-1)</span></span><br><span class="line">    quick_sort_v2(arr,<span class="number">0</span>,len(arr)<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
 
-<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_sort</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    简单选择排序的时间复杂度为O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N=len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(L,N):</span><br><span class="line">        j = select_min_key(arr,i,R)</span><br><span class="line">        <span class="keyword">if</span> i!=j:</span><br><span class="line">            swap(arr,i,j)</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_min_key</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    ix = L</span><br><span class="line">    min_value = arr[L]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(L,R):</span><br><span class="line">        <span class="keyword">if</span> min_value&gt;arr[j]:</span><br><span class="line">            min_value=arr[j]</span><br><span class="line">            ix=j</span><br><span class="line">    <span class="keyword">return</span> ix</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    select_sort(arr,<span class="number">0</span>,len(arr))</span><br></pre></td></tr></table></figure>
 
-<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_adjust</span><span class="params">(arr,s,m)</span>:</span></span><br><span class="line">    rc = arr[s]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>*s,m,<span class="number">2</span>*s):</span><br><span class="line">        <span class="keyword">if</span> j&lt;m <span class="keyword">and</span> arr[j]&lt;arr[j+<span class="number">1</span>]:</span><br><span class="line">            j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> arr[s]&gt;=arr[j]:<span class="keyword">break</span> <span class="comment">#循环出口</span></span><br><span class="line">        arr[s]=arr[j]</span><br><span class="line">        s=j</span><br><span class="line">    arr[s]=rc</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    堆排序在最坏的情况下，时间复杂度也为O(nlogn)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N=len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N//<span class="number">2</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        heap_adjust(arr,i,N)</span><br><span class="line">    print(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>):</span><br><span class="line">        swap(arr,<span class="number">1</span>,i)</span><br><span class="line">        heap_adjust(arr,<span class="number">1</span>,i<span class="number">-1</span>)</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    arr.insert(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">    heap_sort(arr)</span><br><span class="line">    <span class="keyword">del</span> arr[<span class="number">0</span>]</span><br><span class="line">    print(arr)</span><br></pre></td></tr></table></figure>
 
-<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> L==R:<span class="keyword">return</span></span><br><span class="line">    M=(L+R)//<span class="number">2</span></span><br><span class="line">    merge_sort(arr,L,M)</span><br><span class="line">    merge_sort(arr,M+<span class="number">1</span>,R)</span><br><span class="line">    merge(arr,L,M,R)</span><br><span class="line">    print(arr)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(arr,L,M,R)</span>:</span></span><br><span class="line">    res=[<span class="number">0</span>]*(R-L+<span class="number">1</span>)</span><br><span class="line">    p,q=L,M+<span class="number">1</span></span><br><span class="line">    i=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> p&lt;=M <span class="keyword">and</span> q&lt;=R:</span><br><span class="line">        <span class="keyword">if</span> arr[p]&lt;arr[q]:</span><br><span class="line">            res[i]=arr[p]    </span><br><span class="line">            i+=<span class="number">1</span>;p+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res[i]=arr[q]</span><br><span class="line">            i+=<span class="number">1</span>;q+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> p&lt;=M:</span><br><span class="line">        res[i]=arr[p]</span><br><span class="line">        i+=<span class="number">1</span>;p+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> q&lt;=R:</span><br><span class="line">        res[i]=arr[q]</span><br><span class="line">        i+=<span class="number">1</span>;q+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(res)):</span><br><span class="line">        arr[L+j]=res[j]</span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    merge_sort(arr,<span class="number">0</span>,len(arr)<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+  
+    <article id="post-第四章Dubbo扩展点加载机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/23/第四章Dubbo扩展点加载机制/">第四章Dubbo扩展点加载机制</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/23/第四章Dubbo扩展点加载机制/" class="archive-article-date">
+  	<time datetime="2019-09-23T09:04:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4-1-扩展机制概述"><a href="#4-1-扩展机制概述" class="headerlink" title="4.1 扩展机制概述"></a>4.1 扩展机制概述</h1><h2 id="4-1-1-Java-Spi"><a href="#4-1-1-Java-Spi" class="headerlink" title="4.1.1 Java Spi"></a>4.1.1 Java Spi</h2><h3 id="实现步骤："><a href="#实现步骤：" class="headerlink" title="实现步骤："></a>实现步骤：</h3><ol>
+<li>编写接口及实现类</li>
+<li>在META-INF/services下创建具有接口全路径名的文件，文件内容为对应的实现类全路径名</li>
+<li>编写调用类通过 ServiceLoader.load()获得对应的实例</li>
+</ol>
+<h2 id="4-1-2-Dubbo-Spi"><a href="#4-1-2-Dubbo-Spi" class="headerlink" title="4.1.2 Dubbo Spi"></a>4.1.2 Dubbo Spi</h2><h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><ol>
+<li>编写接口类及实现类</li>
+<li>在META-INF/services、META-INF/dubbo或者META/dubbo/internal下创建具有接口全路径名的文件，文件内容为一个键值对（对应实现实例名=对应的实现类全路径名）</li>
+<li>编写调用类 通过ExtensionLoader.getExtensionLoader(接口名).getDefaultExteion()获得对应实例</li>
+</ol>
+<h3 id="Java-SPI-和-Dubbo-SPI的比较"><a href="#Java-SPI-和-Dubbo-SPI的比较" class="headerlink" title="Java SPI 和 Dubbo SPI的比较"></a>Java SPI 和 Dubbo SPI的比较</h3><ol>
+<li>实例化，JavaSPI会一次性实例化所有实现，但是DubboSPI则会加载类但是会按需实例化实现</li>
+<li>扩展失败，JavaSPI如果扩展失败，则无法获得扩展名称</li>
+<li>DubboSPI增加了对于IoC和AOP的支持，一个扩展可以直接setter注入其他扩展 </li>
+</ol>
+<h2 id="4-1-3-Dubbo-的配置规范"><a href="#4-1-3-Dubbo-的配置规范" class="headerlink" title="4.1.3 Dubbo 的配置规范"></a>4.1.3 Dubbo 的配置规范</h2><table>
+<thead>
+<tr>
+<th>规范名</th>
+<th>规范说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SPI配置文件路径</td>
+<td>META-INF/services/,META-INF/dubbo/,META-INF/dubbo/internal/</td>
+</tr>
+<tr>
+<td>SPI配置文件名称</td>
+<td>全路径类名</td>
+</tr>
+<tr>
+<td>文件内容格式</td>
+<td>key=value，换行符分隔</td>
+</tr>
+</tbody></table>
+<h2 id="4-1-4-扩展点的分类与缓存"><a href="#4-1-4-扩展点的分类与缓存" class="headerlink" title="4.1.4 扩展点的分类与缓存"></a>4.1.4 扩展点的分类与缓存</h2><h3 id="扩展类的分类"><a href="#扩展类的分类" class="headerlink" title="扩展类的分类"></a>扩展类的分类</h3><h4 id="按照内容分类"><a href="#按照内容分类" class="headerlink" title="按照内容分类"></a>按照内容分类</h4><ol>
+<li>Class缓存</li>
+<li>实例缓存</li>
+</ol>
+<h4 id="按照扩展类种类分类"><a href="#按照扩展类种类分类" class="headerlink" title="按照扩展类种类分类"></a>按照扩展类种类分类</h4><ol>
+<li>普通扩展类</li>
+<li>包装扩展类：通用抽象，构造方法中会传入一个具体的实现</li>
+<li>自适应扩展类：抽象扩展接口，具体实现在运行时由传入参数动态确定</li>
+<li>其他缓存：如扩展类加载器缓存，扩展名缓存</li>
+</ol>
+<h3 id="扩展类缓存"><a href="#扩展类缓存" class="headerlink" title="扩展类缓存"></a>扩展类缓存</h3><table>
+<thead>
+<tr>
+<th>集合名</th>
+<th>缓存类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Holder&lt;Map&lt;String,Class&lt;?&gt;&gt;&gt; cachedClasses</td>
+<td>普通扩展类缓存，不包括自适应扩展类和Wrapper类</td>
+</tr>
+<tr>
+<td>Set&lt;Class&lt;?&gt;&gt; cachedWrapperClasses</td>
+<td>Wrapper类缓存</td>
+</tr>
+<tr>
+<td>Class&lt;?&gt; cachedAdaptiveClass</td>
+<td>自适应扩展类缓存</td>
+</tr>
+<tr>
+<td>CocurrentMap&lt;Class&lt;?&gt;,String&gt; cachedNames</td>
+<td>扩展类与扩展名缓存</td>
+</tr>
+<tr>
+<td>CocurrentMap&lt;Class<?>,ExtentionLoader<?>&gt; EXTENSION_LOADERS</td>
+<td>扩展类与对应的扩展类加载器缓存</td>
+</tr>
+<tr>
+<td>CocurrentMap&lt;Class&lt;?&gt;,Object&gt; EXTENSION_INSTANCES</td>
+<td>扩展类与类初始化后的实例</td>
+</tr>
+<tr>
+<td>Map&lt;String ,Activate&gt; cachedActivates</td>
+<td>扩展名与@Activate的缓存</td>
+</tr>
+</tbody></table>
+<h2 id="4-1-5-扩展点的特性"><a href="#4-1-5-扩展点的特性" class="headerlink" title="4.1.5 扩展点的特性"></a>4.1.5 扩展点的特性</h2><ol>
+<li>自动包装：装饰器模式</li>
+<li>自动加载：setter注入</li>
+<li>自适应：@Adaptive参数匹配</li>
+<li>自动激活： </li>
+</ol>
+<h1 id="4-2-扩展点注解"><a href="#4-2-扩展点注解" class="headerlink" title="4.2 扩展点注解"></a>4.2 扩展点注解</h1><h2 id="4-2-1-扩展点注解-SPI"><a href="#4-2-1-扩展点注解-SPI" class="headerlink" title="4.2.1 扩展点注解 @SPI"></a>4.2.1 扩展点注解 @SPI</h2><ol>
+<li>使用范围： 可以用在类，接口，枚举类上</li>
+<li>作用：标记SPI接口，运行时通过配置找到对应的实现类</li>
+</ol>
+<h2 id="4-2-2-扩展点自适应注解-Adaptive"><a href="#4-2-2-扩展点自适应注解-Adaptive" class="headerlink" title="4.2.2 扩展点自适应注解 @Adaptive"></a>4.2.2 扩展点自适应注解 @Adaptive</h2><ol>
+<li>使用范围：可以使用类，接口，枚举类和方法上</li>
+<li>作用：<ol>
+<li>标记在类级别上：直接将整个类作为默认实现，不再自动生成匹配代码</li>
+<li>标记在方法上：（会生成匹配代码，在匹配代码中）根据传入的指定Contant.key从url中提取参数进行匹配，最终生成指定的实现类</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-2-3扩展点自动激活注解-Activate"><a href="#4-2-3扩展点自动激活注解-Activate" class="headerlink" title="4.2.3扩展点自动激活注解 @Activate"></a>4.2.3扩展点自动激活注解 @Activate</h2><h3 id="Active参数"><a href="#Active参数" class="headerlink" title="Active参数"></a>Active参数</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String[] group()</td>
+<td>URL中的分组如果匹配则激活，则可以设置多个</td>
+</tr>
+<tr>
+<td>String[] value()</td>
+<td>查找URL中如果含有该key值，则激活</td>
+</tr>
+<tr>
+<td>String[] before()</td>
+<td>填写扩展点列表，表示哪些扩展点在本扩展点之前</td>
+</tr>
+<tr>
+<td>String[] after()</td>
+<td>表示哪些扩展点在本扩展点之后</td>
+</tr>
+<tr>
+<td>int order()</td>
+<td>整型，直接的排序信息</td>
+</tr>
+</tbody></table>
+<h1 id="4-3-ExtensionLoader的工作原理"><a href="#4-3-ExtensionLoader的工作原理" class="headerlink" title="4.3 ExtensionLoader的工作原理"></a>4.3 ExtensionLoader的工作原理</h1><h2 id="4-3-1-工作流程"><a href="#4-3-1-工作流程" class="headerlink" title="4.3.1 工作流程"></a>4.3.1 工作流程</h2><h3 id="getExtension-String-name-的工作流程"><a href="#getExtension-String-name-的工作流程" class="headerlink" title="getExtension(String name)的工作流程"></a>getExtension(String name)的工作流程</h3><p>加载中的每一步都会先检查缓存中是否已经存在所需的数据</p>
+<ol>
+<li>框架读取SPI对应路径下的配置文件，根据配置加载所有扩展类并缓存（不初始化）</li>
+<li>根据传入的名称初始化对应的类</li>
+<li>尝试查找符合条件的包装类</li>
+<li>返回对应的扩展类实例</li>
+</ol>
+<h2 id="getAdaptiveExtension-的工作流程"><a href="#getAdaptiveExtension-的工作流程" class="headerlink" title="getAdaptiveExtension()的工作流程"></a>getAdaptiveExtension()的工作流程</h2><ol>
+<li>加载配置文件</li>
+<li>生成自适应的类的代码字符串</li>
+<li>获取类加载器和编译器，并用编译器编译刚才生成的代码字符串</li>
+<li>返回对应的自适应实例</li>
+</ol>
+<h2 id="4-3-2-getExtension的工作原理"><a href="#4-3-2-getExtension的工作原理" class="headerlink" title="4.3.2 getExtension的工作原理"></a>4.3.2 getExtension的工作原理</h2><p>injectExtension()利用setter实现了一个简单的IoC，完成依赖注入</p>
+<h2 id="4-3-3-getAdaptiveExtension的实现原理"><a href="#4-3-3-getAdaptiveExtension的实现原理" class="headerlink" title="4.3.3 getAdaptiveExtension的实现原理"></a>4.3.3 getAdaptiveExtension的实现原理</h2><p>getAdaptiveExtension的代码生成步骤</p>
+<ol>
+<li>生成package、import 、类名称等头部信息</li>
+<li>遍历接口所有方法，获取方法的返回类型、参数类型、异常类型等</li>
+<li>生产参数为空的空校验代码</li>
+<li>生成默认实现类的名称</li>
+<li>生成获取扩展点名称的代码</li>
+<li>生成获取具体扩展实现类的代码</li>
+<li>生成调用结果代码</li>
+</ol>
+<p>由以上自动代码产生的效果：<br>如果 SPI上备注了名称，Adaptive上也备注了名称，则会将SPI的名称作为默认名称，优先以Adaptive名称查找实现类，失败则使用SPI名称</p>
+<h2 id="4-3-4-getActiveExtension的实现原理"><a href="#4-3-4-getActiveExtension的实现原理" class="headerlink" title="4.3.4 getActiveExtension的实现原理"></a>4.3.4 getActiveExtension的实现原理</h2><ol>
+<li>检查缓存，如果缓存中没有，则初始化所有扩展类实现的集合</li>
+<li>遍历@Activate集合，然后根据URL传入的匹配条件（group，name）等，得到所有符合激活条件的扩展类实现</li>
+<li>遍历所有用户自定义扩展的名称，根据用户URL配置的顺序，调整扩展点激活顺序</li>
+<li>返回所有自动激活类姬和</li>
+</ol>
+<p><strong>如果URL参数中传入了-default，则所有默认的@Activate都不会被激活，只有URL参数中指定的扩展点会被激活</strong></p>
+<h2 id="4-3-5-ExtensionFactory的实现原理"><a href="#4-3-5-ExtensionFactory的实现原理" class="headerlink" title="4.3.5 ExtensionFactory的实现原理"></a>4.3.5 ExtensionFactory的实现原理</h2><ol>
+<li>Dubbo和Spring如何被打通？<br>通过Spring的上下文，在SpringExtensionFatory中提供了保存Spring的上下文的静态方法</li>
+<li>AdaptiveExtensionFactory 在构造方法中缓存了所有的扩展类工程，并通过TreeSet排序，SPI在前，Spring在后</li>
+</ol>
+<h1 id="4-4-扩展点动态编译的实现"><a href="#4-4-扩展点动态编译的实现" class="headerlink" title="4.4 扩展点动态编译的实现"></a>4.4 扩展点动态编译的实现</h1><h2 id="4-4-1总体结构"><a href="#4-4-1总体结构" class="headerlink" title="4.4.1总体结构"></a>4.4.1总体结构</h2><h3 id="Dubbo中的三种编译器"><a href="#Dubbo中的三种编译器" class="headerlink" title="Dubbo中的三种编译器"></a>Dubbo中的三种编译器</h3><ol>
+<li>JDK编译器</li>
+<li>Javassist编译器</li>
+<li>AdaptiveCompiler编译器</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li>@SPI注解的默认的编译器是javassist；想改变默认编译器，可以通过&lt;dubbo:application compiler=”jdk”&gt;进行配置</li>
+<li>@Adaptive注解的默认编译器是AdaptiveCompiler</li>
+</ol>
+<h3 id="AdaptiveCompiler的主要抽象逻辑"><a href="#AdaptiveCompiler的主要抽象逻辑" class="headerlink" title="AdaptiveCompiler的主要抽象逻辑"></a>AdaptiveCompiler的主要抽象逻辑</h3><ol>
+<li>通过正则匹配出包路径、类名，再根据包路径、类名拼接处全路径类名</li>
+<li>尝试通过Class.forName加载该类并返回，防止重复编译</li>
+<li>调用doCompile进行编译</li>
+</ol>
+<h2 id="4-4-2-Javassist动态代码编译"><a href="#4-4-2-Javassist动态代码编译" class="headerlink" title="4.4.2 Javassist动态代码编译"></a>4.4.2 Javassist动态代码编译</h2><p>Javassist动态编译步骤</p>
+<ol>
+<li>初始化Javassist，设置默认参数</li>
+<li>通过正则匹配出所有import的包，并使用Javassist添加import</li>
+<li>通过正则匹配出所有extends的包，创建Class对象，并使用Javassist添加extends</li>
+<li>通过正则匹配出所有implements的包，并使用Javassist添加implements</li>
+<li>通过正则匹配出类面的所有内容，即得到{}中的内容，再通过正则匹配出所有方法，并使用Javassist添加类内容</li>
+<li>生成Class对象</li>
+</ol>
+<h2 id="4-4-3-JDK动态代码编译"><a href="#4-4-3-JDK动态代码编译" class="headerlink" title="4.4.3 JDK动态代码编译"></a>4.4.3 JDK动态代码编译</h2><p>主要流程：</p>
+<ol>
+<li>初始化JavaFileObject对象，传入代码字符串，</li>
+<li>调用JavaCompiler.CompilationTask编译出具体的类</li>
+<li>JavaFileMananer负责管理类文件的输入和输出位置</li>
+</ol>
+<p>接口与类介绍</p>
+<ol>
+<li>JavaFileObject接口。字符串代码被包装成一个文件对象，并提供二进制流的接口</li>
+<li>JavaFileManager接口。主要管理文件的输入输出位置。</li>
+<li>JavaCompiler.CompilationTask把JavaFileObject编译成具体的类</li>
+</ol>
+
       
 
       
@@ -861,7 +1799,7 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">算法复习</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-dubbo</a>
         		</li>
       		
 		</ul>
@@ -871,7 +1809,7 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/12/大战严蔚敏第一集-排序算法/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/23/第四章Dubbo扩展点加载机制/">展开全文 >></a>
         </p>
       
 
@@ -903,7 +1841,7 @@ Returns success unless job control is not enabled or an error occurs.</code></pr
   
   
     <nav id="page-nav">
-      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
+      <span class="page-number current">1</span><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/2/">Next &raquo;</a>
     </nav>
   
 
@@ -990,11 +1928,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1006,7 +1944,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1014,11 +1960,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">每日任务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1026,11 +1968,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1042,11 +1992,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
+                <a href="javascript:void(0)" class="js-tag color2">-dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">-spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据库基本操作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1054,11 +2016,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
               </li>
             
             <div class="clearfix"></div>

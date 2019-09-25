@@ -8,14 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>深入理解dubbo第二周 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="第四章三种扩展点的注解作用是什么？有什么区别？（@SPI,@Adaptive,@Active），分别用于什么场景？   注解类型 注解位置 作用 应用场景    @SPI 类级（类，接口，枚举类） 将当前接口注册为扩展点 用在所有需要注册为SPI的类上（一般为接口）   @Adaptive 类级，方法 类级：当前类为该扩展点的默认实现，不生成动态代码；方法级：生成代码，在代码内根据@Adaptiv">
+<meta name="keywords" content="dubbo">
+<meta property="og:type" content="article">
 <meta property="og:title" content="深入理解dubbo第二周">
 <meta property="og:url" content="http://yoursite.com/2019/09/11/深入理解dubbo第二周/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="第四章三种扩展点的注解作用是什么？有什么区别？（@SPI,@Adaptive,@Active），分别用于什么场景？   注解类型 注解位置 作用 应用场景    @SPI 类级（类，接口，枚举类） 将当前接口注册为扩展点 用在所有需要注册为SPI的类上（一般为接口）   @Adaptive 类级，方法 类级：当前类为该扩展点的默认实现，不生成动态代码；方法级：生成代码，在代码内根据@Adaptiv">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2019-09-11T15:22:38.686Z">
+<meta property="og:updated_time" content="2019-09-25T10:02:22.849Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="深入理解dubbo第二周">
+<meta name="twitter:description" content="第四章三种扩展点的注解作用是什么？有什么区别？（@SPI,@Adaptive,@Active），分别用于什么场景？   注解类型 注解位置 作用 应用场景    @SPI 类级（类，接口，枚举类） 将当前接口注册为扩展点 用在所有需要注册为SPI的类上（一般为接口）   @Adaptive 类级，方法 类级：当前类为该扩展点的默认实现，不生成动态代码；方法级：生成代码，在代码内根据@Adaptiv">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,7 +163,70 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h1><h2 id="三种扩展点的注解作用是什么？有什么区别？（-SPI-Adaptive-Active），分别用于什么场景？"><a href="#三种扩展点的注解作用是什么？有什么区别？（-SPI-Adaptive-Active），分别用于什么场景？" class="headerlink" title="三种扩展点的注解作用是什么？有什么区别？（@SPI,@Adaptive,@Active），分别用于什么场景？"></a>三种扩展点的注解作用是什么？有什么区别？（@SPI,@Adaptive,@Active），分别用于什么场景？</h2><table>
+<thead>
+<tr>
+<th>注解类型</th>
+<th>注解位置</th>
+<th>作用</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@SPI</td>
+<td>类级（类，接口，枚举类）</td>
+<td>将当前接口注册为扩展点</td>
+<td>用在所有需要注册为SPI的类上（一般为接口）</td>
+</tr>
+<tr>
+<td>@Adaptive</td>
+<td>类级，方法</td>
+<td>类级：当前类为该扩展点的默认实现，不生成动态代码；方法级：生成代码，在代码内根据@Adaptive内传入的参数动态获得对应的扩展实现类</td>
+<td>用在需要传入参数进行动态选择一个实现类的场景</td>
+</tr>
+<tr>
+<td>@Active</td>
+<td>类级，方法</td>
+<td>通过Activate的参数进行筛选，排序，激活</td>
+<td>用在有多个扩展点实现，需要根据不同条件被激活的场景中</td>
+</tr>
+</tbody></table>
+<h2 id="Adaptive扩展点注释在类上和注释在方法上有什么区别，分别是如何实现的？"><a href="#Adaptive扩展点注释在类上和注释在方法上有什么区别，分别是如何实现的？" class="headerlink" title="@Adaptive扩展点注释在类上和注释在方法上有什么区别，分别是如何实现的？"></a>@Adaptive扩展点注释在类上和注释在方法上有什么区别，分别是如何实现的？</h2><p>@Adaptive<br>注释在类上，表示选择该类为扩展点接口的默认实现，不在生成自动代码<br>注释在方法上，表示需要根据@Adaptive传入的参数进行筛选，最终动态确定最终实现类</p>
+<h2 id="回顾第三章，注册中心接口有多个实现类，Dubbo是怎么直到默认用哪个实现类呢？"><a href="#回顾第三章，注册中心接口有多个实现类，Dubbo是怎么直到默认用哪个实现类呢？" class="headerlink" title="回顾第三章，注册中心接口有多个实现类，Dubbo是怎么直到默认用哪个实现类呢？"></a>回顾第三章，注册中心接口有多个实现类，Dubbo是怎么直到默认用哪个实现类呢？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"dubbo"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RegistryFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;<span class="string">"protocol"</span>&#125;)</span><br><span class="line">    <span class="function">Registry <span class="title">getRegistry</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由上，是根据传入参数判断的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">checkRegistry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// for backward compatibility</span></span><br><span class="line">    <span class="keyword">if</span> (registries == <span class="keyword">null</span> || registries.isEmpty()) &#123;</span><br><span class="line">        String address = ConfigUtils.getProperty(<span class="string">"dubbo.registry.address"</span>);</span><br><span class="line">        <span class="keyword">if</span> (address != <span class="keyword">null</span> &amp;&amp; address.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            registries = <span class="keyword">new</span> ArrayList&lt;RegistryConfig&gt;();</span><br><span class="line">            String[] as = address.split(<span class="string">"\\s*[|]+\\s*"</span>);</span><br><span class="line">            <span class="keyword">for</span> (String a : as) &#123;</span><br><span class="line">                RegistryConfig registryConfig = <span class="keyword">new</span> RegistryConfig();</span><br><span class="line">                registryConfig.setAddress(a);</span><br><span class="line">                registries.add(registryConfig);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h1><h2 id="目前Dubbo协议对service-mesh场景支持不是太友好，因为dubbo透传的数据包含在协议attachement中，如果要解析attachment中的值（比如traceId-需要依次解析body中所有参数部分，造成性能下降，请设计新的协议；-MeshProtocol，给出完成的协议头部定义，（画出每个字节的定义），支持头部渗透参数值（简单键值对）。"><a href="#目前Dubbo协议对service-mesh场景支持不是太友好，因为dubbo透传的数据包含在协议attachement中，如果要解析attachment中的值（比如traceId-需要依次解析body中所有参数部分，造成性能下降，请设计新的协议；-MeshProtocol，给出完成的协议头部定义，（画出每个字节的定义），支持头部渗透参数值（简单键值对）。" class="headerlink" title="目前Dubbo协议对service mesh场景支持不是太友好，因为dubbo透传的数据包含在协议attachement中，如果要解析attachment中的值（比如traceId),需要依次解析body中所有参数部分，造成性能下降，请设计新的协议； MeshProtocol，给出完成的协议头部定义，（画出每个字节的定义），支持头部渗透参数值（简单键值对）。"></a>目前Dubbo协议对service mesh场景支持不是太友好，因为dubbo透传的数据包含在协议attachement中，如果要解析attachment中的值（比如traceId),需要依次解析body中所有参数部分，造成性能下降，请设计新的协议； MeshProtocol，给出完成的协议头部定义，（画出每个字节的定义），支持头部渗透参数值（简单键值对）。</h2><h2 id="rpc调用时并发的，客户端是如何知道响应的数据唯一对应发出去的请求"><a href="#rpc调用时并发的，客户端是如何知道响应的数据唯一对应发出去的请求" class="headerlink" title="rpc调用时并发的，客户端是如何知道响应的数据唯一对应发出去的请求"></a>rpc调用时并发的，客户端是如何知道响应的数据唯一对应发出去的请求</h2><p>这个是通过Dubbo报文头中的RPC唯一请求ID来标识的；<br>在发起请求时，会创建Request对象，并分配一个唯一的requstId，并将关联关系存储到HashMap中，收到响应后，会从HashMap中取出对应的DefaultFutre，并唤醒对应线程通知结果</p>
+<h1 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h1><h2 id="服务在发起远程调用前，还需要经过哪些环节，你能画出流程图嘛？"><a href="#服务在发起远程调用前，还需要经过哪些环节，你能画出流程图嘛？" class="headerlink" title="服务在发起远程调用前，还需要经过哪些环节，你能画出流程图嘛？"></a>服务在发起远程调用前，还需要经过哪些环节，你能画出流程图嘛？</h2><h2 id="理解Directory是如何管理invoker的，重点关注RegistryDirectory的实现"><a href="#理解Directory是如何管理invoker的，重点关注RegistryDirectory的实现" class="headerlink" title="理解Directory是如何管理invoker的，重点关注RegistryDirectory的实现"></a>理解Directory是如何管理invoker的，重点关注RegistryDirectory的实现</h2><p>Directory实现了四个方法：</p>
+<ol>
+<li>检测invoker是否可用</li>
+<li>销毁所有的invoker</li>
+<li>list 调用doList-&gt;过滤invoker并返回</li>
+<li>doList 留给子类实现</li>
+</ol>
+<p>RegistryDirectory的实现：</p>
+<ol>
+<li>notify 动态更新invoker列表、路由列表、配置信息的列表</li>
+<li>doList 过滤invoker<ol>
+<li>方法名+首参数</li>
+<li>方法名</li>
+<li>通配符*</li>
+<li>methodInvokerMap第一个invoker</li>
+<li>空列表</li>
+</ol>
+</li>
+</ol>
+<h2 id="理解自定义路由是如何实现的"><a href="#理解自定义路由是如何实现的" class="headerlink" title="理解自定义路由是如何实现的"></a>理解自定义路由是如何实现的</h2><ol>
+<li>路由语法规则或者文件形式或者js脚本</li>
+<li>route<ol>
+<li>校验whenRoute</li>
+<li>遍历invoker匹配thenRule</li>
+</ol>
+</li>
+</ol>
+<h1 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h1><h2 id="如果那天出了一个Netty6，我要怎么把它加入的Dubbo里面去了"><a href="#如果那天出了一个Netty6，我要怎么把它加入的Dubbo里面去了" class="headerlink" title="如果那天出了一个Netty6，我要怎么把它加入的Dubbo里面去了"></a>如果那天出了一个Netty6，我要怎么把它加入的Dubbo里面去了</h2><p>通过Dubbo的Transporter扩展点，封装一个使用Netty6的Tranporter类即可</p>
+
       
 
       
@@ -167,6 +234,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -360,11 +438,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -376,7 +454,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -384,11 +470,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+                <a href="javascript:void(0)" class="js-tag color5">每日任务</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -396,11 +478,19 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -412,11 +502,23 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
+                <a href="javascript:void(0)" class="js-tag color2">-dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">-spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据库基本操作</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -424,11 +526,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
               </li>
             
             <div class="clearfix"></div>
