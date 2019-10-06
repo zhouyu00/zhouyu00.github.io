@@ -140,177 +140,29 @@
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-springBoot启动过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-acwing1049" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/21/springBoot启动过程/">springBoot启动过程</a>
+      <a class="article-title" href="/2019/10/03/acwing1049/">acwing1049</a>
     </h1>
   
 
         
-        <a href="/2019/09/21/springBoot启动过程/" class="archive-article-date">
-  	<time datetime="2019-09-21T14:33:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-21</time>
+        <a href="/2019/10/03/acwing1049/" class="archive-article-date">
+  	<time datetime="2019-10-03T02:09:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-10-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        
-      
+        <h1 id="大盗阿福"><a href="#大盗阿福" class="headerlink" title="大盗阿福"></a>大盗阿福</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">100010</span>;</span><br><span class="line"><span class="keyword">int</span> T,n;</span><br><span class="line"><span class="keyword">int</span> b[N],f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">cin</span>&gt;&gt;b[i];</span><br><span class="line">        </span><br><span class="line">        f[<span class="number">1</span>]=b[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            f[i]=max(f[i<span class="number">-1</span>],f[i<span class="number">-2</span>]+b[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;f[n]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/21/springBoot启动过程/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-数据库语句总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/21/数据库语句总结/">数据库语句总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/21/数据库语句总结/" class="archive-article-date">
-  	<time datetime="2019-09-21T14:33:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-21</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="模式的定义与删除"><a href="#模式的定义与删除" class="headerlink" title="模式的定义与删除"></a>模式的定义与删除</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>create schema schemaName</p>
-<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>drop schema schemaName</p>
-<h1 id="表的定义与删除"><a href="#表的定义与删除" class="headerlink" title="表的定义与删除"></a>表的定义与删除</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>create table tableName(<br>    columnName1 dataType1 restrict1,<br>    columnName2 dataType2 restrict2<br>)tableRestrict;</p>
-<h2 id="修改基本表"><a href="#修改基本表" class="headerlink" title="修改基本表"></a>修改基本表</h2><p>alter table tableName<br>add column columnName datatype resctirct<br>drop column columnName<br>drop constriant restrictName<br>alter column columnName datatype </p>
-<h2 id="删除基本表"><a href="#删除基本表" class="headerlink" title="删除基本表"></a>删除基本表</h2><p>drop table tableName</p>
-<h1 id="索引的建立与删除"><a href="#索引的建立与删除" class="headerlink" title="索引的建立与删除"></a>索引的建立与删除</h1><h2 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h2><p>create  index indexName<br>on tableName(columnName)</p>
-<h2 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h2><p>alter index oldIndexName<br>rename to newIndexName</p>
-<h2 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h2><p>drop index indexName</p>
-<h2 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h2><h1 id="增-insert"><a href="#增-insert" class="headerlink" title="增 insert"></a>增 insert</h1><p>insert into tableName(fieldName1,fieldName2,…)<br>values (value1,value2,…)</p>
-<h1 id="删-delete"><a href="#删-delete" class="headerlink" title="删 delete"></a>删 delete</h1><p>delete from tableName<br>where columnName1=”value”</p>
-<h1 id="改-update"><a href="#改-update" class="headerlink" title="改 update"></a>改 update</h1><p>update tableName<br>set fieldName1=”value1”<br>where fieldName2=”value2”</p>
-<h1 id="查-select"><a href="#查-select" class="headerlink" title="查 select"></a>查 select</h1><p>select fieldName1,fieldName2,<br>from tableName<br>where fieldName3=”value3”<br>group by<br>order by</p>
-<h1 id="表连接-join"><a href="#表连接-join" class="headerlink" title="表连接 join"></a>表连接 join</h1><p>##<br>select tableName1.fieldName1<br>from<br>tableName1 left join tableName2<br>on tableName1.id=tableName2.id</p>
-<p>## </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据库基本操作</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/21/数据库语句总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-9-20题目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/20/2019-9-20题目总结/">2019-9-20题目总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/20/2019-9-20题目总结/" class="archive-article-date">
-  	<time datetime="2019-09-19T16:16:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="中信银行"><a href="#中信银行" class="headerlink" title="中信银行"></a>中信银行</h1><p>给定一个股价波动的数组prices和手续费fee,只能持有一个股票<br>prices=[1,3,2,8,4,9]<br>每次交易手续fee=2<br>LeetCode 买卖股票的最佳时机</p>
-<h1 id="瓜子"><a href="#瓜子" class="headerlink" title="瓜子"></a>瓜子</h1>
+<h2 id="方法二-状态机"><a href="#方法二-状态机" class="headerlink" title="方法二 状态机"></a>方法二 状态机</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">100010</span>,INF=<span class="number">0x3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T,n;</span><br><span class="line"><span class="keyword">int</span> b[N];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">2</span>][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">cin</span>&gt;&gt;b[i];</span><br><span class="line">        f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">0</span>,f[<span class="number">0</span>][<span class="number">1</span>]=-INF;        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            f[<span class="number">0</span>][j]=max(f[<span class="number">0</span>][j<span class="number">-1</span>],f[<span class="number">1</span>][j<span class="number">-1</span>]);</span><br><span class="line">            f[<span class="number">1</span>][j]=f[<span class="number">0</span>][j<span class="number">-1</span>]+b[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;max(f[<span class="number">1</span>][n],f[<span class="number">0</span>][n])&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -333,7 +185,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/20/2019-9-20题目总结/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/10/03/acwing1049/">展开全文 >></a>
         </p>
       
 
@@ -363,31 +215,162 @@
 
 
   
-    <article id="post-内部类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-神经网络与深度学习" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/内部类/">内部类</a>
+      <a class="article-title" href="/2019/09/29/神经网络与深度学习/">神经网络与深度学习</a>
     </h1>
   
 
         
-        <a href="/2019/09/19/内部类/" class="archive-article-date">
-  	<time datetime="2019-09-19T13:07:25.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
+        <a href="/2019/09/29/神经网络与深度学习/" class="archive-article-date">
+  	<time datetime="2019-09-29T00:56:54.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-29</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="使用内部类的原因"><a href="#使用内部类的原因" class="headerlink" title="使用内部类的原因"></a>使用内部类的原因</h1><ul>
-<li>内部类方法可以访问该类定义所在的作用域中的数据，包括私有的数据</li>
-<li>内部类可以对同一个类中的其他类隐藏起来</li>
-<li>当想要定义一个回调函数且不想编写大量代码时，使用匿名内部类比较便捷</li>
-</ul>
+        <h1 id="1-使用神经网络识别手写数字"><a href="#1-使用神经网络识别手写数字" class="headerlink" title="1 使用神经网络识别手写数字"></a>1 使用神经网络识别手写数字</h1><h2 id="1-1-感知器"><a href="#1-1-感知器" class="headerlink" title="1.1 感知器"></a>1.1 感知器</h2><h2 id="1-2-S型神经元"><a href="#1-2-S型神经元" class="headerlink" title="1.2 S型神经元"></a>1.2 S型神经元</h2><h2 id="1-3-神经网络的架构"><a href="#1-3-神经网络的架构" class="headerlink" title="1.3 神经网络的架构"></a>1.3 神经网络的架构</h2><h2 id="1-4-一个简单的分类手写数字网络"><a href="#1-4-一个简单的分类手写数字网络" class="headerlink" title="1.4 一个简单的分类手写数字网络"></a>1.4 一个简单的分类手写数字网络</h2><h1 id="2-反向传播算法如何工作"><a href="#2-反向传播算法如何工作" class="headerlink" title="2 反向传播算法如何工作"></a>2 反向传播算法如何工作</h1><h2 id="2-1-神经网络中使用矩阵快速计算输出的方法"><a href="#2-1-神经网络中使用矩阵快速计算输出的方法" class="headerlink" title="2.1 神经网络中使用矩阵快速计算输出的方法"></a>2.1 神经网络中使用矩阵快速计算输出的方法</h2><h2 id="2-2关于代价函数的两个假设"><a href="#2-2关于代价函数的两个假设" class="headerlink" title="2.2关于代价函数的两个假设"></a>2.2关于代价函数的两个假设</h2><h2 id="2-3-Hadamard乘积"><a href="#2-3-Hadamard乘积" class="headerlink" title="2.3 Hadamard乘积"></a>2.3 Hadamard乘积</h2><h2 id="2-4-反向传播的四个基本方程"><a href="#2-4-反向传播的四个基本方程" class="headerlink" title="2.4 反向传播的四个基本方程"></a>2.4 反向传播的四个基本方程</h2><h2 id="2-5-四个基本方程的证明（可选）"><a href="#2-5-四个基本方程的证明（可选）" class="headerlink" title="2.5 四个基本方程的证明（可选）"></a>2.5 四个基本方程的证明（可选）</h2><h2 id="2-6-反向传播算法"><a href="#2-6-反向传播算法" class="headerlink" title="2.6 反向传播算法"></a>2.6 反向传播算法</h2><h2 id="2-7"><a href="#2-7" class="headerlink" title="2.7"></a>2.7</h2><h2 id="2-8-在哪种层面上，神经网络算法是快速的算法"><a href="#2-8-在哪种层面上，神经网络算法是快速的算法" class="headerlink" title="2.8 在哪种层面上，神经网络算法是快速的算法"></a>2.8 在哪种层面上，神经网络算法是快速的算法</h2><h2 id="2-9-全局观"><a href="#2-9-全局观" class="headerlink" title="2.9 全局观"></a>2.9 全局观</h2><h1 id="3-改进神经网络的学习算法"><a href="#3-改进神经网络的学习算法" class="headerlink" title="3 改进神经网络的学习算法"></a>3 改进神经网络的学习算法</h1><h2 id="3-1-交叉熵代价函数"><a href="#3-1-交叉熵代价函数" class="headerlink" title="3.1 交叉熵代价函数"></a>3.1 交叉熵代价函数</h2><h3 id="3-1-2-使用交叉熵来对MNIST"><a href="#3-1-2-使用交叉熵来对MNIST" class="headerlink" title="3.1.2 使用交叉熵来对MNIST"></a>3.1.2 使用交叉熵来对MNIST</h3><h3 id="3-1-3-交叉熵的含义？源自哪里？"><a href="#3-1-3-交叉熵的含义？源自哪里？" class="headerlink" title="3.1.3 交叉熵的含义？源自哪里？"></a>3.1.3 交叉熵的含义？源自哪里？</h3><h3 id="3-1-4-柔性最大值"><a href="#3-1-4-柔性最大值" class="headerlink" title="3.1.4 柔性最大值"></a>3.1.4 柔性最大值</h3><h2 id="3-2-过度拟合和规范化"><a href="#3-2-过度拟合和规范化" class="headerlink" title="3.2 过度拟合和规范化"></a>3.2 过度拟合和规范化</h2><h3 id="3-2-1-规范化"><a href="#3-2-1-规范化" class="headerlink" title="3.2.1 规范化"></a>3.2.1 规范化</h3><h3 id="3-2-2-为何规范化可以帮助减轻过拟合"><a href="#3-2-2-为何规范化可以帮助减轻过拟合" class="headerlink" title="3.2.2 为何规范化可以帮助减轻过拟合"></a>3.2.2 为何规范化可以帮助减轻过拟合</h3><h3 id="3-2-3-规范化的其他技术"><a href="#3-2-3-规范化的其他技术" class="headerlink" title="3.2.3 规范化的其他技术"></a>3.2.3 规范化的其他技术</h3><h2 id="3-3-权重初始化"><a href="#3-3-权重初始化" class="headerlink" title="3.3 权重初始化"></a>3.3 权重初始化</h2><h2 id="3-5-如何选择神经网络的超参数"><a href="#3-5-如何选择神经网络的超参数" class="headerlink" title="3.5 如何选择神经网络的超参数"></a>3.5 如何选择神经网络的超参数</h2><h1 id="4-神经网络可以计算任何函数的可视化证明"><a href="#4-神经网络可以计算任何函数的可视化证明" class="headerlink" title="4 神经网络可以计算任何函数的可视化证明"></a>4 神经网络可以计算任何函数的可视化证明</h1><h2 id="4-1-两个预先声明"><a href="#4-1-两个预先声明" class="headerlink" title="4.1 两个预先声明"></a>4.1 两个预先声明</h2><h2 id="4-2-一个输入和输出的普遍性"><a href="#4-2-一个输入和输出的普遍性" class="headerlink" title="4.2 一个输入和输出的普遍性"></a>4.2 一个输入和输出的普遍性</h2><h2 id="4-4-S型神经元的延伸"><a href="#4-4-S型神经元的延伸" class="headerlink" title="4.4 S型神经元的延伸"></a>4.4 S型神经元的延伸</h2><h1 id="5-深度神经网络为何很难训练"><a href="#5-深度神经网络为何很难训练" class="headerlink" title="5 深度神经网络为何很难训练"></a>5 深度神经网络为何很难训练</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/29/神经网络与深度学习/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-左神高级班" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/28/左神高级班/">左神高级班</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/28/左神高级班/" class="archive-article-date">
+  	<time datetime="2019-09-28T08:25:20.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-28</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/28/左神高级班/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-rmq算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/27/rmq算法/">rmq算法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/27/rmq算法/" class="archive-article-date">
+  	<time datetime="2019-09-27T14:01:07.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <p><a href="https://blog.csdn.net/qq_41311604/article/details/79900893" target="_blank" rel="noopener">https://blog.csdn.net/qq_41311604/article/details/79900893</a></p>
 
       
 
@@ -401,7 +384,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -411,7 +394,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/内部类/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/27/rmq算法/">展开全文 >></a>
         </p>
       
 
@@ -441,34 +424,176 @@
 
 
   
-    <article id="post-反射和代理" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-0x02枚举模拟递推" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/反射和代理/">反射和代理</a>
+      <a class="article-title" href="/2019/09/27/0x02枚举模拟递推/">0x02枚举模拟递推</a>
     </h1>
   
 
         
-        <a href="/2019/09/19/反射和代理/" class="archive-article-date">
-  	<time datetime="2019-09-19T12:42:02.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
+        <a href="/2019/09/27/0x02枚举模拟递推/" class="archive-article-date">
+  	<time datetime="2019-09-27T01:19:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-27</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="反射"><a href="#反射" class="headerlink" title="反射"></a>反射</h1><ol>
-<li>获取class对象的方法<ul>
-<li>从实例对象获取getClass()</li>
-<li>从类名获取 Class.forName()</li>
-</ul>
-</li>
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/27/0x02枚举模拟递推/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-0x01位运算" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/27/0x01位运算/">0x01位运算</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/27/0x01位运算/" class="archive-article-date">
+  	<time datetime="2019-09-27T00:30:40.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-27</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="hamilton最短距离"><a href="#hamilton最短距离" class="headerlink" title="hamilton最短距离"></a>hamilton最短距离</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">1</span>&lt;&lt;<span class="number">20</span>][<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> weight[<span class="number">20</span>][<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hamilton</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> weight[][<span class="number">20</span>])</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)<span class="keyword">if</span>(i&gt;&gt;j&amp;<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;k++)<span class="keyword">if</span>(i&gt;&gt;k&amp;<span class="number">1</span>)</span><br><span class="line">                f[i][j]=min(f[i][j],f[i^<span class="number">1</span>&lt;&lt;j][k]+weight[k][j]);</span><br><span class="line">    <span class="keyword">return</span> f[(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>][n<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;weight[i][j];</span><br><span class="line">    <span class="keyword">int</span> t = hamilton(n,weight);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;t&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color4">算法竞赛进阶指南</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/27/0x01位运算/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-大战严蔚敏第四集-模式匹配算法" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/26/大战严蔚敏第四集-模式匹配算法/">大战严蔚敏第四集-模式匹配算法</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/26/大战严蔚敏第四集-模式匹配算法/" class="archive-article-date">
+  	<time datetime="2019-09-26T06:05:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-26</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="朴素的模式匹配"><a href="#朴素的模式匹配" class="headerlink" title="朴素的模式匹配"></a>朴素的模式匹配</h1><p>思路：<br>    1.从位置t开始，<br>    2.对主串第i个和模式串第j个进行比较；如果匹配上，结束匹配过程，返回t<br>    3.如果无法匹配上，回到位置t+1，继续步骤2</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_index</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    i,j=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    l1,l2=len(s),len(p)</span><br><span class="line">    <span class="keyword">while</span> i&lt;l1 <span class="keyword">and</span> j&lt;l2:</span><br><span class="line">        <span class="keyword">if</span> s[i]==p[j]:</span><br><span class="line">            i+=<span class="number">1</span>;j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i=i-j+<span class="number">1</span>;j=<span class="number">0</span></span><br><span class="line">        print(<span class="string">"i="</span>,i,<span class="string">"j="</span>,j)</span><br><span class="line">    <span class="keyword">if</span> j==l2:</span><br><span class="line">        <span class="keyword">return</span> i-j</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    s=<span class="string">'ababcabcacbab'</span></span><br><span class="line">    p=<span class="string">'abcac'</span></span><br><span class="line">    print(str_index(s,p))</span><br></pre></td></tr></table></figure>
+
+<h1 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h1><p>克努特-莫里斯-普拉特操作<br>请牢牢记住这三个人好吧</p>
+<p>思路：<br>利用next数组使得在一次匹配中，主串的i不用回退</p>
+<ol>
+<li>假如主串的i和模式串的j不匹配时，j退到k，k能保证k之前的元素已经与主串i之前的元素匹配好，即’si-k+1si-k+2…si-1’=’p1p2…pk-1’,一共k-1个元素已经匹配好</li>
+<li>又主串i和模式串从j才开始不匹配那么从j往前的k-1个元素必定也是匹配的，有，’si-k+1si-k+2…si-1’=’pj-k+1pj-k+2…pj-1’</li>
+<li>那么由上面可以得出’p1p2…pk-1’=’pj-k+1pj-k+2…pj-1’，从而实际上求next是一个模式传递串的自匹配问题</li>
 </ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kmp</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    next = getNext(p)</span><br><span class="line">    print(next)</span><br><span class="line">    i,j=<span class="number">-1</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i&lt;len(s) <span class="keyword">and</span> j&lt;len(p):</span><br><span class="line">        <span class="keyword">if</span> j==<span class="number">0</span> <span class="keyword">or</span> s[i]==p[j]:</span><br><span class="line">            i+=<span class="number">1</span>;j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=next[j]</span><br><span class="line">        <span class="keyword">if</span> j==len(p):<span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> j&gt;=len(p):</span><br><span class="line">        <span class="keyword">return</span> i-len(p)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getNext</span><span class="params">(s)</span>:</span></span><br><span class="line">    N = len(s)</span><br><span class="line">    i,j=<span class="number">0</span>,<span class="number">-1</span></span><br><span class="line">    next=[<span class="number">0</span>]*N</span><br><span class="line">    next[<span class="number">0</span>]=<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span>(i&lt;N<span class="number">-1</span>):</span><br><span class="line">        print(i,j)</span><br><span class="line">        <span class="keyword">if</span> j==<span class="number">-1</span> <span class="keyword">or</span> s[i]==s[j]:</span><br><span class="line">            i+=<span class="number">1</span>;j+=<span class="number">1</span></span><br><span class="line">            next[i]=j</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=next[j]</span><br><span class="line">    <span class="keyword">return</span> next</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    s=<span class="string">"ababcabcacbab"</span></span><br><span class="line">    p=<span class="string">"abcac"</span></span><br><span class="line">    print(getNext(p))</span><br><span class="line">    t= kmp(s,p)</span><br><span class="line">    print(t)</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
 
+<h1 id="KMP-Plus"><a href="#KMP-Plus" class="headerlink" title="KMP Plus"></a>KMP Plus</h1><p>思路：<br>nextval修正主要是：<br>当si和pj不等时，不再和pk比较而是直接和p(next[k])，进行比较，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kmpPlus</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    nextval=getNextVal(p)</span><br><span class="line">    print(nextval)</span><br><span class="line">    M,N=len(s),len(p)</span><br><span class="line">    i,j=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i&lt;M <span class="keyword">and</span> j&lt;N:</span><br><span class="line">        <span class="keyword">if</span> j==<span class="number">0</span> <span class="keyword">or</span> s[i]==p[j]:</span><br><span class="line">            i+=<span class="number">1</span>;j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=nextval[j]</span><br><span class="line">    <span class="keyword">if</span> j&gt;=N:<span class="keyword">return</span> i-N</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>        </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getNextVal</span><span class="params">(p)</span>:</span></span><br><span class="line">    N = len(p)</span><br><span class="line">    i,j=<span class="number">1</span>,<span class="number">0</span></span><br><span class="line">    nextval=[<span class="number">0</span>]*N</span><br><span class="line">    <span class="keyword">while</span> i&lt;N<span class="number">-1</span>:</span><br><span class="line">        <span class="keyword">if</span> j==<span class="number">0</span> <span class="keyword">or</span> p[i]==p[j]:</span><br><span class="line">            i+=<span class="number">1</span>;j+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> p[i]!=p[j]:</span><br><span class="line">                nextval[i]=j</span><br><span class="line">            <span class="keyword">else</span>: </span><br><span class="line">                nextval[i]=nextval[j]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=nextval[j]</span><br><span class="line">    <span class="keyword">return</span> nextval</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    s=<span class="string">"aaabaaaab"</span></span><br><span class="line">    p=<span class="string">"aaaab"</span></span><br><span class="line">    t=kmpPlus(s,p)</span><br><span class="line">    print(t)</span><br></pre></td></tr></table></figure>
       
 
       
@@ -481,7 +606,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">java基础</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
         		</li>
       		
 		</ul>
@@ -491,7 +616,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/反射和代理/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/26/大战严蔚敏第四集-模式匹配算法/">展开全文 >></a>
         </p>
       
 
@@ -521,494 +646,441 @@
 
 
   
-    <article id="post-注解" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-第八章Dubbo扩展点" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/注解/">注解</a>
+      <a class="article-title" href="/2019/09/25/第八章Dubbo扩展点/">第八章Dubbo扩展点</a>
     </h1>
   
 
         
-        <a href="/2019/09/19/注解/" class="archive-article-date">
-  	<time datetime="2019-09-19T11:12:23.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
+        <a href="/2019/09/25/第八章Dubbo扩展点/" class="archive-article-date">
+  	<time datetime="2019-09-25T07:25:33.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <h1 id="注解语法"><a href="#注解语法" class="headerlink" title="注解语法"></a>注解语法</h1><p>public @interface AnnotationName{</p>
-<p>}</p>
-<ul>
-<li>所有的注解都隐式地扩展自java.lang.Annotation接口；</li>
-<li>这个接口是一个常规接口不是注解接口；</li>
-<li>注解元素的类型:<ul>
-<li>基本类型</li>
-<li>String</li>
-<li>Class</li>
-<li>enum类型</li>
-<li>注解类型</li>
-<li>由前面类型组成的数组</li>
-</ul>
-</li>
-</ul>
-<h1 id="注解"><a href="#注解" class="headerlink" title="注解"></a>注解</h1><p>@AnnotationName(elementName=value…)</p>
-<ul>
-<li>一个注解元素永远不能设为null，默认值也不能为null</li>
-<li>在注解中引入循环依赖是一种错误</li>
-</ul>
-<h1 id="注解各类声明"><a href="#注解各类声明" class="headerlink" title="注解各类声明"></a>注解各类声明</h1><ul>
-<li>声明用法可以出现在：<ul>
-<li>包</li>
-<li>类（包括Enum）</li>
-<li>接口（包括注解接口）</li>
-<li>方法</li>
-<li>构造器</li>
-<li>实例域 （包含enum常量）</li>
-<li>局部变量</li>
-<li>参数变量</li>
-<li>类型参数</li>
-</ul>
-</li>
-<li>对局部变量的变量只能在源码级别上进行处理。类文件并不描述局部变量。因此所有的局部变量注解在编译完一个类的时候就会被遗弃掉。同样的，对包的注解不能在源码级别之外</li>
-</ul>
-<h1 id="注解类型用法"><a href="#注解类型用法" class="headerlink" title="注解类型用法"></a>注解类型用法</h1><ul>
-<li>类型用法可以出现在：<ul>
-<li>与泛化类型引元一起使用</li>
-<li>数组中的任何位置</li>
-<li>与超类和实现接口一起使用</li>
-<li>与构造器一起使用</li>
-<li>与强制类型转换和instanceof检查一起使用</li>
-<li>与异常违约一起使用</li>
-<li>与通配符和类型边界一起使用</li>
-<li>与方法和构造器引用一起使用</li>
-</ul>
-</li>
-</ul>
-<h1 id="标准注解"><a href="#标准注解" class="headerlink" title="标准注解"></a>标准注解</h1><table>
+        <h1 id="8-1-Dubbo核心扩展点概述"><a href="#8-1-Dubbo核心扩展点概述" class="headerlink" title="8.1 Dubbo核心扩展点概述"></a>8.1 Dubbo核心扩展点概述</h1><h2 id="8-1-1扩展点的背景"><a href="#8-1-1扩展点的背景" class="headerlink" title="8.1.1扩展点的背景"></a>8.1.1扩展点的背景</h2><h2 id="8-1-2扩展点整体架构"><a href="#8-1-2扩展点整体架构" class="headerlink" title="8.1.2扩展点整体架构"></a>8.1.2扩展点整体架构</h2><h1 id="8-2-RPC层扩展点"><a href="#8-2-RPC层扩展点" class="headerlink" title="8.2 RPC层扩展点"></a>8.2 RPC层扩展点</h1><h2 id="8-2-1-Proxy扩展点"><a href="#8-2-1-Proxy扩展点" class="headerlink" title="8.2.1 Proxy扩展点"></a>8.2.1 Proxy扩展点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"javassist"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ProxyFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;Constants.PROXY_KEY&#125;)</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;Constants.PROXY_KEY&#125;)</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker,<span class="keyword">boolean</span> generic)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker,Class&lt;T&gt; type,URL url)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="已有的扩展类实现"><a href="#已有的扩展类实现" class="headerlink" title="已有的扩展类实现"></a>已有的扩展类实现</h3><ol>
+<li>stub</li>
+<li>jdk</li>
+<li>javassist</li>
+</ol>
+<h2 id="8-2-2-Registry层扩展点"><a href="#8-2-2-Registry层扩展点" class="headerlink" title="8.2.2 Registry层扩展点"></a>8.2.2 Registry层扩展点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"dubbo"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RegistryFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;<span class="string">"protocol"</span>&#125;)</span><br><span class="line">    <span class="function">Registry <span class="title">getRegistry</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类实现"><a href="#扩展类实现" class="headerlink" title="扩展类实现"></a>扩展类实现</h3><ol>
+<li>zookeeper</li>
+<li>redis</li>
+<li>multicast</li>
+<li>dubbo</li>
+</ol>
+<h2 id="8-2-3Cluster扩展点"><a href="#8-2-3Cluster扩展点" class="headerlink" title="8.2.3Cluster扩展点"></a>8.2.3Cluster扩展点</h2><h3 id="1Cluster扩展点"><a href="#1Cluster扩展点" class="headerlink" title="1Cluster扩展点"></a>1Cluster扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(FailoverCluster.NAME)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cluster</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span></span><br><span class="line">    &lt;T&gt; <span class="function">Invoker&lt;T&gt; <span class="title">join</span><span class="params">(Directory&lt;T&gt; directory)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类实现-1"><a href="#扩展类实现-1" class="headerlink" title="扩展类实现"></a>扩展类实现</h3><ol>
+<li>mock</li>
+<li>failover</li>
+<li>failfast</li>
+<li>failsafe</li>
+<li>failback</li>
+<li>forking</li>
+<li>available</li>
+<li>mergeable</li>
+<li>boardcast</li>
+<li>registryaware</li>
+</ol>
+<h3 id="2-RouterFactory扩展点"><a href="#2-RouterFactory扩展点" class="headerlink" title="2 RouterFactory扩展点"></a>2 RouterFactory扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RouterFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(<span class="string">"protocol"</span>)</span><br><span class="line">    <span class="function">Router <span class="title">getRouter</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类"><a href="#扩展类" class="headerlink" title="扩展类"></a>扩展类</h3><ol>
+<li>file</li>
+<li>script</li>
+<li>condition</li>
+<li>service</li>
+<li>app</li>
+<li>tag</li>
+<li>mock</li>
+</ol>
+<h3 id="3-LoadBalance扩展点"><a href="#3-LoadBalance扩展点" class="headerlink" title="3 LoadBalance扩展点"></a>3 LoadBalance扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(RandomLoadBalance.NAME)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LoadBalance</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(<span class="string">"loadbalance"</span>)</span><br><span class="line">    &lt;T&gt; <span class="function">Invoker&lt;T&gt; <span class="title">select</span><span class="params">(List&lt;Invoker&lt;T&gt;&gt; invokers,URL url,Invocation invocation)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类-1"><a href="#扩展类-1" class="headerlink" title="扩展类"></a>扩展类</h3><ol>
+<li>random</li>
+<li>roundrobin</li>
+<li>leastactive</li>
+<li>consistenthash</li>
+</ol>
+<h3 id="4-ConfiguratorFactory扩展点"><a href="#4-ConfiguratorFactory扩展点" class="headerlink" title="4 ConfiguratorFactory扩展点"></a>4 ConfiguratorFactory扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ConfiguratorFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(<span class="string">"protocol"</span>)</span><br><span class="line">    <span class="function">Configurator <span class="title">getConfigurator</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现类"><a href="#实现类" class="headerlink" title="实现类"></a>实现类</h3><ol>
+<li>override</li>
+<li>absent</li>
+</ol>
+<h3 id="5-Merger扩展点"><a href="#5-Merger扩展点" class="headerlink" title="5 Merger扩展点"></a>5 Merger扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Merger</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function">T <span class="title">merge</span> <span class="params">(T... items)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类-2"><a href="#扩展类-2" class="headerlink" title="扩展类"></a>扩展类</h3><ol>
+<li>map</li>
+<li>set</li>
+<li>list</li>
+<li>byte</li>
+<li>char</li>
+<li>short</li>
+<li>int</li>
+<li>long</li>
+<li>float</li>
+<li>double</li>
+<li>boolean</li>
+</ol>
+<h1 id="8-3Remote层扩展点"><a href="#8-3Remote层扩展点" class="headerlink" title="8.3Remote层扩展点"></a>8.3Remote层扩展点</h1><h2 id="8-3-1Protocol层扩展点"><a href="#8-3-1Protocol层扩展点" class="headerlink" title="8.3.1Protocol层扩展点"></a>8.3.1Protocol层扩展点</h2><h3 id="1-protocol扩展点"><a href="#1-protocol扩展点" class="headerlink" title="1 protocol扩展点"></a>1 protocol扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"dubbo"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Protocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getDefaultPort</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="meta">@Adaptive</span></span><br><span class="line">    &lt;T&gt; <span class="function">Exporter&lt;T&gt; <span class="title">export</span><span class="params">(Invoker&lt;T&gt; invoker)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="meta">@Adaptive</span></span><br><span class="line">    &lt;T&gt; <span class="function">Invoker&lt;T&gt; <span class="title">refer</span><span class="params">(Class&lt;T&gt; type,URL url)</span><span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="接口默认规则"><a href="#接口默认规则" class="headerlink" title="接口默认规则"></a>接口默认规则</h3><p>export方法：</p>
+<ol>
+<li>协议收到请求后应记录请求源IP地址</li>
+<li>export方法必须实现幂等</li>
+<li>Invoker实例由框架传入，无需关心协议层</li>
+</ol>
+<p>refer方法：</p>
+<ol>
+<li>调用refer方法返回Invoker对象的invoke方法时，协议也要执行invoke方法</li>
+<li>refer方法返回的自定义Invoker需要继承Invoker接口</li>
+<li>URL参数有check=false时，自定义协议实现必须不能抛出异常，二十在出现连接失败时尝试恢复连接</li>
+</ol>
+<p>destroy方法：</p>
+<ol>
+<li>调用destroy方法的时候，需要销毁所有本协议暴露和引用的方法</li>
+<li>需要释放所有占用的资源</li>
+<li>自定义协议可以在被销毁后，继续导出 和引用新服务</li>
+</ol>
+<h3 id="已实现的Protocol扩展点"><a href="#已实现的Protocol扩展点" class="headerlink" title="已实现的Protocol扩展点"></a>已实现的Protocol扩展点</h3><ol>
+<li>injvm</li>
+<li>dubbo</li>
+<li>rmi</li>
+<li>http</li>
+<li>hessian</li>
+<li>rest</li>
+<li>thrift</li>
+<li>-</li>
+<li>redis</li>
+<li>memcached</li>
+</ol>
+<h3 id="2Filter扩展点"><a href="#2Filter扩展点" class="headerlink" title="2Filter扩展点"></a>2Filter扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Filter</span></span>&#123;</span><br><span class="line">    <span class="function">Result <span class="title">invoke</span><span class="params">(Invoker&lt;?&gt; invoker,Invocation invocation)</span><span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> Result <span class="title">onResponse</span><span class="params">(Result result,Invoker&lt;?&gt; invoker,Invocation invocation)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3ExporterListener-InvokerListener扩展点"><a href="#3ExporterListener-InvokerListener扩展点" class="headerlink" title="3ExporterListener/InvokerListener扩展点"></a>3ExporterListener/InvokerListener扩展点</h3>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/25/第八章Dubbo扩展点/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-第七章Dubbo集群容错" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/25/第七章Dubbo集群容错/">第七章Dubbo集群容错</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/25/第七章Dubbo集群容错/" class="archive-article-date">
+  	<time datetime="2019-09-25T05:59:00.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="7-1-Cluster层概述"><a href="#7-1-Cluster层概述" class="headerlink" title="7.1 Cluster层概述"></a>7.1 Cluster层概述</h1><h3 id="Cluster层总体工作流程"><a href="#Cluster层总体工作流程" class="headerlink" title="Cluster层总体工作流程"></a>Cluster层总体工作流程</h3><ol>
+<li>生成Invoker对象</li>
+<li>获得可调用服务列表</li>
+<li>做负载均衡</li>
+<li>做RPC调用</li>
+</ol>
+<h1 id="7-2-容错机制的实现"><a href="#7-2-容错机制的实现" class="headerlink" title="7.2 容错机制的实现"></a>7.2 容错机制的实现</h1><h2 id="7-2-1-容错机制概述"><a href="#7-2-1-容错机制概述" class="headerlink" title="7.2.1 容错机制概述"></a>7.2.1 容错机制概述</h2><h3 id="容错机制特性表"><a href="#容错机制特性表" class="headerlink" title="容错机制特性表"></a>容错机制特性表</h3><table>
 <thead>
 <tr>
-<th>注解接口</th>
-<th>应用场合</th>
-<th>目的</th>
+<th>机制名</th>
+<th>机制简介</th>
 </tr>
 </thead>
 <tbody><tr>
-<td>Deprecated</td>
-<td>全部</td>
-<td>将项标记为过时的</td>
+<td>Failover</td>
+<td>失败重试</td>
 </tr>
 <tr>
-<td>SuppressWarnings</td>
-<td>除了包和注解之外的所有情况</td>
-<td>阻止给某个给定类型的警告信息</td>
+<td>Failfast</td>
+<td>快速失败并返回异常结果</td>
 </tr>
 <tr>
-<td>SafeVarargs</td>
-<td>方法构造器</td>
-<td>断言varargs</td>
+<td>Failsafe</td>
+<td>直接忽略异常</td>
 </tr>
 <tr>
-<td>Override</td>
-<td>方法</td>
-<td>检查方法是否覆盖了某一个超类方法</td>
+<td>Failback</td>
+<td>记入失败队列，定时重试</td>
 </tr>
 <tr>
-<td>FuntionalInterface</td>
-<td>接口</td>
-<td>将接口标记为只有一个抽象方法的函数式接口</td>
+<td>Forking</td>
+<td>同时调用多个，返回一个</td>
 </tr>
 <tr>
-<td>PostConstruct/PreDestroy</td>
-<td>方法</td>
-<td>被标记的方法应该在构造之后或移除之前立即被调用</td>
+<td>Broadcast</td>
+<td>广播调用所有可用服务</td>
 </tr>
 <tr>
-<td>Resource</td>
-<td>类、接口、方法、域</td>
-<td>在类或接口上：标记为在其他地方要用的资源；在方法或域上，为注入做标记</td>
+<td>Mock</td>
+<td>广播调用所有可用服务，任意一个报错则报错</td>
 </tr>
 <tr>
-<td>Resources</td>
-<td>类、接口</td>
-<td>一个资源数组</td>
+<td>Available</td>
+<td>不做负载均衡，遍历到第一个可用节点</td>
 </tr>
 <tr>
-<td>Generated</td>
-<td>全部</td>
-<td></td>
-</tr>
-<tr>
-<td>Target</td>
-<td>注解</td>
-<td>指明可以应用这个注解的那些项</td>
-</tr>
-<tr>
-<td>Retention</td>
-<td>注解</td>
-<td>指明这个注解可以保留多久</td>
-</tr>
-<tr>
-<td>Documented</td>
-<td>注解</td>
-<td>指明这个注解应该包含在注解项的文档中</td>
-</tr>
-<tr>
-<td>Inheited</td>
-<td>注解</td>
-<td>指明当这个注解应用于某一个类的时候，能够自动被它的子类继承</td>
-</tr>
-<tr>
-<td>Repeatable</td>
-<td>注解</td>
-<td>指明这个注解可以在同一个项上应用多次</td>
+<td>Mergeable</td>
+<td>合并多个节点得到结果</td>
 </tr>
 </tbody></table>
-<h2 id="用于编译的注解"><a href="#用于编译的注解" class="headerlink" title="用于编译的注解"></a>用于编译的注解</h2><ul>
-<li>@Deprecated</li>
-<li>@SupressWarnings</li>
-<li>@Generated 注解的目的是供代码生成工具来使用。任何生成的代码都可以被注解，从而与程序员提供的代码区分开来</li>
+<h2 id="7-2-2-Cluster接口关系"><a href="#7-2-2-Cluster接口关系" class="headerlink" title="7.2.2 Cluster接口关系"></a>7.2.2 Cluster接口关系</h2><ul>
+<li>invoker<ul>
+<li>AbstractClusterInvoker<ul>
+<li>AvailableClusterInvoker</li>
+<li>BroadcastClusterInvoker</li>
+<li>ForkingClusterInvoker</li>
+<li>FailoverClusterInvoker</li>
+<li>FailfastClusterInvoker</li>
+<li>FailbackClusterInvoker</li>
+<li>FailsafeClusterInvoker</li>
 </ul>
-<h2 id="用于管理资源的注解"><a href="#用于管理资源的注解" class="headerlink" title="用于管理资源的注解"></a>用于管理资源的注解</h2><ul>
-<li>@PostConstruct</li>
-<li>@PreDestroy</li>
-<li>@Resource</li>
+</li>
+<li>MockClusterInvoker</li>
+<li>MergeableClusterInvoker</li>
 </ul>
-<h2 id="元注解"><a href="#元注解" class="headerlink" title="元注解"></a>元注解</h2><ul>
-<li>@Target 注解可以应用的项</li>
-<li>@Retention</li>
-<li>@Documented 用于将使用该注解项纳入文档</li>
-<li>@Inherited 只能应用于对类的注解。如果一个类具有继承注解，那么它的所有子类都自动具有同样的注解</li>
+</li>
 </ul>
-<p>@Target(ElementType.?)<br>|元素类型|注解适合场合|<br>|——-|———–|<br>|ANNOTATION_TYPE|注解类型声明|<br>|PACKAGE|包|<br>|TYPE|类（包括enum）及接口（包括注解类型）|<br>|METHOD|方法|<br>|CONSTRUCTOR|构造器|<br>|FIELD|成员域（包括enum常量）|<br>|PARAMETER|方法或者构造器|<br>|LOCAL_VARIBLE|局部变量|<br>|TYPE_PARAMETER|类型参数|<br>|TYPE_USE|类型用法|</p>
-<p>@Retention(RententionPolicy.?)<br>|保留规则|描述|<br>|——-|—-|<br>|SOURCE|不包括在类文件中的注解|<br>|CLASS|包括在类文件中的注解，但是虚拟机不需要将他们载入|<br>|RUNTIME|包括在类文件中的注解，并且由虚拟机载入。通过反射API可以获得他们|</p>
-<p>@Repeatable()</p>
-<ul>
-<li>处理可重复注解时必须非常仔细。如果调用getAnnotation来查找某个可重复注解，而该注解又确实重复了，那么就会null。这是因为重复注解被包装到了容器注解中</li>
-<li>在这种情况下应该调用getAnnotationType，这个调用会遍历容器并给出一个重复注解的数组。如果只有一条注解，那么该数组的长度为1.</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">-spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/注解/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-springBean生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/springBean生命周期/">springBean生命周期</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/19/springBean生命周期/" class="archive-article-date">
-  	<time datetime="2019-09-19T10:59:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="getBean-gt-doGetBean"><a href="#getBean-gt-doGetBean" class="headerlink" title="getBean-&gt;doGetBean"></a>getBean-&gt;doGetBean</h1><ol>
-<li>提取beanName；</li>
-<li>尝试从缓存中获取FactoryBean（getSingleton）；</li>
-<li>实例化Bean</li>
-<li>原型模式的依赖检查</li>
-<li>检测parentBeanFactory</li>
-<li>获取mbd，递归实例化依赖的Bean</li>
-<li>针对不同的scope进行bean的创建，调用getObjectForBeanInstance</li>
-<li>类型转换</li>
+<h2 id="7-2-3-FailOver策略"><a href="#7-2-3-FailOver策略" class="headerlink" title="7.2.3 FailOver策略"></a>7.2.3 FailOver策略</h2><h3 id="策略逻辑"><a href="#策略逻辑" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>获取配置参数retries</li>
+<li>初始化集合和对象</li>
+<li>for循环重试<ol>
+<li>校验次数</li>
+<li>负载均衡</li>
+<li>远程调用</li>
 </ol>
-<h1 id="getSingleton-缓存中获取单例Bean"><a href="#getSingleton-缓存中获取单例Bean" class="headerlink" title="getSingleton/缓存中获取单例Bean"></a>getSingleton/缓存中获取单例Bean</h1><ol>
-<li>从singleObjects获取FactoryBean，如果取不到就执行步骤2</li>
-<li>从earlySingletonObjecs获取FactoryBean，如果娶不到执行步骤3</li>
-</ol>
-<h1 id="getObjectForBeanInstance"><a href="#getObjectForBeanInstance" class="headerlink" title="getObjectForBeanInstance"></a>getObjectForBeanInstance</h1><ol>
-<li>对FactoryBean正确性的验证</li>
-<li>对非FactoryBean不做任何处理</li>
-<li>对bean进行转换</li>
-<li>将解析bean的工作委托给getObjectFromFactoryBean</li>
-</ol>
-<h1 id="doGetObjectFromFactoryBean"><a href="#doGetObjectFromFactoryBean" class="headerlink" title="doGetObjectFromFactoryBean"></a>doGetObjectFromFactoryBean</h1><ol>
-<li>调用factory.getObject()真正获得Bean</li>
-<li>调用ObjectFactory的后处理器postProcessObjectFromFactoryBean</li>
-</ol>
-<h1 id="portProcessObjectFromFactoryBean"><a href="#portProcessObjectFromFactoryBean" class="headerlink" title="portProcessObjectFromFactoryBean"></a>portProcessObjectFromFactoryBean</h1><ol>
-<li>迭代调用BeanPostProcessor</li>
-</ol>
-<h1 id="getSingleton-获取单例"><a href="#getSingleton-获取单例" class="headerlink" title="getSingleton 获取单例"></a>getSingleton 获取单例</h1><ol>
-<li>检查是否已经加载过，this.singleObjects</li>
-<li>若没有加载，既有beanName正在加载的状态</li>
-<li>加载单例前记录加载状态，this.singletons.CurrentlyInCreation.add(beanName)</li>
-<li>通过调用参数传入的ObjectFatory的getObject()方法实例化bean</li>
-<li>加载单例后的处理方法调用</li>
-<li>将结果记录至缓存并删除bean过程中所记录的各种辅助状态</li>
-<li>返回处理结果</li>
-</ol>
-<h1 id="createBean-ObjectFactory传入的核心方法"><a href="#createBean-ObjectFactory传入的核心方法" class="headerlink" title="createBean ObjectFactory传入的核心方法"></a>createBean ObjectFactory传入的核心方法</h1><ol>
-<li>根据设置class属性或者根据className来解析Class resolveBeanClass</li>
-<li>对override属性进行标记及验证 mbd.prepareMethodOverrides()</li>
-<li>应用初始化前的后处理器 resolveBeforeInstantiation，解析指定bean，是否存在初始化前的短路操作，短路操作返回AOP的代理对象</li>
-<li>创建bean doCreateBean</li>
-</ol>
-<h2 id="处理override属性（来自AbstractBeanDifinition"><a href="#处理override属性（来自AbstractBeanDifinition" class="headerlink" title="处理override属性（来自AbstractBeanDifinition)"></a>处理override属性（来自AbstractBeanDifinition)</h2><ol>
-<li><h2 id="实例化的前置处理InstantiationAwareBeanPostProcessor"><a href="#实例化的前置处理InstantiationAwareBeanPostProcessor" class="headerlink" title="实例化的前置处理InstantiationAwareBeanPostProcessor"></a>实例化的前置处理InstantiationAwareBeanPostProcessor</h2></li>
-<li><p>实例化前的后处理器应用</p>
-<p> InstantiationAwareBeanPostProcessor.postProcessBeforeInstantiation()</p>
 </li>
 </ol>
-<ol start="2">
-<li><p>实例化后的后处理器应用</p>
-<p>BeanPostProcessor.postProcessAfterInitialization()</p>
+<h2 id="7-2-4-Failfast策略"><a href="#7-2-4-Failfast策略" class="headerlink" title="7.2.4 Failfast策略"></a>7.2.4 Failfast策略</h2><h3 id="策略逻辑-1"><a href="#策略逻辑-1" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>负载均衡</li>
+<li>进行远程调用。如果捕获异常，则包装成RpcException抛出</li>
+</ol>
+<h2 id="7-2-5-Failsafe策略"><a href="#7-2-5-Failsafe策略" class="headerlink" title="7.2.5 Failsafe策略"></a>7.2.5 Failsafe策略</h2><h3 id="策略逻辑-2"><a href="#策略逻辑-2" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>负载均衡</li>
+<li>远程调用。如果捕获异常，直接吞掉，返回空结果</li>
+</ol>
+<h2 id="7-2-6-Failback策略"><a href="#7-2-6-Failback策略" class="headerlink" title="7.2.6 Failback策略"></a>7.2.6 Failback策略</h2><h3 id="策略逻辑-3"><a href="#策略逻辑-3" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>负载均衡</li>
+<li>远程调用。如果捕获异常，把invocation保存到重试的cocurrentMap中，并返回空结果集</li>
+<li>定时处理CocurrentMap的失败请求；如果还是失败catch，不做其他处理</li>
+</ol>
+<h2 id="7-2-7-Available策略"><a href="#7-2-7-Available策略" class="headerlink" title="7.2.7 Available策略"></a>7.2.7 Available策略</h2><ol>
+<li>遍历invoker列表；如果可用，调用并返回</li>
+<li>如果没有，抛出异常</li>
+</ol>
+<h2 id="7-2-8-Broadcast策略"><a href="#7-2-8-Broadcast策略" class="headerlink" title="7.2.8 Broadcast策略"></a>7.2.8 Broadcast策略</h2><ol>
+<li>前置操作</li>
+<li>循环遍历所有invoker，直接做rpc调用。记录异常，最后抛出，如果多个异常，只抛出最后一个</li>
+</ol>
+<h2 id="7-2-9-Forking策略"><a href="#7-2-9-Forking策略" class="headerlink" title="7.2.9 Forking策略"></a>7.2.9 Forking策略</h2><ol>
+<li>准备工作</li>
+<li>获取最终调用invoker列表（多个节点）</li>
+<li>调用前的准备工作</li>
+<li>执行调用</li>
+<li>同步等待结果</li>
+</ol>
+<h1 id="7-3-Directory的实现"><a href="#7-3-Directory的实现" class="headerlink" title="7.3 Directory的实现"></a>7.3 Directory的实现</h1><h2 id="7-3-1-总体实现"><a href="#7-3-1-总体实现" class="headerlink" title="7.3.1 总体实现"></a>7.3.1 总体实现</h2><ul>
+<li>Directory<ul>
+<li>AbstractDirectory<ul>
+<li>RegistryDirectory</li>
+<li>StaticDirectory<h3 id="AbstractDirectory"><a href="#AbstractDirectory" class="headerlink" title="AbstractDirectory"></a>AbstractDirectory</h3><h4 id="list方法逻辑"><a href="#list方法逻辑" class="headerlink" title="list方法逻辑"></a>list方法逻辑</h4></li>
+</ul>
 </li>
-</ol>
-<h1 id="doCreateBean-常规Bean的创建"><a href="#doCreateBean-常规Bean的创建" class="headerlink" title="doCreateBean 常规Bean的创建"></a>doCreateBean 常规Bean的创建</h1><ol>
-<li>如果是单例需要先清除缓存</li>
-<li>将BeanDefinition 转换为 BeanWrapper,createBeanInstance()</li>
-<li>MergedBeanDefinitionPostProcessor的应用</li>
-<li>依赖处理 earlySingletonExposure</li>
-<li>属性填充 populateBean，初始化 initializeBean()</li>
-<li>循环依赖检查</li>
-<li>注册DisposableBean</li>
-</ol>
-<h1 id="createBeanInstance-创建Bean的实例"><a href="#createBeanInstance-创建Bean的实例" class="headerlink" title="createBeanInstance 创建Bean的实例"></a>createBeanInstance 创建Bean的实例</h1><ol>
-<li>instantiateUsingFactoryMehtod</li>
-<li>解析构造函数并进行构造函数的实例化</li>
-</ol>
-<h1 id="populateBean"><a href="#populateBean" class="headerlink" title="populateBean"></a>populateBean</h1><ol>
-<li>从mbd获取属性</li>
-<li>InstantianAwareBeanPostProcessor.postProcessAfterInstantiation</li>
-<li>autowireByName/ autowireByType 注入属性</li>
-<li>ibp.postProcessPropertyValues()对需要依赖检查的属性进行后处理</li>
-<li>将所有属性填充到BeanWrapper</li>
-</ol>
-<p># </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/springBean生命周期/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-c3p0源码阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/c3p0源码阅读/">c3p0源码阅读</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/19/c3p0源码阅读/" class="archive-article-date">
-  	<time datetime="2019-09-18T17:07:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/c3p0源码阅读/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-9-19面试总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/2019-9-19面试总结/">2019-9-19面试总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/19/2019-9-19面试总结/" class="archive-article-date">
-  	<time datetime="2019-09-18T16:30:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天面华为，今天面了科大讯飞和云从科技</p>
-<p>#华为</p>
+</ul>
+</li>
+</ul>
 <ol>
-<li>项目框图</li>
+<li>doList获取所有Invoker列表</li>
+<li>遍历所有router列表，进行invoker过滤</li>
 </ol>
-<p>我直接直接懵了</p>
-<ol start="2">
-<li>spring Bean的生命周期</li>
+<h3 id="RegistryDirectory"><a href="#RegistryDirectory" class="headerlink" title="RegistryDirectory"></a>RegistryDirectory</h3><p>动态列表实现：自动从注册中心更新Invoker列表、配置信息、路由列表</p>
+<h3 id="StaticDirectory"><a href="#StaticDirectory" class="headerlink" title="StaticDirectory"></a>StaticDirectory</h3><p>静态列表实现：用于包装已知invoker列表，Directory对象</p>
+<h2 id="7-3-2-RegistryDirectory的实现"><a href="#7-3-2-RegistryDirectory的实现" class="headerlink" title="7.3.2 RegistryDirectory的实现"></a>7.3.2 RegistryDirectory的实现</h2><h3 id="两条逻辑线"><a href="#两条逻辑线" class="headerlink" title="两条逻辑线"></a>两条逻辑线</h3><ol>
+<li>框架与注册中心的订阅，并动态更新本地Invoker列表、路由列表、配置信息的逻辑</li>
+<li>子类实现父类的doList方法</li>
 </ol>
-<p>一长串，实在不记得，直击弱点；明天补上具体内容</p>
-<ol start="3">
-<li>自定义注解<br>最近在看dubbo，对注解做了一点点了解，之前确实没重视</li>
-</ol>
-<p>然后还问了一个算法题，问我有啥异常，我也没太重视异常这块，感觉我总get不到面试官的点，也许是面试官比较痛恨我这种混子</p>
-<p>#科大讯飞</p>
+<h3 id="1订阅与动态更新"><a href="#1订阅与动态更新" class="headerlink" title="1订阅与动态更新"></a>1订阅与动态更新</h3><h4 id="subscribe"><a href="#subscribe" class="headerlink" title="subscribe"></a>subscribe</h4><h4 id="notify"><a href="#notify" class="headerlink" title="notify"></a>notify</h4><p>监听内容包括：配置configurators、路由规则router、Invoker列表</p>
 <ol>
-<li><p>synchronized关键字同步代码块括号里锁啥this和Object，一面面试官是个很好的人，当时我没答上，我概念有点混淆，但是我二面理清了，答上了</p>
-</li>
-<li><p>处理String空值的包</p>
-</li>
-</ol>
-<ul>
-<li>Java中StringUtils工具类进行String为空的判断 </li>
+<li>新建三个List</li>
+<li>解析并更新配置参数<ol>
+<li>router类：遍历所有router类URL，然后通过Router工厂包装URL为路由规则</li>
+<li>Configurator</li>
+<li>Invoker类：<ul>
+<li>禁用empty协议URL，并销毁本地缓存的invoker</li>
+<li>如果监听的URL不为空，则把URL和本地老的URL合并，创建新的Invoker，销毁旧的Invoker</li>
 </ul>
-<p>#云从科技</p>
-<ol>
-<li><p>SpringBean的生命周期</p>
-</li>
-<li><p>线程池，同步队列满了才会进入最大线程池，我把这个弄混了</p>
-</li>
-<li><p>jdbc，加载驱动那一步我给忘了，我感觉面试官在憋笑，没办法，我太水了 </p>
-</li>
-<li><p>怎么写一个线程池</p>
 </li>
 </ol>
-
+</li>
+</ol>
+<h3 id="2doList的实现"><a href="#2doList的实现" class="headerlink" title="2doList的实现"></a>2doList的实现</h3><ol>
+<li>检查服务是否被禁用</li>
+<li>根据方法名和首参数匹配Invoker</li>
+<li>根据方法名匹配invoker</li>
+<li>根据* 匹配invoker</li>
+<li>遍历methodInvokerMap。兜底操作，如果还没有返回空列表</li>
+</ol>
+<h1 id="7-4-路由的实现"><a href="#7-4-路由的实现" class="headerlink" title="7.4 路由的实现"></a>7.4 路由的实现</h1><h2 id="7-4-1-路由的总体结构"><a href="#7-4-1-路由的总体结构" class="headerlink" title="7.4.1 路由的总体结构"></a>7.4.1 路由的总体结构</h2><ul>
+<li>RouterFactory@SPI<ul>
+<li>ConditionRouterFactory</li>
+<li>FileRouterFactory</li>
+<li>ScriptRouterFactory</li>
+</ul>
+</li>
+<li>Router<ul>
+<li>MockInvokerSelector</li>
+<li>ScriptRouter</li>
+<li>ConditionRouter</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-4-2-条件路由的参数规则"><a href="#7-4-2-条件路由的参数规则" class="headerlink" title="7.4.2 条件路由的参数规则"></a>7.4.2 条件路由的参数规则</h2><h3 id="路由规则"><a href="#路由规则" class="headerlink" title="路由规则"></a>路由规则</h3><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>condition://</td>
+<td>路由规则类型</td>
+</tr>
+<tr>
+<td>0.0.0.0</td>
+<td>对所有ip生效</td>
+</tr>
+<tr>
+<td>com.foo.Service</td>
+<td>对指定服务生效</td>
+</tr>
+<tr>
+<td>category=routers</td>
+<td>动态配置类型</td>
+</tr>
+<tr>
+<td>dynamic=false</td>
+<td>持久数据</td>
+</tr>
+<tr>
+<td>enable=true</td>
+<td>覆盖规则是否生效。默认生效</td>
+</tr>
+<tr>
+<td>force=false</td>
+<td>路由为空时是否强制执行</td>
+</tr>
+<tr>
+<td>runtime=false</td>
+<td>是否每次调用时实行路由规则</td>
+</tr>
+<tr>
+<td>priority=1</td>
+<td>路由规则优先级，越大越先执行</td>
+</tr>
+<tr>
+<td>rule=URL.endcode(“host=10.20.153.10=&gt;host=10.20.153.11”)</td>
+<td>表示路由规则的内容</td>
+</tr>
+</tbody></table>
+<h2 id="7-4-3-条件路由的实现"><a href="#7-4-3-条件路由的实现" class="headerlink" title="7.4.3 条件路由的实现"></a>7.4.3 条件路由的实现</h2><h3 id="ConditionRouter构造逻辑"><a href="#ConditionRouter构造逻辑" class="headerlink" title="ConditionRouter构造逻辑"></a>ConditionRouter构造逻辑</h3><ol>
+<li>根据URL的键rule获取对应的规则字符串</li>
+<li>解析两个路由规则</li>
+</ol>
+<h3 id="route-方法的实现原理"><a href="#route-方法的实现原理" class="headerlink" title="route 方法的实现原理"></a>route 方法的实现原理</h3><ol>
+<li>校验</li>
+<li>遍历invoker列表，按照thenRule规则找出符合规则的Invoker加入集合</li>
+<li>返回结果</li>
+</ol>
+<h2 id="7-4-4-文件路由的实现"><a href="#7-4-4-文件路由的实现" class="headerlink" title="7.4.4 文件路由的实现"></a>7.4.4 文件路由的实现</h2><p>读取文件内容，然后调用对应的脚本路由进行解析</p>
+<h2 id="7-4-5-脚本路由的实现"><a href="#7-4-5-脚本路由的实现" class="headerlink" title="7.4.5 脚本路由的实现"></a>7.4.5 脚本路由的实现</h2><p>默认使用js解析器</p>
+<h3 id="脚本路由的构造方法逻辑"><a href="#脚本路由的构造方法逻辑" class="headerlink" title="脚本路由的构造方法逻辑"></a>脚本路由的构造方法逻辑</h3><ol>
+<li>初始化参数</li>
+<li>初始化脚本执行引擎</li>
+</ol>
+<h1 id="7-5-负载均衡"><a href="#7-5-负载均衡" class="headerlink" title="7.5 负载均衡"></a>7.5 负载均衡</h1><h2 id="7-5-1-包装后的负载均衡"><a href="#7-5-1-包装后的负载均衡" class="headerlink" title="7.5.1 包装后的负载均衡"></a>7.5.1 包装后的负载均衡</h2><h3 id="AbstractClusterInvoker-select封装了一些新特性"><a href="#AbstractClusterInvoker-select封装了一些新特性" class="headerlink" title="AbstractClusterInvoker#select封装了一些新特性"></a>AbstractClusterInvoker#select封装了一些新特性</h3><ol>
+<li>粘滞连接</li>
+<li>可用检测</li>
+<li>避免重复调用<ol>
+<li>检查URL中是否由配置粘滞连接，优先使用粘滞连接</li>
+<li>ExtensionLoader获取负载均衡的具体实现</li>
+<li>节点的重新选择</li>
+<li>遍历已用节点，选出可用节点，负载均衡选出一个节点；如果还找不到调用节点，返回null</li>
+</ol>
+</li>
+</ol>
+<h2 id="7-5-2-负载均衡的总体结构"><a href="#7-5-2-负载均衡的总体结构" class="headerlink" title="7.5.2 负载均衡的总体结构"></a>7.5.2 负载均衡的总体结构</h2><h1 id="7-6-Merger的实现"><a href="#7-6-Merger的实现" class="headerlink" title="7.6 Merger的实现"></a>7.6 Merger的实现</h1><h1 id="7-7-Mock"><a href="#7-7-Mock" class="headerlink" title="7.7 Mock"></a>7.7 Mock</h1>
       
 
       
@@ -1021,7 +1093,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习日记</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
         		</li>
       		
 		</ul>
@@ -1031,7 +1103,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/2019-9-19面试总结/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/25/第七章Dubbo集群容错/">展开全文 >></a>
         </p>
       
 
@@ -1061,32 +1133,216 @@
 
 
   
-    <article id="post-一道很简单的面试题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+    <article id="post-第六章Dubbo远程调用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/18/一道很简单的面试题/">一道很简单的面试题</a>
+      <a class="article-title" href="/2019/09/25/第六章Dubbo远程调用/">第六章Dubbo远程调用</a>
     </h1>
   
 
         
-        <a href="/2019/09/18/一道很简单的面试题/" class="archive-article-date">
-  	<time datetime="2019-09-18T15:53:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
+        <a href="/2019/09/25/第六章Dubbo远程调用/" class="archive-article-date">
+  	<time datetime="2019-09-25T00:49:10.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-25</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>最近面试深深被打击了，尤其被最想进的华为一面挂了，难受，菜是原罪</p>
-<p>不过，今天有件开心的事，就是我没有看答案想出来一道很简单的面试题，觉得自己有进步，但是我还是有点方向的，好久以前见过这道题，几乎没有印象了，但是今天自己在回来的路上想出来了还包括完整的理论解释</p>
-<p>题目：<br>假如<br>int a=3，b=2;<br>在不使用第三个变量的情况下，交换两个变量的值</p>
-<p>代码及解释：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Swap</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line">        <span class="comment">//交换a，b</span></span><br><span class="line">        <span class="comment">//保存ab的不同（异或：ab不同的位为1）</span></span><br><span class="line">        b= a^b;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        要求a-&gt;b则可以看成把a和b不同的位变得和b相同</span></span><br><span class="line"><span class="comment">        怎么做到呢？</span></span><br><span class="line"><span class="comment">        a=a^(此时的b)</span></span><br><span class="line"><span class="comment">        为什么呢？</span></span><br><span class="line"><span class="comment">        假设a上某个位置和b不同可能为1，可能为0</span></span><br><span class="line"><span class="comment">        如果不同那么此时b的这个位置必为1</span></span><br><span class="line"><span class="comment">        1^1=0；0^1=1</span></span><br><span class="line"><span class="comment">        恰好将a不同的位置变成原来相反，即与b相同</span></span><br><span class="line"><span class="comment">        那么我们就达到了将a变成b的目的</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        a=a^b;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        下一个步骤就是将这个时候的b变成之前的a</span></span><br><span class="line"><span class="comment">        此时的a已经变成了之前的b</span></span><br><span class="line"><span class="comment">        那么我们只需要同上一步</span></span><br><span class="line"><span class="comment">        就可以将b变成a,打完收工</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        b=a^b;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">        System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+        <h1 id="6-1-Dubbo调用介绍"><a href="#6-1-Dubbo调用介绍" class="headerlink" title="6.1 Dubbo调用介绍"></a>6.1 Dubbo调用介绍</h1><ol>
+<li>客户端启动时，从注册中心拉取和订阅服务列表，然后由cluster聚合为一个invoker</li>
+<li>具体调用时，首先在本地进行路由，然后根据路由的结果进行负载均衡，最终选择一个机器进行调用</li>
+<li>调用时，客户端将请求交给底层io线程池，</li>
+<li>Dubbo将服务调用和telnet调用做了端口复用，区别是telnet调用使用fastjson，而其他RPC调用使用Hessian方式</li>
+</ol>
+<h1 id="6-2-Dubbo协议详解"><a href="#6-2-Dubbo协议详解" class="headerlink" title="6.2 Dubbo协议详解"></a>6.2 Dubbo协议详解</h1><ol>
+<li>0-3字节：<ol>
+<li>0-15bit 魔数(0-7魔数高位0xda00，8-15魔术低位0xbb)</li>
+<li>16 请求相应位</li>
+<li>17 需要往返位</li>
+<li>18 事件</li>
+<li>19-23 序列化器ID</li>
+<li>24-31 状态</li>
+</ol>
+</li>
+<li>4-11字节：RPC请求ID</li>
+<li>12-15字节：消息体数据长度</li>
+<li>16-20字节：各种参数等 </li>
+</ol>
+<h3 id="粘包处理"><a href="#粘包处理" class="headerlink" title="粘包处理"></a>粘包处理</h3><ol>
+<li>协议头魔数0xdabb</li>
+</ol>
+<h3 id="并发处理"><a href="#并发处理" class="headerlink" title="并发处理"></a>并发处理</h3><ol>
+<li>协议头全局请求id</li>
+</ol>
+<h1 id="6-3-编解码器原理"><a href="#6-3-编解码器原理" class="headerlink" title="6.3 编解码器原理"></a>6.3 编解码器原理</h1><h2 id="6-3-1-Dubbo协议编码器"><a href="#6-3-1-Dubbo协议编码器" class="headerlink" title="6.3.1 Dubbo协议编码器"></a>6.3.1 Dubbo协议编码器</h2><h3 id="请求对象编码流程-ExchangeCodec-encodeRequst"><a href="#请求对象编码流程-ExchangeCodec-encodeRequst" class="headerlink" title="请求对象编码流程 ExchangeCodec#encodeRequst"></a>请求对象编码流程 ExchangeCodec#encodeRequst</h3><ol>
+<li>获取指定或默认的序列化协议（Hessian2）</li>
+<li>构造16字节头</li>
+<li>写入魔数</li>
+<li>写入请求位+往返位+事件+序列化编号</li>
+<li>写入RPC唯一请求ID</li>
+<li>向buffer写入消息体</li>
+<li>向16字节头写入消息体长度</li>
+<li>将header写入buffer</li>
+<li>设置buffer到消息体结束位置</li>
+</ol>
+<h3 id="编码请求对象体-DubboCodec-encodeRequestData"><a href="#编码请求对象体-DubboCodec-encodeRequestData" class="headerlink" title="编码请求对象体 DubboCodec#encodeRequestData"></a>编码请求对象体 DubboCodec#encodeRequestData</h3><ol>
+<li>写入框架版本</li>
+<li>写入调用接口</li>
+<li>写入接口指定版本</li>
+<li>写入方法名称</li>
+<li>写入方法参数类型</li>
+<li>写入方法参数值</li>
+<li>写入隐式参数</li>
+</ol>
+<h3 id="响应对象编码流程-ExcanhgeCodec-encodeResponse"><a href="#响应对象编码流程-ExcanhgeCodec-encodeResponse" class="headerlink" title="响应对象编码流程 ExcanhgeCodec#encodeResponse"></a>响应对象编码流程 ExcanhgeCodec#encodeResponse</h3><ol>
+<li>获取指定或默认序列化协议</li>
+<li>构造16字头</li>
+<li>写入魔数</li>
+<li>写入响应位+事件位</li>
+<li>写入响应状态</li>
+<li>写入唯一标识</li>
+<li>写入响应对象Result</li>
+<li>写入消息体长度</li>
+<li>写入消息到buffer</li>
+<li>处理异常</li>
+</ol>
+<h3 id="编码响应对象体-DubboCodec-endcodeResponseData"><a href="#编码响应对象体-DubboCodec-endcodeResponseData" class="headerlink" title="编码响应对象体 DubboCodec#endcodeResponseData"></a>编码响应对象体 DubboCodec#endcodeResponseData</h3><ol>
+<li>判断版本参数是否支持服务端参数返回</li>
+<li>提取正常返回结果</li>
+<li>根据结果写标志位</li>
+<li>标记调用抛异常，并序列化异常</li>
+<li>记录服务端Dubbo版本，并且返回服务端隐藏参数</li>
+</ol>
+<h2 id="6-3-2-Dubbo协议解码器"><a href="#6-3-2-Dubbo协议解码器" class="headerlink" title="6.3.2 Dubbo协议解码器"></a>6.3.2 Dubbo协议解码器</h2><h3 id="dubboCodec-decodeBody"><a href="#dubboCodec-decodeBody" class="headerlink" title="dubboCodec#decodeBody"></a>dubboCodec#decodeBody</h3><ol>
+<li>检查requst，获取requestId</li>
+<li>在io线程中直接解码/交给Dubbo业务线程池解码</li>
+<li>消息体转换成RpcInvocation对象</li>
+</ol>
+<h3 id="DecodeableRpcInvocation-decode"><a href="#DecodeableRpcInvocation-decode" class="headerlink" title="DecodeableRpcInvocation#decode"></a>DecodeableRpcInvocation#decode</h3><ol>
+<li>读取框架版本</li>
+<li>读取调用接口</li>
+<li>读取接口版本</li>
+<li>读取方法名称</li>
+<li>读取方法参数类型</li>
+<li>读取方法参数</li>
+<li>读取隐式参数</li>
+<li>处理异步回调</li>
+</ol>
+<h3 id="解析响应-DecodeableRpcResult-decode"><a href="#解析响应-DecodeableRpcResult-decode" class="headerlink" title="解析响应 DecodeableRpcResult#decode"></a>解析响应 DecodeableRpcResult#decode</h3><ol>
+<li>处理返回接口标记位NULL</li>
+<li>读取方法调用返回指类型；如果返回值包含泛型，则调用反序列化解析接口；结果保存在result中</li>
+<li>处理返回异常结果，结果保存在exception中</li>
+<li>处理NULL带隐式参数</li>
+<li>处理其他隐式参数</li>
+</ol>
+<h1 id="6-4-telnet调用原理"><a href="#6-4-telnet调用原理" class="headerlink" title="6.4 telnet调用原理"></a>6.4 telnet调用原理</h1><h2 id="6-4-1-tel指令解析原理"><a href="#6-4-1-tel指令解析原理" class="headerlink" title="6.4.1 tel指令解析原理"></a>6.4.1 tel指令解析原理</h2><h3 id="TelnetHandlerAdapter-telnet-telnet转发解析"><a href="#TelnetHandlerAdapter-telnet-telnet转发解析" class="headerlink" title="TelnetHandlerAdapter#telnet telnet转发解析"></a>TelnetHandlerAdapter#telnet telnet转发解析</h3><ol>
+<li>提取command</li>
+<li>提取message</li>
+<li>检查系统是否有对应的扩展点，交给对应的扩展点执行</li>
+<li>返回消息结果</li>
+</ol>
+<h3 id="InvokerTelnetHandler-telnet"><a href="#InvokerTelnetHandler-telnet" class="headerlink" title="InvokerTelnetHandler#telnet"></a>InvokerTelnetHandler#telnet</h3><ol>
+<li>提取service,method,参数</li>
+<li>检索方法</li>
+<li>根据检索结果invoker进行调用</li>
+</ol>
+<h2 id="6-4-2-Telnet实现健康监测"><a href="#6-4-2-Telnet实现健康监测" class="headerlink" title="6.4.2 Telnet实现健康监测"></a>6.4.2 Telnet实现健康监测</h2><h3 id="健康监测扩展点"><a href="#健康监测扩展点" class="headerlink" title="健康监测扩展点"></a>健康监测扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StatusChecker</span></span>&#123;</span><br><span class="line">    <span class="function">Status <span class="title">check</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
 
+<table>
+<thead>
+<tr>
+<th>健康检查实现类</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DataSourceStatusChecker</td>
+<td>数据库状态检查</td>
+</tr>
+<tr>
+<td>LoadStatusChecker</td>
+<td>系统平均负载检查</td>
+</tr>
+<tr>
+<td>MemoryStatusChecker</td>
+<td>JVM内存检查</td>
+</tr>
+<tr>
+<td>RegistryStatusChecker</td>
+<td>注册中心状态检查</td>
+</tr>
+<tr>
+<td>ServerStatusChecker</td>
+<td>Dubbo服务暴露检查</td>
+</tr>
+<tr>
+<td>SpringStatusChecker</td>
+<td>Spring状态检查</td>
+</tr>
+<tr>
+<td>ThreadPoolStatusChecker</td>
+<td>Dubbo线程池检查</td>
+</tr>
+</tbody></table>
+<h1 id="6-5-ChannelHandler"><a href="#6-5-ChannelHandler" class="headerlink" title="6.5 ChannelHandler"></a>6.5 ChannelHandler</h1><h2 id="6-5-1-核心Handler和模型"><a href="#6-5-1-核心Handler和模型" class="headerlink" title="6.5.1 核心Handler和模型"></a>6.5.1 核心Handler和模型</h2><h3 id="Handler五种状态"><a href="#Handler五种状态" class="headerlink" title="Handler五种状态"></a>Handler五种状态</h3><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>connected</td>
+<td>Channel已经被创建</td>
+</tr>
+<tr>
+<td>disconnected</td>
+<td>Channel已经被断开</td>
+</tr>
+<tr>
+<td>sent</td>
+<td>消息被发送</td>
+</tr>
+<tr>
+<td>received</td>
+<td>消息被接受</td>
+</tr>
+<tr>
+<td>caught</td>
+<td>捕获到异常</td>
+</tr>
+</tbody></table>
+<h3 id="ChannelPipeline"><a href="#ChannelPipeline" class="headerlink" title="ChannelPipeline"></a>ChannelPipeline</h3><ol>
+<li>通过ChannelInboundHandler,ChannelOutboundHandler来控制范围</li>
+<li>通过装饰器模式来减少PipelineHandler数量</li>
+</ol>
+<h3 id="ExchangeHandlerAdapter"><a href="#ExchangeHandlerAdapter" class="headerlink" title="ExchangeHandlerAdapter"></a>ExchangeHandlerAdapter</h3><ol>
+<li>查找Invocation相关的invoker</li>
+<li>调用业务方具体方法</li>
+</ol>
+<h2 id="6-5-2Dubbo请求响应Handler"><a href="#6-5-2Dubbo请求响应Handler" class="headerlink" title="6.5.2Dubbo请求响应Handler"></a>6.5.2Dubbo请求响应Handler</h2><h3 id="HeaderExchangeHandler处理内容"><a href="#HeaderExchangeHandler处理内容" class="headerlink" title="HeaderExchangeHandler处理内容"></a>HeaderExchangeHandler处理内容</h3><ol>
+<li>更新发送和读取请求时间戳</li>
+<li>判断请求格式和编解码是否有错</li>
+<li>处理Request请求和Response正常响应</li>
+<li>支持telnet调用</li>
+</ol>
+<h3 id="HeaderExchangeHandler-handleRequest"><a href="#HeaderExchangeHandler-handleRequest" class="headerlink" title="HeaderExchangeHandler#handleRequest"></a>HeaderExchangeHandler#handleRequest</h3><ol>
+<li>检查请求格式</li>
+<li>触发方法调用</li>
+</ol>
+<h3 id="HeaderExchangeHandler-handleResponse"><a href="#HeaderExchangeHandler-handleResponse" class="headerlink" title="HeaderExchangeHandler#handleResponse"></a>HeaderExchangeHandler#handleResponse</h3><ol>
+<li>唤醒阻塞线程</li>
+</ol>
+<h2 id="6-5-3-Dubbo心跳Handler"><a href="#6-5-3-Dubbo心跳Handler" class="headerlink" title="6.5.3 Dubbo心跳Handler"></a>6.5.3 Dubbo心跳Handler</h2><p>Dubbo在客户端和服务端都复用心跳实现代码，抽象成HeartBeatTask任务进行处理</p>
+<ol>
+<li>TCP连接超过心跳事件发送，事件报文</li>
+<li>客户端空闲超时触发重连（默认超时3分钟）</li>
+</ol>
 
       
 
@@ -1100,7 +1356,7 @@
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
         		</li>
       		
 		</ul>
@@ -1110,7 +1366,7 @@
 
       
         <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/18/一道很简单的面试题/">展开全文 >></a>
+          <a class="article-more-a" href="/2019/09/25/第六章Dubbo远程调用/">展开全文 >></a>
         </p>
       
 
@@ -1142,7 +1398,7 @@
   
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/6/">6</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/">&laquo; Prev</a><a class="page-number" href="/">1</a><span class="page-number current">2</span><a class="page-number" href="/page/3/">3</a><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/3/">Next &raquo;</a>
     </nav>
   
 
@@ -1229,6 +1485,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
@@ -1245,6 +1505,10 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
               </li>
              
@@ -1253,15 +1517,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">spring</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1273,19 +1537,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据库基本操作</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1301,11 +1553,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
+                <a href="javascript:void(0)" class="js-tag color3">数据库基本操作</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">-spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">dubbo</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1317,11 +1573,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">算法竞赛进阶指南</a>
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
               </li>
             
             <div class="clearfix"></div>
