@@ -140,6 +140,899 @@
           <div id="js-content" class="content-ll">
             
   
+    <article id="post-第三章Dubbo注册中心" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/23/第三章Dubbo注册中心/">第三章Dubbo注册中心</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/23/第三章Dubbo注册中心/" class="archive-article-date">
+  	<time datetime="2019-09-23T14:02:06.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="3-1-注册中心概述"><a href="#3-1-注册中心概述" class="headerlink" title="3.1 注册中心概述"></a>3.1 注册中心概述</h1><h3 id="注册中心的主要作用"><a href="#注册中心的主要作用" class="headerlink" title="注册中心的主要作用"></a>注册中心的主要作用</h3><ul>
+<li>动态加入</li>
+<li>动态发现</li>
+<li>动态调整</li>
+<li>统一配置</li>
+</ul>
+<h3 id="模块介绍"><a href="#模块介绍" class="headerlink" title="模块介绍"></a>模块介绍</h3><table>
+<thead>
+<tr>
+<th>模块名称</th>
+<th>模块介绍</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>dubbo-registry-api</td>
+<td>包含了注册中心的所有API和抽象实现类</td>
+</tr>
+<tr>
+<td>dubbo-registry-zookeeper</td>
+<td>使用Zookeeper作为注册中心的实现</td>
+</tr>
+<tr>
+<td>dubbo-registry-redis</td>
+<td>使用redis作为注册中心的实现</td>
+</tr>
+<tr>
+<td>dubbo-registry-default</td>
+<td>Dubbo基于内存的默认实现</td>
+</tr>
+<tr>
+<td>dubbo-registry-multicast</td>
+<td>multicast模式的服务注册与发现</td>
+</tr>
+</tbody></table>
+<h2 id="3-1-1-工作流程"><a href="#3-1-1-工作流程" class="headerlink" title="3.1.1 工作流程"></a>3.1.1 工作流程</h2><h3 id="注册中心的工作流程"><a href="#注册中心的工作流程" class="headerlink" title="注册中心的工作流程"></a>注册中心的工作流程</h3><ol>
+<li>服务提供者启动时，会向注册中心写入自己的元数据信息，同时会订阅配置元数据</li>
+<li>消费者启动时，也会向注册中心写入自己的元数据信息，并订阅服务提供者、路由配置元数据</li>
+<li>服务治理中心(dubbo-admin)时，会同时订阅所有消费者、服务提供者、路由配置元数据信息</li>
+<li>当有服务提供者离开或者有新的服务提供者加入时，注册中心服务提供者目录会发生变化，变化信息会动态通知给消费者，服务治理中心</li>
+<li>当消费方发起服务调用时，会异步将调用、统计信息等上报给监控中心(dubbo-monitor-simple)</li>
+</ol>
+<h2 id="3-1-2-数据结构"><a href="#3-1-2-数据结构" class="headerlink" title="3.1.2 数据结构"></a>3.1.2 数据结构</h2><h2 id="3-1-3-ZooKeeper原理概述"><a href="#3-1-3-ZooKeeper原理概述" class="headerlink" title="3.1.3 ZooKeeper原理概述"></a>3.1.3 ZooKeeper原理概述</h2><h3 id="ZooKeeper的节点类型"><a href="#ZooKeeper的节点类型" class="headerlink" title="ZooKeeper的节点类型"></a>ZooKeeper的节点类型</h3><ul>
+<li>持久节点：服务注册后保证节点不会丢失，注册中心重启也会在</li>
+<li>持久顺序节点：在持久节点特性的基础上增加了先后顺序的能力</li>
+<li>临时节点：服务注册后连接丢失或session超时，注册节点会自动被移除</li>
+<li>临时顺序节点：在临时节点特性的基础上增加了先后顺序能力</li>
+</ul>
+<h3 id="ZooKeeper的树形结构"><a href="#ZooKeeper的树形结构" class="headerlink" title="ZooKeeper的树形结构"></a>ZooKeeper的树形结构</h3><ol>
+<li>树的根节点是注册中心分组，下面有多个服务接口，分组值来自用户<a href="dubbo:registry" target="_blank" rel="noopener">dubbo:registry</a>中的group属性，默认/dubbo</li>
+<li>服务接口下包含4类子目录，分别是providers,consumers,routers,configurators元数据信息</li>
+<li>服务提供者目录（/dubbo/service/providers）下面包含的接口有多个服务者URL元数据信息</li>
+<li>服务消费者目录（/dubbo/service/consumers）下面包含的接口有多个消费者URL元数据信息</li>
+<li>路由配置目录（/dubbo/service/routers）下面包含多个用于消费者路由策略元数据信息</li>
+<li>动态配置目录（/dubbo/service/configurators)下面包含多个用于服务者动态配置URL元数据信息</li>
+</ol>
+<h3 id="Dubbo启用注册中心"><a href="#Dubbo启用注册中心" class="headerlink" title="Dubbo启用注册中心"></a>Dubbo启用注册中心</h3><figure class="highlight xml"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="tag">&lt;<span class="name">beans</span>&gt;</span></span><br><span class="line">    <span class="comment">&lt;!--使用于ZooKeeper一个集群多个节点，多个IP和端口用逗号分隔--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">protocol</span>=<span class="string">"zookeeper"</span> <span class="attr">address</span>=<span class="string">"ip:port,ip:port"</span>/&gt;</span></span><br><span class="line"></span><br><span class="line">    <span class="comment">&lt;!--适用于ZooKeeper多个集群多个节点，多个IP和端口用竖线分隔--&gt;</span></span><br><span class="line">    <span class="tag">&lt;<span class="name">dubbo:registry</span> <span class="attr">protocol</span>=<span class="string">"zookeeper"</span> <span class="attr">address</span>=<span class="string">"ip:port|ip:port"</span>/&gt;</span></span><br><span class="line"><span class="tag">&lt;/<span class="name">beans</span>&gt;</span></span><br></pre></td></tr></table></figure>
+
+<h2 id="3-1-4-Redis原理概述"><a href="#3-1-4-Redis原理概述" class="headerlink" title="3.1.4 Redis原理概述"></a>3.1.4 Redis原理概述</h2><ul>
+<li>四层结构:Root\Service\Type\URL  </li>
+<li>具体的存储:(Key/Map)     <ul>
+<li>Rediskey:Root/Service/Type  </li>
+<li>Redisvalue:  <ul>
+<li>mapKey:URL  </li>
+<li>mapValue:过期时间</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h1 id="3-2-订阅-发布"><a href="#3-2-订阅-发布" class="headerlink" title="3.2 订阅/发布"></a>3.2 订阅/发布</h1><h2 id="3-2-1-Zookeeper的实现"><a href="#3-2-1-Zookeeper的实现" class="headerlink" title="3.2.1 Zookeeper的实现"></a>3.2.1 Zookeeper的实现</h2><h2 id="3-2-2-Redis的实现"><a href="#3-2-2-Redis的实现" class="headerlink" title="3.2.2 Redis的实现"></a>3.2.2 Redis的实现</h2>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/23/第三章Dubbo注册中心/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-第五章Dubbo启停原理解析" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/23/第五章Dubbo启停原理解析/">第五章Dubbo启停原理解析</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/23/第五章Dubbo启停原理解析/" class="archive-article-date">
+  	<time datetime="2019-09-23T13:35:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="5-1-配置解析"><a href="#5-1-配置解析" class="headerlink" title="5.1 配置解析"></a>5.1 配置解析</h1><h3 id="Dubbo框架提供的三种配置方式："><a href="#Dubbo框架提供的三种配置方式：" class="headerlink" title="Dubbo框架提供的三种配置方式："></a>Dubbo框架提供的三种配置方式：</h3><ul>
+<li>XML配置</li>
+<li>注解</li>
+<li>属性文件<h2 id="5-1-1-基于schema设计解析"><a href="#5-1-1-基于schema设计解析" class="headerlink" title="5.1.1 基于schema设计解析"></a>5.1.1 基于schema设计解析</h2></li>
+<li>dubbo-config/dubbo-config-spring/src/main/resources/下：<ul>
+<li>spring.schemeas 指明约束文件路径</li>
+<li>spring.handlers 指明解析类路径</li>
+</ul>
+</li>
+</ul>
+<h3 id="schema模块"><a href="#schema模块" class="headerlink" title="schema模块"></a>schema模块</h3><h2 id="5-1-2-基于XML配置原理解析"><a href="#5-1-2-基于XML配置原理解析" class="headerlink" title="5.1.2 基于XML配置原理解析"></a>5.1.2 基于XML配置原理解析</h2><h3 id="解析主要在DubboNamespaceHandler中完成"><a href="#解析主要在DubboNamespaceHandler中完成" class="headerlink" title="解析主要在DubboNamespaceHandler中完成"></a>解析主要在DubboNamespaceHandler中完成</h3><h4 id="BeanDefinationParser的解析过程"><a href="#BeanDefinationParser的解析过程" class="headerlink" title="BeanDefinationParser的解析过程"></a>BeanDefinationParser的解析过程</h4><ol>
+<li>新建SpringBean定义文件，交给Spring反射创建实例</li>
+<li>确保没有重复定义SpringBean定义</li>
+<li>依次尝试获取XML标签配置的name和interface 作为Bean唯一id</li>
+<li>如果协议标签没有指定name，则默认使用dubbo</li>
+<li>检查重复bean，如果重复则生成唯一id</li>
+<li>每次解析向Spring注册新的BeanDefinition，后续会追加属性<h3 id="具体的标签解析"><a href="#具体的标签解析" class="headerlink" title="具体的标签解析"></a>具体的标签解析</h3><h4 id="dubbo-service"><a href="#dubbo-service" class="headerlink" title="dubbo:service"></a><a href="dubbo:service" target="_blank" rel="noopener">dubbo:service</a></h4></li>
+<li>如果<a href="dubbo:service" target="_blank" rel="noopener">dubbo:service</a>配置了class属性，那么为具体的class配置类注册Bean，并注入ref属性</li>
+</ol>
+<h3 id="attribute-提取逻辑"><a href="#attribute-提取逻辑" class="headerlink" title="attribute 提取逻辑"></a>attribute 提取逻辑</h3><ol>
+<li>查找配置对象的get、set 和is前缀方法，如果标签属性和方法名称相同，则通过反射调用存储标签对应值</li>
+<li>如果没有和get、set和is前缀方法匹配，则当作parameters参数存储，parameters是一个Map对象</li>
+</ol>
+<h2 id="5-1-3-基于注解配置原理解析"><a href="#5-1-3-基于注解配置原理解析" class="headerlink" title="5.1.3 基于注解配置原理解析"></a>5.1.3 基于注解配置原理解析</h2><h3 id="注解处理逻辑"><a href="#注解处理逻辑" class="headerlink" title="注解处理逻辑"></a>注解处理逻辑</h3><h4 id="按需生成Bean"><a href="#按需生成Bean" class="headerlink" title="按需生成Bean"></a>按需生成Bean</h4><ol>
+<li>获取EnableDouuboConfigBindings注解所有值</li>
+<li>将每个EnableDubboCongfingBinding注解包含的Bean注册到Spring容器</li>
+</ol>
+<h4 id="提升-Service类为Bean"><a href="#提升-Service类为Bean" class="headerlink" title="提升@Service类为Bean"></a>提升@Service类为Bean</h4><p>ServiceAnnotationBeanPostProcessor</p>
+<ol>
+<li>提取用户配置的扫描包名称</li>
+<li>触发ServiceBean定义和注入；</li>
+<li>指定扫描dubbo的注解@Service，不会扫描Spring的Service注解，设置过滤器</li>
+<li>将@Service作为不同的Bean注入容器</li>
+<li>对扫描的服务创建BeanDefinitionHolder，用户生成ServiceBean定义</li>
+<li>注册ServiceBean定义并做数据绑定</li>
+</ol>
+<p>实际使用过程中，会在@Service注解的服务中注入@Reference注解，这样就可以很方便地发起远端服务调用</p>
+<h4 id="为-Reference注入代理对象"><a href="#为-Reference注入代理对象" class="headerlink" title="为@Reference注入代理对象"></a>为@Reference注入代理对象</h4><ol>
+<li>查找所有@Reference字段和方法</li>
+<li>对字段、和方法进行反射绑定 </li>
+</ol>
+<h1 id="5-2-服务暴露的实现原理"><a href="#5-2-服务暴露的实现原理" class="headerlink" title="5.2 服务暴露的实现原理"></a>5.2 服务暴露的实现原理</h1><h2 id="5-2-1-配置承载初始化"><a href="#5-2-1-配置承载初始化" class="headerlink" title="5.2.1 配置承载初始化"></a>5.2.1 配置承载初始化</h2><h3 id="覆盖策略"><a href="#覆盖策略" class="headerlink" title="覆盖策略"></a>覆盖策略</h3><ol>
+<li>-D 传递给JVM参数优先级最高</li>
+<li>代码或XML配置优先级次高</li>
+<li>配置文件优先级最低</li>
+</ol>
+<h3 id="provider和客户端的配置"><a href="#provider和客户端的配置" class="headerlink" title="provider和客户端的配置"></a>provider和客户端的配置</h3><ol>
+<li>如果provider指定了配置，会透传到客户端</li>
+<li>如果客户端也配置了相应属性，则服务端的配置会被覆盖</li>
+</ol>
+<h2 id="5-2-2-远程服务的暴露机制"><a href="#5-2-2-远程服务的暴露机制" class="headerlink" title="5.2.2 远程服务的暴露机制"></a>5.2.2 远程服务的暴露机制</h2><h3 id="服务暴露的两大部分"><a href="#服务暴露的两大部分" class="headerlink" title="服务暴露的两大部分"></a>服务暴露的两大部分</h3><ol>
+<li>将持有的服务实例通过代理转换成Invoker</li>
+<li>将Invoker通过具体的协议转换成Exporter</li>
+</ol>
+<h4 id="ref-gt-invoker"><a href="#ref-gt-invoker" class="headerlink" title="ref-&gt;invoker"></a>ref-&gt;invoker</h4><ol>
+<li>获取配置信息到Map，用于后续构造URL</li>
+<li>读取全局配置信息，会自动添加前缀</li>
+<li>本地服务暴露</li>
+<li>上报监控地址</li>
+<li>通过动态代理转换成invoker</li>
+<li>服务暴露后进行服务元数据注册</li>
+<li>处理没有注册中心场景，直接暴露服务</li>
+</ol>
+<h3 id="注册中心的服务暴露-Registry-export"><a href="#注册中心的服务暴露-Registry-export" class="headerlink" title="注册中心的服务暴露 Registry#export"></a>注册中心的服务暴露 Registry#export</h3><ol>
+<li>委托具体协议进行暴露，创建NettyServer监听端口和保存服务实例</li>
+<li>创建注册中心对象，与注册中心创建TCP连接</li>
+<li>注册服务元数据到注册中心</li>
+<li>订阅configurators节点，监听服务动态属性变更事件</li>
+<li>服务销毁收尾工作（Invoker销毁时，注销端口和map中服务实例等资源，移除已注册的元数据，去掉订阅配置监听器）</li>
+</ol>
+<h3 id="从Invoker构造拦截器链"><a href="#从Invoker构造拦截器链" class="headerlink" title="从Invoker构造拦截器链"></a>从Invoker构造拦截器链</h3><p>拦截器初始化时，会自动注入ProtocolListenerWrapper和ProtocolFilterWrapper</p>
+<h3 id="Dubboprotocol-export"><a href="#Dubboprotocol-export" class="headerlink" title="Dubboprotocol#export"></a>Dubboprotocol#export</h3><ol>
+<li>从服务分组、版本、接口和端口构造key</li>
+<li>把exporter存储到单例DubboProtocol中</li>
+<li>创建NettyServer，并且初始化Handler</li>
+</ol>
+<h2 id="5-2-3-本地服务的暴露机制"><a href="#5-2-3-本地服务的暴露机制" class="headerlink" title="5.2.3 本地服务的暴露机制"></a>5.2.3 本地服务的暴露机制</h2><ol>
+<li>显式指定injvm协议进行暴露</li>
+<li>调用injvmProtocol#export</li>
+</ol>
+<h1 id="5-3-服务消费的实现原理"><a href="#5-3-服务消费的实现原理" class="headerlink" title="5.3 服务消费的实现原理"></a>5.3 服务消费的实现原理</h1><h2 id="5-3-1-单注册中心消费原理"><a href="#5-3-1-单注册中心消费原理" class="headerlink" title="5.3.1 单注册中心消费原理"></a>5.3.1 单注册中心消费原理</h2><h3 id="invoker处理：referenceConfig-createProxy"><a href="#invoker处理：referenceConfig-createProxy" class="headerlink" title="invoker处理：referenceConfig#createProxy"></a>invoker处理：referenceConfig#createProxy</h3><ol>
+<li>优先判断jvm中是否包含所需服务</li>
+<li>在url追加消费者元数据信息</li>
+<li>单注册中心消费，客户端启动拉取服务元数据，订阅provider、路由和配置变更</li>
+<li>处理多注册中心，通过cluster进行invoker合并</li>
+<li>将invoker转换成接口代理</li>
+</ol>
+<h3 id="通过注册中心消费：RegistryProtocol-refer"><a href="#通过注册中心消费：RegistryProtocol-refer" class="headerlink" title="通过注册中心消费：RegistryProtocol#refer"></a>通过注册中心消费：RegistryProtocol#refer</h3><p>通过注册中心消费的核心数据结构是RegistryDirectory</p>
+<ol>
+<li>设置注册中心协议，创建注册中心实例</li>
+<li>根据配置处理多分组结果聚合</li>
+<li>处理订阅数据并通过Cluster合并多个Invoker</li>
+</ol>
+<h3 id="RegistryProtocol-doRefer"><a href="#RegistryProtocol-doRefer" class="headerlink" title="RegistryProtocol#doRefer"></a>RegistryProtocol#doRefer</h3><ol>
+<li>directory持有实际invoker和接收订阅通知</li>
+<li>注册消费信息到注册中心</li>
+<li>订阅服务提供者，路由和动态配置</li>
+<li>通过Cluster合并invoker</li>
+</ol>
+<h3 id="RegistryDirectory-toInvokers"><a href="#RegistryDirectory-toInvokers" class="headerlink" title="RegistryDirectory#toInvokers"></a>RegistryDirectory#toInvokers</h3><ol>
+<li>根据消费方protocol配置过滤不匹配协议</li>
+<li>合并provider端配置数据</li>
+<li>忽略重复推送的服务列表</li>
+</ol>
+<h2 id="5-3-2-多注册中心消费原理"><a href="#5-3-2-多注册中心消费原理" class="headerlink" title="5.3.2 多注册中心消费原理"></a>5.3.2 多注册中心消费原理</h2><ol>
+<li>遍历注册中心invoker实例，判断是否包含provider服务</li>
+</ol>
+<h2 id="5-3-3-直连服务消费原理"><a href="#5-3-3-直连服务消费原理" class="headerlink" title="5.3.3 直连服务消费原理"></a>5.3.3 直连服务消费原理</h2><ol>
+<li><h1 id="5-4-优雅停机原理解析"><a href="#5-4-优雅停机原理解析" class="headerlink" title="5.4 优雅停机原理解析"></a>5.4 优雅停机原理解析</h1><h3 id="优雅停机6个步骤"><a href="#优雅停机6个步骤" class="headerlink" title="优雅停机6个步骤"></a>优雅停机6个步骤</h3></li>
+<li><p>收到kill 9 进程退出信号，spring触发容器销毁事件</p>
+</li>
+<li><p>provider 端会取消注册服务元数据信息</p>
+</li>
+<li><p>consumer 端会收到最新地址列表（不包含准备停机的地址）</p>
+</li>
+<li><p>dubbo协议会发送readonly事件报文通知consumer服务不可用（客户端收到readonly后，将服务端标记为不可用）</p>
+</li>
+<li><p>服务端等待已经执行的任务结束并拒绝新任务执行</p>
+</li>
+<li><p>TCP断开</p>
+</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">dubbo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/23/第五章Dubbo启停原理解析/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-常见的动态代理的库及使用" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/23/常见的动态代理的库及使用/">常见的动态代理的库及使用</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/23/常见的动态代理的库及使用/" class="archive-article-date">
+  	<time datetime="2019-09-23T13:26:30.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/23/常见的动态代理的库及使用/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-第四章Dubbo扩展点加载机制" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/23/第四章Dubbo扩展点加载机制/">第四章Dubbo扩展点加载机制</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/23/第四章Dubbo扩展点加载机制/" class="archive-article-date">
+  	<time datetime="2019-09-23T09:04:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-23</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="4-1-扩展机制概述"><a href="#4-1-扩展机制概述" class="headerlink" title="4.1 扩展机制概述"></a>4.1 扩展机制概述</h1><h2 id="4-1-1-Java-Spi"><a href="#4-1-1-Java-Spi" class="headerlink" title="4.1.1 Java Spi"></a>4.1.1 Java Spi</h2><h3 id="实现步骤："><a href="#实现步骤：" class="headerlink" title="实现步骤："></a>实现步骤：</h3><ol>
+<li>编写接口及实现类</li>
+<li>在META-INF/services下创建具有接口全路径名的文件，文件内容为对应的实现类全路径名</li>
+<li>编写调用类通过 ServiceLoader.load()获得对应的实例</li>
+</ol>
+<h2 id="4-1-2-Dubbo-Spi"><a href="#4-1-2-Dubbo-Spi" class="headerlink" title="4.1.2 Dubbo Spi"></a>4.1.2 Dubbo Spi</h2><h3 id="实现步骤"><a href="#实现步骤" class="headerlink" title="实现步骤"></a>实现步骤</h3><ol>
+<li>编写接口类及实现类</li>
+<li>在META-INF/services、META-INF/dubbo或者META/dubbo/internal下创建具有接口全路径名的文件，文件内容为一个键值对（对应实现实例名=对应的实现类全路径名）</li>
+<li>编写调用类 通过ExtensionLoader.getExtensionLoader(接口名).getDefaultExteion()获得对应实例</li>
+</ol>
+<h3 id="Java-SPI-和-Dubbo-SPI的比较"><a href="#Java-SPI-和-Dubbo-SPI的比较" class="headerlink" title="Java SPI 和 Dubbo SPI的比较"></a>Java SPI 和 Dubbo SPI的比较</h3><ol>
+<li>实例化，JavaSPI会一次性实例化所有实现，但是DubboSPI则会加载类但是会按需实例化实现</li>
+<li>扩展失败，JavaSPI如果扩展失败，则无法获得扩展名称</li>
+<li>DubboSPI增加了对于IoC和AOP的支持，一个扩展可以直接setter注入其他扩展 </li>
+</ol>
+<h2 id="4-1-3-Dubbo-的配置规范"><a href="#4-1-3-Dubbo-的配置规范" class="headerlink" title="4.1.3 Dubbo 的配置规范"></a>4.1.3 Dubbo 的配置规范</h2><table>
+<thead>
+<tr>
+<th>规范名</th>
+<th>规范说明</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>SPI配置文件路径</td>
+<td>META-INF/services/,META-INF/dubbo/,META-INF/dubbo/internal/</td>
+</tr>
+<tr>
+<td>SPI配置文件名称</td>
+<td>全路径类名</td>
+</tr>
+<tr>
+<td>文件内容格式</td>
+<td>key=value，换行符分隔</td>
+</tr>
+</tbody></table>
+<h2 id="4-1-4-扩展点的分类与缓存"><a href="#4-1-4-扩展点的分类与缓存" class="headerlink" title="4.1.4 扩展点的分类与缓存"></a>4.1.4 扩展点的分类与缓存</h2><h3 id="扩展类的分类"><a href="#扩展类的分类" class="headerlink" title="扩展类的分类"></a>扩展类的分类</h3><h4 id="按照内容分类"><a href="#按照内容分类" class="headerlink" title="按照内容分类"></a>按照内容分类</h4><ol>
+<li>Class缓存</li>
+<li>实例缓存</li>
+</ol>
+<h4 id="按照扩展类种类分类"><a href="#按照扩展类种类分类" class="headerlink" title="按照扩展类种类分类"></a>按照扩展类种类分类</h4><ol>
+<li>普通扩展类</li>
+<li>包装扩展类：通用抽象，构造方法中会传入一个具体的实现</li>
+<li>自适应扩展类：抽象扩展接口，具体实现在运行时由传入参数动态确定</li>
+<li>其他缓存：如扩展类加载器缓存，扩展名缓存</li>
+</ol>
+<h3 id="扩展类缓存"><a href="#扩展类缓存" class="headerlink" title="扩展类缓存"></a>扩展类缓存</h3><table>
+<thead>
+<tr>
+<th>集合名</th>
+<th>缓存类型</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Holder&lt;Map&lt;String,Class&lt;?&gt;&gt;&gt; cachedClasses</td>
+<td>普通扩展类缓存，不包括自适应扩展类和Wrapper类</td>
+</tr>
+<tr>
+<td>Set&lt;Class&lt;?&gt;&gt; cachedWrapperClasses</td>
+<td>Wrapper类缓存</td>
+</tr>
+<tr>
+<td>Class&lt;?&gt; cachedAdaptiveClass</td>
+<td>自适应扩展类缓存</td>
+</tr>
+<tr>
+<td>CocurrentMap&lt;Class&lt;?&gt;,String&gt; cachedNames</td>
+<td>扩展类与扩展名缓存</td>
+</tr>
+<tr>
+<td>CocurrentMap&lt;Class<?>,ExtentionLoader<?>&gt; EXTENSION_LOADERS</td>
+<td>扩展类与对应的扩展类加载器缓存</td>
+</tr>
+<tr>
+<td>CocurrentMap&lt;Class&lt;?&gt;,Object&gt; EXTENSION_INSTANCES</td>
+<td>扩展类与类初始化后的实例</td>
+</tr>
+<tr>
+<td>Map&lt;String ,Activate&gt; cachedActivates</td>
+<td>扩展名与@Activate的缓存</td>
+</tr>
+</tbody></table>
+<h2 id="4-1-5-扩展点的特性"><a href="#4-1-5-扩展点的特性" class="headerlink" title="4.1.5 扩展点的特性"></a>4.1.5 扩展点的特性</h2><ol>
+<li>自动包装：装饰器模式</li>
+<li>自动加载：setter注入</li>
+<li>自适应：@Adaptive参数匹配</li>
+<li>自动激活： </li>
+</ol>
+<h1 id="4-2-扩展点注解"><a href="#4-2-扩展点注解" class="headerlink" title="4.2 扩展点注解"></a>4.2 扩展点注解</h1><h2 id="4-2-1-扩展点注解-SPI"><a href="#4-2-1-扩展点注解-SPI" class="headerlink" title="4.2.1 扩展点注解 @SPI"></a>4.2.1 扩展点注解 @SPI</h2><ol>
+<li>使用范围： 可以用在类，接口，枚举类上</li>
+<li>作用：标记SPI接口，运行时通过配置找到对应的实现类</li>
+</ol>
+<h2 id="4-2-2-扩展点自适应注解-Adaptive"><a href="#4-2-2-扩展点自适应注解-Adaptive" class="headerlink" title="4.2.2 扩展点自适应注解 @Adaptive"></a>4.2.2 扩展点自适应注解 @Adaptive</h2><ol>
+<li>使用范围：可以使用类，接口，枚举类和方法上</li>
+<li>作用：<ol>
+<li>标记在类级别上：直接将整个类作为默认实现，不再自动生成匹配代码</li>
+<li>标记在方法上：（会生成匹配代码，在匹配代码中）根据传入的指定Contant.key从url中提取参数进行匹配，最终生成指定的实现类</li>
+</ol>
+</li>
+</ol>
+<h2 id="4-2-3扩展点自动激活注解-Activate"><a href="#4-2-3扩展点自动激活注解-Activate" class="headerlink" title="4.2.3扩展点自动激活注解 @Activate"></a>4.2.3扩展点自动激活注解 @Activate</h2><h3 id="Active参数"><a href="#Active参数" class="headerlink" title="Active参数"></a>Active参数</h3><table>
+<thead>
+<tr>
+<th>参数名</th>
+<th>效果</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>String[] group()</td>
+<td>URL中的分组如果匹配则激活，则可以设置多个</td>
+</tr>
+<tr>
+<td>String[] value()</td>
+<td>查找URL中如果含有该key值，则激活</td>
+</tr>
+<tr>
+<td>String[] before()</td>
+<td>填写扩展点列表，表示哪些扩展点在本扩展点之前</td>
+</tr>
+<tr>
+<td>String[] after()</td>
+<td>表示哪些扩展点在本扩展点之后</td>
+</tr>
+<tr>
+<td>int order()</td>
+<td>整型，直接的排序信息</td>
+</tr>
+</tbody></table>
+<h1 id="4-3-ExtensionLoader的工作原理"><a href="#4-3-ExtensionLoader的工作原理" class="headerlink" title="4.3 ExtensionLoader的工作原理"></a>4.3 ExtensionLoader的工作原理</h1><h2 id="4-3-1-工作流程"><a href="#4-3-1-工作流程" class="headerlink" title="4.3.1 工作流程"></a>4.3.1 工作流程</h2><h3 id="getExtension-String-name-的工作流程"><a href="#getExtension-String-name-的工作流程" class="headerlink" title="getExtension(String name)的工作流程"></a>getExtension(String name)的工作流程</h3><p>加载中的每一步都会先检查缓存中是否已经存在所需的数据</p>
+<ol>
+<li>框架读取SPI对应路径下的配置文件，根据配置加载所有扩展类并缓存（不初始化）</li>
+<li>根据传入的名称初始化对应的类</li>
+<li>尝试查找符合条件的包装类</li>
+<li>返回对应的扩展类实例</li>
+</ol>
+<h2 id="getAdaptiveExtension-的工作流程"><a href="#getAdaptiveExtension-的工作流程" class="headerlink" title="getAdaptiveExtension()的工作流程"></a>getAdaptiveExtension()的工作流程</h2><ol>
+<li>加载配置文件</li>
+<li>生成自适应的类的代码字符串</li>
+<li>获取类加载器和编译器，并用编译器编译刚才生成的代码字符串</li>
+<li>返回对应的自适应实例</li>
+</ol>
+<h2 id="4-3-2-getExtension的工作原理"><a href="#4-3-2-getExtension的工作原理" class="headerlink" title="4.3.2 getExtension的工作原理"></a>4.3.2 getExtension的工作原理</h2><p>injectExtension()利用setter实现了一个简单的IoC，完成依赖注入</p>
+<h2 id="4-3-3-getAdaptiveExtension的实现原理"><a href="#4-3-3-getAdaptiveExtension的实现原理" class="headerlink" title="4.3.3 getAdaptiveExtension的实现原理"></a>4.3.3 getAdaptiveExtension的实现原理</h2><p>getAdaptiveExtension的代码生成步骤</p>
+<ol>
+<li>生成package、import 、类名称等头部信息</li>
+<li>遍历接口所有方法，获取方法的返回类型、参数类型、异常类型等</li>
+<li>生产参数为空的空校验代码</li>
+<li>生成默认实现类的名称</li>
+<li>生成获取扩展点名称的代码</li>
+<li>生成获取具体扩展实现类的代码</li>
+<li>生成调用结果代码</li>
+</ol>
+<p>由以上自动代码产生的效果：<br>如果 SPI上备注了名称，Adaptive上也备注了名称，则会将SPI的名称作为默认名称，优先以Adaptive名称查找实现类，失败则使用SPI名称</p>
+<h2 id="4-3-4-getActiveExtension的实现原理"><a href="#4-3-4-getActiveExtension的实现原理" class="headerlink" title="4.3.4 getActiveExtension的实现原理"></a>4.3.4 getActiveExtension的实现原理</h2><ol>
+<li>检查缓存，如果缓存中没有，则初始化所有扩展类实现的集合</li>
+<li>遍历@Activate集合，然后根据URL传入的匹配条件（group，name）等，得到所有符合激活条件的扩展类实现</li>
+<li>遍历所有用户自定义扩展的名称，根据用户URL配置的顺序，调整扩展点激活顺序</li>
+<li>返回所有自动激活类姬和</li>
+</ol>
+<p><strong>如果URL参数中传入了-default，则所有默认的@Activate都不会被激活，只有URL参数中指定的扩展点会被激活</strong></p>
+<h2 id="4-3-5-ExtensionFactory的实现原理"><a href="#4-3-5-ExtensionFactory的实现原理" class="headerlink" title="4.3.5 ExtensionFactory的实现原理"></a>4.3.5 ExtensionFactory的实现原理</h2><ol>
+<li>Dubbo和Spring如何被打通？<br>通过Spring的上下文，在SpringExtensionFatory中提供了保存Spring的上下文的静态方法</li>
+<li>AdaptiveExtensionFactory 在构造方法中缓存了所有的扩展类工程，并通过TreeSet排序，SPI在前，Spring在后</li>
+</ol>
+<h1 id="4-4-扩展点动态编译的实现"><a href="#4-4-扩展点动态编译的实现" class="headerlink" title="4.4 扩展点动态编译的实现"></a>4.4 扩展点动态编译的实现</h1><h2 id="4-4-1总体结构"><a href="#4-4-1总体结构" class="headerlink" title="4.4.1总体结构"></a>4.4.1总体结构</h2><h3 id="Dubbo中的三种编译器"><a href="#Dubbo中的三种编译器" class="headerlink" title="Dubbo中的三种编译器"></a>Dubbo中的三种编译器</h3><ol>
+<li>JDK编译器</li>
+<li>Javassist编译器</li>
+<li>AdaptiveCompiler编译器</li>
+</ol>
+<h3 id="配置"><a href="#配置" class="headerlink" title="配置"></a>配置</h3><ol>
+<li>@SPI注解的默认的编译器是javassist；想改变默认编译器，可以通过&lt;dubbo:application compiler=”jdk”&gt;进行配置</li>
+<li>@Adaptive注解的默认编译器是AdaptiveCompiler</li>
+</ol>
+<h3 id="AdaptiveCompiler的主要抽象逻辑"><a href="#AdaptiveCompiler的主要抽象逻辑" class="headerlink" title="AdaptiveCompiler的主要抽象逻辑"></a>AdaptiveCompiler的主要抽象逻辑</h3><ol>
+<li>通过正则匹配出包路径、类名，再根据包路径、类名拼接处全路径类名</li>
+<li>尝试通过Class.forName加载该类并返回，防止重复编译</li>
+<li>调用doCompile进行编译</li>
+</ol>
+<h2 id="4-4-2-Javassist动态代码编译"><a href="#4-4-2-Javassist动态代码编译" class="headerlink" title="4.4.2 Javassist动态代码编译"></a>4.4.2 Javassist动态代码编译</h2><p>Javassist动态编译步骤</p>
+<ol>
+<li>初始化Javassist，设置默认参数</li>
+<li>通过正则匹配出所有import的包，并使用Javassist添加import</li>
+<li>通过正则匹配出所有extends的包，创建Class对象，并使用Javassist添加extends</li>
+<li>通过正则匹配出所有implements的包，并使用Javassist添加implements</li>
+<li>通过正则匹配出类面的所有内容，即得到{}中的内容，再通过正则匹配出所有方法，并使用Javassist添加类内容</li>
+<li>生成Class对象</li>
+</ol>
+<h2 id="4-4-3-JDK动态代码编译"><a href="#4-4-3-JDK动态代码编译" class="headerlink" title="4.4.3 JDK动态代码编译"></a>4.4.3 JDK动态代码编译</h2><p>主要流程：</p>
+<ol>
+<li>初始化JavaFileObject对象，传入代码字符串，</li>
+<li>调用JavaCompiler.CompilationTask编译出具体的类</li>
+<li>JavaFileMananer负责管理类文件的输入和输出位置</li>
+</ol>
+<p>接口与类介绍</p>
+<ol>
+<li>JavaFileObject接口。字符串代码被包装成一个文件对象，并提供二进制流的接口</li>
+<li>JavaFileManager接口。主要管理文件的输入输出位置。</li>
+<li>JavaCompiler.CompilationTask把JavaFileObject编译成具体的类</li>
+</ol>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">-dubbo</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/23/第四章Dubbo扩展点加载机制/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-springBoot启动过程" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/21/springBoot启动过程/">springBoot启动过程</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/21/springBoot启动过程/" class="archive-article-date">
+  	<time datetime="2019-09-21T14:33:58.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/21/springBoot启动过程/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-数据库语句总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/21/数据库语句总结/">数据库语句总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/21/数据库语句总结/" class="archive-article-date">
+  	<time datetime="2019-09-21T14:33:34.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-21</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="模式的定义与删除"><a href="#模式的定义与删除" class="headerlink" title="模式的定义与删除"></a>模式的定义与删除</h1><h2 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h2><p>create schema schemaName</p>
+<h2 id="删除"><a href="#删除" class="headerlink" title="删除"></a>删除</h2><p>drop schema schemaName</p>
+<h1 id="表的定义与删除"><a href="#表的定义与删除" class="headerlink" title="表的定义与删除"></a>表的定义与删除</h1><h2 id="定义-1"><a href="#定义-1" class="headerlink" title="定义"></a>定义</h2><p>create table tableName(<br>    columnName1 dataType1 restrict1,<br>    columnName2 dataType2 restrict2<br>)tableRestrict;</p>
+<h2 id="修改基本表"><a href="#修改基本表" class="headerlink" title="修改基本表"></a>修改基本表</h2><p>alter table tableName<br>add column columnName datatype resctirct<br>drop column columnName<br>drop constriant restrictName<br>alter column columnName datatype </p>
+<h2 id="删除基本表"><a href="#删除基本表" class="headerlink" title="删除基本表"></a>删除基本表</h2><p>drop table tableName</p>
+<h1 id="索引的建立与删除"><a href="#索引的建立与删除" class="headerlink" title="索引的建立与删除"></a>索引的建立与删除</h1><h2 id="建立索引"><a href="#建立索引" class="headerlink" title="建立索引"></a>建立索引</h2><p>create  index indexName<br>on tableName(columnName)</p>
+<h2 id="修改索引"><a href="#修改索引" class="headerlink" title="修改索引"></a>修改索引</h2><p>alter index oldIndexName<br>rename to newIndexName</p>
+<h2 id="删除索引"><a href="#删除索引" class="headerlink" title="删除索引"></a>删除索引</h2><p>drop index indexName</p>
+<h2 id="数据查询"><a href="#数据查询" class="headerlink" title="数据查询"></a>数据查询</h2><h1 id="增-insert"><a href="#增-insert" class="headerlink" title="增 insert"></a>增 insert</h1><p>insert into tableName(fieldName1,fieldName2,…)<br>values (value1,value2,…)</p>
+<h1 id="删-delete"><a href="#删-delete" class="headerlink" title="删 delete"></a>删 delete</h1><p>delete from tableName<br>where columnName1=”value”</p>
+<h1 id="改-update"><a href="#改-update" class="headerlink" title="改 update"></a>改 update</h1><p>update tableName<br>set fieldName1=”value1”<br>where fieldName2=”value2”</p>
+<h1 id="查-select"><a href="#查-select" class="headerlink" title="查 select"></a>查 select</h1><p>select fieldName1,fieldName2,<br>from tableName<br>where fieldName3=”value3”<br>group by<br>order by</p>
+<h1 id="表连接-join"><a href="#表连接-join" class="headerlink" title="表连接 join"></a>表连接 join</h1><p>##<br>select tableName1.fieldName1<br>from<br>tableName1 left join tableName2<br>on tableName1.id=tableName2.id</p>
+<p>## </p>
+
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">数据库基本操作</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/21/数据库语句总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
+    <article id="post-2019-9-20题目总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+  <div class="article-inner">
+    
+      <header class="article-header">
+        
+  
+    <h1 itemprop="name">
+      <a class="article-title" href="/2019/09/20/2019-9-20题目总结/">2019-9-20题目总结</a>
+    </h1>
+  
+
+        
+        <a href="/2019/09/20/2019-9-20题目总结/" class="archive-article-date">
+  	<time datetime="2019-09-19T16:16:19.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-20</time>
+</a>
+        
+      </header>
+    
+    <div class="article-entry" itemprop="articleBody">
+      
+        <h1 id="中信银行"><a href="#中信银行" class="headerlink" title="中信银行"></a>中信银行</h1><p>给定一个股价波动的数组prices和手续费fee,只能持有一个股票<br>prices=[1,3,2,8,4,9]<br>每次交易手续fee=2<br>LeetCode 买卖股票的最佳时机</p>
+<h1 id="瓜子"><a href="#瓜子" class="headerlink" title="瓜子"></a>瓜子</h1>
+      
+
+      
+    </div>
+    <div class="article-info article-info-index">
+      
+      
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
+      
+
+      
+        <p class="article-more-link">
+          <a class="article-more-a" href="/2019/09/20/2019-9-20题目总结/">展开全文 >></a>
+        </p>
+      
+
+      
+      <div class="clearfix"></div>
+    </div>
+  </div>
+</article>
+
+<aside class="wrap-side-operation">
+    <div class="mod-side-operation">
+        
+        <div class="jump-container" id="js-jump-container" style="display:none;">
+            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
+                <i class="icon-font icon-back"></i>
+            </a>
+            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
+                <i class="icon-font icon-plane jump-plane"></i>
+            </div>
+        </div>
+        
+        
+    </div>
+</aside>
+
+
+
+
+  
     <article id="post-内部类" class="article article-type-post  article-index" itemscope itemprop="blogPost">
   <div class="article-inner">
     
@@ -521,651 +1414,9 @@
 
 
   
-    <article id="post-springBean生命周期" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/springBean生命周期/">springBean生命周期</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/19/springBean生命周期/" class="archive-article-date">
-  	<time datetime="2019-09-19T10:59:53.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="getBean-gt-doGetBean"><a href="#getBean-gt-doGetBean" class="headerlink" title="getBean-&gt;doGetBean"></a>getBean-&gt;doGetBean</h1><ol>
-<li>提取beanName；</li>
-<li>尝试从缓存中获取FactoryBean（getSingleton）；</li>
-<li>实例化Bean</li>
-<li>原型模式的依赖检查</li>
-<li>检测parentBeanFactory</li>
-<li>获取mbd，递归实例化依赖的Bean</li>
-<li>针对不同的scope进行bean的创建，调用getObjectForBeanInstance</li>
-<li>类型转换</li>
-</ol>
-<h1 id="getSingleton-缓存中获取单例Bean"><a href="#getSingleton-缓存中获取单例Bean" class="headerlink" title="getSingleton/缓存中获取单例Bean"></a>getSingleton/缓存中获取单例Bean</h1><ol>
-<li>从singleObjects获取FactoryBean，如果取不到就执行步骤2</li>
-<li>从earlySingletonObjecs获取FactoryBean，如果娶不到执行步骤3</li>
-</ol>
-<h1 id="getObjectForBeanInstance"><a href="#getObjectForBeanInstance" class="headerlink" title="getObjectForBeanInstance"></a>getObjectForBeanInstance</h1><ol>
-<li>对FactoryBean正确性的验证</li>
-<li>对非FactoryBean不做任何处理</li>
-<li>对bean进行转换</li>
-<li>将解析bean的工作委托给getObjectFromFactoryBean</li>
-</ol>
-<h1 id="doGetObjectFromFactoryBean"><a href="#doGetObjectFromFactoryBean" class="headerlink" title="doGetObjectFromFactoryBean"></a>doGetObjectFromFactoryBean</h1><ol>
-<li>调用factory.getObject()真正获得Bean</li>
-<li>调用ObjectFactory的后处理器postProcessObjectFromFactoryBean</li>
-</ol>
-<h1 id="portProcessObjectFromFactoryBean"><a href="#portProcessObjectFromFactoryBean" class="headerlink" title="portProcessObjectFromFactoryBean"></a>portProcessObjectFromFactoryBean</h1><ol>
-<li>迭代调用BeanPostProcessor</li>
-</ol>
-<h1 id="getSingleton-获取单例"><a href="#getSingleton-获取单例" class="headerlink" title="getSingleton 获取单例"></a>getSingleton 获取单例</h1><ol>
-<li>检查是否已经加载过，this.singleObjects</li>
-<li>若没有加载，既有beanName正在加载的状态</li>
-<li>加载单例前记录加载状态，this.singletons.CurrentlyInCreation.add(beanName)</li>
-<li>通过调用参数传入的ObjectFatory的getObject()方法实例化bean</li>
-<li>加载单例后的处理方法调用</li>
-<li>将结果记录至缓存并删除bean过程中所记录的各种辅助状态</li>
-<li>返回处理结果</li>
-</ol>
-<h1 id="createBean-ObjectFactory传入的核心方法"><a href="#createBean-ObjectFactory传入的核心方法" class="headerlink" title="createBean ObjectFactory传入的核心方法"></a>createBean ObjectFactory传入的核心方法</h1><ol>
-<li>根据设置class属性或者根据className来解析Class resolveBeanClass</li>
-<li>对override属性进行标记及验证 mbd.prepareMethodOverrides()</li>
-<li>应用初始化前的后处理器 resolveBeforeInstantiation，解析指定bean，是否存在初始化前的短路操作，短路操作返回AOP的代理对象</li>
-<li>创建bean doCreateBean</li>
-</ol>
-<h2 id="处理override属性（来自AbstractBeanDifinition"><a href="#处理override属性（来自AbstractBeanDifinition" class="headerlink" title="处理override属性（来自AbstractBeanDifinition)"></a>处理override属性（来自AbstractBeanDifinition)</h2><ol>
-<li><h2 id="实例化的前置处理InstantiationAwareBeanPostProcessor"><a href="#实例化的前置处理InstantiationAwareBeanPostProcessor" class="headerlink" title="实例化的前置处理InstantiationAwareBeanPostProcessor"></a>实例化的前置处理InstantiationAwareBeanPostProcessor</h2></li>
-<li><p>实例化前的后处理器应用</p>
-<p> InstantiationAwareBeanPostProcessor.postProcessBeforeInstantiation()</p>
-</li>
-</ol>
-<ol start="2">
-<li><p>实例化后的后处理器应用</p>
-<p>BeanPostProcessor.postProcessAfterInitialization()</p>
-</li>
-</ol>
-<h1 id="doCreateBean-常规Bean的创建"><a href="#doCreateBean-常规Bean的创建" class="headerlink" title="doCreateBean 常规Bean的创建"></a>doCreateBean 常规Bean的创建</h1><ol>
-<li>如果是单例需要先清除缓存</li>
-<li>将BeanDefinition 转换为 BeanWrapper,createBeanInstance()</li>
-<li>MergedBeanDefinitionPostProcessor的应用</li>
-<li>依赖处理 earlySingletonExposure</li>
-<li>属性填充 populateBean，初始化 initializeBean()</li>
-<li>循环依赖检查</li>
-<li>注册DisposableBean</li>
-</ol>
-<h1 id="createBeanInstance-创建Bean的实例"><a href="#createBeanInstance-创建Bean的实例" class="headerlink" title="createBeanInstance 创建Bean的实例"></a>createBeanInstance 创建Bean的实例</h1><ol>
-<li>instantiateUsingFactoryMehtod</li>
-<li>解析构造函数并进行构造函数的实例化</li>
-</ol>
-<h1 id="populateBean"><a href="#populateBean" class="headerlink" title="populateBean"></a>populateBean</h1><ol>
-<li>从mbd获取属性</li>
-<li>InstantianAwareBeanPostProcessor.postProcessAfterInstantiation</li>
-<li>autowireByName/ autowireByType 注入属性</li>
-<li>ibp.postProcessPropertyValues()对需要依赖检查的属性进行后处理</li>
-<li>将所有属性填充到BeanWrapper</li>
-</ol>
-<p># </p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">spring</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/springBean生命周期/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-c3p0源码阅读" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/c3p0源码阅读/">c3p0源码阅读</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/19/c3p0源码阅读/" class="archive-article-date">
-  	<time datetime="2019-09-18T17:07:47.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/c3p0源码阅读/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-2019-9-19面试总结" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/19/2019-9-19面试总结/">2019-9-19面试总结</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/19/2019-9-19面试总结/" class="archive-article-date">
-  	<time datetime="2019-09-18T16:30:29.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-19</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>昨天面华为，今天面了科大讯飞和云从科技</p>
-<p>#华为</p>
-<ol>
-<li>项目框图</li>
-</ol>
-<p>我直接直接懵了</p>
-<ol start="2">
-<li>spring Bean的生命周期</li>
-</ol>
-<p>一长串，实在不记得，直击弱点；明天补上具体内容</p>
-<ol start="3">
-<li>自定义注解<br>最近在看dubbo，对注解做了一点点了解，之前确实没重视</li>
-</ol>
-<p>然后还问了一个算法题，问我有啥异常，我也没太重视异常这块，感觉我总get不到面试官的点，也许是面试官比较痛恨我这种混子</p>
-<p>#科大讯飞</p>
-<ol>
-<li><p>synchronized关键字同步代码块括号里锁啥this和Object，一面面试官是个很好的人，当时我没答上，我概念有点混淆，但是我二面理清了，答上了</p>
-</li>
-<li><p>处理String空值的包</p>
-</li>
-</ol>
-<ul>
-<li>Java中StringUtils工具类进行String为空的判断 </li>
-</ul>
-<p>#云从科技</p>
-<ol>
-<li><p>SpringBean的生命周期</p>
-</li>
-<li><p>线程池，同步队列满了才会进入最大线程池，我把这个弄混了</p>
-</li>
-<li><p>jdbc，加载驱动那一步我给忘了，我感觉面试官在憋笑，没办法，我太水了 </p>
-</li>
-<li><p>怎么写一个线程池</p>
-</li>
-</ol>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">学习日记</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/19/2019-9-19面试总结/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-一道很简单的面试题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/18/一道很简单的面试题/">一道很简单的面试题</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/18/一道很简单的面试题/" class="archive-article-date">
-  	<time datetime="2019-09-18T15:53:48.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-18</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <p>最近面试深深被打击了，尤其被最想进的华为一面挂了，难受，菜是原罪</p>
-<p>不过，今天有件开心的事，就是我没有看答案想出来一道很简单的面试题，觉得自己有进步，但是我还是有点方向的，好久以前见过这道题，几乎没有印象了，但是今天自己在回来的路上想出来了还包括完整的理论解释</p>
-<p>题目：<br>假如<br>int a=3，b=2;<br>在不使用第三个变量的情况下，交换两个变量的值</p>
-<p>代码及解释：</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">Swap</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span> a = <span class="number">3</span>;</span><br><span class="line">        <span class="keyword">int</span> b = <span class="number">2</span>;</span><br><span class="line">        <span class="comment">//交换a，b</span></span><br><span class="line">        <span class="comment">//保存ab的不同（异或：ab不同的位为1）</span></span><br><span class="line">        b= a^b;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        要求a-&gt;b则可以看成把a和b不同的位变得和b相同</span></span><br><span class="line"><span class="comment">        怎么做到呢？</span></span><br><span class="line"><span class="comment">        a=a^(此时的b)</span></span><br><span class="line"><span class="comment">        为什么呢？</span></span><br><span class="line"><span class="comment">        假设a上某个位置和b不同可能为1，可能为0</span></span><br><span class="line"><span class="comment">        如果不同那么此时b的这个位置必为1</span></span><br><span class="line"><span class="comment">        1^1=0；0^1=1</span></span><br><span class="line"><span class="comment">        恰好将a不同的位置变成原来相反，即与b相同</span></span><br><span class="line"><span class="comment">        那么我们就达到了将a变成b的目的</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        a=a^b;</span><br><span class="line">        <span class="comment">/*</span></span><br><span class="line"><span class="comment">        下一个步骤就是将这个时候的b变成之前的a</span></span><br><span class="line"><span class="comment">        此时的a已经变成了之前的b</span></span><br><span class="line"><span class="comment">        那么我们只需要同上一步</span></span><br><span class="line"><span class="comment">        就可以将b变成a,打完收工</span></span><br><span class="line"><span class="comment">        */</span></span><br><span class="line">        b=a^b;</span><br><span class="line">        System.out.println(a);</span><br><span class="line">        System.out.println(b);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
-
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/18/一道很简单的面试题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-大战左神第三集-字符串问题" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/16/大战左神第三集-字符串问题/">大战左神第三集-字符串问题</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/16/大战左神第三集-字符串问题/" class="archive-article-date">
-  	<time datetime="2019-09-16T02:10:08.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/16/大战左神第三集-字符串问题/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-大战左神第二集-递归和动态规划" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/16/大战左神第二集-递归和动态规划/">大战左神第二集-递归和动态规划</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/16/大战左神第二集-递归和动态规划/" class="archive-article-date">
-  	<time datetime="2019-09-16T02:09:17.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/16/大战左神第二集-递归和动态规划/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-    <article id="post-VIM快捷键" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2019/09/16/VIM快捷键/">VIM快捷键</a>
-    </h1>
-  
-
-        
-        <a href="/2019/09/16/VIM快捷键/" class="archive-article-date">
-  	<time datetime="2019-09-16T01:57:32.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2019-09-16</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h1 id="命令模式下"><a href="#命令模式下" class="headerlink" title="命令模式下"></a>命令模式下</h1><ul>
-<li>ggyG 全选复制<ul>
-<li>gg:跳到首行</li>
-<li>y :复制到0号寄存器</li>
-<li>G :光标移到最后一样</li>
-</ul>
-</li>
-<li>ggvG或ggVG 全选高亮<ul>
-<li>v 进入visual模式</li>
-</ul>
-</li>
-<li>dG 全部删除</li>
-<li>“+y 复制到+寄存器，即系统剪贴板</li>
-<li>跳到首行<ul>
-<li>:1</li>
-<li>gg</li>
-</ul>
-</li>
-<li>跳到末行<ul>
-<li>:$</li>
-<li>G</li>
-</ul>
-</li>
-<li>跳到行首<ul>
-<li>^</li>
-<li>0</li>
-<li>Home</li>
-</ul>
-</li>
-<li>跳到行末<ul>
-<li>行数$</li>
-<li>End</li>
-</ul>
-</li>
-</ul>
-<h1 id="剪切"><a href="#剪切" class="headerlink" title="剪切"></a>剪切</h1><ul>
-<li>normal模式下按v进入visual模式，visual模式下按v+h/j/k/l选择需要操作的内容<ul>
-<li>d 剪切</li>
-<li>y 复制操作</li>
-<li>p 粘贴操作</li>
-<li>^ 选中当前行，光标位置到行首</li>
-<li>$ 选中当前行，光标位置到行尾</li>
-</ul>
-</li>
-</ul>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">装逼利器</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">每日任务</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2019/09/16/VIM快捷键/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
   
     <nav id="page-nav">
-      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/8/">8</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
+      <a class="extend prev" rel="prev" href="/page/3/">&laquo; Prev</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><a class="page-number" href="/page/3/">3</a><span class="page-number current">4</span><a class="page-number" href="/page/5/">5</a><a class="page-number" href="/page/6/">6</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/5/">Next &raquo;</a>
     </nav>
   
 
@@ -1256,11 +1507,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1272,10 +1523,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
               </li>
              
@@ -1284,15 +1531,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1300,11 +1539,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">算法复习</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据库基本操作</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -1320,10 +1579,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据库基本操作</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">-spring</a>
               </li>
              
@@ -1332,19 +1587,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
               </li>
             
             <div class="clearfix"></div>

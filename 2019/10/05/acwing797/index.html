@@ -8,14 +8,18 @@
   <link rel="dns-prefetch" href="http://yoursite.com">
   <title>acwing797 | Hexo</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta property="og:type" content="article">
+  <meta name="description" content="差分123456789101112131415161718192021222324252627#include&amp;lt;bits/stdc++.h&amp;gt;using namespace std;const int N =100010;int a[N],b[N];int l,r,c;int main()&amp;#123;    int n,m;    cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m;    fo">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
 <meta property="og:title" content="acwing797">
 <meta property="og:url" content="http://yoursite.com/2019/10/05/acwing797/index.html">
 <meta property="og:site_name" content="Hexo">
+<meta property="og:description" content="差分123456789101112131415161718192021222324252627#include&amp;lt;bits/stdc++.h&amp;gt;using namespace std;const int N =100010;int a[N],b[N];int l,r,c;int main()&amp;#123;    int n,m;    cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m;    fo">
 <meta property="og:locale" content="cn">
-<meta property="og:updated_time" content="2019-10-04T16:30:04.609Z">
+<meta property="og:updated_time" content="2019-10-07T02:21:00.568Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="acwing797">
+<meta name="twitter:description" content="差分123456789101112131415161718192021222324252627#include&amp;lt;bits/stdc++.h&amp;gt;using namespace std;const int N =100010;int a[N],b[N];int l,r,c;int main()&amp;#123;    int n,m;    cin&amp;gt;&amp;gt;n&amp;gt;&amp;gt;m;    fo">
   
     <link rel="alternative" href="/atom.xml" title="Hexo" type="application/atom+xml">
   
@@ -159,7 +163,7 @@
     
     <div class="article-entry" itemprop="articleBody">
       
-        
+        <h1 id="差分"><a href="#差分" class="headerlink" title="差分"></a>差分</h1><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N =<span class="number">100010</span>;</span><br><span class="line"><span class="keyword">int</span> a[N],b[N];</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> l,r,c;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="keyword">int</span> n,m;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n&gt;&gt;m;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;a[i];</span><br><span class="line">        b[i]=a[i]-a[i<span class="number">-1</span>];</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">while</span>(m--)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;l&gt;&gt;r&gt;&gt;c;</span><br><span class="line">        b[l]+=c;</span><br><span class="line">        b[r+<span class="number">1</span>]-=c;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>,t=<span class="number">0</span>;i&lt;=n;i++)&#123;</span><br><span class="line">        t+=b[i];</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;t&lt;&lt;<span class="string">" "</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    </span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
       
 
       
@@ -167,6 +171,17 @@
     <div class="article-info article-info-index">
       
       
+	<div class="article-tag tagcloud">
+		<i class="icon-price-tags icon"></i>
+		<ul class="article-tag-list">
+			 
+        		<li class="article-tag-list-item">
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">算法</a>
+        		</li>
+      		
+		</ul>
+	</div>
+
       
 
       
@@ -230,6 +245,15 @@
 
   
 <nav id="article-nav">
+  
+    <a href="/2019/10/06/acwing327/" id="article-nav-newer" class="article-nav-link-wrap">
+      <i class="icon-circle-left"></i>
+      <div class="article-nav-title">
+        
+          acwing327
+        
+      </div>
+    </a>
   
   
     <a href="/2019/10/05/acwing796/" id="article-nav-older" class="article-nav-link-wrap">
@@ -355,11 +379,11 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
+                <a href="javascript:void(0)" class="js-tag color3">算法</a>
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">算法</a>
+                <a href="javascript:void(0)" class="js-tag color5">学习日记</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -371,10 +395,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">装逼利器</a>
               </li>
              
@@ -383,15 +403,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+                <a href="javascript:void(0)" class="js-tag color4">-算法</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -399,11 +411,31 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">spring</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color2">java基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">算法复习</a>
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color1">计算机基础</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">学习欲望</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color3">数据库基本操作</a>
               </li>
              
               <li class="article-tag-list-item">
@@ -419,10 +451,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color3">数据库基本操作</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">-spring</a>
               </li>
              
@@ -431,19 +459,15 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">计算机基础复习</a>
               </li>
              
               <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color5">工具复习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">-spring学习</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">学习计划</a>
               </li>
             
             <div class="clearfix"></div>
