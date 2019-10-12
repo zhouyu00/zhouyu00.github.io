@@ -1,3 +1,1877 @@
-<!DOCTYPE html><html lang="cn"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>硅步千里</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">硅步千里</h1><a id="logo" href="/.">硅步千里</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2019/09/14/linux命令学习每日一课/">linux命令学习每日一课</a></h1><div class="post-meta">2019-09-14</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/14/linux命令学习每日一课/" href="/2019/09/14/linux命令学习每日一课/#disqus_thread"></a><div class="post-content"><h1 id="最重要的命令-help"><a href="#最重要的命令-help" class="headerlink" title="最重要的命令 help"></a>最重要的命令 help</h1><p>输入：<br>help help<br>输出：  </p>
-<p>help: help [-dms] [pattern …]  </p></div><p class="readmore"><a href="/2019/09/14/linux命令学习每日一课/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/14/有效括号长度LeetCode32/">有效括号长度LeetCode32</a></h1><div class="post-meta">2019-09-14</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/14/有效括号长度LeetCode32/" href="/2019/09/14/有效括号长度LeetCode32/#disqus_thread"></a><div class="post-content"><h1 id="有效括号长度"><a href="#有效括号长度" class="headerlink" title="有效括号长度"></a>有效括号长度</h1><p>题目：<br>给定一个只包含 ‘(‘ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。</p>
-<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeetCode32</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[s.length()];</span><br><span class="line">        <span class="keyword">int</span> maxAns = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">')'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s.charAt(i-<span class="number">1</span>)==<span class="string">'('</span>)&#123;</span><br><span class="line">                    dp[i] = (i &gt;= <span class="number">2</span> ? dp[i - <span class="number">2</span>] : <span class="number">0</span>) + <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i-dp[i-<span class="number">1</span>]&gt;<span class="number">0</span>&amp;&amp;s.charAt(i-dp[i-<span class="number">1</span>]-<span class="number">1</span>)==<span class="string">'('</span>)&#123;</span><br><span class="line">                    dp[i]=dp[i-<span class="number">1</span>]+(i-dp[i-<span class="number">1</span>]&gt;=<span class="number">2</span>?dp[i-dp[i-<span class="number">1</span>]-<span class="number">2</span>]:<span class="number">0</span>)+<span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            maxAns=Math.max(maxAns,dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[s.length()-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s =<span class="string">")()())"</span>;</span><br><span class="line">        System.out.println(longestValidParentheses(s));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2019/09/14/有效括号长度LeetCode32/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/14/大战严蔚敏第二集-树/">大战严蔚敏第二集-树</a></h1><div class="post-meta">2019-09-14</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/14/大战严蔚敏第二集-树/" href="/2019/09/14/大战严蔚敏第二集-树/#disqus_thread"></a><div class="post-content"><h1 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> * </span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_traverse_recurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> root==<span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(root.val,end=<span class="string">","</span>)</span><br><span class="line">    preorder_traverse_recurse(root.left)</span><br><span class="line">    preorder_traverse_recurse(root.right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_traverse_norecurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    dq = deque()</span><br><span class="line">    dq.append(root)</span><br><span class="line">    <span class="keyword">while</span> len(dq):</span><br><span class="line">        t = dq.popleft()</span><br><span class="line">        print(t.val,end=<span class="string">","</span>)</span><br><span class="line">        <span class="keyword">if</span> t.right:</span><br><span class="line">            dq.appendleft(t.right)</span><br><span class="line">        <span class="keyword">if</span> t.left:</span><br><span class="line">            dq.appendleft(t.left)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    tree = TreeNode.exampleTree()</span><br><span class="line">    <span class="comment">#preorder_traverse_recurse(tree)</span></span><br><span class="line">    preorder_traverse_norecurse(tree)</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2019/09/14/大战严蔚敏第二集-树/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/12/大战严蔚敏第一集-排序算法/">大战严蔚敏第一集-排序算法</a></h1><div class="post-meta">2019-09-12</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/12/大战严蔚敏第一集-排序算法/" href="/2019/09/12/大战严蔚敏第一集-排序算法/#disqus_thread"></a><div class="post-content"><h1 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h1><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="简单插入排序"><a href="#简单插入排序" class="headerlink" title="简单插入排序"></a>简单插入排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    插入排序的时间复杂度O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    t = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">if</span> arr[i]&lt;arr[i<span class="number">-1</span>]: <span class="comment"># 如果当前元素小于前一个元素，进入一趟插入排序</span></span><br><span class="line">            t=arr[i]        <span class="comment"># 把自己赋给哨兵，向前寻找合适的位置</span></span><br><span class="line">            arr[i]=arr[i<span class="number">-1</span>]</span><br><span class="line">            j= i<span class="number">-2</span></span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> t&lt;arr[j]:</span><br><span class="line">                arr[j+<span class="number">1</span>]=arr[j]</span><br><span class="line">                j-=<span class="number">1</span></span><br><span class="line">            arr[j+<span class="number">1</span>]=t      <span class="comment"># 找到合适的位置，注意这时是j+1，因为上一个满足条件的位置已经被移到了此时的j+2</span></span><br><span class="line">    print(arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    insert_sort(arr)</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2019/09/12/大战严蔚敏第一集-排序算法/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/12/接雨水LeetCode42/">接雨水LeetCode42</a></h1><div class="post-meta">2019-09-12</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/12/接雨水LeetCode42/" href="/2019/09/12/接雨水LeetCode42/#disqus_thread"></a><div class="post-content"><h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><h1 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h1><h2 id="方法一：栈"><a href="#方法一：栈" class="headerlink" title="方法一：栈"></a>方法一：栈</h2><p>这种方法其实本质上就是利用栈找到两边最大的，然后依次计算中间的水</p></div><p class="readmore"><a href="/2019/09/12/接雨水LeetCode42/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/11/深入理解dubbo第二周/">深入理解dubbo第二周</a></h1><div class="post-meta">2019-09-11</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/11/深入理解dubbo第二周/" href="/2019/09/11/深入理解dubbo第二周/#disqus_thread"></a><div class="post-content"><h1 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h1><h2 id="三种扩展点的注解作用是什么？有什么区别？（-SPI-Adaptive-Active），分别用于什么场景？"><a href="#三种扩展点的注解作用是什么？有什么区别？（-SPI-Adaptive-Active），分别用于什么场景？" class="headerlink" title="三种扩展点的注解作用是什么？有什么区别？（@SPI,@Adaptive,@Active），分别用于什么场景？"></a>三种扩展点的注解作用是什么？有什么区别？（@SPI,@Adaptive,@Active），分别用于什么场景？</h2><table></table></div><p class="readmore"><a href="/2019/09/11/深入理解dubbo第二周/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/11/2019-9-11题目总结/">2019-9-11题目总结</a></h1><div class="post-meta">2019-09-11</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/11/2019-9-11题目总结/" href="/2019/09/11/2019-9-11题目总结/#disqus_thread"></a><div class="post-content"><h1 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h1><h2 id="用友笔试"><a href="#用友笔试" class="headerlink" title="用友笔试"></a>用友笔试</h2><h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><p>是个sql问题，已经忘了题目了–！</p></div><p class="readmore"><a href="/2019/09/11/2019-9-11题目总结/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/11/2019-9-10题目总结/">2019-9-10题目总结</a></h1><div class="post-meta">2019-09-11</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/11/2019-9-10题目总结/" href="/2019/09/11/2019-9-10题目总结/#disqus_thread"></a><div class="post-content"><h1 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h1><h2 id="Bilibili"><a href="#Bilibili" class="headerlink" title="Bilibili"></a>Bilibili</h2><p>第二题<br>题目：将输入的N，写成连续数字相加的形式，一共可以有多少组，1&lt;=N&lt;=10^9</p></div><p class="readmore"><a href="/2019/09/11/2019-9-10题目总结/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/11/spring学习/">spring学习</a></h1><div class="post-meta">2019-09-11</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/11/spring学习/" href="/2019/09/11/spring学习/#disqus_thread"></a><p class="readmore"><a href="/2019/09/11/spring学习/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/11/面向简历编程/">面向简历编程</a></h1><div class="post-meta">2019-09-11</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/11/面向简历编程/" href="/2019/09/11/面向简历编程/#disqus_thread"></a><div class="post-content"><h1 id="面向简历编程"><a href="#面向简历编程" class="headerlink" title="面向简历编程"></a>面向简历编程</h1><h2 id="TODO1-0-SSM"><a href="#TODO1-0-SSM" class="headerlink" title="TODO1.0 SSM"></a>TODO1.0 SSM</h2><p>我假装学了两年程序，感觉好多时间都在补基础，还搞过一段时间机器学习，花了大量的时间学数学，最终无功而返，最终还是回来搞后端，后端也就实训的时候有个整体框架，现在忘得都差不多了，准备在工作前重新捡回来。</p></div><p class="readmore"><a href="/2019/09/11/面向简历编程/">Mehr lesen</a></p></div><nav class="page-navigator"><a class="extend prev" rel="prev" href="/page/5/">Vorheriger</a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><a class="page-number" href="/page/8/">8</a><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/">Nächster</a></nav><script id="dsq-count-scr" src="//yuriy.disqus.com/count.js" async></script></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/计算机基础/" style="font-size: 15px;">计算机基础</a> <a href="/tags/算法竞赛进阶指南/" style="font-size: 15px;">算法竞赛进阶指南</a> <a href="/tags/学习日记/" style="font-size: 15px;">学习日记</a> <a href="/tags/Java基础复习/" style="font-size: 15px;">Java基础复习</a> <a href="/tags/面试准备/" style="font-size: 15px;">面试准备</a> <a href="/tags/装逼利器/" style="font-size: 15px;">装逼利器</a> <a href="/tags/每日任务/" style="font-size: 15px;">每日任务</a> <a href="/tags/算法/" style="font-size: 15px;">-算法</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/java基础/" style="font-size: 15px;">java基础</a> <a href="/tags/算法复习/" style="font-size: 15px;">算法复习</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/学习欲望/" style="font-size: 15px;">学习欲望</a> <a href="/tags/学习计划/" style="font-size: 15px;">学习计划</a> <a href="/tags/数据库基本操作/" style="font-size: 15px;">数据库基本操作</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/dubbo/" style="font-size: 15px;">-dubbo</a> <a href="/tags/spring/" style="font-size: 15px;">-spring</a> <a href="/tags/dubbo/" style="font-size: 15px;">dubbo</a> <a href="/tags/spring学习/" style="font-size: 15px;">-spring学习</a> <a href="/tags/计算机基础复习/" style="font-size: 15px;">计算机基础复习</a> <a href="/tags/工具复习/" style="font-size: 15px;">工具复习</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/10/acwing240/">acwing240</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/acwing885/">acwing885</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/acwing835/">acwing835</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/acwing831/">acwing831</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/07/acwing803/">acwing803</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/acwing292/">acwing292</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/acwing327/">acwing327</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/acwing797/">acwing797</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/acwing796/">acwing796</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/04/acwing795/">acwing795</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> Letzte Kommentare</i></div><script type="text/javascript" src="//yuriy.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">硅步千里.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="硅步千里">
+<meta property="og:url" content="http://yoursite.com/page/6/index.html">
+<meta property="og:site_name" content="硅步千里">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="硅步千里">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/6/">
+
+
+
+
+
+  <title>硅步千里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">硅步千里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/16/大战左神第一集-二叉树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/16/大战左神第一集-二叉树/" itemprop="url">大战左神第一集-二叉树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-16T09:00:07+08:00">
+                2019-09-16
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1打印二叉树边界"><a href="#1打印二叉树边界" class="headerlink" title="1打印二叉树边界"></a>1打印二叉树边界</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br><span class="line">68</span><br><span class="line">69</span><br><span class="line">70</span><br><span class="line">71</span><br><span class="line">72</span><br><span class="line">73</span><br><span class="line">74</span><br><span class="line">75</span><br><span class="line">76</span><br><span class="line">77</span><br><span class="line">78</span><br><span class="line">79</span><br><span class="line">80</span><br><span class="line">81</span><br><span class="line">82</span><br><span class="line">83</span><br><span class="line">84</span><br><span class="line">85</span><br><span class="line">86</span><br><span class="line">87</span><br><span class="line">88</span><br><span class="line">89</span><br><span class="line">90</span><br><span class="line">91</span><br><span class="line">92</span><br><span class="line">93</span><br><span class="line">94</span><br><span class="line">95</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> InOrderTraverse <span class="keyword">import</span> *</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getHeight</span><span class="params">(t)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span></span><br><span class="line">    lHeight = getHeight(t.left)</span><br><span class="line">    rHeight =getHeight(t.right)</span><br><span class="line">    <span class="keyword">return</span> max(lHeight,rHeight)+<span class="number">1</span></span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_border1</span><span class="params">(t)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    1.头节点为边界节点</span></span><br><span class="line"><span class="string">    2.叶子节点为边界节点</span></span><br><span class="line"><span class="string">    3.每层最左或最右的节点</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    tHeight=getHeight(t)</span><br><span class="line">    NodeEdge=[[<span class="literal">None</span>,<span class="literal">None</span>] <span class="keyword">for</span> i <span class="keyword">in</span> range(tHeight)]</span><br><span class="line">    set_edge(t,<span class="number">0</span>,NodeEdge)</span><br><span class="line">    <span class="comment">#打印左边界</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(tHeight):</span><br><span class="line">        print(NodeEdge[i][<span class="number">0</span>].val,end=<span class="string">","</span>)</span><br><span class="line">    <span class="comment">#打印既不是左边界也不是右边界</span></span><br><span class="line">    print_leaf_not_in_map(t,<span class="number">0</span>,NodeEdge) </span><br><span class="line">    <span class="comment">#打印右边界</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(tHeight<span class="number">-1</span>,<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">        print(NodeEdge[j][<span class="number">1</span>].val,end=<span class="string">","</span>)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">set_edge</span><span class="params">(head,level,NodeEdge)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    NodeEdge[level][<span class="number">0</span>]= head <span class="keyword">if</span> <span class="keyword">not</span> NodeEdge[level][<span class="number">0</span>] <span class="keyword">else</span> NodeEdge[level][<span class="number">0</span>]</span><br><span class="line">    NodeEdge[level][<span class="number">1</span>]= head</span><br><span class="line">    set_edge(head.left,level+<span class="number">1</span>,NodeEdge)</span><br><span class="line">    set_edge(head.right,level+<span class="number">1</span>,NodeEdge)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_leaf_not_in_map</span><span class="params">(t,level,NodeEdge)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    <span class="keyword">if</span> t.left==<span class="literal">None</span> <span class="keyword">and</span> t.right==<span class="literal">None</span> <span class="keyword">and</span> t!=NodeEdge[level][<span class="number">0</span>] <span class="keyword">and</span> t!=NodeEdge[<span class="number">1</span>]:</span><br><span class="line">        print(t.val,end=<span class="string">","</span>)</span><br><span class="line">    print_leaf_not_in_map(t.left,level+<span class="number">1</span>,NodeEdge)</span><br><span class="line">    print_leaf_not_in_map(t.right,level+<span class="number">1</span>,NodeEdge)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_border2</span><span class="params">(t)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    1.头节点为边界节点</span></span><br><span class="line"><span class="string">    2.叶节点为边界节点</span></span><br><span class="line"><span class="string">    3.树左边界延伸下去的为边界节点</span></span><br><span class="line"><span class="string">    4.树右边界延伸下去的为边界节点</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(t.val,end=<span class="string">","</span>)</span><br><span class="line">    <span class="keyword">if</span> t.left <span class="keyword">and</span> t.right:</span><br><span class="line">        printLeftEdge(t.left,<span class="literal">True</span>)</span><br><span class="line">        printRightEdge(t.right,<span class="literal">True</span>)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        print_border2(t.left <span class="keyword">if</span> t.left <span class="keyword">else</span> t.right)</span><br><span class="line">    print()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printLeftEdge</span><span class="params">(t,p)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">print</span> <span class="keyword">or</span> ((<span class="keyword">not</span> t.left) <span class="keyword">and</span> (<span class="keyword">not</span> t.right)):</span><br><span class="line">        print(t.val,end=<span class="string">","</span>)</span><br><span class="line">    printLeftEdge(t.left,p)</span><br><span class="line">    printLeftEdge(t.right,p <span class="keyword">and</span> (<span class="keyword">not</span> t.left))</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">printRightEdge</span><span class="params">(t,p)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span> </span><br><span class="line">    printRightEdge(t.left,p <span class="keyword">and</span> (<span class="keyword">not</span> t.right))</span><br><span class="line">    printRightEdge(t.right,p)</span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">print</span> <span class="keyword">or</span> ((<span class="keyword">not</span> t.left) <span class="keyword">and</span> (<span class="keyword">not</span> t.right)):</span><br><span class="line">        print(t.val,end=<span class="string">","</span>)</span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    t=TreeNode.exampleTree()</span><br><span class="line">    inorder_traverse_recurse(t)</span><br><span class="line">    print()</span><br><span class="line">    print_border1(t)</span><br><span class="line">    print()</span><br><span class="line">    print_border2(t)</span><br><span class="line">    <span class="keyword">pass</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">        1</span></span><br><span class="line"><span class="string">       2 8</span></span><br><span class="line"><span class="string">      3 4</span></span><br><span class="line"><span class="string">       5 6</span></span><br><span class="line"><span class="string">        7</span></span><br><span class="line"><span class="string">"""</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="2直观的打印二叉树"><a href="#2直观的打印二叉树" class="headerlink" title="2直观的打印二叉树"></a>2直观的打印二叉树</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> *</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_tree</span><span class="params">(t)</span>:</span></span><br><span class="line">    print(<span class="string">"Binary Tree:"</span>)</span><br><span class="line">    print_inorder(t,<span class="number">0</span>,<span class="string">"H"</span>,<span class="number">17</span>)</span><br><span class="line">    print()</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">print_inorder</span><span class="params">(head,height,to,l)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> head:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print_inorder(head.right,height+<span class="number">1</span>,<span class="string">"v"</span>,l)</span><br><span class="line">    val =to+str(head.val)+to</span><br><span class="line">    lenM = len(val)</span><br><span class="line">    lenL = (l-lenM)//<span class="number">2</span></span><br><span class="line">    lenR = l-lenM-lenL</span><br><span class="line">    val= <span class="string">" "</span>*lenL+val+<span class="string">" "</span>*lenR</span><br><span class="line">    print(<span class="string">" "</span>*height*l+val)</span><br><span class="line">    print_inorder(head.left,height+<span class="number">1</span>,<span class="string">"^"</span>,l)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    r = TreeNode.exampleTree()</span><br><span class="line">    print_tree(r)</span><br></pre></td></tr></table></figure>
+
+<h1 id="3二叉树的序列化与反序列化"><a href="#3二叉树的序列化与反序列化" class="headerlink" title="3二叉树的序列化与反序列化"></a>3二叉树的序列化与反序列化</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> InOrderTraverse <span class="keyword">import</span> inorder_traverse_recurse</span><br><span class="line"><span class="keyword">from</span> queue <span class="keyword">import</span> Queue</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_serial_tree</span><span class="params">(t)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> <span class="keyword">not</span> t:</span><br><span class="line">        <span class="keyword">return</span> <span class="string">"None,"</span></span><br><span class="line">    res=str(t.val)+<span class="string">","</span></span><br><span class="line">    res+=preorder_serial_tree(t.left)</span><br><span class="line">    res+=preorder_serial_tree(t.right)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_deserial_tree</span><span class="params">(s)</span>:</span></span><br><span class="line">    st = s.pop(<span class="number">0</span>)</span><br><span class="line">    <span class="keyword">if</span> st==<span class="string">"None"</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    nt = TreeNode(int(st))</span><br><span class="line">    nt.left=preorder_deserial_tree(s)</span><br><span class="line">    nt.right=preorder_deserial_tree(s)</span><br><span class="line">    <span class="keyword">return</span> nt</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">levelorder_serial_tree</span><span class="params">(t)</span>:</span></span><br><span class="line">    q=[t]</span><br><span class="line">    res=<span class="string">""</span></span><br><span class="line">    <span class="keyword">while</span> q:</span><br><span class="line">        tq = q.pop(<span class="number">0</span>)</span><br><span class="line">        res+=((str(tq.val)+<span class="string">","</span>) <span class="keyword">if</span> tq <span class="keyword">else</span> <span class="string">"None,"</span>)</span><br><span class="line">        <span class="keyword">if</span> tq:</span><br><span class="line">            q.append(tq.left)</span><br><span class="line">            q.append(tq.right)</span><br><span class="line">    <span class="keyword">return</span> res</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">levelorder_deserial_tree</span><span class="params">(s)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> len(s)==<span class="number">0</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="literal">None</span></span><br><span class="line">    head = TreeNode(int(s.pop(<span class="number">0</span>)))</span><br><span class="line">    q=[head]</span><br><span class="line">    <span class="keyword">while</span> q:</span><br><span class="line">        st= q.pop(<span class="number">0</span>)</span><br><span class="line">        left = s.pop(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> left!=<span class="string">"None"</span>:</span><br><span class="line">            st.left=TreeNode(int(left))</span><br><span class="line">            q.append(st.left)</span><br><span class="line">        right = s.pop(<span class="number">0</span>)</span><br><span class="line">        <span class="keyword">if</span> right!=<span class="string">"None"</span>:</span><br><span class="line">            st.right=TreeNode(int(right))</span><br><span class="line">            q.append(st.right)</span><br><span class="line">    <span class="keyword">return</span> head</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    t = TreeNode.exampleTree()</span><br><span class="line">    res = preorder_serial_tree(t)</span><br><span class="line">    print(res)</span><br><span class="line">    res1 = res.strip(<span class="string">','</span>).split(<span class="string">','</span>)</span><br><span class="line">    r = preorder_deserial_tree(res1)</span><br><span class="line">    inorder_traverse_recurse(t)</span><br><span class="line">    print()</span><br><span class="line">    inorder_traverse_recurse(r) </span><br><span class="line">    print()</span><br><span class="line">    res2=levelorder_serial_tree(t)</span><br><span class="line">    print(res2)</span><br><span class="line">    res3=res2.strip(<span class="string">','</span>).split(<span class="string">','</span>)</span><br><span class="line">    r2 = levelorder_deserial_tree(res3)</span><br><span class="line">    inorder_traverse_recurse(r2)</span><br></pre></td></tr></table></figure>
+
+<h1 id="4遍历二叉树的神级方法"><a href="#4遍历二叉树的神级方法" class="headerlink" title="4遍历二叉树的神级方法"></a>4遍历二叉树的神级方法</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"></span><br></pre></td></tr></table></figure>
+
+<h1 id="5在二叉树中找到累加和为指定值的最长路径长度"><a href="#5在二叉树中找到累加和为指定值的最长路径长度" class="headerlink" title="5在二叉树中找到累加和为指定值的最长路径长度"></a>5在二叉树中找到累加和为指定值的最长路径长度</h1><h1 id="6找到二叉树中的最大搜索二叉子树"><a href="#6找到二叉树中的最大搜索二叉子树" class="headerlink" title="6找到二叉树中的最大搜索二叉子树"></a>6找到二叉树中的最大搜索二叉子树</h1><h1 id="7找到二叉树中符合搜索二叉树条件的最大拓扑结构"><a href="#7找到二叉树中符合搜索二叉树条件的最大拓扑结构" class="headerlink" title="7找到二叉树中符合搜索二叉树条件的最大拓扑结构"></a>7找到二叉树中符合搜索二叉树条件的最大拓扑结构</h1><h1 id="8二叉树的按层打印与zigzag打印"><a href="#8二叉树的按层打印与zigzag打印" class="headerlink" title="8二叉树的按层打印与zigzag打印"></a>8二叉树的按层打印与zigzag打印</h1><h1 id="9调整搜索二叉树中两个错误的节点"><a href="#9调整搜索二叉树中两个错误的节点" class="headerlink" title="9调整搜索二叉树中两个错误的节点"></a>9调整搜索二叉树中两个错误的节点</h1><h1 id="10判断t1树是否包含t2树的全部拓扑结构"><a href="#10判断t1树是否包含t2树的全部拓扑结构" class="headerlink" title="10判断t1树是否包含t2树的全部拓扑结构"></a>10判断t1树是否包含t2树的全部拓扑结构</h1><h1 id="11判断t1树种是否有与t2树拓扑结构完全相同的子树"><a href="#11判断t1树种是否有与t2树拓扑结构完全相同的子树" class="headerlink" title="11判断t1树种是否有与t2树拓扑结构完全相同的子树"></a>11判断t1树种是否有与t2树拓扑结构完全相同的子树</h1><h1 id="12判断二叉树是否为平衡二叉树"><a href="#12判断二叉树是否为平衡二叉树" class="headerlink" title="12判断二叉树是否为平衡二叉树"></a>12判断二叉树是否为平衡二叉树</h1><h1 id="13根据后序数组重建搜索二叉树"><a href="#13根据后序数组重建搜索二叉树" class="headerlink" title="13根据后序数组重建搜索二叉树"></a>13根据后序数组重建搜索二叉树</h1><h1 id="14判断一棵二叉树是否为搜索二叉树和完全二叉树"><a href="#14判断一棵二叉树是否为搜索二叉树和完全二叉树" class="headerlink" title="14判断一棵二叉树是否为搜索二叉树和完全二叉树"></a>14判断一棵二叉树是否为搜索二叉树和完全二叉树</h1><h1 id="15通过有序数组生成平衡搜索二叉树"><a href="#15通过有序数组生成平衡搜索二叉树" class="headerlink" title="15通过有序数组生成平衡搜索二叉树"></a>15通过有序数组生成平衡搜索二叉树</h1><h1 id="16在二叉树种找到一个节点的后继节点"><a href="#16在二叉树种找到一个节点的后继节点" class="headerlink" title="16在二叉树种找到一个节点的后继节点"></a>16在二叉树种找到一个节点的后继节点</h1><h1 id="17在二叉树中找到两个节点的最近祖先"><a href="#17在二叉树中找到两个节点的最近祖先" class="headerlink" title="17在二叉树中找到两个节点的最近祖先"></a>17在二叉树中找到两个节点的最近祖先</h1><h1 id="18Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询问题"><a href="#18Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询问题" class="headerlink" title="18Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询问题"></a>18Tarjan算法与并查集解决二叉树节点间最近公共祖先的批量查询问题</h1><h1 id="19二叉树节点间的最大距离问题"><a href="#19二叉树节点间的最大距离问题" class="headerlink" title="19二叉树节点间的最大距离问题"></a>19二叉树节点间的最大距离问题</h1><h1 id="20先序中序和后序数组两两结合重建二叉树"><a href="#20先序中序和后序数组两两结合重建二叉树" class="headerlink" title="20先序中序和后序数组两两结合重建二叉树"></a>20先序中序和后序数组两两结合重建二叉树</h1><h1 id="21通过先序和中序数组生成后序数组"><a href="#21通过先序和中序数组生成后序数组" class="headerlink" title="21通过先序和中序数组生成后序数组"></a>21通过先序和中序数组生成后序数组</h1><h1 id="22统计和生成所有不同的二叉树"><a href="#22统计和生成所有不同的二叉树" class="headerlink" title="22统计和生成所有不同的二叉树"></a>22统计和生成所有不同的二叉树</h1><h1 id="23统计完全二叉树的节点数"><a href="#23统计完全二叉树的节点数" class="headerlink" title="23统计完全二叉树的节点数"></a>23统计完全二叉树的节点数</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/15/2019-9-15题目总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/15/2019-9-15题目总结/" itemprop="url">2019-9-15题目总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-15T23:19:09+08:00">
+                2019-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/15/大战严蔚敏第三集-图/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/15/大战严蔚敏第三集-图/" itemprop="url">大战严蔚敏第三集-图</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-15T16:30:02+08:00">
+                2019-09-15
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/14/linux命令学习每日一课/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/14/linux命令学习每日一课/" itemprop="url">linux命令学习每日一课</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T23:03:03+08:00">
+                2019-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="最重要的命令-help"><a href="#最重要的命令-help" class="headerlink" title="最重要的命令 help"></a>最重要的命令 help</h1><p>输入：<br>help help<br>输出：  </p>
+<p>help: help [-dms] [pattern …]  </p>
+<pre><code>Display information about builtin commands.
+
+Displays brief summaries of builtin commands.  If PATTERN is
+specified, gives detailed help on all commands matching PATTERN,
+otherwise the list of help topics is printed.
+
+Options:
+  -d    output short description for each topic
+  -m    display usage in pseudo-manpage format
+  -s    output only a short usage synopsis for each topic matching
+    PATTERN
+
+Arguments:
+  PATTERN    Pattern specifiying a help topic
+
+Exit Status:
+Returns success unless PATTERN is not found or an invalid option is given.</code></pre><p>options:<br>-d:输出简单描述<br>-m:用pesudo-manpage 格式输出用法指南<br>-s:只输出一个简单的用法梗概</p>
+<h1 id="bg"><a href="#bg" class="headerlink" title="bg"></a>bg</h1><p>bg: bg [job_spec …]  </p>
+<pre><code>Move jobs to the background.
+
+Place the jobs identified by each JOB_SPEC in the background, as if they
+had been started with `&amp;&apos;.  If JOB_SPEC is not present, the shell&apos;s notion
+of the current job is used.
+
+Exit Status:
+Returns success unless job control is not enabled or an error occurs.</code></pre><h1 id="bind"><a href="#bind" class="headerlink" title="bind"></a>bind</h1><p>bind: bind [-lpsvPSVX] [-m keymap] [-f filename] [-q name] [-u name] [-r keyseq] [-x keyseq:shell-command] [keyseq:readline-function or readline-command]   </p>
+<pre><code>Set Readline key bindings and variables.
+
+Bind a key sequence to a Readline function or a macro, or set a
+Readline variable.  The non-option argument syntax is equivalent to
+that found in ~/.inputrc, but must be passed as a single argument:
+e.g., bind &apos;&quot;\C-x\C-r&quot;: re-read-init-file&apos;.
+
+Options:
+  -m  keymap         Use KEYMAP as the keymap for the duration of this
+                     command.  Acceptable keymap names are emacs,
+                     emacs-standard, emacs-meta, emacs-ctlx, vi, vi-move,
+                     vi-command, and vi-insert.
+  -l                 List names of functions.
+  -P                 List function names and bindings.
+  -p                 List functions and bindings in a form that can be
+                     reused as input.
+  -S                 List key sequences that invoke macros and their values
+  -s                 List key sequences that invoke macros and their values
+                     in a form that can be reused as input.
+  -V                 List variable names and values
+  -v                 List variable names and values in a form that can
+                     be reused as input.
+  -q  function-name  Query about which keys invoke the named function.
+  -u  function-name  Unbind all keys which are bound to the named function.
+  -r  keyseq         Remove the binding for KEYSEQ.
+  -f  filename       Read key bindings from FILENAME.
+  -x  keyseq:shell-command    Cause SHELL-COMMAND to be executed when
+                KEYSEQ is entered.
+  -X             List key sequences bound with -x and associated commands
+                     in a form that can be reused as input.
+
+Exit Status:
+bind returns 0 unless an unrecognized option is given or an error occurs.</code></pre><h1 id="break"><a href="#break" class="headerlink" title="break"></a>break</h1><p>break: break [n]  </p>
+<pre><code>Exit for, while, or until loops.
+
+Exit a FOR, WHILE or UNTIL loop.  If N is specified, break N enclosing
+loops.
+
+Exit Status:
+The exit status is 0 unless N is not greater than or equal to 1.</code></pre><h1 id="builtin"><a href="#builtin" class="headerlink" title="builtin"></a>builtin</h1><p>builtin: builtin [shell-builtin [arg …]]  </p>
+<pre><code>Execute shell builtins.
+
+Execute SHELL-BUILTIN with arguments ARGs without performing command
+lookup.  This is useful when you wish to reimplement a shell builtin
+as a shell function, but need to execute the builtin within the function.
+
+Exit Status:
+Returns the exit status of SHELL-BUILTIN, or false if SHELL-BUILTIN is
+not a shell builtin..</code></pre>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/14/有效括号长度LeetCode32/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/14/有效括号长度LeetCode32/" itemprop="url">有效括号长度LeetCode32</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T15:38:07+08:00">
+                2019-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="有效括号长度"><a href="#有效括号长度" class="headerlink" title="有效括号长度"></a>有效括号长度</h1><p>题目：<br>给定一个只包含 ‘(‘ 和 ‘)’ 的字符串，找出最长的包含有效括号的子串的长度。</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">LeetCode32</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">longestValidParentheses</span><span class="params">(String s)</span> </span>&#123;</span><br><span class="line">        <span class="keyword">int</span>[] dp = <span class="keyword">new</span> <span class="keyword">int</span>[s.length()];</span><br><span class="line">        <span class="keyword">int</span> maxAns = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;s.length();i++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(s.charAt(i)==<span class="string">')'</span>)&#123;</span><br><span class="line">                <span class="keyword">if</span>(s.charAt(i-<span class="number">1</span>)==<span class="string">'('</span>)&#123;</span><br><span class="line">                    dp[i] = (i &gt;= <span class="number">2</span> ? dp[i - <span class="number">2</span>] : <span class="number">0</span>) + <span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">                <span class="keyword">else</span> <span class="keyword">if</span>(i-dp[i-<span class="number">1</span>]&gt;<span class="number">0</span>&amp;&amp;s.charAt(i-dp[i-<span class="number">1</span>]-<span class="number">1</span>)==<span class="string">'('</span>)&#123;</span><br><span class="line">                    dp[i]=dp[i-<span class="number">1</span>]+(i-dp[i-<span class="number">1</span>]&gt;=<span class="number">2</span>?dp[i-dp[i-<span class="number">1</span>]-<span class="number">2</span>]:<span class="number">0</span>)+<span class="number">2</span>;</span><br><span class="line">                &#125;</span><br><span class="line">            &#125;</span><br><span class="line">            maxAns=Math.max(maxAns,dp[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> dp[s.length()-<span class="number">1</span>];</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        String s =<span class="string">")()())"</span>;</span><br><span class="line">        System.out.println(longestValidParentheses(s));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>我是一个无情的看答案机器人！</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/14/大战严蔚敏第二集-树/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/14/大战严蔚敏第二集-树/" itemprop="url">大战严蔚敏第二集-树</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-14T09:05:49+08:00">
+                2019-09-14
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="先序遍历"><a href="#先序遍历" class="headerlink" title="先序遍历"></a>先序遍历</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> * </span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_traverse_recurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> root==<span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    print(root.val,end=<span class="string">","</span>)</span><br><span class="line">    preorder_traverse_recurse(root.left)</span><br><span class="line">    preorder_traverse_recurse(root.right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">preorder_traverse_norecurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    dq = deque()</span><br><span class="line">    dq.append(root)</span><br><span class="line">    <span class="keyword">while</span> len(dq):</span><br><span class="line">        t = dq.popleft()</span><br><span class="line">        print(t.val,end=<span class="string">","</span>)</span><br><span class="line">        <span class="keyword">if</span> t.right:</span><br><span class="line">            dq.appendleft(t.right)</span><br><span class="line">        <span class="keyword">if</span> t.left:</span><br><span class="line">            dq.appendleft(t.left)</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    tree = TreeNode.exampleTree()</span><br><span class="line">    <span class="comment">#preorder_traverse_recurse(tree)</span></span><br><span class="line">    preorder_traverse_norecurse(tree)</span><br></pre></td></tr></table></figure>
+
+<h1 id="中序遍历"><a href="#中序遍历" class="headerlink" title="中序遍历"></a>中序遍历</h1><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">from</span> TreeNode <span class="keyword">import</span> *</span><br><span class="line"><span class="keyword">from</span> collections <span class="keyword">import</span> deque</span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder_traverse_recurse</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> root==<span class="literal">None</span>:</span><br><span class="line">        <span class="keyword">return</span></span><br><span class="line">    inorder_traverse_recurse(root.left)</span><br><span class="line">    print(root.val,end=<span class="string">","</span>)</span><br><span class="line">    inorder_traverse_recurse(root.right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder_traverse_without_recurse1</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    在这种方法中利用None值是一个很巧妙的办法，</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    s=[]</span><br><span class="line">    s.append(root)</span><br><span class="line">    <span class="keyword">while</span> s:</span><br><span class="line">        <span class="keyword">while</span> s[<span class="number">-1</span>]:</span><br><span class="line">            s.append(s[<span class="number">-1</span>].left)</span><br><span class="line">        s.pop()<span class="comment"># 处理空指针</span></span><br><span class="line">        <span class="keyword">if</span> s:</span><br><span class="line">            t=s.pop()</span><br><span class="line">            print(t.val,end=<span class="string">","</span>)</span><br><span class="line">            s.append(t.right)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">inorder_traverse_without_recurse2</span><span class="params">(root:TreeNode)</span>:</span></span><br><span class="line">    p=root</span><br><span class="line">    s=[]</span><br><span class="line">    <span class="keyword">while</span> p <span class="keyword">or</span> s:</span><br><span class="line">        <span class="keyword">if</span> p: <span class="comment">#进栈流程</span></span><br><span class="line">            s.append(p)</span><br><span class="line">            p=p.left</span><br><span class="line">        <span class="keyword">else</span>: <span class="comment">#出栈流程</span></span><br><span class="line">            p=s.pop()</span><br><span class="line">            print(p.val,end=<span class="string">","</span>)</span><br><span class="line">            p=p.right</span><br><span class="line">        </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    tree = TreeNode.exampleTree()</span><br><span class="line">    inorder_traverse_recurse(tree)</span><br><span class="line">    print()</span><br><span class="line">    inorder_traverse_without_recurse1(tree)</span><br><span class="line">    print()</span><br><span class="line">    inorder_traverse_without_recurse2(tree)</span><br></pre></td></tr></table></figure>
+
+<h1 id="从后序和中序生成树并用先序打印"><a href="#从后序和中序生成树并用先序打印" class="headerlink" title="从后序和中序生成树并用先序打印"></a>从后序和中序生成树并用先序打印</h1><h2 id="java实现"><a href="#java实现" class="headerlink" title="java实现"></a>java实现</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br><span class="line">61</span><br><span class="line">62</span><br><span class="line">63</span><br><span class="line">64</span><br><span class="line">65</span><br><span class="line">66</span><br><span class="line">67</span><br></pre></td><td class="code"><pre><span class="line"></span><br><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">QuNaer2</span> </span>&#123;</span><br><span class="line">    <span class="keyword">public</span> <span class="keyword">static</span> <span class="class"><span class="keyword">class</span> <span class="title">TreeNode</span></span>&#123;</span><br><span class="line">        <span class="keyword">char</span> c;</span><br><span class="line">        TreeNode left;</span><br><span class="line">        TreeNode right;</span><br><span class="line">        TreeNode(<span class="keyword">char</span> c)&#123;</span><br><span class="line">            <span class="keyword">this</span>.c=c;</span><br><span class="line">            <span class="keyword">this</span>.left=<span class="keyword">null</span>;</span><br><span class="line">            <span class="keyword">this</span>.right=<span class="keyword">null</span>;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">static</span> String post = <span class="keyword">null</span>;</span><br><span class="line">    <span class="keyword">static</span> String mid = <span class="keyword">null</span>;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        mid = in.nextLine();</span><br><span class="line">        post= in.nextLine();</span><br><span class="line">        TreeNode root = rebuildTree(<span class="number">0</span>,post.length()-<span class="number">1</span>,<span class="number">0</span>,mid.length()-<span class="number">1</span>);</span><br><span class="line">        preTravel(root);</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> TreeNode <span class="title">rebuildTree</span><span class="params">(<span class="keyword">int</span> postLeft,<span class="keyword">int</span> postRight,<span class="keyword">int</span> inLeft,<span class="keyword">int</span> inRight)</span></span>&#123;</span><br><span class="line">        <span class="keyword">char</span> curChar = post.charAt(postRight);</span><br><span class="line">        TreeNode curNode = <span class="keyword">new</span> TreeNode(curChar);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(postLeft==postRight&amp;&amp;inLeft==inRight&amp;&amp;post.charAt(postRight)==mid.charAt(inRight))</span><br><span class="line">            <span class="keyword">return</span> curNode;</span><br><span class="line"></span><br><span class="line">        <span class="comment">//找到根节点在中序序列中的位置</span></span><br><span class="line">        <span class="keyword">int</span> pos=inLeft;</span><br><span class="line">        <span class="keyword">for</span>(;pos&lt;=inRight;pos++)&#123;</span><br><span class="line">            <span class="keyword">if</span>(mid.charAt(pos)==curChar)&#123;</span><br><span class="line">                <span class="keyword">break</span>;</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">int</span> rightLength = inRight-pos;</span><br><span class="line">        <span class="keyword">int</span> RightPostStart = postRight-rightLength;</span><br><span class="line">        <span class="keyword">if</span>(rightLength&gt;<span class="number">0</span>)</span><br><span class="line">        curNode.right = rebuildTree(RightPostStart,postRight-<span class="number">1</span>,pos+<span class="number">1</span>,inRight);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">if</span>(rightLength&lt;postRight-postLeft)</span><br><span class="line">        curNode.left = rebuildTree(postLeft,RightPostStart-<span class="number">1</span>,inLeft,pos-<span class="number">1</span>);</span><br><span class="line"></span><br><span class="line">        <span class="keyword">return</span> curNode;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">preTravel</span><span class="params">(TreeNode root)</span></span>&#123;</span><br><span class="line">        <span class="keyword">if</span>(root==<span class="keyword">null</span>)<span class="keyword">return</span>;</span><br><span class="line">        System.out.print(root.c);</span><br><span class="line">        <span class="comment">//System.out.println(",left");</span></span><br><span class="line">        preTravel(root.left);</span><br><span class="line">        <span class="comment">//System.out.println(",right");</span></span><br><span class="line">        preTravel(root.right);</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br><span class="line"><span class="comment">/*</span></span><br><span class="line"><span class="comment">inOrder:</span></span><br><span class="line"><span class="comment">ADEFGHMZ</span></span><br><span class="line"><span class="comment">AEFDHZMG</span></span><br><span class="line"><span class="comment">postOrder:</span></span><br><span class="line"><span class="comment"></span></span><br><span class="line"><span class="comment">preOrder:</span></span><br><span class="line"><span class="comment">GDAFEMHZ</span></span><br><span class="line"><span class="comment"> */</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="从先序和中序重建树并用后序输出"><a href="#从先序和中序重建树并用后序输出" class="headerlink" title="从先序和中序重建树并用后序输出"></a>从先序和中序重建树并用后序输出</h1><h2 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h2>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/12/大战严蔚敏第一集-排序算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/12/大战严蔚敏第一集-排序算法/" itemprop="url">大战严蔚敏第一集-排序算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-12T20:05:48+08:00">
+                2019-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="python实现"><a href="#python实现" class="headerlink" title="python实现"></a>python实现</h1><h2 id="插入排序"><a href="#插入排序" class="headerlink" title="插入排序"></a>插入排序</h2><h3 id="简单插入排序"><a href="#简单插入排序" class="headerlink" title="简单插入排序"></a>简单插入排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">insert_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    插入排序的时间复杂度O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    t = <span class="number">0</span></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">if</span> arr[i]&lt;arr[i<span class="number">-1</span>]: <span class="comment"># 如果当前元素小于前一个元素，进入一趟插入排序</span></span><br><span class="line">            t=arr[i]        <span class="comment"># 把自己赋给哨兵，向前寻找合适的位置</span></span><br><span class="line">            arr[i]=arr[i<span class="number">-1</span>]</span><br><span class="line">            j= i<span class="number">-2</span></span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> t&lt;arr[j]:</span><br><span class="line">                arr[j+<span class="number">1</span>]=arr[j]</span><br><span class="line">                j-=<span class="number">1</span></span><br><span class="line">            arr[j+<span class="number">1</span>]=t      <span class="comment"># 找到合适的位置，注意这时是j+1，因为上一个满足条件的位置已经被移到了此时的j+2</span></span><br><span class="line">    print(arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    insert_sort(arr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="折半插入"><a href="#折半插入" class="headerlink" title="折半插入"></a>折半插入</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">binsert_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    折半插入显然只是插入时用来找位置使用了折半查找</span></span><br><span class="line"><span class="string">    没有改善需要移动记录的次数，因此时间复杂度为O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">if</span> arr[i]&lt;arr[i<span class="number">-1</span>]:</span><br><span class="line">            t = arr[i]</span><br><span class="line">            left = <span class="number">0</span></span><br><span class="line">            right = i<span class="number">-1</span></span><br><span class="line">            mid = <span class="number">0</span></span><br><span class="line">            <span class="keyword">while</span> left&lt;right:</span><br><span class="line">                mid=(left+right)//<span class="number">2</span></span><br><span class="line">                <span class="keyword">if</span> arr[mid]&gt;=t:</span><br><span class="line">                    right=mid</span><br><span class="line">                <span class="keyword">else</span>: left=mid+<span class="number">1</span></span><br><span class="line">        </span><br><span class="line">            <span class="keyword">for</span> k <span class="keyword">in</span> range(i<span class="number">-1</span>,left<span class="number">-1</span>,<span class="number">-1</span>):</span><br><span class="line">                arr[k+<span class="number">1</span>]=arr[k]</span><br><span class="line">            arr[left]=t</span><br><span class="line">    print(arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    binsert_sort(arr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="二路插入排序"><a href="#二路插入排序" class="headerlink" title="二路插入排序"></a>二路插入排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">twopath_insertSort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    排序的时间复杂度O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    res =[<span class="number">0</span>]*N</span><br><span class="line">    first = <span class="number">0</span> </span><br><span class="line">    final = <span class="number">0</span></span><br><span class="line">    res[<span class="number">0</span>]=arr[<span class="number">0</span>]</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">1</span>,N):</span><br><span class="line">        <span class="keyword">if</span>  arr[i]&gt;=res[<span class="number">0</span>]:</span><br><span class="line">            j= final</span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> arr[i]&lt;res[j]:</span><br><span class="line">                res[j+<span class="number">1</span>]=res[j]</span><br><span class="line">                j-=<span class="number">1</span></span><br><span class="line">            res[j+<span class="number">1</span>]=arr[i]</span><br><span class="line">            final+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=first</span><br><span class="line">            <span class="keyword">while</span> j&lt;N <span class="keyword">and</span> arr[i]&gt;res[j]:</span><br><span class="line">                res[j<span class="number">-1</span>]=res[j]</span><br><span class="line">                j+=<span class="number">1</span></span><br><span class="line">            res[j<span class="number">-1</span>]=arr[i]</span><br><span class="line">            first-=<span class="number">1</span></span><br><span class="line"></span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(first,final+<span class="number">1</span>):</span><br><span class="line">        print(res[i],end=<span class="string">" "</span>)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    twopath_insertSort(arr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="希尔排序"><a href="#希尔排序" class="headerlink" title="希尔排序"></a>希尔排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_Insert</span><span class="params">(arr,dk)</span>:</span></span><br><span class="line">    N = len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(dk,N):</span><br><span class="line">        <span class="keyword">if</span> arr[i]&lt;arr[i-dk]:</span><br><span class="line">            t= arr[i]</span><br><span class="line">            arr[i]=arr[i-dk]</span><br><span class="line">            j= i<span class="number">-2</span>*dk</span><br><span class="line">            <span class="keyword">while</span> j&gt;=<span class="number">0</span> <span class="keyword">and</span> arr[j]&gt;t:</span><br><span class="line">                arr[j+dk]=arr[j]</span><br><span class="line">                j-=dk</span><br><span class="line">            arr[j+dk]=t</span><br><span class="line">    print(arr)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">shell_sort</span><span class="params">(arr,dlta,t)</span>:</span></span><br><span class="line">    <span class="keyword">for</span> k <span class="keyword">in</span> range(<span class="number">0</span>,t):</span><br><span class="line">        shell_Insert(arr,dlta[k])</span><br><span class="line">        </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    <span class="comment">#dlta[k]=2^(t-k+1)-1时，希尔排序时间复杂度为O(3/2)，1&lt;=k&lt;=t&lt;=cell(log(2,n+1))</span></span><br><span class="line">    dlta=[<span class="number">7</span>,<span class="number">3</span>,<span class="number">1</span>]</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    shell_sort(arr,dlta,<span class="number">3</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="交换排序"><a href="#交换排序" class="headerlink" title="交换排序"></a>交换排序</h2><h3 id="冒泡排序"><a href="#冒泡排序" class="headerlink" title="冒泡排序"></a>冒泡排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">bubble_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    冒泡排序的时间复杂度O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N = len (arr)</span><br><span class="line">    <span class="keyword">for</span> e <span class="keyword">in</span> range(N<span class="number">-1</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        <span class="keyword">for</span> i <span class="keyword">in</span> range(<span class="number">0</span>,e):</span><br><span class="line">            <span class="keyword">if</span> arr[i]&gt;arr[i+<span class="number">1</span>]:</span><br><span class="line">                t=arr[i]</span><br><span class="line">                arr[i]=arr[i+<span class="number">1</span>]</span><br><span class="line">                arr[i+<span class="number">1</span>]=t</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    bubble_sort(arr)</span><br></pre></td></tr></table></figure>
+
+<h3 id="快排"><a href="#快排" class="headerlink" title="快排"></a>快排</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br><span class="line">37</span><br><span class="line">38</span><br><span class="line">39</span><br><span class="line">40</span><br><span class="line">41</span><br><span class="line">42</span><br><span class="line">43</span><br><span class="line">44</span><br><span class="line">45</span><br><span class="line">46</span><br><span class="line">47</span><br><span class="line">48</span><br><span class="line">49</span><br><span class="line">50</span><br><span class="line">51</span><br><span class="line">52</span><br><span class="line">53</span><br><span class="line">54</span><br><span class="line">55</span><br><span class="line">56</span><br><span class="line">57</span><br><span class="line">58</span><br><span class="line">59</span><br><span class="line">60</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> random</span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="string">快排的平均时间复杂度为O(knlogn)</span></span><br><span class="line"><span class="string">被认为是nlogn级的排序算法中平均性能最好的</span></span><br><span class="line"><span class="string">"""</span></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition</span><span class="params">(arr,low,high)</span>:</span></span><br><span class="line">    pivotkey= arr[low]</span><br><span class="line">    <span class="keyword">while</span> low&lt;high:</span><br><span class="line">        <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[high]&gt;=pivotkey:</span><br><span class="line">            high-=<span class="number">1</span></span><br><span class="line">        arr[low]=arr[high]</span><br><span class="line">        <span class="keyword">while</span> low&lt;high <span class="keyword">and</span> arr[low]&lt;=pivotkey:</span><br><span class="line">            low+=<span class="number">1</span></span><br><span class="line">        arr[high]=arr[low]</span><br><span class="line">        <span class="comment">#print(arr)</span></span><br><span class="line">    arr[low]=pivotkey</span><br><span class="line">    print(arr)</span><br><span class="line">    <span class="keyword">return</span> low</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">partition2</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    pick = random.randint(L,R)</span><br><span class="line">    swap(arr,pick,R)</span><br><span class="line">    less,more=L,R</span><br><span class="line">    <span class="keyword">while</span> L&lt;more:</span><br><span class="line">        <span class="keyword">if</span> arr[L]&lt;arr[R]:</span><br><span class="line">            swap(arr,less,L)</span><br><span class="line">            less+=<span class="number">1</span></span><br><span class="line">            L+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">elif</span> arr[L]&gt;arr[R]:</span><br><span class="line">            more-=<span class="number">1</span></span><br><span class="line">            swap(arr,more,L)</span><br><span class="line">        <span class="keyword">else</span>:L+=<span class="number">1</span></span><br><span class="line">    print(arr)</span><br><span class="line">    swap(arr,more,R)</span><br><span class="line">    <span class="keyword">return</span> less,more</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort_v2</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> L&lt;R:</span><br><span class="line">        less,more=partition2(arr,L,R)</span><br><span class="line">        quick_sort_v2(arr,L,less<span class="number">-1</span>)</span><br><span class="line">        quick_sort_v2(arr,more+<span class="number">1</span>,R)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">quick_sort</span><span class="params">(arr,low,high)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> low&lt;high:</span><br><span class="line">        mid= partition(arr,low,high)</span><br><span class="line">        quick_sort(arr,low,mid<span class="number">-1</span>)</span><br><span class="line">        quick_sort(arr,mid+<span class="number">1</span>,high)</span><br><span class="line"></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    <span class="comment">#quick_sort(arr,0,len(arr)-1)</span></span><br><span class="line">    quick_sort_v2(arr,<span class="number">0</span>,len(arr)<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+
+<h2 id="选择排序"><a href="#选择排序" class="headerlink" title="选择排序"></a>选择排序</h2><h3 id="简单选择排序"><a href="#简单选择排序" class="headerlink" title="简单选择排序"></a>简单选择排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_sort</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    简单选择排序的时间复杂度为O(n^2)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N=len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(L,N):</span><br><span class="line">        j = select_min_key(arr,i,R)</span><br><span class="line">        <span class="keyword">if</span> i!=j:</span><br><span class="line">            swap(arr,i,j)</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">select_min_key</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    ix = L</span><br><span class="line">    min_value = arr[L]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(L,R):</span><br><span class="line">        <span class="keyword">if</span> min_value&gt;arr[j]:</span><br><span class="line">            min_value=arr[j]</span><br><span class="line">            ix=j</span><br><span class="line">    <span class="keyword">return</span> ix</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    select_sort(arr,<span class="number">0</span>,len(arr))</span><br></pre></td></tr></table></figure>
+
+<h3 id="堆排序"><a href="#堆排序" class="headerlink" title="堆排序"></a>堆排序</h3><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">swap</span><span class="params">(arr,i,j)</span>:</span></span><br><span class="line">    t=arr[i]</span><br><span class="line">    arr[i]=arr[j]</span><br><span class="line">    arr[j]=t</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_adjust</span><span class="params">(arr,s,m)</span>:</span></span><br><span class="line">    rc = arr[s]</span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(<span class="number">2</span>*s,m,<span class="number">2</span>*s):</span><br><span class="line">        <span class="keyword">if</span> j&lt;m <span class="keyword">and</span> arr[j]&lt;arr[j+<span class="number">1</span>]:</span><br><span class="line">            j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">if</span> arr[s]&gt;=arr[j]:<span class="keyword">break</span> <span class="comment">#循环出口</span></span><br><span class="line">        arr[s]=arr[j]</span><br><span class="line">        s=j</span><br><span class="line">    arr[s]=rc</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">heap_sort</span><span class="params">(arr)</span>:</span></span><br><span class="line">    <span class="string">"""</span></span><br><span class="line"><span class="string">    堆排序在最坏的情况下，时间复杂度也为O(nlogn)</span></span><br><span class="line"><span class="string">    """</span></span><br><span class="line">    N=len(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N//<span class="number">2</span>,<span class="number">0</span>,<span class="number">-1</span>):</span><br><span class="line">        heap_adjust(arr,i,N)</span><br><span class="line">    print(arr)</span><br><span class="line">    <span class="keyword">for</span> i <span class="keyword">in</span> range(N<span class="number">-1</span>,<span class="number">1</span>,<span class="number">-1</span>):</span><br><span class="line">        swap(arr,<span class="number">1</span>,i)</span><br><span class="line">        heap_adjust(arr,<span class="number">1</span>,i<span class="number">-1</span>)</span><br><span class="line">        print(arr)</span><br><span class="line"></span><br><span class="line">    </span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    arr.insert(<span class="number">0</span>,<span class="number">0</span>)</span><br><span class="line">    heap_sort(arr)</span><br><span class="line">    <span class="keyword">del</span> arr[<span class="number">0</span>]</span><br><span class="line">    print(arr)</span><br></pre></td></tr></table></figure>
+
+<h2 id="归并排序"><a href="#归并排序" class="headerlink" title="归并排序"></a>归并排序</h2><figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge_sort</span><span class="params">(arr,L,R)</span>:</span></span><br><span class="line">    <span class="keyword">if</span> L==R:<span class="keyword">return</span></span><br><span class="line">    M=(L+R)//<span class="number">2</span></span><br><span class="line">    merge_sort(arr,L,M)</span><br><span class="line">    merge_sort(arr,M+<span class="number">1</span>,R)</span><br><span class="line">    merge(arr,L,M,R)</span><br><span class="line">    print(arr)</span><br><span class="line">    </span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">merge</span><span class="params">(arr,L,M,R)</span>:</span></span><br><span class="line">    res=[<span class="number">0</span>]*(R-L+<span class="number">1</span>)</span><br><span class="line">    p,q=L,M+<span class="number">1</span></span><br><span class="line">    i=<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> p&lt;=M <span class="keyword">and</span> q&lt;=R:</span><br><span class="line">        <span class="keyword">if</span> arr[p]&lt;arr[q]:</span><br><span class="line">            res[i]=arr[p]    </span><br><span class="line">            i+=<span class="number">1</span>;p+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            res[i]=arr[q]</span><br><span class="line">            i+=<span class="number">1</span>;q+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> p&lt;=M:</span><br><span class="line">        res[i]=arr[p]</span><br><span class="line">        i+=<span class="number">1</span>;p+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">while</span> q&lt;=R:</span><br><span class="line">        res[i]=arr[q]</span><br><span class="line">        i+=<span class="number">1</span>;q+=<span class="number">1</span></span><br><span class="line">    <span class="keyword">for</span> j <span class="keyword">in</span> range(len(res)):</span><br><span class="line">        arr[L+j]=res[j]</span><br><span class="line">   </span><br><span class="line">    </span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__==<span class="string">"__main__"</span>:</span><br><span class="line">    arr=[<span class="number">38</span>,<span class="number">65</span>,<span class="number">97</span>,<span class="number">76</span>,<span class="number">13</span>,<span class="number">27</span>,<span class="number">49</span>]</span><br><span class="line">    merge_sort(arr,<span class="number">0</span>,len(arr)<span class="number">-1</span>)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/12/接雨水LeetCode42/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/12/接雨水LeetCode42/" itemprop="url">接雨水LeetCode42</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-12T09:22:52+08:00">
+                2019-09-12
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="题目："><a href="#题目：" class="headerlink" title="题目："></a>题目：</h1><h1 id="分析："><a href="#分析：" class="headerlink" title="分析："></a>分析：</h1><h2 id="方法一：栈"><a href="#方法一：栈" class="headerlink" title="方法一：栈"></a>方法一：栈</h2><p>这种方法其实本质上就是利用栈找到两边最大的，然后依次计算中间的水</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="class"><span class="keyword">class</span> <span class="title">Solution</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">int</span> <span class="title">trap</span><span class="params">(<span class="keyword">int</span>[] height)</span> </span>&#123;</span><br><span class="line">        Stack&lt;Integer&gt; stack = <span class="keyword">new</span> Stack&lt;&gt;();</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;height.length;i++)&#123;</span><br><span class="line">            <span class="keyword">while</span>(!stack.isEmpty()&amp;&amp;height[i]&gt;height[stack.peek()])&#123;</span><br><span class="line">                <span class="keyword">int</span> top = stack.pop();</span><br><span class="line">                <span class="keyword">if</span>(stack.isEmpty())<span class="keyword">break</span>;</span><br><span class="line">                <span class="keyword">int</span> distance = i-stack.peek()-<span class="number">1</span>;</span><br><span class="line">                <span class="keyword">int</span> rHeight = Math.min(height[i],height[stack.peek()])-height[top];</span><br><span class="line">                res+=(distance*rHeight);</span><br><span class="line">            &#125;</span><br><span class="line">            stack.push(i);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/11/深入理解dubbo第二周/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/11/深入理解dubbo第二周/" itemprop="url">深入理解dubbo第二周</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-11T23:22:38+08:00">
+                2019-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="第四章"><a href="#第四章" class="headerlink" title="第四章"></a>第四章</h1><h2 id="三种扩展点的注解作用是什么？有什么区别？（-SPI-Adaptive-Active），分别用于什么场景？"><a href="#三种扩展点的注解作用是什么？有什么区别？（-SPI-Adaptive-Active），分别用于什么场景？" class="headerlink" title="三种扩展点的注解作用是什么？有什么区别？（@SPI,@Adaptive,@Active），分别用于什么场景？"></a>三种扩展点的注解作用是什么？有什么区别？（@SPI,@Adaptive,@Active），分别用于什么场景？</h2><table>
+<thead>
+<tr>
+<th>注解类型</th>
+<th>注解位置</th>
+<th>作用</th>
+<th>应用场景</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>@SPI</td>
+<td>类级（类，接口，枚举类）</td>
+<td>将当前接口注册为扩展点</td>
+<td>用在所有需要注册为SPI的类上（一般为接口）</td>
+</tr>
+<tr>
+<td>@Adaptive</td>
+<td>类级，方法</td>
+<td>类级：当前类为该扩展点的默认实现，不生成动态代码；方法级：生成代码，在代码内根据@Adaptive内传入的参数动态获得对应的扩展实现类</td>
+<td>用在需要传入参数进行动态选择一个实现类的场景</td>
+</tr>
+<tr>
+<td>@Active</td>
+<td>类级，方法</td>
+<td>通过Activate的参数进行筛选，排序，激活</td>
+<td>用在有多个扩展点实现，需要根据不同条件被激活的场景中</td>
+</tr>
+</tbody></table>
+<h2 id="Adaptive扩展点注释在类上和注释在方法上有什么区别，分别是如何实现的？"><a href="#Adaptive扩展点注释在类上和注释在方法上有什么区别，分别是如何实现的？" class="headerlink" title="@Adaptive扩展点注释在类上和注释在方法上有什么区别，分别是如何实现的？"></a>@Adaptive扩展点注释在类上和注释在方法上有什么区别，分别是如何实现的？</h2><p>@Adaptive<br>注释在类上，表示选择该类为扩展点接口的默认实现，不在生成自动代码<br>注释在方法上，表示需要根据@Adaptive传入的参数进行筛选，最终动态确定最终实现类</p>
+<h2 id="回顾第三章，注册中心接口有多个实现类，Dubbo是怎么直到默认用哪个实现类呢？"><a href="#回顾第三章，注册中心接口有多个实现类，Dubbo是怎么直到默认用哪个实现类呢？" class="headerlink" title="回顾第三章，注册中心接口有多个实现类，Dubbo是怎么直到默认用哪个实现类呢？"></a>回顾第三章，注册中心接口有多个实现类，Dubbo是怎么直到默认用哪个实现类呢？</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"dubbo"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RegistryFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;<span class="string">"protocol"</span>&#125;)</span><br><span class="line">    <span class="function">Registry <span class="title">getRegistry</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<p>由上，是根据传入参数判断的</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">protected</span> <span class="keyword">void</span> <span class="title">checkRegistry</span><span class="params">()</span> </span>&#123;</span><br><span class="line">    <span class="comment">// for backward compatibility</span></span><br><span class="line">    <span class="keyword">if</span> (registries == <span class="keyword">null</span> || registries.isEmpty()) &#123;</span><br><span class="line">        String address = ConfigUtils.getProperty(<span class="string">"dubbo.registry.address"</span>);</span><br><span class="line">        <span class="keyword">if</span> (address != <span class="keyword">null</span> &amp;&amp; address.length() &gt; <span class="number">0</span>) &#123;</span><br><span class="line">            registries = <span class="keyword">new</span> ArrayList&lt;RegistryConfig&gt;();</span><br><span class="line">            String[] as = address.split(<span class="string">"\\s*[|]+\\s*"</span>);</span><br><span class="line">            <span class="keyword">for</span> (String a : as) &#123;</span><br><span class="line">                RegistryConfig registryConfig = <span class="keyword">new</span> RegistryConfig();</span><br><span class="line">                registryConfig.setAddress(a);</span><br><span class="line">                registries.add(registryConfig);</span><br><span class="line">            &#125;</span><br><span class="line">        &#125;</span><br><span class="line">    &#125;</span><br><span class="line">    ...</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h1 id="第六章"><a href="#第六章" class="headerlink" title="第六章"></a>第六章</h1><h2 id="目前Dubbo协议对service-mesh场景支持不是太友好，因为dubbo透传的数据包含在协议attachement中，如果要解析attachment中的值（比如traceId-需要依次解析body中所有参数部分，造成性能下降，请设计新的协议；-MeshProtocol，给出完成的协议头部定义，（画出每个字节的定义），支持头部渗透参数值（简单键值对）。"><a href="#目前Dubbo协议对service-mesh场景支持不是太友好，因为dubbo透传的数据包含在协议attachement中，如果要解析attachment中的值（比如traceId-需要依次解析body中所有参数部分，造成性能下降，请设计新的协议；-MeshProtocol，给出完成的协议头部定义，（画出每个字节的定义），支持头部渗透参数值（简单键值对）。" class="headerlink" title="目前Dubbo协议对service mesh场景支持不是太友好，因为dubbo透传的数据包含在协议attachement中，如果要解析attachment中的值（比如traceId),需要依次解析body中所有参数部分，造成性能下降，请设计新的协议； MeshProtocol，给出完成的协议头部定义，（画出每个字节的定义），支持头部渗透参数值（简单键值对）。"></a>目前Dubbo协议对service mesh场景支持不是太友好，因为dubbo透传的数据包含在协议attachement中，如果要解析attachment中的值（比如traceId),需要依次解析body中所有参数部分，造成性能下降，请设计新的协议； MeshProtocol，给出完成的协议头部定义，（画出每个字节的定义），支持头部渗透参数值（简单键值对）。</h2><h2 id="rpc调用时并发的，客户端是如何知道响应的数据唯一对应发出去的请求"><a href="#rpc调用时并发的，客户端是如何知道响应的数据唯一对应发出去的请求" class="headerlink" title="rpc调用时并发的，客户端是如何知道响应的数据唯一对应发出去的请求"></a>rpc调用时并发的，客户端是如何知道响应的数据唯一对应发出去的请求</h2><p>这个是通过Dubbo报文头中的RPC唯一请求ID来标识的；<br>在发起请求时，会创建Request对象，并分配一个唯一的requstId，并将关联关系存储到HashMap中，收到响应后，会从HashMap中取出对应的DefaultFutre，并唤醒对应线程通知结果</p>
+<h1 id="第七章"><a href="#第七章" class="headerlink" title="第七章"></a>第七章</h1><h2 id="服务在发起远程调用前，还需要经过哪些环节，你能画出流程图嘛？"><a href="#服务在发起远程调用前，还需要经过哪些环节，你能画出流程图嘛？" class="headerlink" title="服务在发起远程调用前，还需要经过哪些环节，你能画出流程图嘛？"></a>服务在发起远程调用前，还需要经过哪些环节，你能画出流程图嘛？</h2><h2 id="理解Directory是如何管理invoker的，重点关注RegistryDirectory的实现"><a href="#理解Directory是如何管理invoker的，重点关注RegistryDirectory的实现" class="headerlink" title="理解Directory是如何管理invoker的，重点关注RegistryDirectory的实现"></a>理解Directory是如何管理invoker的，重点关注RegistryDirectory的实现</h2><p>Directory实现了四个方法：</p>
+<ol>
+<li>检测invoker是否可用</li>
+<li>销毁所有的invoker</li>
+<li>list 调用doList-&gt;过滤invoker并返回</li>
+<li>doList 留给子类实现</li>
+</ol>
+<p>RegistryDirectory的实现：</p>
+<ol>
+<li>notify 动态更新invoker列表、路由列表、配置信息的列表</li>
+<li>doList 过滤invoker<ol>
+<li>方法名+首参数</li>
+<li>方法名</li>
+<li>通配符*</li>
+<li>methodInvokerMap第一个invoker</li>
+<li>空列表</li>
+</ol>
+</li>
+</ol>
+<h2 id="理解自定义路由是如何实现的"><a href="#理解自定义路由是如何实现的" class="headerlink" title="理解自定义路由是如何实现的"></a>理解自定义路由是如何实现的</h2><ol>
+<li>路由语法规则或者文件形式或者js脚本</li>
+<li>route<ol>
+<li>校验whenRoute</li>
+<li>遍历invoker匹配thenRule</li>
+</ol>
+</li>
+</ol>
+<h1 id="第八章"><a href="#第八章" class="headerlink" title="第八章"></a>第八章</h1><h2 id="如果那天出了一个Netty6，我要怎么把它加入的Dubbo里面去了"><a href="#如果那天出了一个Netty6，我要怎么把它加入的Dubbo里面去了" class="headerlink" title="如果那天出了一个Netty6，我要怎么把它加入的Dubbo里面去了"></a>如果那天出了一个Netty6，我要怎么把它加入的Dubbo里面去了</h2><p>通过Dubbo的Transporter扩展点，封装一个使用Netty6的Tranporter类即可</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/11/2019-9-11题目总结/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/11/2019-9-11题目总结/" itemprop="url">2019-9-11题目总结</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-11T23:16:23+08:00">
+                2019-09-11
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="笔试"><a href="#笔试" class="headerlink" title="笔试"></a>笔试</h1><h2 id="用友笔试"><a href="#用友笔试" class="headerlink" title="用友笔试"></a>用友笔试</h2><h3 id="题目一"><a href="#题目一" class="headerlink" title="题目一"></a>题目一</h3><p>是个sql问题，已经忘了题目了–！</p>
+<h3 id="题目二"><a href="#题目二" class="headerlink" title="题目二"></a>题目二</h3><p>打牌问题</p>
+<h2 id="旷视笔试"><a href="#旷视笔试" class="headerlink" title="旷视笔试"></a>旷视笔试</h2><h3 id="题目一-1"><a href="#题目一-1" class="headerlink" title="题目一"></a>题目一</h3><p>计算非负数n中1的个数<br>这个题我做了好几遍了，还没记住，真的是不长记性，最后考完才想起来；有的时候觉得自己是真蠢，做了记不住和没做没学有啥区别？这样的问题希望不要再犯了</p>
+<figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> java.util.Scanner;</span><br><span class="line"></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">class</span> <span class="title">KuangShi1</span> </span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">int</span> <span class="title">count</span><span class="params">(<span class="keyword">int</span> N)</span></span>&#123;</span><br><span class="line">        <span class="keyword">int</span> res = <span class="number">0</span>;</span><br><span class="line">        <span class="keyword">while</span>(N!=<span class="number">0</span>)&#123;</span><br><span class="line">            N=N&amp;(N-<span class="number">1</span>);</span><br><span class="line">            res+=<span class="number">1</span>;</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="keyword">return</span> res;</span><br><span class="line">    &#125;</span><br><span class="line"></span><br><span class="line">    <span class="function"><span class="keyword">public</span> <span class="keyword">static</span> <span class="keyword">void</span> <span class="title">main</span><span class="params">(String[] args)</span> </span>&#123;</span><br><span class="line">        Scanner in = <span class="keyword">new</span> Scanner(System.in);</span><br><span class="line">        <span class="keyword">int</span> N = in.nextInt();</span><br><span class="line">        System.out.println(count(N));</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="题目二-1"><a href="#题目二-1" class="headerlink" title="题目二"></a>题目二</h3><p>接雨水问题 LeetCode42题 已处理 只学了一种方法</p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/5/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><span class="space">&hellip;</span><a class="page-number" href="/page/5/">5</a><span class="page-number current">6</span><a class="page-number" href="/page/7/">7</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/7/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="YURIY">
+          <p class="site-author-name" itemprop="name">YURIY</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">85</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YURIY</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

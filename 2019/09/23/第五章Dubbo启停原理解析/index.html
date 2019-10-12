@@ -1,4 +1,336 @@
-<!DOCTYPE html><html lang="cn"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>第五章Dubbo启停原理解析 | 硅步千里</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">第五章Dubbo启停原理解析</h1><a id="logo" href="/.">硅步千里</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">第五章Dubbo启停原理解析</h1><div class="post-meta">Sep 23, 2019</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/23/第五章Dubbo启停原理解析/" href="/2019/09/23/第五章Dubbo启停原理解析/#disqus_thread"></a><div class="post-content"><h1 id="5-1-配置解析"><a href="#5-1-配置解析" class="headerlink" title="5.1 配置解析"></a>5.1 配置解析</h1><h3 id="Dubbo框架提供的三种配置方式："><a href="#Dubbo框架提供的三种配置方式：" class="headerlink" title="Dubbo框架提供的三种配置方式："></a>Dubbo框架提供的三种配置方式：</h3><ul>
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="dubbo,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="5.1 配置解析Dubbo框架提供的三种配置方式： XML配置 注解 属性文件5.1.1 基于schema设计解析 dubbo-config/dubbo-config-spring/src/main/resources/下： spring.schemeas 指明约束文件路径 spring.handlers 指明解析类路径    schema模块5.1.2 基于XML配置原理解析解析主要在Dubbo">
+<meta name="keywords" content="dubbo">
+<meta property="og:type" content="article">
+<meta property="og:title" content="第五章Dubbo启停原理解析">
+<meta property="og:url" content="http://yoursite.com/2019/09/23/第五章Dubbo启停原理解析/index.html">
+<meta property="og:site_name" content="硅步千里">
+<meta property="og:description" content="5.1 配置解析Dubbo框架提供的三种配置方式： XML配置 注解 属性文件5.1.1 基于schema设计解析 dubbo-config/dubbo-config-spring/src/main/resources/下： spring.schemeas 指明约束文件路径 spring.handlers 指明解析类路径    schema模块5.1.2 基于XML配置原理解析解析主要在Dubbo">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-09-25T00:38:46.609Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="第五章Dubbo启停原理解析">
+<meta name="twitter:description" content="5.1 配置解析Dubbo框架提供的三种配置方式： XML配置 注解 属性文件5.1.1 基于schema设计解析 dubbo-config/dubbo-config-spring/src/main/resources/下： spring.schemeas 指明约束文件路径 spring.handlers 指明解析类路径    schema模块5.1.2 基于XML配置原理解析解析主要在Dubbo">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/23/第五章Dubbo启停原理解析/">
+
+
+
+
+
+  <title>第五章Dubbo启停原理解析 | 硅步千里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">硅步千里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/23/第五章Dubbo启停原理解析/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">第五章Dubbo启停原理解析</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-23T21:35:32+08:00">
+                2019-09-23
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="5-1-配置解析"><a href="#5-1-配置解析" class="headerlink" title="5.1 配置解析"></a>5.1 配置解析</h1><h3 id="Dubbo框架提供的三种配置方式："><a href="#Dubbo框架提供的三种配置方式：" class="headerlink" title="Dubbo框架提供的三种配置方式："></a>Dubbo框架提供的三种配置方式：</h3><ul>
 <li>XML配置</li>
 <li>注解</li>
 <li>属性文件<h2 id="5-1-1-基于schema设计解析"><a href="#5-1-1-基于schema设计解析" class="headerlink" title="5.1.1 基于schema设计解析"></a>5.1.1 基于schema设计解析</h2></li>
@@ -120,49 +452,346 @@
 <li><p>TCP断开</p>
 </li>
 </ol>
-</div><div class="tags"><a href="/tags/dubbo/">dubbo</a></div><div class="post-nav"><a class="pre" href="/2019/09/23/第三章Dubbo注册中心/">第三章Dubbo注册中心</a><a class="next" href="/2019/09/23/常见的动态代理的库及使用/">常见的动态代理的库及使用</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
-    this.page.url = 'http://yoursite.com/2019/09/23/第五章Dubbo启停原理解析/';
-    this.page.identifier = '2019/09/23/第五章Dubbo启停原理解析/';
-    this.page.title = '第五章Dubbo启停原理解析';
-  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
-url: 'https://disqus.com/next/config.json',
-timeout: 2500,
-type: 'GET',
-success: function(){
-  var d = document;
-  var s = d.createElement('script');
-  s.src = '//yuriy.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', + new Date());
-  (d.head || d.body).appendChild(s);
-  $('.disqus_click_btn').css('display', 'none');
-},
-error: function() {
-  $('.disqus_click_btn').css('display', 'block');
-}
-});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
-    (() => { // DON'T EDIT BELOW THIS LINE
-        var d = document;
-        var s = d.createElement('script');
-        s.src = '//yuriy.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', + new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-    $('.disqus_click_btn').css('display','none');
-});</script><script type="text/javascript" id="disqus-count-script">$(function() {
-     var xhr = new XMLHttpRequest();
-     xhr.open('GET', '//disqus.com/next/config.json', true);
-     xhr.timeout = 2500;
-     xhr.onreadystatechange = function () {
-       if (xhr.readyState === 4 && xhr.status === 200) {
-         $('.post-meta .post-comments-count').show();
-         var s = document.createElement('script');
-         s.id = 'dsq-count-scr';
-         s.src = 'https://yuriy.disqus.com/count.js';
-         s.async = true;
-         (document.head || document.body).appendChild(s);
-       }
-     };
-     xhr.ontimeout = function () { xhr.abort(); };
-     xhr.send(null);
-   });
-</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/计算机基础/" style="font-size: 15px;">计算机基础</a> <a href="/tags/算法竞赛进阶指南/" style="font-size: 15px;">算法竞赛进阶指南</a> <a href="/tags/学习日记/" style="font-size: 15px;">学习日记</a> <a href="/tags/Java基础复习/" style="font-size: 15px;">Java基础复习</a> <a href="/tags/面试准备/" style="font-size: 15px;">面试准备</a> <a href="/tags/装逼利器/" style="font-size: 15px;">装逼利器</a> <a href="/tags/每日任务/" style="font-size: 15px;">每日任务</a> <a href="/tags/算法/" style="font-size: 15px;">-算法</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/java基础/" style="font-size: 15px;">java基础</a> <a href="/tags/算法复习/" style="font-size: 15px;">算法复习</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/学习欲望/" style="font-size: 15px;">学习欲望</a> <a href="/tags/学习计划/" style="font-size: 15px;">学习计划</a> <a href="/tags/数据库基本操作/" style="font-size: 15px;">数据库基本操作</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/dubbo/" style="font-size: 15px;">-dubbo</a> <a href="/tags/spring/" style="font-size: 15px;">-spring</a> <a href="/tags/dubbo/" style="font-size: 15px;">dubbo</a> <a href="/tags/spring学习/" style="font-size: 15px;">-spring学习</a> <a href="/tags/计算机基础复习/" style="font-size: 15px;">计算机基础复习</a> <a href="/tags/工具复习/" style="font-size: 15px;">工具复习</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/10/acwing240/">acwing240</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/acwing885/">acwing885</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/acwing835/">acwing835</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/acwing831/">acwing831</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/07/acwing803/">acwing803</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/acwing292/">acwing292</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/acwing327/">acwing327</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/acwing797/">acwing797</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/acwing796/">acwing796</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/04/acwing795/">acwing795</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> Letzte Kommentare</i></div><script type="text/javascript" src="//yuriy.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">硅步千里.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/dubbo/" rel="tag"># dubbo</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/23/常见的动态代理的库及使用/" rel="next" title="常见的动态代理的库及使用">
+                <i class="fa fa-chevron-left"></i> 常见的动态代理的库及使用
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/09/23/第三章Dubbo注册中心/" rel="prev" title="第三章Dubbo注册中心">
+                第三章Dubbo注册中心 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="YURIY">
+          <p class="site-author-name" itemprop="name">YURIY</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">85</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#5-1-配置解析"><span class="nav-number">1.</span> <span class="nav-text">5.1 配置解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#Dubbo框架提供的三种配置方式："><span class="nav-number">1.0.1.</span> <span class="nav-text">Dubbo框架提供的三种配置方式：</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-1-基于schema设计解析"><span class="nav-number">1.1.</span> <span class="nav-text">5.1.1 基于schema设计解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#schema模块"><span class="nav-number">1.1.1.</span> <span class="nav-text">schema模块</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-2-基于XML配置原理解析"><span class="nav-number">1.2.</span> <span class="nav-text">5.1.2 基于XML配置原理解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#解析主要在DubboNamespaceHandler中完成"><span class="nav-number">1.2.1.</span> <span class="nav-text">解析主要在DubboNamespaceHandler中完成</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#BeanDefinationParser的解析过程"><span class="nav-number">1.2.1.1.</span> <span class="nav-text">BeanDefinationParser的解析过程</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#具体的标签解析"><span class="nav-number">1.2.2.</span> <span class="nav-text">具体的标签解析</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#dubbo-service"><span class="nav-number">1.2.2.1.</span> <span class="nav-text">dubbo:service</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#attribute-提取逻辑"><span class="nav-number">1.2.3.</span> <span class="nav-text">attribute 提取逻辑</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-1-3-基于注解配置原理解析"><span class="nav-number">1.3.</span> <span class="nav-text">5.1.3 基于注解配置原理解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#注解处理逻辑"><span class="nav-number">1.3.1.</span> <span class="nav-text">注解处理逻辑</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#按需生成Bean"><span class="nav-number">1.3.1.1.</span> <span class="nav-text">按需生成Bean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#提升-Service类为Bean"><span class="nav-number">1.3.1.2.</span> <span class="nav-text">提升@Service类为Bean</span></a></li><li class="nav-item nav-level-4"><a class="nav-link" href="#为-Reference注入代理对象"><span class="nav-number">1.3.1.3.</span> <span class="nav-text">为@Reference注入代理对象</span></a></li></ol></li></ol></li></ol><li class="nav-item nav-level-1"><a class="nav-link" href="#5-2-服务暴露的实现原理"><span class="nav-number">2.</span> <span class="nav-text">5.2 服务暴露的实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-1-配置承载初始化"><span class="nav-number">2.1.</span> <span class="nav-text">5.2.1 配置承载初始化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#覆盖策略"><span class="nav-number">2.1.1.</span> <span class="nav-text">覆盖策略</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#provider和客户端的配置"><span class="nav-number">2.1.2.</span> <span class="nav-text">provider和客户端的配置</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-2-远程服务的暴露机制"><span class="nav-number">2.2.</span> <span class="nav-text">5.2.2 远程服务的暴露机制</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#服务暴露的两大部分"><span class="nav-number">2.2.1.</span> <span class="nav-text">服务暴露的两大部分</span></a><ol class="nav-child"><li class="nav-item nav-level-4"><a class="nav-link" href="#ref-gt-invoker"><span class="nav-number">2.2.1.1.</span> <span class="nav-text">ref-&gt;invoker</span></a></li></ol></li><li class="nav-item nav-level-3"><a class="nav-link" href="#注册中心的服务暴露-Registry-export"><span class="nav-number">2.2.2.</span> <span class="nav-text">注册中心的服务暴露 Registry#export</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#从Invoker构造拦截器链"><span class="nav-number">2.2.3.</span> <span class="nav-text">从Invoker构造拦截器链</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#Dubboprotocol-export"><span class="nav-number">2.2.4.</span> <span class="nav-text">Dubboprotocol#export</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-2-3-本地服务的暴露机制"><span class="nav-number">2.3.</span> <span class="nav-text">5.2.3 本地服务的暴露机制</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-3-服务消费的实现原理"><span class="nav-number">3.</span> <span class="nav-text">5.3 服务消费的实现原理</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-1-单注册中心消费原理"><span class="nav-number">3.1.</span> <span class="nav-text">5.3.1 单注册中心消费原理</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#invoker处理：referenceConfig-createProxy"><span class="nav-number">3.1.1.</span> <span class="nav-text">invoker处理：referenceConfig#createProxy</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#通过注册中心消费：RegistryProtocol-refer"><span class="nav-number">3.1.2.</span> <span class="nav-text">通过注册中心消费：RegistryProtocol#refer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RegistryProtocol-doRefer"><span class="nav-number">3.1.3.</span> <span class="nav-text">RegistryProtocol#doRefer</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#RegistryDirectory-toInvokers"><span class="nav-number">3.1.4.</span> <span class="nav-text">RegistryDirectory#toInvokers</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-2-多注册中心消费原理"><span class="nav-number">3.2.</span> <span class="nav-text">5.3.2 多注册中心消费原理</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#5-3-3-直连服务消费原理"><span class="nav-number">3.3.</span> <span class="nav-text">5.3.3 直连服务消费原理</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-4-优雅停机原理解析"><span class="nav-number">4.</span> <span class="nav-text">5.4 优雅停机原理解析</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#优雅停机6个步骤"><span class="nav-number">4.0.1.</span> <span class="nav-text">优雅停机6个步骤</span></a></li></ol></li></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YURIY</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

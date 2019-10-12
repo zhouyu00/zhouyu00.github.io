@@ -1,2 +1,2245 @@
-<!DOCTYPE html><html lang="cn"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>硅步千里</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">硅步千里</h1><a id="logo" href="/.">硅步千里</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title"><a href="/2019/09/27/rmq算法/">rmq算法</a></h1><div class="post-meta">2019-09-27</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/27/rmq算法/" href="/2019/09/27/rmq算法/#disqus_thread"></a><div class="post-content"><p><a href="https://blog.csdn.net/qq_41311604/article/details/79900893" target="_blank" rel="noopener">https://blog.csdn.net/qq_41311604/article/details/79900893</a></p></div><p class="readmore"><a href="/2019/09/27/rmq算法/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/27/0x02枚举模拟递推/">0x02枚举模拟递推</a></h1><div class="post-meta">2019-09-27</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/27/0x02枚举模拟递推/" href="/2019/09/27/0x02枚举模拟递推/#disqus_thread"></a><p class="readmore"><a href="/2019/09/27/0x02枚举模拟递推/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/27/0x01位运算/">0x01位运算</a></h1><div class="post-meta">2019-09-27</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/27/0x01位运算/" href="/2019/09/27/0x01位运算/#disqus_thread"></a><div class="post-content"><h1 id="hamilton最短距离"><a href="#hamilton最短距离" class="headerlink" title="hamilton最短距离"></a>hamilton最短距离</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">1</span>&lt;&lt;<span class="number">20</span>][<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> weight[<span class="number">20</span>][<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hamilton</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> weight[][<span class="number">20</span>])</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)<span class="keyword">if</span>(i&gt;&gt;j&amp;<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;k++)<span class="keyword">if</span>(i&gt;&gt;k&amp;<span class="number">1</span>)</span><br><span class="line">                f[i][j]=min(f[i][j],f[i^<span class="number">1</span>&lt;&lt;j][k]+weight[k][j]);</span><br><span class="line">    <span class="keyword">return</span> f[(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>][n<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;weight[i][j];</span><br><span class="line">    <span class="keyword">int</span> t = hamilton(n,weight);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;t&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2019/09/27/0x01位运算/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/26/大战严蔚敏第四集-模式匹配算法/">大战严蔚敏第四集-模式匹配算法</a></h1><div class="post-meta">2019-09-26</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/26/大战严蔚敏第四集-模式匹配算法/" href="/2019/09/26/大战严蔚敏第四集-模式匹配算法/#disqus_thread"></a><div class="post-content"><h1 id="朴素的模式匹配"><a href="#朴素的模式匹配" class="headerlink" title="朴素的模式匹配"></a>朴素的模式匹配</h1><p>思路：<br>    1.从位置t开始，<br>    2.对主串第i个和模式串第j个进行比较；如果匹配上，结束匹配过程，返回t<br>    3.如果无法匹配上，回到位置t+1，继续步骤2</p></div><p class="readmore"><a href="/2019/09/26/大战严蔚敏第四集-模式匹配算法/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/25/第八章Dubbo扩展点/">第八章Dubbo扩展点</a></h1><div class="post-meta">2019-09-25</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/25/第八章Dubbo扩展点/" href="/2019/09/25/第八章Dubbo扩展点/#disqus_thread"></a><div class="post-content"><h1 id="8-1-Dubbo核心扩展点概述"><a href="#8-1-Dubbo核心扩展点概述" class="headerlink" title="8.1 Dubbo核心扩展点概述"></a>8.1 Dubbo核心扩展点概述</h1><h2 id="8-1-1扩展点的背景"><a href="#8-1-1扩展点的背景" class="headerlink" title="8.1.1扩展点的背景"></a>8.1.1扩展点的背景</h2><h2 id="8-1-2扩展点整体架构"><a href="#8-1-2扩展点整体架构" class="headerlink" title="8.1.2扩展点整体架构"></a>8.1.2扩展点整体架构</h2><h1 id="8-2-RPC层扩展点"><a href="#8-2-RPC层扩展点" class="headerlink" title="8.2 RPC层扩展点"></a>8.2 RPC层扩展点</h1><h2 id="8-2-1-Proxy扩展点"><a href="#8-2-1-Proxy扩展点" class="headerlink" title="8.2.1 Proxy扩展点"></a>8.2.1 Proxy扩展点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"javassist"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ProxyFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;Constants.PROXY_KEY&#125;)</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;Constants.PROXY_KEY&#125;)</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker,<span class="keyword">boolean</span> generic)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker,Class&lt;T&gt; type,URL url)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure></div><p class="readmore"><a href="/2019/09/25/第八章Dubbo扩展点/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/25/第七章Dubbo集群容错/">第七章Dubbo集群容错</a></h1><div class="post-meta">2019-09-25</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/25/第七章Dubbo集群容错/" href="/2019/09/25/第七章Dubbo集群容错/#disqus_thread"></a><div class="post-content"><h1 id="7-1-Cluster层概述"><a href="#7-1-Cluster层概述" class="headerlink" title="7.1 Cluster层概述"></a>7.1 Cluster层概述</h1><h3 id="Cluster层总体工作流程"><a href="#Cluster层总体工作流程" class="headerlink" title="Cluster层总体工作流程"></a>Cluster层总体工作流程</h3><ol></ol></div><p class="readmore"><a href="/2019/09/25/第七章Dubbo集群容错/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/25/第六章Dubbo远程调用/">第六章Dubbo远程调用</a></h1><div class="post-meta">2019-09-25</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/25/第六章Dubbo远程调用/" href="/2019/09/25/第六章Dubbo远程调用/#disqus_thread"></a><div class="post-content"><h1 id="6-1-Dubbo调用介绍"><a href="#6-1-Dubbo调用介绍" class="headerlink" title="6.1 Dubbo调用介绍"></a>6.1 Dubbo调用介绍</h1><ol>
-<li>客户端启动时，从注册中心拉取和订阅服务列表，然后由cluster聚合为一个invoker</li></ol></div><p class="readmore"><a href="/2019/09/25/第六章Dubbo远程调用/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/24/Idea快捷键收集/">Idea快捷键收集</a></h1><div class="post-meta">2019-09-24</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/24/Idea快捷键收集/" href="/2019/09/24/Idea快捷键收集/#disqus_thread"></a><p class="readmore"><a href="/2019/09/24/Idea快捷键收集/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/23/第一章Dubbo高性能RPC通信框架/">第一章Dubbo高性能RPC通信框架</a></h1><div class="post-meta">2019-09-23</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/23/第一章Dubbo高性能RPC通信框架/" href="/2019/09/23/第一章Dubbo高性能RPC通信框架/#disqus_thread"></a><div class="post-content"><h1 id="1-1-应用框架演进过程"><a href="#1-1-应用框架演进过程" class="headerlink" title="1.1 应用框架演进过程"></a>1.1 应用框架演进过程</h1><h1 id="1-2-Dubbo简介"><a href="#1-2-Dubbo简介" class="headerlink" title="1.2 Dubbo简介"></a>1.2 Dubbo简介</h1><h1 id="1-3-Dubbo总体大图"><a href="#1-3-Dubbo总体大图" class="headerlink" title="1.3 Dubbo总体大图"></a>1.3 Dubbo总体大图</h1><h2 id="1-3-1-Dubbo总体分层"><a href="#1-3-1-Dubbo总体分层" class="headerlink" title="1.3.1 Dubbo总体分层"></a>1.3.1 Dubbo总体分层</h2><table></table></div><p class="readmore"><a href="/2019/09/23/第一章Dubbo高性能RPC通信框架/">Mehr lesen</a></p></div><div class="post"><h1 class="post-title"><a href="/2019/09/23/深入理解ApacheDubbo与实战/">深入理解ApacheDubbo与实战</a></h1><div class="post-meta">2019-09-23</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/23/深入理解ApacheDubbo与实战/" href="/2019/09/23/深入理解ApacheDubbo与实战/#disqus_thread"></a><div class="post-content"><h1 id="看书内容"><a href="#看书内容" class="headerlink" title="看书内容"></a>看书内容</h1><h1 id="提问内容"><a href="#提问内容" class="headerlink" title="提问内容"></a>提问内容</h1><p><a href="http://yuriy.fun/2019/09/07/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3dubbo%E7%AC%AC%E4%B8%80%E5%91%A8/" target="_blank" rel="noopener">深入理解dubbo第一周</a><br><a href="http://yuriy.fun/2019/09/11/%E6%B7%B1%E5%85%A5%E7%90%86%E8%A7%A3dubbo%E7%AC%AC%E4%BA%8C%E5%91%A8/" target="_blank" rel="noopener">深入理解dubbo第二周</a></p></div><p class="readmore"><a href="/2019/09/23/深入理解ApacheDubbo与实战/">Mehr lesen</a></p></div><nav class="page-navigator"><a class="extend prev" rel="prev" href="/page/2/">Vorheriger</a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><a class="page-number" href="/page/5/">5</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/">Nächster</a></nav><script id="dsq-count-scr" src="//yuriy.disqus.com/count.js" async></script></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/计算机基础/" style="font-size: 15px;">计算机基础</a> <a href="/tags/算法竞赛进阶指南/" style="font-size: 15px;">算法竞赛进阶指南</a> <a href="/tags/学习日记/" style="font-size: 15px;">学习日记</a> <a href="/tags/Java基础复习/" style="font-size: 15px;">Java基础复习</a> <a href="/tags/面试准备/" style="font-size: 15px;">面试准备</a> <a href="/tags/装逼利器/" style="font-size: 15px;">装逼利器</a> <a href="/tags/每日任务/" style="font-size: 15px;">每日任务</a> <a href="/tags/算法/" style="font-size: 15px;">-算法</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/java基础/" style="font-size: 15px;">java基础</a> <a href="/tags/算法复习/" style="font-size: 15px;">算法复习</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/学习欲望/" style="font-size: 15px;">学习欲望</a> <a href="/tags/学习计划/" style="font-size: 15px;">学习计划</a> <a href="/tags/数据库基本操作/" style="font-size: 15px;">数据库基本操作</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/dubbo/" style="font-size: 15px;">-dubbo</a> <a href="/tags/spring/" style="font-size: 15px;">-spring</a> <a href="/tags/dubbo/" style="font-size: 15px;">dubbo</a> <a href="/tags/spring学习/" style="font-size: 15px;">-spring学习</a> <a href="/tags/计算机基础复习/" style="font-size: 15px;">计算机基础复习</a> <a href="/tags/工具复习/" style="font-size: 15px;">工具复习</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/10/acwing240/">acwing240</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/acwing885/">acwing885</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/acwing835/">acwing835</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/acwing831/">acwing831</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/07/acwing803/">acwing803</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/acwing292/">acwing292</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/acwing327/">acwing327</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/acwing797/">acwing797</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/acwing796/">acwing796</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/04/acwing795/">acwing795</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> Letzte Kommentare</i></div><script type="text/javascript" src="//yuriy.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">硅步千里.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="Hexo, NexT">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta property="og:type" content="website">
+<meta property="og:title" content="硅步千里">
+<meta property="og:url" content="http://yoursite.com/page/3/index.html">
+<meta property="og:site_name" content="硅步千里">
+<meta property="og:locale" content="zh-Hans">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="硅步千里">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/page/3/">
+
+
+
+
+
+  <title>硅步千里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left 
+   page-home 
+ ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">硅步千里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+  <section id="posts" class="posts-expand">
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/03/acwing1049/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/10/03/acwing1049/" itemprop="url">acwing1049</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-10-03T10:09:23+08:00">
+                2019-10-03
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="大盗阿福"><a href="#大盗阿福" class="headerlink" title="大盗阿福"></a>大盗阿福</h1><h2 id="方法一"><a href="#方法一" class="headerlink" title="方法一"></a>方法一</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">100010</span>;</span><br><span class="line"><span class="keyword">int</span> T,n;</span><br><span class="line"><span class="keyword">int</span> b[N],f[N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">cin</span>&gt;&gt;b[i];</span><br><span class="line">        </span><br><span class="line">        f[<span class="number">1</span>]=b[<span class="number">1</span>];</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">2</span>;i&lt;=n;i++)&#123;</span><br><span class="line">            f[i]=max(f[i<span class="number">-1</span>],f[i<span class="number">-2</span>]+b[i]);</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;f[n]&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h2 id="方法二-状态机"><a href="#方法二-状态机" class="headerlink" title="方法二 状态机"></a>方法二 状态机</h2><figure class="highlight cpp"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;bits/stdc++.h&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">const</span> <span class="keyword">int</span> N=<span class="number">100010</span>,INF=<span class="number">0x3f3f3f</span>;</span><br><span class="line"></span><br><span class="line"><span class="keyword">int</span> T,n;</span><br><span class="line"><span class="keyword">int</span> b[N];</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">2</span>][N];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;T;</span><br><span class="line">    <span class="keyword">while</span>(T--)&#123;</span><br><span class="line">        <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;=n;i++)<span class="built_in">cin</span>&gt;&gt;b[i];</span><br><span class="line">        f[<span class="number">0</span>][<span class="number">0</span>]=<span class="number">0</span>,f[<span class="number">0</span>][<span class="number">1</span>]=-INF;        </span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">1</span>;j&lt;=n;j++)&#123;</span><br><span class="line">            f[<span class="number">0</span>][j]=max(f[<span class="number">0</span>][j<span class="number">-1</span>],f[<span class="number">1</span>][j<span class="number">-1</span>]);</span><br><span class="line">            f[<span class="number">1</span>][j]=f[<span class="number">0</span>][j<span class="number">-1</span>]+b[j];</span><br><span class="line">        &#125;</span><br><span class="line">        <span class="built_in">cout</span>&lt;&lt;max(f[<span class="number">1</span>][n],f[<span class="number">0</span>][n])&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    &#125;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/29/神经网络与深度学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/29/神经网络与深度学习/" itemprop="url">神经网络与深度学习</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-29T08:56:54+08:00">
+                2019-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="1-使用神经网络识别手写数字"><a href="#1-使用神经网络识别手写数字" class="headerlink" title="1 使用神经网络识别手写数字"></a>1 使用神经网络识别手写数字</h1><h2 id="1-1-感知器"><a href="#1-1-感知器" class="headerlink" title="1.1 感知器"></a>1.1 感知器</h2><h2 id="1-2-S型神经元"><a href="#1-2-S型神经元" class="headerlink" title="1.2 S型神经元"></a>1.2 S型神经元</h2><h2 id="1-3-神经网络的架构"><a href="#1-3-神经网络的架构" class="headerlink" title="1.3 神经网络的架构"></a>1.3 神经网络的架构</h2><h2 id="1-4-一个简单的分类手写数字网络"><a href="#1-4-一个简单的分类手写数字网络" class="headerlink" title="1.4 一个简单的分类手写数字网络"></a>1.4 一个简单的分类手写数字网络</h2><h1 id="2-反向传播算法如何工作"><a href="#2-反向传播算法如何工作" class="headerlink" title="2 反向传播算法如何工作"></a>2 反向传播算法如何工作</h1><h2 id="2-1-神经网络中使用矩阵快速计算输出的方法"><a href="#2-1-神经网络中使用矩阵快速计算输出的方法" class="headerlink" title="2.1 神经网络中使用矩阵快速计算输出的方法"></a>2.1 神经网络中使用矩阵快速计算输出的方法</h2><h2 id="2-2关于代价函数的两个假设"><a href="#2-2关于代价函数的两个假设" class="headerlink" title="2.2关于代价函数的两个假设"></a>2.2关于代价函数的两个假设</h2><h2 id="2-3-Hadamard乘积"><a href="#2-3-Hadamard乘积" class="headerlink" title="2.3 Hadamard乘积"></a>2.3 Hadamard乘积</h2><h2 id="2-4-反向传播的四个基本方程"><a href="#2-4-反向传播的四个基本方程" class="headerlink" title="2.4 反向传播的四个基本方程"></a>2.4 反向传播的四个基本方程</h2><h2 id="2-5-四个基本方程的证明（可选）"><a href="#2-5-四个基本方程的证明（可选）" class="headerlink" title="2.5 四个基本方程的证明（可选）"></a>2.5 四个基本方程的证明（可选）</h2><h2 id="2-6-反向传播算法"><a href="#2-6-反向传播算法" class="headerlink" title="2.6 反向传播算法"></a>2.6 反向传播算法</h2><h2 id="2-7"><a href="#2-7" class="headerlink" title="2.7"></a>2.7</h2><h2 id="2-8-在哪种层面上，神经网络算法是快速的算法"><a href="#2-8-在哪种层面上，神经网络算法是快速的算法" class="headerlink" title="2.8 在哪种层面上，神经网络算法是快速的算法"></a>2.8 在哪种层面上，神经网络算法是快速的算法</h2><h2 id="2-9-全局观"><a href="#2-9-全局观" class="headerlink" title="2.9 全局观"></a>2.9 全局观</h2><h1 id="3-改进神经网络的学习算法"><a href="#3-改进神经网络的学习算法" class="headerlink" title="3 改进神经网络的学习算法"></a>3 改进神经网络的学习算法</h1><h2 id="3-1-交叉熵代价函数"><a href="#3-1-交叉熵代价函数" class="headerlink" title="3.1 交叉熵代价函数"></a>3.1 交叉熵代价函数</h2><h3 id="3-1-2-使用交叉熵来对MNIST"><a href="#3-1-2-使用交叉熵来对MNIST" class="headerlink" title="3.1.2 使用交叉熵来对MNIST"></a>3.1.2 使用交叉熵来对MNIST</h3><h3 id="3-1-3-交叉熵的含义？源自哪里？"><a href="#3-1-3-交叉熵的含义？源自哪里？" class="headerlink" title="3.1.3 交叉熵的含义？源自哪里？"></a>3.1.3 交叉熵的含义？源自哪里？</h3><h3 id="3-1-4-柔性最大值"><a href="#3-1-4-柔性最大值" class="headerlink" title="3.1.4 柔性最大值"></a>3.1.4 柔性最大值</h3><h2 id="3-2-过度拟合和规范化"><a href="#3-2-过度拟合和规范化" class="headerlink" title="3.2 过度拟合和规范化"></a>3.2 过度拟合和规范化</h2><h3 id="3-2-1-规范化"><a href="#3-2-1-规范化" class="headerlink" title="3.2.1 规范化"></a>3.2.1 规范化</h3><h3 id="3-2-2-为何规范化可以帮助减轻过拟合"><a href="#3-2-2-为何规范化可以帮助减轻过拟合" class="headerlink" title="3.2.2 为何规范化可以帮助减轻过拟合"></a>3.2.2 为何规范化可以帮助减轻过拟合</h3><h3 id="3-2-3-规范化的其他技术"><a href="#3-2-3-规范化的其他技术" class="headerlink" title="3.2.3 规范化的其他技术"></a>3.2.3 规范化的其他技术</h3><h2 id="3-3-权重初始化"><a href="#3-3-权重初始化" class="headerlink" title="3.3 权重初始化"></a>3.3 权重初始化</h2><h2 id="3-5-如何选择神经网络的超参数"><a href="#3-5-如何选择神经网络的超参数" class="headerlink" title="3.5 如何选择神经网络的超参数"></a>3.5 如何选择神经网络的超参数</h2><h1 id="4-神经网络可以计算任何函数的可视化证明"><a href="#4-神经网络可以计算任何函数的可视化证明" class="headerlink" title="4 神经网络可以计算任何函数的可视化证明"></a>4 神经网络可以计算任何函数的可视化证明</h1><h2 id="4-1-两个预先声明"><a href="#4-1-两个预先声明" class="headerlink" title="4.1 两个预先声明"></a>4.1 两个预先声明</h2><h2 id="4-2-一个输入和输出的普遍性"><a href="#4-2-一个输入和输出的普遍性" class="headerlink" title="4.2 一个输入和输出的普遍性"></a>4.2 一个输入和输出的普遍性</h2><h2 id="4-4-S型神经元的延伸"><a href="#4-4-S型神经元的延伸" class="headerlink" title="4.4 S型神经元的延伸"></a>4.4 S型神经元的延伸</h2><h1 id="5-深度神经网络为何很难训练"><a href="#5-深度神经网络为何很难训练" class="headerlink" title="5 深度神经网络为何很难训练"></a>5 深度神经网络为何很难训练</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/28/左神高级班/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/28/左神高级班/" itemprop="url">左神高级班</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-28T16:25:20+08:00">
+                2019-09-28
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/rmq算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/27/rmq算法/" itemprop="url">rmq算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-27T22:01:07+08:00">
+                2019-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <p><a href="https://blog.csdn.net/qq_41311604/article/details/79900893" target="_blank" rel="noopener">https://blog.csdn.net/qq_41311604/article/details/79900893</a></p>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/0x02枚举模拟递推/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/27/0x02枚举模拟递推/" itemprop="url">0x02枚举模拟递推</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-27T09:19:47+08:00">
+                2019-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/27/0x01位运算/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/27/0x01位运算/" itemprop="url">0x01位运算</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-27T08:30:40+08:00">
+                2019-09-27
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="hamilton最短距离"><a href="#hamilton最短距离" class="headerlink" title="hamilton最短距离"></a>hamilton最短距离</h1><figure class="highlight c++"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;iostream&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;algorithm&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstdio&gt;</span></span></span><br><span class="line"><span class="meta">#<span class="meta-keyword">include</span><span class="meta-string">&lt;cstring&gt;</span></span></span><br><span class="line"></span><br><span class="line"><span class="keyword">using</span> <span class="keyword">namespace</span> <span class="built_in">std</span>;</span><br><span class="line"><span class="keyword">int</span> f[<span class="number">1</span>&lt;&lt;<span class="number">20</span>][<span class="number">20</span>];</span><br><span class="line"><span class="keyword">int</span> n;</span><br><span class="line"><span class="keyword">int</span> weight[<span class="number">20</span>][<span class="number">20</span>];</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">hamilton</span><span class="params">(<span class="keyword">int</span> n,<span class="keyword">int</span> weight[][<span class="number">20</span>])</span></span>&#123;</span><br><span class="line">    <span class="built_in">memset</span>(f,<span class="number">0x3f</span>,<span class="keyword">sizeof</span>(f));</span><br><span class="line">    f[<span class="number">1</span>][<span class="number">0</span>]=<span class="number">0</span>;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">1</span>;i&lt;<span class="number">1</span>&lt;&lt;n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)<span class="keyword">if</span>(i&gt;&gt;j&amp;<span class="number">1</span>)</span><br><span class="line">            <span class="keyword">for</span>(<span class="keyword">int</span> k=<span class="number">0</span>;k&lt;n;k++)<span class="keyword">if</span>(i&gt;&gt;k&amp;<span class="number">1</span>)</span><br><span class="line">                f[i][j]=min(f[i][j],f[i^<span class="number">1</span>&lt;&lt;j][k]+weight[k][j]);</span><br><span class="line">    <span class="keyword">return</span> f[(<span class="number">1</span>&lt;&lt;n)<span class="number">-1</span>][n<span class="number">-1</span>];</span><br><span class="line">&#125;</span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">int</span> <span class="title">main</span><span class="params">()</span></span>&#123;</span><br><span class="line">    <span class="built_in">cin</span>&gt;&gt;n;</span><br><span class="line">    <span class="keyword">for</span>(<span class="keyword">int</span> i=<span class="number">0</span>;i&lt;n;i++)</span><br><span class="line">        <span class="keyword">for</span>(<span class="keyword">int</span> j=<span class="number">0</span>;j&lt;n;j++)</span><br><span class="line">            <span class="built_in">cin</span>&gt;&gt;weight[i][j];</span><br><span class="line">    <span class="keyword">int</span> t = hamilton(n,weight);</span><br><span class="line">    <span class="built_in">cout</span>&lt;&lt;t&lt;&lt;<span class="built_in">endl</span>;</span><br><span class="line">    <span class="keyword">return</span> <span class="number">0</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/26/大战严蔚敏第四集-模式匹配算法/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/26/大战严蔚敏第四集-模式匹配算法/" itemprop="url">大战严蔚敏第四集-模式匹配算法</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-26T14:05:22+08:00">
+                2019-09-26
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="朴素的模式匹配"><a href="#朴素的模式匹配" class="headerlink" title="朴素的模式匹配"></a>朴素的模式匹配</h1><p>思路：<br>    1.从位置t开始，<br>    2.对主串第i个和模式串第j个进行比较；如果匹配上，结束匹配过程，返回t<br>    3.如果无法匹配上，回到位置t+1，继续步骤2</p>
+<p>代码：</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">str_index</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    i,j=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    l1,l2=len(s),len(p)</span><br><span class="line">    <span class="keyword">while</span> i&lt;l1 <span class="keyword">and</span> j&lt;l2:</span><br><span class="line">        <span class="keyword">if</span> s[i]==p[j]:</span><br><span class="line">            i+=<span class="number">1</span>;j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            i=i-j+<span class="number">1</span>;j=<span class="number">0</span></span><br><span class="line">        print(<span class="string">"i="</span>,i,<span class="string">"j="</span>,j)</span><br><span class="line">    <span class="keyword">if</span> j==l2:</span><br><span class="line">        <span class="keyword">return</span> i-j</span><br><span class="line">    <span class="keyword">return</span> <span class="number">-1</span></span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    s=<span class="string">'ababcabcacbab'</span></span><br><span class="line">    p=<span class="string">'abcac'</span></span><br><span class="line">    print(str_index(s,p))</span><br></pre></td></tr></table></figure>
+
+<h1 id="KMP算法"><a href="#KMP算法" class="headerlink" title="KMP算法"></a>KMP算法</h1><p>克努特-莫里斯-普拉特操作<br>请牢牢记住这三个人好吧</p>
+<p>思路：<br>利用next数组使得在一次匹配中，主串的i不用回退</p>
+<ol>
+<li>假如主串的i和模式串的j不匹配时，j退到k，k能保证k之前的元素已经与主串i之前的元素匹配好，即’si-k+1si-k+2…si-1’=’p1p2…pk-1’,一共k-1个元素已经匹配好</li>
+<li>又主串i和模式串从j才开始不匹配那么从j往前的k-1个元素必定也是匹配的，有，’si-k+1si-k+2…si-1’=’pj-k+1pj-k+2…pj-1’</li>
+<li>那么由上面可以得出’p1p2…pk-1’=’pj-k+1pj-k+2…pj-1’，从而实际上求next是一个模式传递串的自匹配问题</li>
+</ol>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br><span class="line">35</span><br><span class="line">36</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kmp</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    next = getNext(p)</span><br><span class="line">    print(next)</span><br><span class="line">    i,j=<span class="number">-1</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i&lt;len(s) <span class="keyword">and</span> j&lt;len(p):</span><br><span class="line">        <span class="keyword">if</span> j==<span class="number">0</span> <span class="keyword">or</span> s[i]==p[j]:</span><br><span class="line">            i+=<span class="number">1</span>;j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=next[j]</span><br><span class="line">        <span class="keyword">if</span> j==len(p):<span class="keyword">break</span></span><br><span class="line">    <span class="keyword">if</span> j&gt;=len(p):</span><br><span class="line">        <span class="keyword">return</span> i-len(p)</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span> </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getNext</span><span class="params">(s)</span>:</span></span><br><span class="line">    N = len(s)</span><br><span class="line">    i,j=<span class="number">0</span>,<span class="number">-1</span></span><br><span class="line">    next=[<span class="number">0</span>]*N</span><br><span class="line">    next[<span class="number">0</span>]=<span class="number">-1</span></span><br><span class="line">    <span class="keyword">while</span>(i&lt;N<span class="number">-1</span>):</span><br><span class="line">        print(i,j)</span><br><span class="line">        <span class="keyword">if</span> j==<span class="number">-1</span> <span class="keyword">or</span> s[i]==s[j]:</span><br><span class="line">            i+=<span class="number">1</span>;j+=<span class="number">1</span></span><br><span class="line">            next[i]=j</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=next[j]</span><br><span class="line">    <span class="keyword">return</span> next</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    s=<span class="string">"ababcabcacbab"</span></span><br><span class="line">    p=<span class="string">"abcac"</span></span><br><span class="line">    print(getNext(p))</span><br><span class="line">    t= kmp(s,p)</span><br><span class="line">    print(t)</span><br><span class="line">    <span class="keyword">pass</span></span><br></pre></td></tr></table></figure>
+
+<h1 id="KMP-Plus"><a href="#KMP-Plus" class="headerlink" title="KMP Plus"></a>KMP Plus</h1><p>思路：<br>nextval修正主要是：<br>当si和pj不等时，不再和pk比较而是直接和p(next[k])，进行比较，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31</span><br><span class="line">32</span><br><span class="line">33</span><br><span class="line">34</span><br></pre></td><td class="code"><pre><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">kmpPlus</span><span class="params">(s,p)</span>:</span></span><br><span class="line">    nextval=getNextVal(p)</span><br><span class="line">    print(nextval)</span><br><span class="line">    M,N=len(s),len(p)</span><br><span class="line">    i,j=<span class="number">0</span>,<span class="number">0</span></span><br><span class="line">    <span class="keyword">while</span> i&lt;M <span class="keyword">and</span> j&lt;N:</span><br><span class="line">        <span class="keyword">if</span> j==<span class="number">0</span> <span class="keyword">or</span> s[i]==p[j]:</span><br><span class="line">            i+=<span class="number">1</span>;j+=<span class="number">1</span></span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=nextval[j]</span><br><span class="line">    <span class="keyword">if</span> j&gt;=N:<span class="keyword">return</span> i-N</span><br><span class="line">    <span class="keyword">else</span>:</span><br><span class="line">        <span class="keyword">return</span> <span class="number">0</span>        </span><br><span class="line"></span><br><span class="line"><span class="function"><span class="keyword">def</span> <span class="title">getNextVal</span><span class="params">(p)</span>:</span></span><br><span class="line">    N = len(p)</span><br><span class="line">    i,j=<span class="number">1</span>,<span class="number">0</span></span><br><span class="line">    nextval=[<span class="number">0</span>]*N</span><br><span class="line">    <span class="keyword">while</span> i&lt;N<span class="number">-1</span>:</span><br><span class="line">        <span class="keyword">if</span> j==<span class="number">0</span> <span class="keyword">or</span> p[i]==p[j]:</span><br><span class="line">            i+=<span class="number">1</span>;j+=<span class="number">1</span></span><br><span class="line">            <span class="keyword">if</span> p[i]!=p[j]:</span><br><span class="line">                nextval[i]=j</span><br><span class="line">            <span class="keyword">else</span>: </span><br><span class="line">                nextval[i]=nextval[j]</span><br><span class="line">        <span class="keyword">else</span>:</span><br><span class="line">            j=nextval[j]</span><br><span class="line">    <span class="keyword">return</span> nextval</span><br><span class="line"></span><br><span class="line"><span class="keyword">if</span> __name__ == <span class="string">"__main__"</span>:</span><br><span class="line">    s=<span class="string">"aaabaaaab"</span></span><br><span class="line">    p=<span class="string">"aaaab"</span></span><br><span class="line">    t=kmpPlus(s,p)</span><br><span class="line">    print(t)</span><br></pre></td></tr></table></figure>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/25/第八章Dubbo扩展点/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/25/第八章Dubbo扩展点/" itemprop="url">第八章Dubbo扩展点</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-25T15:25:33+08:00">
+                2019-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="8-1-Dubbo核心扩展点概述"><a href="#8-1-Dubbo核心扩展点概述" class="headerlink" title="8.1 Dubbo核心扩展点概述"></a>8.1 Dubbo核心扩展点概述</h1><h2 id="8-1-1扩展点的背景"><a href="#8-1-1扩展点的背景" class="headerlink" title="8.1.1扩展点的背景"></a>8.1.1扩展点的背景</h2><h2 id="8-1-2扩展点整体架构"><a href="#8-1-2扩展点整体架构" class="headerlink" title="8.1.2扩展点整体架构"></a>8.1.2扩展点整体架构</h2><h1 id="8-2-RPC层扩展点"><a href="#8-2-RPC层扩展点" class="headerlink" title="8.2 RPC层扩展点"></a>8.2 RPC层扩展点</h1><h2 id="8-2-1-Proxy扩展点"><a href="#8-2-1-Proxy扩展点" class="headerlink" title="8.2.1 Proxy扩展点"></a>8.2.1 Proxy扩展点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"javassist"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ProxyFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;Constants.PROXY_KEY&#125;)</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;Constants.PROXY_KEY&#125;)</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker,<span class="keyword">boolean</span> generic)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    &lt;T&gt; <span class="function">T <span class="title">getProxy</span><span class="params">(Invoker&lt;T&gt; invoker,Class&lt;T&gt; type,URL url)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="已有的扩展类实现"><a href="#已有的扩展类实现" class="headerlink" title="已有的扩展类实现"></a>已有的扩展类实现</h3><ol>
+<li>stub</li>
+<li>jdk</li>
+<li>javassist</li>
+</ol>
+<h2 id="8-2-2-Registry层扩展点"><a href="#8-2-2-Registry层扩展点" class="headerlink" title="8.2.2 Registry层扩展点"></a>8.2.2 Registry层扩展点</h2><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"dubbo"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RegistryFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(&#123;<span class="string">"protocol"</span>&#125;)</span><br><span class="line">    <span class="function">Registry <span class="title">getRegistry</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类实现"><a href="#扩展类实现" class="headerlink" title="扩展类实现"></a>扩展类实现</h3><ol>
+<li>zookeeper</li>
+<li>redis</li>
+<li>multicast</li>
+<li>dubbo</li>
+</ol>
+<h2 id="8-2-3Cluster扩展点"><a href="#8-2-3Cluster扩展点" class="headerlink" title="8.2.3Cluster扩展点"></a>8.2.3Cluster扩展点</h2><h3 id="1Cluster扩展点"><a href="#1Cluster扩展点" class="headerlink" title="1Cluster扩展点"></a>1Cluster扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(FailoverCluster.NAME)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Cluster</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span></span><br><span class="line">    &lt;T&gt; <span class="function">Invoker&lt;T&gt; <span class="title">join</span><span class="params">(Directory&lt;T&gt; directory)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类实现-1"><a href="#扩展类实现-1" class="headerlink" title="扩展类实现"></a>扩展类实现</h3><ol>
+<li>mock</li>
+<li>failover</li>
+<li>failfast</li>
+<li>failsafe</li>
+<li>failback</li>
+<li>forking</li>
+<li>available</li>
+<li>mergeable</li>
+<li>boardcast</li>
+<li>registryaware</li>
+</ol>
+<h3 id="2-RouterFactory扩展点"><a href="#2-RouterFactory扩展点" class="headerlink" title="2 RouterFactory扩展点"></a>2 RouterFactory扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">RouterFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(<span class="string">"protocol"</span>)</span><br><span class="line">    <span class="function">Router <span class="title">getRouter</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类"><a href="#扩展类" class="headerlink" title="扩展类"></a>扩展类</h3><ol>
+<li>file</li>
+<li>script</li>
+<li>condition</li>
+<li>service</li>
+<li>app</li>
+<li>tag</li>
+<li>mock</li>
+</ol>
+<h3 id="3-LoadBalance扩展点"><a href="#3-LoadBalance扩展点" class="headerlink" title="3 LoadBalance扩展点"></a>3 LoadBalance扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(RandomLoadBalance.NAME)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">LoadBalance</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(<span class="string">"loadbalance"</span>)</span><br><span class="line">    &lt;T&gt; <span class="function">Invoker&lt;T&gt; <span class="title">select</span><span class="params">(List&lt;Invoker&lt;T&gt;&gt; invokers,URL url,Invocation invocation)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类-1"><a href="#扩展类-1" class="headerlink" title="扩展类"></a>扩展类</h3><ol>
+<li>random</li>
+<li>roundrobin</li>
+<li>leastactive</li>
+<li>consistenthash</li>
+</ol>
+<h3 id="4-ConfiguratorFactory扩展点"><a href="#4-ConfiguratorFactory扩展点" class="headerlink" title="4 ConfiguratorFactory扩展点"></a>4 ConfiguratorFactory扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">ConfiguratorFactory</span></span>&#123;</span><br><span class="line">    <span class="meta">@Adaptive</span>(<span class="string">"protocol"</span>)</span><br><span class="line">    <span class="function">Configurator <span class="title">getConfigurator</span><span class="params">(URL url)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="实现类"><a href="#实现类" class="headerlink" title="实现类"></a>实现类</h3><ol>
+<li>override</li>
+<li>absent</li>
+</ol>
+<h3 id="5-Merger扩展点"><a href="#5-Merger扩展点" class="headerlink" title="5 Merger扩展点"></a>5 Merger扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Merger</span>&lt;<span class="title">T</span>&gt;</span>&#123;</span><br><span class="line">    <span class="function">T <span class="title">merge</span> <span class="params">(T... items)</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="扩展类-2"><a href="#扩展类-2" class="headerlink" title="扩展类"></a>扩展类</h3><ol>
+<li>map</li>
+<li>set</li>
+<li>list</li>
+<li>byte</li>
+<li>char</li>
+<li>short</li>
+<li>int</li>
+<li>long</li>
+<li>float</li>
+<li>double</li>
+<li>boolean</li>
+</ol>
+<h1 id="8-3Remote层扩展点"><a href="#8-3Remote层扩展点" class="headerlink" title="8.3Remote层扩展点"></a>8.3Remote层扩展点</h1><h2 id="8-3-1Protocol层扩展点"><a href="#8-3-1Protocol层扩展点" class="headerlink" title="8.3.1Protocol层扩展点"></a>8.3.1Protocol层扩展点</h2><h3 id="1-protocol扩展点"><a href="#1-protocol扩展点" class="headerlink" title="1 protocol扩展点"></a>1 protocol扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span>(<span class="string">"dubbo"</span>)</span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Protocol</span></span>&#123;</span><br><span class="line">    <span class="function"><span class="keyword">int</span> <span class="title">getDefaultPort</span><span class="params">()</span></span>;</span><br><span class="line">    <span class="meta">@Adaptive</span></span><br><span class="line">    &lt;T&gt; <span class="function">Exporter&lt;T&gt; <span class="title">export</span><span class="params">(Invoker&lt;T&gt; invoker)</span> <span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="meta">@Adaptive</span></span><br><span class="line">    &lt;T&gt; <span class="function">Invoker&lt;T&gt; <span class="title">refer</span><span class="params">(Class&lt;T&gt; type,URL url)</span><span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">void</span> <span class="title">destroy</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="接口默认规则"><a href="#接口默认规则" class="headerlink" title="接口默认规则"></a>接口默认规则</h3><p>export方法：</p>
+<ol>
+<li>协议收到请求后应记录请求源IP地址</li>
+<li>export方法必须实现幂等</li>
+<li>Invoker实例由框架传入，无需关心协议层</li>
+</ol>
+<p>refer方法：</p>
+<ol>
+<li>调用refer方法返回Invoker对象的invoke方法时，协议也要执行invoke方法</li>
+<li>refer方法返回的自定义Invoker需要继承Invoker接口</li>
+<li>URL参数有check=false时，自定义协议实现必须不能抛出异常，二十在出现连接失败时尝试恢复连接</li>
+</ol>
+<p>destroy方法：</p>
+<ol>
+<li>调用destroy方法的时候，需要销毁所有本协议暴露和引用的方法</li>
+<li>需要释放所有占用的资源</li>
+<li>自定义协议可以在被销毁后，继续导出 和引用新服务</li>
+</ol>
+<h3 id="已实现的Protocol扩展点"><a href="#已实现的Protocol扩展点" class="headerlink" title="已实现的Protocol扩展点"></a>已实现的Protocol扩展点</h3><ol>
+<li>injvm</li>
+<li>dubbo</li>
+<li>rmi</li>
+<li>http</li>
+<li>hessian</li>
+<li>rest</li>
+<li>thrift</li>
+<li>-</li>
+<li>redis</li>
+<li>memcached</li>
+</ol>
+<h3 id="2Filter扩展点"><a href="#2Filter扩展点" class="headerlink" title="2Filter扩展点"></a>2Filter扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">Filter</span></span>&#123;</span><br><span class="line">    <span class="function">Result <span class="title">invoke</span><span class="params">(Invoker&lt;?&gt; invoker,Invocation invocation)</span><span class="keyword">throws</span> RpcException</span>;</span><br><span class="line">    <span class="function"><span class="keyword">default</span> Result <span class="title">onResponse</span><span class="params">(Result result,Invoker&lt;?&gt; invoker,Invocation invocation)</span></span>&#123;</span><br><span class="line">        <span class="keyword">return</span> result;</span><br><span class="line">    &#125;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<h3 id="3ExporterListener-InvokerListener扩展点"><a href="#3ExporterListener-InvokerListener扩展点" class="headerlink" title="3ExporterListener/InvokerListener扩展点"></a>3ExporterListener/InvokerListener扩展点</h3>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/25/第七章Dubbo集群容错/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/25/第七章Dubbo集群容错/" itemprop="url">第七章Dubbo集群容错</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-25T13:59:00+08:00">
+                2019-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="7-1-Cluster层概述"><a href="#7-1-Cluster层概述" class="headerlink" title="7.1 Cluster层概述"></a>7.1 Cluster层概述</h1><h3 id="Cluster层总体工作流程"><a href="#Cluster层总体工作流程" class="headerlink" title="Cluster层总体工作流程"></a>Cluster层总体工作流程</h3><ol>
+<li>生成Invoker对象</li>
+<li>获得可调用服务列表</li>
+<li>做负载均衡</li>
+<li>做RPC调用</li>
+</ol>
+<h1 id="7-2-容错机制的实现"><a href="#7-2-容错机制的实现" class="headerlink" title="7.2 容错机制的实现"></a>7.2 容错机制的实现</h1><h2 id="7-2-1-容错机制概述"><a href="#7-2-1-容错机制概述" class="headerlink" title="7.2.1 容错机制概述"></a>7.2.1 容错机制概述</h2><h3 id="容错机制特性表"><a href="#容错机制特性表" class="headerlink" title="容错机制特性表"></a>容错机制特性表</h3><table>
+<thead>
+<tr>
+<th>机制名</th>
+<th>机制简介</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>Failover</td>
+<td>失败重试</td>
+</tr>
+<tr>
+<td>Failfast</td>
+<td>快速失败并返回异常结果</td>
+</tr>
+<tr>
+<td>Failsafe</td>
+<td>直接忽略异常</td>
+</tr>
+<tr>
+<td>Failback</td>
+<td>记入失败队列，定时重试</td>
+</tr>
+<tr>
+<td>Forking</td>
+<td>同时调用多个，返回一个</td>
+</tr>
+<tr>
+<td>Broadcast</td>
+<td>广播调用所有可用服务</td>
+</tr>
+<tr>
+<td>Mock</td>
+<td>广播调用所有可用服务，任意一个报错则报错</td>
+</tr>
+<tr>
+<td>Available</td>
+<td>不做负载均衡，遍历到第一个可用节点</td>
+</tr>
+<tr>
+<td>Mergeable</td>
+<td>合并多个节点得到结果</td>
+</tr>
+</tbody></table>
+<h2 id="7-2-2-Cluster接口关系"><a href="#7-2-2-Cluster接口关系" class="headerlink" title="7.2.2 Cluster接口关系"></a>7.2.2 Cluster接口关系</h2><ul>
+<li>invoker<ul>
+<li>AbstractClusterInvoker<ul>
+<li>AvailableClusterInvoker</li>
+<li>BroadcastClusterInvoker</li>
+<li>ForkingClusterInvoker</li>
+<li>FailoverClusterInvoker</li>
+<li>FailfastClusterInvoker</li>
+<li>FailbackClusterInvoker</li>
+<li>FailsafeClusterInvoker</li>
+</ul>
+</li>
+<li>MockClusterInvoker</li>
+<li>MergeableClusterInvoker</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-2-3-FailOver策略"><a href="#7-2-3-FailOver策略" class="headerlink" title="7.2.3 FailOver策略"></a>7.2.3 FailOver策略</h2><h3 id="策略逻辑"><a href="#策略逻辑" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>获取配置参数retries</li>
+<li>初始化集合和对象</li>
+<li>for循环重试<ol>
+<li>校验次数</li>
+<li>负载均衡</li>
+<li>远程调用</li>
+</ol>
+</li>
+</ol>
+<h2 id="7-2-4-Failfast策略"><a href="#7-2-4-Failfast策略" class="headerlink" title="7.2.4 Failfast策略"></a>7.2.4 Failfast策略</h2><h3 id="策略逻辑-1"><a href="#策略逻辑-1" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>负载均衡</li>
+<li>进行远程调用。如果捕获异常，则包装成RpcException抛出</li>
+</ol>
+<h2 id="7-2-5-Failsafe策略"><a href="#7-2-5-Failsafe策略" class="headerlink" title="7.2.5 Failsafe策略"></a>7.2.5 Failsafe策略</h2><h3 id="策略逻辑-2"><a href="#策略逻辑-2" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>负载均衡</li>
+<li>远程调用。如果捕获异常，直接吞掉，返回空结果</li>
+</ol>
+<h2 id="7-2-6-Failback策略"><a href="#7-2-6-Failback策略" class="headerlink" title="7.2.6 Failback策略"></a>7.2.6 Failback策略</h2><h3 id="策略逻辑-3"><a href="#策略逻辑-3" class="headerlink" title="策略逻辑"></a>策略逻辑</h3><ol>
+<li>校验</li>
+<li>负载均衡</li>
+<li>远程调用。如果捕获异常，把invocation保存到重试的cocurrentMap中，并返回空结果集</li>
+<li>定时处理CocurrentMap的失败请求；如果还是失败catch，不做其他处理</li>
+</ol>
+<h2 id="7-2-7-Available策略"><a href="#7-2-7-Available策略" class="headerlink" title="7.2.7 Available策略"></a>7.2.7 Available策略</h2><ol>
+<li>遍历invoker列表；如果可用，调用并返回</li>
+<li>如果没有，抛出异常</li>
+</ol>
+<h2 id="7-2-8-Broadcast策略"><a href="#7-2-8-Broadcast策略" class="headerlink" title="7.2.8 Broadcast策略"></a>7.2.8 Broadcast策略</h2><ol>
+<li>前置操作</li>
+<li>循环遍历所有invoker，直接做rpc调用。记录异常，最后抛出，如果多个异常，只抛出最后一个</li>
+</ol>
+<h2 id="7-2-9-Forking策略"><a href="#7-2-9-Forking策略" class="headerlink" title="7.2.9 Forking策略"></a>7.2.9 Forking策略</h2><ol>
+<li>准备工作</li>
+<li>获取最终调用invoker列表（多个节点）</li>
+<li>调用前的准备工作</li>
+<li>执行调用</li>
+<li>同步等待结果</li>
+</ol>
+<h1 id="7-3-Directory的实现"><a href="#7-3-Directory的实现" class="headerlink" title="7.3 Directory的实现"></a>7.3 Directory的实现</h1><h2 id="7-3-1-总体实现"><a href="#7-3-1-总体实现" class="headerlink" title="7.3.1 总体实现"></a>7.3.1 总体实现</h2><ul>
+<li>Directory<ul>
+<li>AbstractDirectory<ul>
+<li>RegistryDirectory</li>
+<li>StaticDirectory<h3 id="AbstractDirectory"><a href="#AbstractDirectory" class="headerlink" title="AbstractDirectory"></a>AbstractDirectory</h3><h4 id="list方法逻辑"><a href="#list方法逻辑" class="headerlink" title="list方法逻辑"></a>list方法逻辑</h4></li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<ol>
+<li>doList获取所有Invoker列表</li>
+<li>遍历所有router列表，进行invoker过滤</li>
+</ol>
+<h3 id="RegistryDirectory"><a href="#RegistryDirectory" class="headerlink" title="RegistryDirectory"></a>RegistryDirectory</h3><p>动态列表实现：自动从注册中心更新Invoker列表、配置信息、路由列表</p>
+<h3 id="StaticDirectory"><a href="#StaticDirectory" class="headerlink" title="StaticDirectory"></a>StaticDirectory</h3><p>静态列表实现：用于包装已知invoker列表，Directory对象</p>
+<h2 id="7-3-2-RegistryDirectory的实现"><a href="#7-3-2-RegistryDirectory的实现" class="headerlink" title="7.3.2 RegistryDirectory的实现"></a>7.3.2 RegistryDirectory的实现</h2><h3 id="两条逻辑线"><a href="#两条逻辑线" class="headerlink" title="两条逻辑线"></a>两条逻辑线</h3><ol>
+<li>框架与注册中心的订阅，并动态更新本地Invoker列表、路由列表、配置信息的逻辑</li>
+<li>子类实现父类的doList方法</li>
+</ol>
+<h3 id="1订阅与动态更新"><a href="#1订阅与动态更新" class="headerlink" title="1订阅与动态更新"></a>1订阅与动态更新</h3><h4 id="subscribe"><a href="#subscribe" class="headerlink" title="subscribe"></a>subscribe</h4><h4 id="notify"><a href="#notify" class="headerlink" title="notify"></a>notify</h4><p>监听内容包括：配置configurators、路由规则router、Invoker列表</p>
+<ol>
+<li>新建三个List</li>
+<li>解析并更新配置参数<ol>
+<li>router类：遍历所有router类URL，然后通过Router工厂包装URL为路由规则</li>
+<li>Configurator</li>
+<li>Invoker类：<ul>
+<li>禁用empty协议URL，并销毁本地缓存的invoker</li>
+<li>如果监听的URL不为空，则把URL和本地老的URL合并，创建新的Invoker，销毁旧的Invoker</li>
+</ul>
+</li>
+</ol>
+</li>
+</ol>
+<h3 id="2doList的实现"><a href="#2doList的实现" class="headerlink" title="2doList的实现"></a>2doList的实现</h3><ol>
+<li>检查服务是否被禁用</li>
+<li>根据方法名和首参数匹配Invoker</li>
+<li>根据方法名匹配invoker</li>
+<li>根据* 匹配invoker</li>
+<li>遍历methodInvokerMap。兜底操作，如果还没有返回空列表</li>
+</ol>
+<h1 id="7-4-路由的实现"><a href="#7-4-路由的实现" class="headerlink" title="7.4 路由的实现"></a>7.4 路由的实现</h1><h2 id="7-4-1-路由的总体结构"><a href="#7-4-1-路由的总体结构" class="headerlink" title="7.4.1 路由的总体结构"></a>7.4.1 路由的总体结构</h2><ul>
+<li>RouterFactory@SPI<ul>
+<li>ConditionRouterFactory</li>
+<li>FileRouterFactory</li>
+<li>ScriptRouterFactory</li>
+</ul>
+</li>
+<li>Router<ul>
+<li>MockInvokerSelector</li>
+<li>ScriptRouter</li>
+<li>ConditionRouter</li>
+</ul>
+</li>
+</ul>
+<h2 id="7-4-2-条件路由的参数规则"><a href="#7-4-2-条件路由的参数规则" class="headerlink" title="7.4.2 条件路由的参数规则"></a>7.4.2 条件路由的参数规则</h2><h3 id="路由规则"><a href="#路由规则" class="headerlink" title="路由规则"></a>路由规则</h3><table>
+<thead>
+<tr>
+<th>参数名称</th>
+<th>含义</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>condition://</td>
+<td>路由规则类型</td>
+</tr>
+<tr>
+<td>0.0.0.0</td>
+<td>对所有ip生效</td>
+</tr>
+<tr>
+<td>com.foo.Service</td>
+<td>对指定服务生效</td>
+</tr>
+<tr>
+<td>category=routers</td>
+<td>动态配置类型</td>
+</tr>
+<tr>
+<td>dynamic=false</td>
+<td>持久数据</td>
+</tr>
+<tr>
+<td>enable=true</td>
+<td>覆盖规则是否生效。默认生效</td>
+</tr>
+<tr>
+<td>force=false</td>
+<td>路由为空时是否强制执行</td>
+</tr>
+<tr>
+<td>runtime=false</td>
+<td>是否每次调用时实行路由规则</td>
+</tr>
+<tr>
+<td>priority=1</td>
+<td>路由规则优先级，越大越先执行</td>
+</tr>
+<tr>
+<td>rule=URL.endcode(“host=10.20.153.10=&gt;host=10.20.153.11”)</td>
+<td>表示路由规则的内容</td>
+</tr>
+</tbody></table>
+<h2 id="7-4-3-条件路由的实现"><a href="#7-4-3-条件路由的实现" class="headerlink" title="7.4.3 条件路由的实现"></a>7.4.3 条件路由的实现</h2><h3 id="ConditionRouter构造逻辑"><a href="#ConditionRouter构造逻辑" class="headerlink" title="ConditionRouter构造逻辑"></a>ConditionRouter构造逻辑</h3><ol>
+<li>根据URL的键rule获取对应的规则字符串</li>
+<li>解析两个路由规则</li>
+</ol>
+<h3 id="route-方法的实现原理"><a href="#route-方法的实现原理" class="headerlink" title="route 方法的实现原理"></a>route 方法的实现原理</h3><ol>
+<li>校验</li>
+<li>遍历invoker列表，按照thenRule规则找出符合规则的Invoker加入集合</li>
+<li>返回结果</li>
+</ol>
+<h2 id="7-4-4-文件路由的实现"><a href="#7-4-4-文件路由的实现" class="headerlink" title="7.4.4 文件路由的实现"></a>7.4.4 文件路由的实现</h2><p>读取文件内容，然后调用对应的脚本路由进行解析</p>
+<h2 id="7-4-5-脚本路由的实现"><a href="#7-4-5-脚本路由的实现" class="headerlink" title="7.4.5 脚本路由的实现"></a>7.4.5 脚本路由的实现</h2><p>默认使用js解析器</p>
+<h3 id="脚本路由的构造方法逻辑"><a href="#脚本路由的构造方法逻辑" class="headerlink" title="脚本路由的构造方法逻辑"></a>脚本路由的构造方法逻辑</h3><ol>
+<li>初始化参数</li>
+<li>初始化脚本执行引擎</li>
+</ol>
+<h1 id="7-5-负载均衡"><a href="#7-5-负载均衡" class="headerlink" title="7.5 负载均衡"></a>7.5 负载均衡</h1><h2 id="7-5-1-包装后的负载均衡"><a href="#7-5-1-包装后的负载均衡" class="headerlink" title="7.5.1 包装后的负载均衡"></a>7.5.1 包装后的负载均衡</h2><h3 id="AbstractClusterInvoker-select封装了一些新特性"><a href="#AbstractClusterInvoker-select封装了一些新特性" class="headerlink" title="AbstractClusterInvoker#select封装了一些新特性"></a>AbstractClusterInvoker#select封装了一些新特性</h3><ol>
+<li>粘滞连接</li>
+<li>可用检测</li>
+<li>避免重复调用<ol>
+<li>检查URL中是否由配置粘滞连接，优先使用粘滞连接</li>
+<li>ExtensionLoader获取负载均衡的具体实现</li>
+<li>节点的重新选择</li>
+<li>遍历已用节点，选出可用节点，负载均衡选出一个节点；如果还找不到调用节点，返回null</li>
+</ol>
+</li>
+</ol>
+<h2 id="7-5-2-负载均衡的总体结构"><a href="#7-5-2-负载均衡的总体结构" class="headerlink" title="7.5.2 负载均衡的总体结构"></a>7.5.2 负载均衡的总体结构</h2><h1 id="7-6-Merger的实现"><a href="#7-6-Merger的实现" class="headerlink" title="7.6 Merger的实现"></a>7.6 Merger的实现</h1><h1 id="7-7-Mock"><a href="#7-7-Mock" class="headerlink" title="7.7 Mock"></a>7.7 Mock</h1>
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+      
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/25/第六章Dubbo远程调用/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">
+                
+                <a class="post-title-link" href="/2019/09/25/第六章Dubbo远程调用/" itemprop="url">第六章Dubbo远程调用</a></h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-25T08:49:10+08:00">
+                2019-09-25
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        
+          
+            <h1 id="6-1-Dubbo调用介绍"><a href="#6-1-Dubbo调用介绍" class="headerlink" title="6.1 Dubbo调用介绍"></a>6.1 Dubbo调用介绍</h1><ol>
+<li>客户端启动时，从注册中心拉取和订阅服务列表，然后由cluster聚合为一个invoker</li>
+<li>具体调用时，首先在本地进行路由，然后根据路由的结果进行负载均衡，最终选择一个机器进行调用</li>
+<li>调用时，客户端将请求交给底层io线程池，</li>
+<li>Dubbo将服务调用和telnet调用做了端口复用，区别是telnet调用使用fastjson，而其他RPC调用使用Hessian方式</li>
+</ol>
+<h1 id="6-2-Dubbo协议详解"><a href="#6-2-Dubbo协议详解" class="headerlink" title="6.2 Dubbo协议详解"></a>6.2 Dubbo协议详解</h1><ol>
+<li>0-3字节：<ol>
+<li>0-15bit 魔数(0-7魔数高位0xda00，8-15魔术低位0xbb)</li>
+<li>16 请求相应位</li>
+<li>17 需要往返位</li>
+<li>18 事件</li>
+<li>19-23 序列化器ID</li>
+<li>24-31 状态</li>
+</ol>
+</li>
+<li>4-11字节：RPC请求ID</li>
+<li>12-15字节：消息体数据长度</li>
+<li>16-20字节：各种参数等 </li>
+</ol>
+<h3 id="粘包处理"><a href="#粘包处理" class="headerlink" title="粘包处理"></a>粘包处理</h3><ol>
+<li>协议头魔数0xdabb</li>
+</ol>
+<h3 id="并发处理"><a href="#并发处理" class="headerlink" title="并发处理"></a>并发处理</h3><ol>
+<li>协议头全局请求id</li>
+</ol>
+<h1 id="6-3-编解码器原理"><a href="#6-3-编解码器原理" class="headerlink" title="6.3 编解码器原理"></a>6.3 编解码器原理</h1><h2 id="6-3-1-Dubbo协议编码器"><a href="#6-3-1-Dubbo协议编码器" class="headerlink" title="6.3.1 Dubbo协议编码器"></a>6.3.1 Dubbo协议编码器</h2><h3 id="请求对象编码流程-ExchangeCodec-encodeRequst"><a href="#请求对象编码流程-ExchangeCodec-encodeRequst" class="headerlink" title="请求对象编码流程 ExchangeCodec#encodeRequst"></a>请求对象编码流程 ExchangeCodec#encodeRequst</h3><ol>
+<li>获取指定或默认的序列化协议（Hessian2）</li>
+<li>构造16字节头</li>
+<li>写入魔数</li>
+<li>写入请求位+往返位+事件+序列化编号</li>
+<li>写入RPC唯一请求ID</li>
+<li>向buffer写入消息体</li>
+<li>向16字节头写入消息体长度</li>
+<li>将header写入buffer</li>
+<li>设置buffer到消息体结束位置</li>
+</ol>
+<h3 id="编码请求对象体-DubboCodec-encodeRequestData"><a href="#编码请求对象体-DubboCodec-encodeRequestData" class="headerlink" title="编码请求对象体 DubboCodec#encodeRequestData"></a>编码请求对象体 DubboCodec#encodeRequestData</h3><ol>
+<li>写入框架版本</li>
+<li>写入调用接口</li>
+<li>写入接口指定版本</li>
+<li>写入方法名称</li>
+<li>写入方法参数类型</li>
+<li>写入方法参数值</li>
+<li>写入隐式参数</li>
+</ol>
+<h3 id="响应对象编码流程-ExcanhgeCodec-encodeResponse"><a href="#响应对象编码流程-ExcanhgeCodec-encodeResponse" class="headerlink" title="响应对象编码流程 ExcanhgeCodec#encodeResponse"></a>响应对象编码流程 ExcanhgeCodec#encodeResponse</h3><ol>
+<li>获取指定或默认序列化协议</li>
+<li>构造16字头</li>
+<li>写入魔数</li>
+<li>写入响应位+事件位</li>
+<li>写入响应状态</li>
+<li>写入唯一标识</li>
+<li>写入响应对象Result</li>
+<li>写入消息体长度</li>
+<li>写入消息到buffer</li>
+<li>处理异常</li>
+</ol>
+<h3 id="编码响应对象体-DubboCodec-endcodeResponseData"><a href="#编码响应对象体-DubboCodec-endcodeResponseData" class="headerlink" title="编码响应对象体 DubboCodec#endcodeResponseData"></a>编码响应对象体 DubboCodec#endcodeResponseData</h3><ol>
+<li>判断版本参数是否支持服务端参数返回</li>
+<li>提取正常返回结果</li>
+<li>根据结果写标志位</li>
+<li>标记调用抛异常，并序列化异常</li>
+<li>记录服务端Dubbo版本，并且返回服务端隐藏参数</li>
+</ol>
+<h2 id="6-3-2-Dubbo协议解码器"><a href="#6-3-2-Dubbo协议解码器" class="headerlink" title="6.3.2 Dubbo协议解码器"></a>6.3.2 Dubbo协议解码器</h2><h3 id="dubboCodec-decodeBody"><a href="#dubboCodec-decodeBody" class="headerlink" title="dubboCodec#decodeBody"></a>dubboCodec#decodeBody</h3><ol>
+<li>检查requst，获取requestId</li>
+<li>在io线程中直接解码/交给Dubbo业务线程池解码</li>
+<li>消息体转换成RpcInvocation对象</li>
+</ol>
+<h3 id="DecodeableRpcInvocation-decode"><a href="#DecodeableRpcInvocation-decode" class="headerlink" title="DecodeableRpcInvocation#decode"></a>DecodeableRpcInvocation#decode</h3><ol>
+<li>读取框架版本</li>
+<li>读取调用接口</li>
+<li>读取接口版本</li>
+<li>读取方法名称</li>
+<li>读取方法参数类型</li>
+<li>读取方法参数</li>
+<li>读取隐式参数</li>
+<li>处理异步回调</li>
+</ol>
+<h3 id="解析响应-DecodeableRpcResult-decode"><a href="#解析响应-DecodeableRpcResult-decode" class="headerlink" title="解析响应 DecodeableRpcResult#decode"></a>解析响应 DecodeableRpcResult#decode</h3><ol>
+<li>处理返回接口标记位NULL</li>
+<li>读取方法调用返回指类型；如果返回值包含泛型，则调用反序列化解析接口；结果保存在result中</li>
+<li>处理返回异常结果，结果保存在exception中</li>
+<li>处理NULL带隐式参数</li>
+<li>处理其他隐式参数</li>
+</ol>
+<h1 id="6-4-telnet调用原理"><a href="#6-4-telnet调用原理" class="headerlink" title="6.4 telnet调用原理"></a>6.4 telnet调用原理</h1><h2 id="6-4-1-tel指令解析原理"><a href="#6-4-1-tel指令解析原理" class="headerlink" title="6.4.1 tel指令解析原理"></a>6.4.1 tel指令解析原理</h2><h3 id="TelnetHandlerAdapter-telnet-telnet转发解析"><a href="#TelnetHandlerAdapter-telnet-telnet转发解析" class="headerlink" title="TelnetHandlerAdapter#telnet telnet转发解析"></a>TelnetHandlerAdapter#telnet telnet转发解析</h3><ol>
+<li>提取command</li>
+<li>提取message</li>
+<li>检查系统是否有对应的扩展点，交给对应的扩展点执行</li>
+<li>返回消息结果</li>
+</ol>
+<h3 id="InvokerTelnetHandler-telnet"><a href="#InvokerTelnetHandler-telnet" class="headerlink" title="InvokerTelnetHandler#telnet"></a>InvokerTelnetHandler#telnet</h3><ol>
+<li>提取service,method,参数</li>
+<li>检索方法</li>
+<li>根据检索结果invoker进行调用</li>
+</ol>
+<h2 id="6-4-2-Telnet实现健康监测"><a href="#6-4-2-Telnet实现健康监测" class="headerlink" title="6.4.2 Telnet实现健康监测"></a>6.4.2 Telnet实现健康监测</h2><h3 id="健康监测扩展点"><a href="#健康监测扩展点" class="headerlink" title="健康监测扩展点"></a>健康监测扩展点</h3><figure class="highlight java"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br></pre></td><td class="code"><pre><span class="line"><span class="meta">@SPI</span></span><br><span class="line"><span class="keyword">public</span> <span class="class"><span class="keyword">interface</span> <span class="title">StatusChecker</span></span>&#123;</span><br><span class="line">    <span class="function">Status <span class="title">check</span><span class="params">()</span></span>;</span><br><span class="line">&#125;</span><br></pre></td></tr></table></figure>
+
+<table>
+<thead>
+<tr>
+<th>健康检查实现类</th>
+<th>作用</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>DataSourceStatusChecker</td>
+<td>数据库状态检查</td>
+</tr>
+<tr>
+<td>LoadStatusChecker</td>
+<td>系统平均负载检查</td>
+</tr>
+<tr>
+<td>MemoryStatusChecker</td>
+<td>JVM内存检查</td>
+</tr>
+<tr>
+<td>RegistryStatusChecker</td>
+<td>注册中心状态检查</td>
+</tr>
+<tr>
+<td>ServerStatusChecker</td>
+<td>Dubbo服务暴露检查</td>
+</tr>
+<tr>
+<td>SpringStatusChecker</td>
+<td>Spring状态检查</td>
+</tr>
+<tr>
+<td>ThreadPoolStatusChecker</td>
+<td>Dubbo线程池检查</td>
+</tr>
+</tbody></table>
+<h1 id="6-5-ChannelHandler"><a href="#6-5-ChannelHandler" class="headerlink" title="6.5 ChannelHandler"></a>6.5 ChannelHandler</h1><h2 id="6-5-1-核心Handler和模型"><a href="#6-5-1-核心Handler和模型" class="headerlink" title="6.5.1 核心Handler和模型"></a>6.5.1 核心Handler和模型</h2><h3 id="Handler五种状态"><a href="#Handler五种状态" class="headerlink" title="Handler五种状态"></a>Handler五种状态</h3><table>
+<thead>
+<tr>
+<th>状态</th>
+<th>描述</th>
+</tr>
+</thead>
+<tbody><tr>
+<td>connected</td>
+<td>Channel已经被创建</td>
+</tr>
+<tr>
+<td>disconnected</td>
+<td>Channel已经被断开</td>
+</tr>
+<tr>
+<td>sent</td>
+<td>消息被发送</td>
+</tr>
+<tr>
+<td>received</td>
+<td>消息被接受</td>
+</tr>
+<tr>
+<td>caught</td>
+<td>捕获到异常</td>
+</tr>
+</tbody></table>
+<h3 id="ChannelPipeline"><a href="#ChannelPipeline" class="headerlink" title="ChannelPipeline"></a>ChannelPipeline</h3><ol>
+<li>通过ChannelInboundHandler,ChannelOutboundHandler来控制范围</li>
+<li>通过装饰器模式来减少PipelineHandler数量</li>
+</ol>
+<h3 id="ExchangeHandlerAdapter"><a href="#ExchangeHandlerAdapter" class="headerlink" title="ExchangeHandlerAdapter"></a>ExchangeHandlerAdapter</h3><ol>
+<li>查找Invocation相关的invoker</li>
+<li>调用业务方具体方法</li>
+</ol>
+<h2 id="6-5-2Dubbo请求响应Handler"><a href="#6-5-2Dubbo请求响应Handler" class="headerlink" title="6.5.2Dubbo请求响应Handler"></a>6.5.2Dubbo请求响应Handler</h2><h3 id="HeaderExchangeHandler处理内容"><a href="#HeaderExchangeHandler处理内容" class="headerlink" title="HeaderExchangeHandler处理内容"></a>HeaderExchangeHandler处理内容</h3><ol>
+<li>更新发送和读取请求时间戳</li>
+<li>判断请求格式和编解码是否有错</li>
+<li>处理Request请求和Response正常响应</li>
+<li>支持telnet调用</li>
+</ol>
+<h3 id="HeaderExchangeHandler-handleRequest"><a href="#HeaderExchangeHandler-handleRequest" class="headerlink" title="HeaderExchangeHandler#handleRequest"></a>HeaderExchangeHandler#handleRequest</h3><ol>
+<li>检查请求格式</li>
+<li>触发方法调用</li>
+</ol>
+<h3 id="HeaderExchangeHandler-handleResponse"><a href="#HeaderExchangeHandler-handleResponse" class="headerlink" title="HeaderExchangeHandler#handleResponse"></a>HeaderExchangeHandler#handleResponse</h3><ol>
+<li>唤醒阻塞线程</li>
+</ol>
+<h2 id="6-5-3-Dubbo心跳Handler"><a href="#6-5-3-Dubbo心跳Handler" class="headerlink" title="6.5.3 Dubbo心跳Handler"></a>6.5.3 Dubbo心跳Handler</h2><p>Dubbo在客户端和服务端都复用心跳实现代码，抽象成HeartBeatTask任务进行处理</p>
+<ol>
+<li>TCP连接超过心跳事件发送，事件报文</li>
+<li>客户端空闲超时触发重连（默认超时3分钟）</li>
+</ol>
+
+          
+        
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+
+      
+
+      
+      
+        <div class="post-eof"></div>
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+    
+  </section>
+
+  
+  <nav class="pagination">
+    <a class="extend prev" rel="prev" href="/page/2/"><i class="fa fa-angle-left"></i></a><a class="page-number" href="/">1</a><a class="page-number" href="/page/2/">2</a><span class="page-number current">3</span><a class="page-number" href="/page/4/">4</a><span class="space">&hellip;</span><a class="page-number" href="/page/9/">9</a><a class="extend next" rel="next" href="/page/4/"><i class="fa fa-angle-right"></i></a>
+  </nav>
+
+
+
+          </div>
+          
+
+
+          
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+
+      <section class="site-overview sidebar-panel sidebar-panel-active">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="YURIY">
+          <p class="site-author-name" itemprop="name">YURIY</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">85</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YURIY</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+    <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+  
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>

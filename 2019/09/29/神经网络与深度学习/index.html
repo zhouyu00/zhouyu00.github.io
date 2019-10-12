@@ -1,46 +1,675 @@
-<!DOCTYPE html><html lang="cn"><head><meta name="generator" content="Hexo 3.9.0"><meta http-equiv="content-type" content="text/html; charset=utf-8"><meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport"><meta content="yes" name="apple-mobile-web-app-capable"><meta content="black-translucent" name="apple-mobile-web-app-status-bar-style"><meta content="telephone=no" name="format-detection"><meta name="description"><title>神经网络与深度学习 | 硅步千里</title><link rel="stylesheet" type="text/css" href="/css/style.css?v=0.0.0"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/normalize/8.0.1/normalize.min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/pure-min.css"><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/pure/1.0.0/grids-responsive-min.css"><link rel="stylesheet" href="//lib.baomitu.com/font-awesome/4.7.0/css/font-awesome.min.css"><script type="text/javascript" src="//lib.baomitu.com/jquery/3.4.0/jquery.min.js"></script><link rel="icon" mask sizes="any" href="/favicon.ico"><link rel="Shortcut Icon" type="image/x-icon" href="/favicon.ico"><link rel="apple-touch-icon" href="/apple-touch-icon.png"><link rel="apple-touch-icon-precomposed" href="/apple-touch-icon.png"></head><body><div class="body_container"><div id="header"><div class="site-name"><h1 class="hidden">神经网络与深度学习</h1><a id="logo" href="/.">硅步千里</a><p class="description"></p></div><div id="nav-menu"><a class="current" href="/."><i class="fa fa-home"> Start</i></a><a href="/archives/"><i class="fa fa-archive"> Archiv</i></a><a href="/about/"><i class="fa fa-user"> Über</i></a><a href="/atom.xml"><i class="fa fa-rss"> RSS</i></a></div></div><div class="pure-g" id="layout"><div class="pure-u-1 pure-u-md-3-4"><div class="content_container"><div class="post"><h1 class="post-title">神经网络与深度学习</h1><div class="post-meta">Sep 29, 2019</div><a class="disqus-comment-count" data-disqus-identifier="2019/09/29/神经网络与深度学习/" href="/2019/09/29/神经网络与深度学习/#disqus_thread"></a><div class="post-content"><h1 id="1-使用神经网络识别手写数字"><a href="#1-使用神经网络识别手写数字" class="headerlink" title="1 使用神经网络识别手写数字"></a>1 使用神经网络识别手写数字</h1><h2 id="1-1-感知器"><a href="#1-1-感知器" class="headerlink" title="1.1 感知器"></a>1.1 感知器</h2><h2 id="1-2-S型神经元"><a href="#1-2-S型神经元" class="headerlink" title="1.2 S型神经元"></a>1.2 S型神经元</h2><h2 id="1-3-神经网络的架构"><a href="#1-3-神经网络的架构" class="headerlink" title="1.3 神经网络的架构"></a>1.3 神经网络的架构</h2><h2 id="1-4-一个简单的分类手写数字网络"><a href="#1-4-一个简单的分类手写数字网络" class="headerlink" title="1.4 一个简单的分类手写数字网络"></a>1.4 一个简单的分类手写数字网络</h2><h1 id="2-反向传播算法如何工作"><a href="#2-反向传播算法如何工作" class="headerlink" title="2 反向传播算法如何工作"></a>2 反向传播算法如何工作</h1><h2 id="2-1-神经网络中使用矩阵快速计算输出的方法"><a href="#2-1-神经网络中使用矩阵快速计算输出的方法" class="headerlink" title="2.1 神经网络中使用矩阵快速计算输出的方法"></a>2.1 神经网络中使用矩阵快速计算输出的方法</h2><h2 id="2-2关于代价函数的两个假设"><a href="#2-2关于代价函数的两个假设" class="headerlink" title="2.2关于代价函数的两个假设"></a>2.2关于代价函数的两个假设</h2><h2 id="2-3-Hadamard乘积"><a href="#2-3-Hadamard乘积" class="headerlink" title="2.3 Hadamard乘积"></a>2.3 Hadamard乘积</h2><h2 id="2-4-反向传播的四个基本方程"><a href="#2-4-反向传播的四个基本方程" class="headerlink" title="2.4 反向传播的四个基本方程"></a>2.4 反向传播的四个基本方程</h2><h2 id="2-5-四个基本方程的证明（可选）"><a href="#2-5-四个基本方程的证明（可选）" class="headerlink" title="2.5 四个基本方程的证明（可选）"></a>2.5 四个基本方程的证明（可选）</h2><h2 id="2-6-反向传播算法"><a href="#2-6-反向传播算法" class="headerlink" title="2.6 反向传播算法"></a>2.6 反向传播算法</h2><h2 id="2-7"><a href="#2-7" class="headerlink" title="2.7"></a>2.7</h2><h2 id="2-8-在哪种层面上，神经网络算法是快速的算法"><a href="#2-8-在哪种层面上，神经网络算法是快速的算法" class="headerlink" title="2.8 在哪种层面上，神经网络算法是快速的算法"></a>2.8 在哪种层面上，神经网络算法是快速的算法</h2><h2 id="2-9-全局观"><a href="#2-9-全局观" class="headerlink" title="2.9 全局观"></a>2.9 全局观</h2><h1 id="3-改进神经网络的学习算法"><a href="#3-改进神经网络的学习算法" class="headerlink" title="3 改进神经网络的学习算法"></a>3 改进神经网络的学习算法</h1><h2 id="3-1-交叉熵代价函数"><a href="#3-1-交叉熵代价函数" class="headerlink" title="3.1 交叉熵代价函数"></a>3.1 交叉熵代价函数</h2><h3 id="3-1-2-使用交叉熵来对MNIST"><a href="#3-1-2-使用交叉熵来对MNIST" class="headerlink" title="3.1.2 使用交叉熵来对MNIST"></a>3.1.2 使用交叉熵来对MNIST</h3><h3 id="3-1-3-交叉熵的含义？源自哪里？"><a href="#3-1-3-交叉熵的含义？源自哪里？" class="headerlink" title="3.1.3 交叉熵的含义？源自哪里？"></a>3.1.3 交叉熵的含义？源自哪里？</h3><h3 id="3-1-4-柔性最大值"><a href="#3-1-4-柔性最大值" class="headerlink" title="3.1.4 柔性最大值"></a>3.1.4 柔性最大值</h3><h2 id="3-2-过度拟合和规范化"><a href="#3-2-过度拟合和规范化" class="headerlink" title="3.2 过度拟合和规范化"></a>3.2 过度拟合和规范化</h2><h3 id="3-2-1-规范化"><a href="#3-2-1-规范化" class="headerlink" title="3.2.1 规范化"></a>3.2.1 规范化</h3><h3 id="3-2-2-为何规范化可以帮助减轻过拟合"><a href="#3-2-2-为何规范化可以帮助减轻过拟合" class="headerlink" title="3.2.2 为何规范化可以帮助减轻过拟合"></a>3.2.2 为何规范化可以帮助减轻过拟合</h3><h3 id="3-2-3-规范化的其他技术"><a href="#3-2-3-规范化的其他技术" class="headerlink" title="3.2.3 规范化的其他技术"></a>3.2.3 规范化的其他技术</h3><h2 id="3-3-权重初始化"><a href="#3-3-权重初始化" class="headerlink" title="3.3 权重初始化"></a>3.3 权重初始化</h2><h2 id="3-5-如何选择神经网络的超参数"><a href="#3-5-如何选择神经网络的超参数" class="headerlink" title="3.5 如何选择神经网络的超参数"></a>3.5 如何选择神经网络的超参数</h2><h1 id="4-神经网络可以计算任何函数的可视化证明"><a href="#4-神经网络可以计算任何函数的可视化证明" class="headerlink" title="4 神经网络可以计算任何函数的可视化证明"></a>4 神经网络可以计算任何函数的可视化证明</h1><h2 id="4-1-两个预先声明"><a href="#4-1-两个预先声明" class="headerlink" title="4.1 两个预先声明"></a>4.1 两个预先声明</h2><h2 id="4-2-一个输入和输出的普遍性"><a href="#4-2-一个输入和输出的普遍性" class="headerlink" title="4.2 一个输入和输出的普遍性"></a>4.2 一个输入和输出的普遍性</h2><h2 id="4-4-S型神经元的延伸"><a href="#4-4-S型神经元的延伸" class="headerlink" title="4.4 S型神经元的延伸"></a>4.4 S型神经元的延伸</h2><h1 id="5-深度神经网络为何很难训练"><a href="#5-深度神经网络为何很难训练" class="headerlink" title="5 深度神经网络为何很难训练"></a>5 深度神经网络为何很难训练</h1></div><div class="tags"><a href="/tags/算法/">算法</a></div><div class="post-nav"><a class="pre" href="/2019/10/03/acwing1049/">acwing1049</a><a class="next" href="/2019/09/28/左神高级班/">左神高级班</a></div><div id="disqus_thread"><div class="btn_click_load"><button class="disqus_click_btn">阅读评论（请确保 Disqus 可以正常加载）</button></div><script type="text/javascript">var disqus_config = function () {
-    this.page.url = 'http://yoursite.com/2019/09/29/神经网络与深度学习/';
-    this.page.identifier = '2019/09/29/神经网络与深度学习/';
-    this.page.title = '神经网络与深度学习';
-  };</script><script type="text/javascript" id="disqus-lazy-load-script">$.ajax({
-url: 'https://disqus.com/next/config.json',
-timeout: 2500,
-type: 'GET',
-success: function(){
-  var d = document;
-  var s = d.createElement('script');
-  s.src = '//yuriy.disqus.com/embed.js';
-  s.setAttribute('data-timestamp', + new Date());
-  (d.head || d.body).appendChild(s);
-  $('.disqus_click_btn').css('display', 'none');
-},
-error: function() {
-  $('.disqus_click_btn').css('display', 'block');
-}
-});</script><script type="text/javascript" id="disqus-click-load">$('.btn_click_load').click(() => {  //click to load comments
-    (() => { // DON'T EDIT BELOW THIS LINE
-        var d = document;
-        var s = d.createElement('script');
-        s.src = '//yuriy.disqus.com/embed.js';
-        s.setAttribute('data-timestamp', + new Date());
-        (d.head || d.body).appendChild(s);
-    })();
-    $('.disqus_click_btn').css('display','none');
-});</script><script type="text/javascript" id="disqus-count-script">$(function() {
-     var xhr = new XMLHttpRequest();
-     xhr.open('GET', '//disqus.com/next/config.json', true);
-     xhr.timeout = 2500;
-     xhr.onreadystatechange = function () {
-       if (xhr.readyState === 4 && xhr.status === 200) {
-         $('.post-meta .post-comments-count').show();
-         var s = document.createElement('script');
-         s.id = 'dsq-count-scr';
-         s.src = 'https://yuriy.disqus.com/count.js';
-         s.async = true;
-         (document.head || document.body).appendChild(s);
-       }
-     };
-     xhr.ontimeout = function () { xhr.abort(); };
-     xhr.send(null);
-   });
-</script></div></div></div></div><div class="pure-u-1-4 hidden_mid_and_down"><div id="sidebar"><div class="widget"><form class="search-form" action="//www.google.com/search" method="get" accept-charset="utf-8" target="_blank"><input type="text" name="q" maxlength="20" placeholder="Search"><input type="hidden" name="sitesearch" value="http://yoursite.com"></form></div><div class="widget"><div class="widget-title"><i class="fa fa-folder-o"> Kategorien</i></div></div><div class="widget"><div class="widget-title"><i class="fa fa-star-o"> Tags</i></div><div class="tagcloud"><a href="/tags/计算机基础/" style="font-size: 15px;">计算机基础</a> <a href="/tags/算法竞赛进阶指南/" style="font-size: 15px;">算法竞赛进阶指南</a> <a href="/tags/学习日记/" style="font-size: 15px;">学习日记</a> <a href="/tags/Java基础复习/" style="font-size: 15px;">Java基础复习</a> <a href="/tags/面试准备/" style="font-size: 15px;">面试准备</a> <a href="/tags/装逼利器/" style="font-size: 15px;">装逼利器</a> <a href="/tags/每日任务/" style="font-size: 15px;">每日任务</a> <a href="/tags/算法/" style="font-size: 15px;">-算法</a> <a href="/tags/linux/" style="font-size: 15px;">linux</a> <a href="/tags/spring/" style="font-size: 15px;">spring</a> <a href="/tags/java基础/" style="font-size: 15px;">java基础</a> <a href="/tags/算法复习/" style="font-size: 15px;">算法复习</a> <a href="/tags/算法/" style="font-size: 15px;">算法</a> <a href="/tags/学习欲望/" style="font-size: 15px;">学习欲望</a> <a href="/tags/学习计划/" style="font-size: 15px;">学习计划</a> <a href="/tags/数据库基本操作/" style="font-size: 15px;">数据库基本操作</a> <a href="/tags/数据结构/" style="font-size: 15px;">数据结构</a> <a href="/tags/LeetCode/" style="font-size: 15px;">LeetCode</a> <a href="/tags/dubbo/" style="font-size: 15px;">-dubbo</a> <a href="/tags/spring/" style="font-size: 15px;">-spring</a> <a href="/tags/dubbo/" style="font-size: 15px;">dubbo</a> <a href="/tags/spring学习/" style="font-size: 15px;">-spring学习</a> <a href="/tags/计算机基础复习/" style="font-size: 15px;">计算机基础复习</a> <a href="/tags/工具复习/" style="font-size: 15px;">工具复习</a></div></div><div class="widget"><div class="widget-title"><i class="fa fa-file-o"> Letzte</i></div><ul class="post-list"><li class="post-list-item"><a class="post-list-link" href="/2019/10/10/acwing240/">acwing240</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/09/acwing885/">acwing885</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/acwing835/">acwing835</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/08/acwing831/">acwing831</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/07/acwing803/">acwing803</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/acwing292/">acwing292</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/06/acwing327/">acwing327</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/acwing797/">acwing797</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/05/acwing796/">acwing796</a></li><li class="post-list-item"><a class="post-list-link" href="/2019/10/04/acwing795/">acwing795</a></li></ul></div><div class="widget"><div class="widget-title"><i class="fa fa-comment-o"> Letzte Kommentare</i></div><script type="text/javascript" src="//yuriy.disqus.com/recent_comments_widget.js?num_items=5&amp;hide_avatars=1&amp;avatar_size=32&amp;excerpt_length=20&amp;hide_mods=1"></script></div><div class="widget"><div class="widget-title"><i class="fa fa-external-link"> Blogroll</i></div></div></div></div><div class="pure-u-1 pure-u-md-3-4"><div id="footer">Copyright © 2019 <a href="/." rel="nofollow">硅步千里.</a> Powered by<a rel="nofollow" target="_blank" href="https://hexo.io"> Hexo.</a><a rel="nofollow" target="_blank" href="https://github.com/tufu9441/maupassant-hexo"> Theme</a> by<a rel="nofollow" target="_blank" href="https://github.com/pagecho"> Cho.</a></div></div></div><a class="show" id="rocket" href="#top"></a><script type="text/javascript" src="/js/totop.js?v=0.0.0" async></script><script type="text/javascript" src="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.js" async></script><script type="text/javascript" src="/js/fancybox.js?v=0.0.0" async></script><link rel="stylesheet" type="text/css" href="//lib.baomitu.com/fancybox/3.5.7/jquery.fancybox.min.css"><script type="text/javascript" src="/js/codeblock-resizer.js?v=0.0.0"></script><script type="text/javascript" src="/js/smartresize.js?v=0.0.0"></script></div></body></html>
+<!DOCTYPE html>
+
+
+
+  
+
+
+<html class="theme-next muse use-motion" lang="zh-Hans">
+<head><meta name="generator" content="Hexo 3.9.0">
+  <meta charset="UTF-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
+<meta name="theme-color" content="#222">
+
+
+
+
+
+
+
+
+
+<meta http-equiv="Cache-Control" content="no-transform">
+<meta http-equiv="Cache-Control" content="no-siteapp">
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  
+  <link href="/lib/fancybox/source/jquery.fancybox.css?v=2.1.5" rel="stylesheet" type="text/css">
+
+
+
+
+  
+  
+  
+  
+
+  
+    
+    
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+    
+    
+    <link href="//fonts.googleapis.com/css?family=Lato:300,300italic,400,400italic,700,700italic&subset=latin,latin-ext" rel="stylesheet" type="text/css">
+  
+
+
+
+
+
+
+<link href="/lib/font-awesome/css/font-awesome.min.css?v=4.6.2" rel="stylesheet" type="text/css">
+
+<link href="/css/main.css?v=5.1.2" rel="stylesheet" type="text/css">
+
+
+  <meta name="keywords" content="算法,">
+
+
+
+
+
+
+
+
+  <link rel="shortcut icon" type="image/x-icon" href="/favicon.ico?v=5.1.2">
+
+
+
+
+
+
+<meta name="description" content="1 使用神经网络识别手写数字1.1 感知器1.2 S型神经元1.3 神经网络的架构1.4 一个简单的分类手写数字网络2 反向传播算法如何工作2.1 神经网络中使用矩阵快速计算输出的方法2.2关于代价函数的两个假设2.3 Hadamard乘积2.4 反向传播的四个基本方程2.5 四个基本方程的证明（可选）2.6 反向传播算法2.72.8 在哪种层面上，神经网络算法是快速的算法2.9 全局观3 改进神">
+<meta name="keywords" content="算法">
+<meta property="og:type" content="article">
+<meta property="og:title" content="神经网络与深度学习">
+<meta property="og:url" content="http://yoursite.com/2019/09/29/神经网络与深度学习/index.html">
+<meta property="og:site_name" content="硅步千里">
+<meta property="og:description" content="1 使用神经网络识别手写数字1.1 感知器1.2 S型神经元1.3 神经网络的架构1.4 一个简单的分类手写数字网络2 反向传播算法如何工作2.1 神经网络中使用矩阵快速计算输出的方法2.2关于代价函数的两个假设2.3 Hadamard乘积2.4 反向传播的四个基本方程2.5 四个基本方程的证明（可选）2.6 反向传播算法2.72.8 在哪种层面上，神经网络算法是快速的算法2.9 全局观3 改进神">
+<meta property="og:locale" content="zh-Hans">
+<meta property="og:updated_time" content="2019-10-06T04:07:41.856Z">
+<meta name="twitter:card" content="summary">
+<meta name="twitter:title" content="神经网络与深度学习">
+<meta name="twitter:description" content="1 使用神经网络识别手写数字1.1 感知器1.2 S型神经元1.3 神经网络的架构1.4 一个简单的分类手写数字网络2 反向传播算法如何工作2.1 神经网络中使用矩阵快速计算输出的方法2.2关于代价函数的两个假设2.3 Hadamard乘积2.4 反向传播的四个基本方程2.5 四个基本方程的证明（可选）2.6 反向传播算法2.72.8 在哪种层面上，神经网络算法是快速的算法2.9 全局观3 改进神">
+
+
+
+<script type="text/javascript" id="hexo.configurations">
+  var NexT = window.NexT || {};
+  var CONFIG = {
+    root: '/',
+    scheme: 'Muse',
+    sidebar: {"position":"left","display":"post","offset":12,"offset_float":12,"b2t":false,"scrollpercent":false,"onmobile":false},
+    fancybox: true,
+    tabs: true,
+    motion: true,
+    duoshuo: {
+      userId: '0',
+      author: '博主'
+    },
+    algolia: {
+      applicationID: '',
+      apiKey: '',
+      indexName: '',
+      hits: {"per_page":10},
+      labels: {"input_placeholder":"Search for Posts","hits_empty":"We didn't find any results for the search: ${query}","hits_stats":"${hits} results found in ${time} ms"}
+    }
+  };
+</script>
+
+
+
+  <link rel="canonical" href="http://yoursite.com/2019/09/29/神经网络与深度学习/">
+
+
+
+
+
+  <title>神经网络与深度学习 | 硅步千里</title>
+  
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</head>
+
+<body itemscope itemtype="http://schema.org/WebPage" lang="zh-Hans">
+
+  
+  
+    
+  
+
+  <div class="container sidebar-position-left page-post-detail ">
+    <div class="headband"></div>
+
+    <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
+      <div class="header-inner"><div class="site-brand-wrapper">
+  <div class="site-meta ">
+    
+
+    <div class="custom-logo-site-title">
+      <a href="/" class="brand" rel="start">
+        <span class="logo-line-before"><i></i></span>
+        <span class="site-title">硅步千里</span>
+        <span class="logo-line-after"><i></i></span>
+      </a>
+    </div>
+      
+        <p class="site-subtitle"></p>
+      
+  </div>
+
+  <div class="site-nav-toggle">
+    <button>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+      <span class="btn-bar"></span>
+    </button>
+  </div>
+</div>
+
+<nav class="site-nav">
+  
+
+  
+    <ul id="menu" class="menu">
+      
+        
+        <li class="menu-item menu-item-home">
+          <a href="/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-home"></i> <br>
+            
+            首页
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-archives">
+          <a href="/archives/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-archive"></i> <br>
+            
+            归档
+          </a>
+        </li>
+      
+        
+        <li class="menu-item menu-item-tags">
+          <a href="/tags/" rel="section">
+            
+              <i class="menu-item-icon fa fa-fw fa-tags"></i> <br>
+            
+            标签
+          </a>
+        </li>
+      
+
+      
+    </ul>
+  
+
+  
+</nav>
+
+
+
+ </div>
+    </header>
+
+    <main id="main" class="main">
+      <div class="main-inner">
+        <div class="content-wrap">
+          <div id="content" class="content">
+            
+
+  <div id="posts" class="posts-expand">
+    
+
+  
+
+  
+  
+  
+
+  <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/09/29/神经网络与深度学习/">
+
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="YURIY">
+      <meta itemprop="description" content>
+      <meta itemprop="image" content="/images/avatar.gif">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="硅步千里">
+    </span>
+
+    
+      <header class="post-header">
+
+        
+        
+          <h1 class="post-title" itemprop="name headline">神经网络与深度学习</h1>
+        
+
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">发表于</span>
+              
+              <time title="创建于" itemprop="dateCreated datePublished" datetime="2019-09-29T08:56:54+08:00">
+                2019-09-29
+              </time>
+            
+
+            
+
+            
+          </span>
+
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
+
+      
+      
+
+      
+        <h1 id="1-使用神经网络识别手写数字"><a href="#1-使用神经网络识别手写数字" class="headerlink" title="1 使用神经网络识别手写数字"></a>1 使用神经网络识别手写数字</h1><h2 id="1-1-感知器"><a href="#1-1-感知器" class="headerlink" title="1.1 感知器"></a>1.1 感知器</h2><h2 id="1-2-S型神经元"><a href="#1-2-S型神经元" class="headerlink" title="1.2 S型神经元"></a>1.2 S型神经元</h2><h2 id="1-3-神经网络的架构"><a href="#1-3-神经网络的架构" class="headerlink" title="1.3 神经网络的架构"></a>1.3 神经网络的架构</h2><h2 id="1-4-一个简单的分类手写数字网络"><a href="#1-4-一个简单的分类手写数字网络" class="headerlink" title="1.4 一个简单的分类手写数字网络"></a>1.4 一个简单的分类手写数字网络</h2><h1 id="2-反向传播算法如何工作"><a href="#2-反向传播算法如何工作" class="headerlink" title="2 反向传播算法如何工作"></a>2 反向传播算法如何工作</h1><h2 id="2-1-神经网络中使用矩阵快速计算输出的方法"><a href="#2-1-神经网络中使用矩阵快速计算输出的方法" class="headerlink" title="2.1 神经网络中使用矩阵快速计算输出的方法"></a>2.1 神经网络中使用矩阵快速计算输出的方法</h2><h2 id="2-2关于代价函数的两个假设"><a href="#2-2关于代价函数的两个假设" class="headerlink" title="2.2关于代价函数的两个假设"></a>2.2关于代价函数的两个假设</h2><h2 id="2-3-Hadamard乘积"><a href="#2-3-Hadamard乘积" class="headerlink" title="2.3 Hadamard乘积"></a>2.3 Hadamard乘积</h2><h2 id="2-4-反向传播的四个基本方程"><a href="#2-4-反向传播的四个基本方程" class="headerlink" title="2.4 反向传播的四个基本方程"></a>2.4 反向传播的四个基本方程</h2><h2 id="2-5-四个基本方程的证明（可选）"><a href="#2-5-四个基本方程的证明（可选）" class="headerlink" title="2.5 四个基本方程的证明（可选）"></a>2.5 四个基本方程的证明（可选）</h2><h2 id="2-6-反向传播算法"><a href="#2-6-反向传播算法" class="headerlink" title="2.6 反向传播算法"></a>2.6 反向传播算法</h2><h2 id="2-7"><a href="#2-7" class="headerlink" title="2.7"></a>2.7</h2><h2 id="2-8-在哪种层面上，神经网络算法是快速的算法"><a href="#2-8-在哪种层面上，神经网络算法是快速的算法" class="headerlink" title="2.8 在哪种层面上，神经网络算法是快速的算法"></a>2.8 在哪种层面上，神经网络算法是快速的算法</h2><h2 id="2-9-全局观"><a href="#2-9-全局观" class="headerlink" title="2.9 全局观"></a>2.9 全局观</h2><h1 id="3-改进神经网络的学习算法"><a href="#3-改进神经网络的学习算法" class="headerlink" title="3 改进神经网络的学习算法"></a>3 改进神经网络的学习算法</h1><h2 id="3-1-交叉熵代价函数"><a href="#3-1-交叉熵代价函数" class="headerlink" title="3.1 交叉熵代价函数"></a>3.1 交叉熵代价函数</h2><h3 id="3-1-2-使用交叉熵来对MNIST"><a href="#3-1-2-使用交叉熵来对MNIST" class="headerlink" title="3.1.2 使用交叉熵来对MNIST"></a>3.1.2 使用交叉熵来对MNIST</h3><h3 id="3-1-3-交叉熵的含义？源自哪里？"><a href="#3-1-3-交叉熵的含义？源自哪里？" class="headerlink" title="3.1.3 交叉熵的含义？源自哪里？"></a>3.1.3 交叉熵的含义？源自哪里？</h3><h3 id="3-1-4-柔性最大值"><a href="#3-1-4-柔性最大值" class="headerlink" title="3.1.4 柔性最大值"></a>3.1.4 柔性最大值</h3><h2 id="3-2-过度拟合和规范化"><a href="#3-2-过度拟合和规范化" class="headerlink" title="3.2 过度拟合和规范化"></a>3.2 过度拟合和规范化</h2><h3 id="3-2-1-规范化"><a href="#3-2-1-规范化" class="headerlink" title="3.2.1 规范化"></a>3.2.1 规范化</h3><h3 id="3-2-2-为何规范化可以帮助减轻过拟合"><a href="#3-2-2-为何规范化可以帮助减轻过拟合" class="headerlink" title="3.2.2 为何规范化可以帮助减轻过拟合"></a>3.2.2 为何规范化可以帮助减轻过拟合</h3><h3 id="3-2-3-规范化的其他技术"><a href="#3-2-3-规范化的其他技术" class="headerlink" title="3.2.3 规范化的其他技术"></a>3.2.3 规范化的其他技术</h3><h2 id="3-3-权重初始化"><a href="#3-3-权重初始化" class="headerlink" title="3.3 权重初始化"></a>3.3 权重初始化</h2><h2 id="3-5-如何选择神经网络的超参数"><a href="#3-5-如何选择神经网络的超参数" class="headerlink" title="3.5 如何选择神经网络的超参数"></a>3.5 如何选择神经网络的超参数</h2><h1 id="4-神经网络可以计算任何函数的可视化证明"><a href="#4-神经网络可以计算任何函数的可视化证明" class="headerlink" title="4 神经网络可以计算任何函数的可视化证明"></a>4 神经网络可以计算任何函数的可视化证明</h1><h2 id="4-1-两个预先声明"><a href="#4-1-两个预先声明" class="headerlink" title="4.1 两个预先声明"></a>4.1 两个预先声明</h2><h2 id="4-2-一个输入和输出的普遍性"><a href="#4-2-一个输入和输出的普遍性" class="headerlink" title="4.2 一个输入和输出的普遍性"></a>4.2 一个输入和输出的普遍性</h2><h2 id="4-4-S型神经元的延伸"><a href="#4-4-S型神经元的延伸" class="headerlink" title="4.4 S型神经元的延伸"></a>4.4 S型神经元的延伸</h2><h1 id="5-深度神经网络为何很难训练"><a href="#5-深度神经网络为何很难训练" class="headerlink" title="5 深度神经网络为何很难训练"></a>5 深度神经网络为何很难训练</h1>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+        <div class="post-tags">
+          
+            <a href="/tags/算法/" rel="tag"># 算法</a>
+          
+        </div>
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/09/28/左神高级班/" rel="next" title="左神高级班">
+                <i class="fa fa-chevron-left"></i> 左神高级班
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+              <a href="/2019/10/03/acwing1049/" rel="prev" title="acwing1049">
+                acwing1049 <i class="fa fa-chevron-right"></i>
+              </a>
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
+  </div>
+  
+  
+  
+  </article>
+
+
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
+
+
+          </div>
+          
+
+
+          
+  <div class="comments" id="comments">
+    
+  </div>
+
+
+        </div>
+        
+          
+  
+  <div class="sidebar-toggle">
+    <div class="sidebar-toggle-line-wrap">
+      <span class="sidebar-toggle-line sidebar-toggle-line-first"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-middle"></span>
+      <span class="sidebar-toggle-line sidebar-toggle-line-last"></span>
+    </div>
+  </div>
+
+  <aside id="sidebar" class="sidebar">
+    
+    <div class="sidebar-inner">
+
+      
+
+      
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            文章目录
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview">
+            站点概览
+          </li>
+        </ul>
+      
+
+      <section class="site-overview sidebar-panel">
+        <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
+          <img class="site-author-image" itemprop="image" src="/images/avatar.gif" alt="YURIY">
+          <p class="site-author-name" itemprop="name">YURIY</p>
+           
+              <p class="site-description motion-element" itemprop="description"></p>
+          
+        </div>
+        <nav class="site-state motion-element">
+
+          
+            <div class="site-state-item site-state-posts">
+              <a href="/archives/">
+                <span class="site-state-item-count">85</span>
+                <span class="site-state-item-name">日志</span>
+              </a>
+            </div>
+          
+
+          
+
+          
+            
+            
+            <div class="site-state-item site-state-tags">
+              
+                <span class="site-state-item-count">24</span>
+                <span class="site-state-item-name">标签</span>
+              
+            </div>
+          
+
+        </nav>
+
+        
+
+        <div class="links-of-author motion-element">
+          
+        </div>
+
+        
+        
+
+        
+        
+
+        
+
+
+      </section>
+
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#1-使用神经网络识别手写数字"><span class="nav-number">1.</span> <span class="nav-text">1 使用神经网络识别手写数字</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-1-感知器"><span class="nav-number">1.1.</span> <span class="nav-text">1.1 感知器</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-2-S型神经元"><span class="nav-number">1.2.</span> <span class="nav-text">1.2 S型神经元</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-3-神经网络的架构"><span class="nav-number">1.3.</span> <span class="nav-text">1.3 神经网络的架构</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#1-4-一个简单的分类手写数字网络"><span class="nav-number">1.4.</span> <span class="nav-text">1.4 一个简单的分类手写数字网络</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#2-反向传播算法如何工作"><span class="nav-number">2.</span> <span class="nav-text">2 反向传播算法如何工作</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#2-1-神经网络中使用矩阵快速计算输出的方法"><span class="nav-number">2.1.</span> <span class="nav-text">2.1 神经网络中使用矩阵快速计算输出的方法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-2关于代价函数的两个假设"><span class="nav-number">2.2.</span> <span class="nav-text">2.2关于代价函数的两个假设</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-3-Hadamard乘积"><span class="nav-number">2.3.</span> <span class="nav-text">2.3 Hadamard乘积</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-4-反向传播的四个基本方程"><span class="nav-number">2.4.</span> <span class="nav-text">2.4 反向传播的四个基本方程</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-5-四个基本方程的证明（可选）"><span class="nav-number">2.5.</span> <span class="nav-text">2.5 四个基本方程的证明（可选）</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-6-反向传播算法"><span class="nav-number">2.6.</span> <span class="nav-text">2.6 反向传播算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-7"><span class="nav-number">2.7.</span> <span class="nav-text">2.7</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-8-在哪种层面上，神经网络算法是快速的算法"><span class="nav-number">2.8.</span> <span class="nav-text">2.8 在哪种层面上，神经网络算法是快速的算法</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-9-全局观"><span class="nav-number">2.9.</span> <span class="nav-text">2.9 全局观</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#3-改进神经网络的学习算法"><span class="nav-number">3.</span> <span class="nav-text">3 改进神经网络的学习算法</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#3-1-交叉熵代价函数"><span class="nav-number">3.1.</span> <span class="nav-text">3.1 交叉熵代价函数</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-2-使用交叉熵来对MNIST"><span class="nav-number">3.1.1.</span> <span class="nav-text">3.1.2 使用交叉熵来对MNIST</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-3-交叉熵的含义？源自哪里？"><span class="nav-number">3.1.2.</span> <span class="nav-text">3.1.3 交叉熵的含义？源自哪里？</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-1-4-柔性最大值"><span class="nav-number">3.1.3.</span> <span class="nav-text">3.1.4 柔性最大值</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-2-过度拟合和规范化"><span class="nav-number">3.2.</span> <span class="nav-text">3.2 过度拟合和规范化</span></a><ol class="nav-child"><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-1-规范化"><span class="nav-number">3.2.1.</span> <span class="nav-text">3.2.1 规范化</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-2-为何规范化可以帮助减轻过拟合"><span class="nav-number">3.2.2.</span> <span class="nav-text">3.2.2 为何规范化可以帮助减轻过拟合</span></a></li><li class="nav-item nav-level-3"><a class="nav-link" href="#3-2-3-规范化的其他技术"><span class="nav-number">3.2.3.</span> <span class="nav-text">3.2.3 规范化的其他技术</span></a></li></ol></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-3-权重初始化"><span class="nav-number">3.3.</span> <span class="nav-text">3.3 权重初始化</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#3-5-如何选择神经网络的超参数"><span class="nav-number">3.4.</span> <span class="nav-text">3.5 如何选择神经网络的超参数</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#4-神经网络可以计算任何函数的可视化证明"><span class="nav-number">4.</span> <span class="nav-text">4 神经网络可以计算任何函数的可视化证明</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#4-1-两个预先声明"><span class="nav-number">4.1.</span> <span class="nav-text">4.1 两个预先声明</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-2-一个输入和输出的普遍性"><span class="nav-number">4.2.</span> <span class="nav-text">4.2 一个输入和输出的普遍性</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#4-4-S型神经元的延伸"><span class="nav-number">4.3.</span> <span class="nav-text">4.4 S型神经元的延伸</span></a></li></ol></li><li class="nav-item nav-level-1"><a class="nav-link" href="#5-深度神经网络为何很难训练"><span class="nav-number">5.</span> <span class="nav-text">5 深度神经网络为何很难训练</span></a></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
+      
+
+      
+
+    </div>
+  </aside>
+
+
+        
+      </div>
+    </main>
+
+    <footer id="footer" class="footer">
+      <div class="footer-inner">
+        <div class="copyright">
+  
+  &copy; 
+  <span itemprop="copyrightYear">2019</span>
+  <span class="with-love">
+    <i class="fa fa-heart"></i>
+  </span>
+  <span class="author" itemprop="copyrightHolder">YURIY</span>
+</div>
+
+
+<div class="powered-by">
+  由 <a class="theme-link" href="https://hexo.io">Hexo</a> 强力驱动
+</div>
+
+<div class="theme-info">
+  主题 -
+  <a class="theme-link" href="https://github.com/iissnan/hexo-theme-next">
+    NexT.Muse
+  </a>
+</div>
+
+
+        
+
+        
+      </div>
+    </footer>
+
+    
+      <div class="back-to-top">
+        <i class="fa fa-arrow-up"></i>
+        
+      </div>
+    
+
+  </div>
+
+  
+
+<script type="text/javascript">
+  if (Object.prototype.toString.call(window.Promise) !== '[object Function]') {
+    window.Promise = null;
+  }
+</script>
+
+
+
+
+
+
+
+
+
+  
+
+
+
+
+
+
+
+
+
+
+
+
+  
+  <script type="text/javascript" src="/lib/jquery/index.js?v=2.1.3"></script>
+
+  
+  <script type="text/javascript" src="/lib/fastclick/lib/fastclick.min.js?v=1.0.6"></script>
+
+  
+  <script type="text/javascript" src="/lib/jquery_lazyload/jquery.lazyload.js?v=1.9.7"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/velocity/velocity.ui.min.js?v=1.2.1"></script>
+
+  
+  <script type="text/javascript" src="/lib/fancybox/source/jquery.fancybox.pack.js?v=2.1.5"></script>
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/utils.js?v=5.1.2"></script>
+
+  <script type="text/javascript" src="/js/src/motion.js?v=5.1.2"></script>
+
+
+
+  
+  
+
+  
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.2"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  <script type="text/javascript" src="/js/src/bootstrap.js?v=5.1.2"></script>
+
+
+
+  
+
+
+  
+
+
+
+
+	
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+
+
+
+
+
+  
+
+
+
+
+
+  
+
+  
+
+  
+
+  
+
+  
+
+  
+
+</body>
+</html>
